@@ -343,6 +343,9 @@
       .hero-tag:hover { border-color: var(--accent); color: var(--accent); }
 
       .hero-cta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+      .hero-builder-link { display:inline-flex; align-items:center; gap:7px; padding:8px 0; color:var(--accent); font-size:12px; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(146,115,76,.35); transition:color .2s,border-color .2s; }
+      .hero-builder-link:hover { color:var(--btn-bg); border-color:var(--btn-bg); }
+      .hero-note { max-width:420px; margin:16px 0 0; color:var(--text-muted); font-size:12px; line-height:1.6; }
 
       .btn-primary {
           display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white);
@@ -1151,6 +1154,8 @@
       .hero-tag { font-size: 12px; padding: 7px 10px; }
       .hero-cta-row { align-items: stretch; flex-direction: column; max-width: 340px; }
       .hero-cta-row a { justify-content: center; }
+      .hero-cta-row .hero-builder-link { justify-content:flex-start; align-self:flex-start; }
+      .hero-note { max-width:340px; }
       .products-inner, #why, #materials, #process { width: calc(100% - 40px); }
       .section-title, #why h2, #materials h2, #process h2 { font-size: 36px; }
       .form-section { width: calc(100% - 40px); }
@@ -1303,16 +1308,21 @@
   .leonid-photo { background:#e5dfd5; }
   .leonid-photo img { aspect-ratio:4/3; object-fit:contain; }
   .leonid-gallery-more button { min-width:230px; padding:14px 22px; }
-  .category-lightbox { width:min(1100px,calc(100vw - 32px)); max-width:none; max-height:90dvh; padding:0; border:0; background:#f8f7f4; color:var(--text-primary); box-shadow:0 24px 80px #0004; }
-  .category-lightbox::backdrop { background:#171914cc; }
-  .category-lightbox__head { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 26px; border-bottom:1px solid var(--border); }
-  .category-lightbox__head h2 { margin:0; font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:26px; }
-  .category-lightbox__close { width:42px; height:42px; border:1px solid var(--border); border-radius:50%; background:transparent; font-size:26px; cursor:pointer; }
-  .category-lightbox__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; max-height:calc(90dvh - 90px); overflow:auto; padding:20px 26px 26px; }
-  .category-lightbox__item { display:block; padding:0; border:0; background:#e8e3da; cursor:zoom-in; overflow:hidden; }
-  .category-lightbox__item img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .35s; }
+  .category-lightbox { position:fixed; inset:0; margin:0; width:100vw; height:100dvh; max-width:none; max-height:none; padding:0; border:0; overflow:hidden; background:#f3f1ec; color:var(--text-primary); }
+  .category-lightbox[open] { display:flex; flex-direction:column; }
+  html.gallery-open, body.gallery-open { overflow:hidden !important; overscroll-behavior:none; }
+  .category-lightbox::backdrop { background:rgba(23,25,20,.72); backdrop-filter:blur(8px); }
+  .category-lightbox__head { position:relative; z-index:1; display:flex; flex:0 0 auto; justify-content:space-between; align-items:center; gap:20px; padding:24px clamp(20px,5vw,72px); border-bottom:1px solid var(--border); background:rgba(248,247,244,.96); }
+  .category-lightbox__head h2 { margin:0; font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:clamp(24px,3vw,36px); letter-spacing:-.025em; }
+  .category-lightbox__close { width:46px; height:46px; flex:0 0 46px; border:1px solid var(--border); border-radius:50%; background:transparent; font-size:25px; cursor:pointer; transition:background .2s,transform .2s; }
+  .category-lightbox__close:hover { background:#ebe7df; transform:rotate(90deg); }
+  .category-lightbox__grid { display:grid; flex:1 1 auto; grid-template-columns:repeat(4,minmax(0,1fr)); align-content:start; gap:16px; min-height:0; overflow:auto; overscroll-behavior:contain; padding:24px clamp(20px,5vw,72px) 48px; scrollbar-gutter:stable; }
+  .category-lightbox__item { position:relative; display:block; width:100%; height:auto; min-height:0; aspect-ratio:4/3; padding:0; border:1px solid rgba(90,77,57,.12); background:#e8e3da; cursor:zoom-in; overflow:hidden; box-shadow:0 5px 18px rgba(42,38,30,.06); transition:transform .28s,box-shadow .28s; }
+  .category-lightbox__item:hover { transform:translateY(-3px); box-shadow:0 14px 30px rgba(42,38,30,.13); }
+  .category-lightbox__item img { position:absolute; inset:0; display:block; width:100%; height:100%; max-height:none; aspect-ratio:4/3; object-fit:cover; transition:transform .35s; }
   .category-lightbox__item:hover img { transform:scale(1.04); }
-  .category-lightbox__count { color:var(--text-muted); font-size:12px; }
+  .category-lightbox__count { display:inline-block; margin-top:7px; color:var(--text-muted); font-size:12px; letter-spacing:.04em; }
+  @media(max-width:1050px) { .category-lightbox__grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 
   .epoxy-project-link { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px 28px; margin-top:24px; padding:18px 22px; border:1px solid var(--border); background:#f7f5f0; color:var(--text-primary); text-decoration:none; transition:border-color .2s,background-color .2s; }
   .epoxy-project-link:hover { border-color:var(--accent-light); background:#faf9f6; }
@@ -1324,7 +1334,27 @@
   @media(max-width:600px) { .epoxy-project-link { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:18px; padding:14px; } .epoxy-project-link__mark { width:36px; height:36px; } .epoxy-project-link__copy { display:block; } .epoxy-project-link__copy strong { display:block; font-size:17px; line-height:1.25; } .epoxy-project-link__copy span { display:block; margin-top:4px; font-size:11px; line-height:1.45; } .epoxy-project-link__action { grid-column:2; } }
 
   @media(max-width:900px) { .products-slider .swiper-wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media(max-width:600px) { .products-slider .swiper-wrapper { grid-template-columns:1fr; } .leonid-gallery { grid-template-columns:minmax(0,1fr); gap:14px; } .leonid-photo img { width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#e5dfd5; } .leonid-lightbox__panel { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:6px; } .leonid-lightbox__figure { max-width:100%; width:100%; } .leonid-lightbox__figure img { width:100%; max-height:calc(100dvh - 130px); object-fit:contain; } .leonid-lightbox__nav,.leonid-lightbox__close { width:44px; height:44px; } .category-lightbox__grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:14px; gap:8px; } .category-lightbox__head { padding:16px; } .category-lightbox__head h2 { font-size:21px; } }
+  @media(max-width:600px) { .products-slider .swiper-wrapper { grid-template-columns:1fr; } .leonid-gallery { grid-template-columns:minmax(0,1fr); gap:14px; } .leonid-photo img { width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#e5dfd5; } .leonid-lightbox__panel { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:6px; } .leonid-lightbox__figure { max-width:100%; width:100%; } .leonid-lightbox__figure img { width:100%; max-height:calc(100dvh - 130px); object-fit:contain; } .leonid-lightbox__nav,.leonid-lightbox__close { width:44px; height:44px; } .category-lightbox__grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:14px 14px 28px; gap:10px; } .category-lightbox__head { padding:14px 16px; } .category-lightbox__head h2 { font-size:21px; } .category-lightbox__close { width:42px;height:42px;flex-basis:42px; } }
+</style>
+<style id="catalog-polish">
+  .product-card { border-radius:3px; transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .3s; }
+  .product-card:hover { border-color:#c7b99f; box-shadow:0 18px 42px rgba(48,45,37,.09); }
+  .product-visual { height:auto; aspect-ratio:16/10; background:#e8e3da !important; }
+  .product-visual img { transition:transform .55s cubic-bezier(.2,.7,.2,1); }
+  .product-body { padding:24px; }
+  .product-body h3 { font-family:'Playfair Display',Georgia,serif; font-size:21px; font-weight:400; line-height:1.25; }
+  .product-body p { font-size:13px; line-height:1.75; }
+  .product-fit { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 20px; padding:0; list-style:none; }
+  .product-fit li { padding:6px 9px; border:1px solid var(--border); color:var(--text-secondary); font-size:10px; line-height:1.2; letter-spacing:.025em; }
+  .product-body .btn-card { min-height:44px; margin-top:8px; }
+  .product-body .btn-card:first-of-type { border-color:var(--btn-bg); background:var(--btn-bg); color:#fff; }
+  .product-body .btn-card:first-of-type:hover { background:#24362b; }
+  .product-body .btn-card:last-of-type { margin-bottom:4px; }
+  .product-body .btn-card:focus-visible,.builder-entry:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
+  .builder-entry { transition:transform .3s ease,border-color .25s,box-shadow .3s; }
+  .builder-entry:hover { transform:translateY(-2px); border-color:#c7b99f; box-shadow:0 12px 26px rgba(48,45,37,.06); }
+  @media(max-width:600px) { .product-visual { aspect-ratio:16/9; } .product-body { padding:20px; } .product-body h3 { font-size:20px; } .product-fit { margin-bottom:16px; } }
+  @media(prefers-reduced-motion:reduce) { .product-card,.product-visual img,.builder-entry { transition:none; } }
 </style>
 <style id="full-bleed-section-system">
   :root { --white:#f6f4ef; --off-white:#f0eee8; }
@@ -1432,30 +1462,24 @@
 <main>
   <section class="hero" aria-label="Главный экран">
     <div class="hero-content">
-      <p class="hero-label">Лестницы под ключ · Московская область</p>
-      <h1 class="hero-title">
-        Лестницы любой сложности
-      </h1>
-      <p class="hero-sub hero-sub-1">
-        Мы предоставляем возможность людям комфортно и безопасно подниматься выше!
-      </p>
-      <p class="hero-sub hero-sub-2">
-        Проектируем, изготавливаем на собственном производстве и монтируем лестницы для дома и коммерческих пространств любой сложности
-      </p>
-      <div class="hero-tags">
-        <a href="#products" class="hero-tag">Открытый тип</a>
-        <a href="#products" class="hero-tag">Закрытый тип</a>
-        <a href="#products" class="hero-tag">Обшивка бетона</a>
-        <a href="#products" class="hero-tag">Деревянные изделия</a>
+      <p class="hero-label">Проектирование · производство · монтаж · Москва и область</p>
+      <h1 class="hero-title">Лестница под ваш дом и интерьер</h1>
+      <p class="hero-sub hero-sub-1">От точного замера до установки — одна команда на всём пути.</p>
+      <p class="hero-sub hero-sub-2">Проектируем и изготавливаем лестницы на металлическом каркасе, подбираем деревянную отделку и ограждения под ваш проём.</p>
+      <div class="hero-tags" aria-label="Виды работ">
+        <a href="#products" class="hero-tag">Металлокаркас</a>
+        <a href="#products" class="hero-tag">Отделка бетона</a>
+        <a href="#products" class="hero-tag">Дерево и ограждения</a>
       </div>
       <div class="hero-cta-row">
         <a href="#contact" class="btn-primary">
           Обсудить проект
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
-        <a href="#products" class="btn-outline">Смотреть проекты →</a>
-        <a href="./constructor.html" class="btn-outline">3D-конструктор лестницы ↗</a>
+        <a href="#products" class="btn-outline">Посмотреть работы <span aria-hidden="true">→</span></a>
+        <a href="./constructor.html" class="hero-builder-link">Собрать лестницу в 3D <span aria-hidden="true">↗</span></a>
       </div>
+      <p class="hero-note">Нет готового проекта? Расскажите о задаче — подскажем, с чего начать.</p>
     </div>
   </section>
 
@@ -1511,7 +1535,8 @@
               </div>
               <div class="product-body">
                 <h3>Лестницы закрытого типа</h3>
-                <p>Классические конструкции с подступёнками. Выглядят монолитно и строго, хорошо вписываются в классический, скандинавский и современный интерьер. Обеспечивают дополнительную пространство под лестницей. Косоуры изготавливаются из швеллера, или из листа металла. </p>
+                <p>Ступени и подступёнки образуют цельный, аккуратный марш. Подходит для классических и современных интерьеров. Каркас изготавливаем из швеллера или листового металла.</p>
+                <ul class="product-fit" aria-label="Особенности закрытой лестницы"><li>Подступёнки</li><li>Цельный силуэт</li><li>Каркас под отделку</li></ul>
                 <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
                 <button class="btn-card" type="button" id="btn-gallery-closedType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы закрытого типа">Примеры работ</button>
               </div>
@@ -1526,8 +1551,8 @@
               </div>
               <div class="product-body">
                 <h3>Лестницы открытого типа</h3>
-                <p>Создают ощущение воздушности и лёгкости в интерьере. Популярный выбор для современных домов в стиле лофт, минимализм, хай-тек.
-                  Пропускают свет, без подступенков, металлокаркас остаётся виден, его можно покрасить в любой цвет. Есть несколько видов лестниц открытого типа с различными косоурами: на монокосоуре, на ломанных косоурах, на тетивах, консольные, винтовые. </p>
+                <p>Ступени без подступёнков пропускают свет и визуально облегчают интерьер. Каркас остаётся частью дизайна: можно выбрать форму косоура и цвет окраски.</p>
+                <ul class="product-fit" aria-label="Особенности открытой лестницы"><li>Больше света</li><li>Открытые ступени</li><li>Выбор каркаса</li></ul>
                 <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
                 <button class="btn-card" type="button" id="btn-gallery-openType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы открытого типа">Примеры работ</button>
               </div>
@@ -1542,7 +1567,8 @@
               </div>
               <div class="product-body">
                 <h3>Обшивка бетонных лестниц</h3>
-                <p>Если в вашем доме уже есть бетонная лестница, которая выглядит незаконченно — мы превратим её в стильный элемент интерьера. Полная обшивка: ступени, подступёнки, боковины и ограждение.  </p>
+                <p>Превратим бетонное основание в завершённую лестницу: подберём отделку ступеней, подступёнков, боковин и ограждения под интерьер.</p>
+                <ul class="product-fit" aria-label="Особенности обшивки бетонной лестницы"><li>Для готового бетона</li><li>Дерево и отделка</li><li>Единый стиль</li></ul>
                 <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
                 <button class="btn-card" type="button" id="btn-gallery-covering" aria-haspopup="dialog" aria-label="Открыть примеры работ: обшивка бетонных лестниц">Примеры работ</button>
               </div>
@@ -1557,7 +1583,8 @@
               </div>
               <div class="product-body">
                 <h3>Ограждения</h3>
-                <p>Правильно подобранные ограждения — залог безопасности и визитная карточка любой лестницы. Изготавливаем и устанавливаем деревянные, металлические, комбинированные (деревянные с коваными элементами) и стеклянные ограждения. </p>
+                <p>Изготавливаем ограждения, которые поддерживают стиль лестницы и помогают безопасно пользоваться маршем: деревянные, металлические, комбинированные и стеклянные.</p>
+                <ul class="product-fit" aria-label="Варианты ограждений"><li>Металл</li><li>Стекло</li><li>Дерево и ковка</li></ul>
                 <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
                 <button class="btn-card" type="button" id="btn-gallery-fences" aria-haspopup="dialog" aria-label="Открыть примеры работ: ограждения">Примеры работ</button>
               </div>
@@ -1572,7 +1599,8 @@
               </div>
               <div class="product-body">
                 <h3>Деревянные изделия</h3>
-                <p>Помимо лестниц, мы производим шкафы, столы, слэбы, стеновые панели, перегородки для зонирования, предметы интерьера</p>
+                <p>Изготавливаем мебель и детали интерьера из дерева: шкафы, столы, слэбы, стеновые панели и перегородки для зонирования.</p>
+                <ul class="product-fit" aria-label="Примеры изделий"><li>Мебель</li><li>Стеновые панели</li><li>Под размеры проекта</li></ul>
                 <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
                 <button class="btn-card" type="button" id="btn-gallery-wood" aria-haspopup="dialog" aria-label="Открыть примеры работ: деревянные изделия">Примеры работ</button>
               </div>
@@ -1689,7 +1717,7 @@
           <img src="./assets/images/materials/listvennitsa.jpg" alt="Лиственница" loading="lazy">
         </div>
         <div class="material-content">
-          <h3>Лиственица</h3>
+          <h3>Лиственница</h3>
           <p>Долговечная древесина с высокой природной устойчивостью к влаге и перепадам температуры. Благодаря содержанию смол отлично подходит для лестниц в частных домах и загородных коттеджах.</p>
         </div>
       </article>
@@ -2137,10 +2165,22 @@
         categoryGrid.appendChild(item);
       });
       categoryDialog.showModal();
+      document.documentElement.classList.add('gallery-open');
+      document.body.classList.add('gallery-open');
+      if(window.gsap && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+        gsap.fromTo(categoryDialog,{opacity:0,scale:.985},{opacity:1,scale:1,duration:.28,ease:"power2.out"});
+        gsap.fromTo(categoryGrid.children,{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.38,stagger:.035,ease:"power2.out",delay:.08});
+      }
     });
   });
-  categoryDialog.querySelector('.category-lightbox__close').addEventListener('click',()=>categoryDialog.close());
-  categoryDialog.addEventListener('click',event=>{if(event.target===categoryDialog)categoryDialog.close();});
+  function closeCategoryGallery(){
+    if(window.gsap && categoryDialog.open && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      gsap.to(categoryDialog,{opacity:0,duration:.18,ease:"power1.in",onComplete:()=>{categoryDialog.close();categoryDialog.style.opacity="";}});
+    }else categoryDialog.close();
+  }
+  categoryDialog.addEventListener('close',()=>{document.documentElement.classList.remove('gallery-open');document.body.classList.remove('gallery-open');categoryDialog.style.opacity='';});
+  categoryDialog.querySelector('.category-lightbox__close').addEventListener('click',closeCategoryGallery);
+  categoryDialog.addEventListener('click',event=>{if(event.target===categoryDialog)closeCategoryGallery();});
   categoryPreview.querySelector('.leonid-lightbox__close').addEventListener('click',()=>categoryPreview.close());
   categoryPreview.querySelector('.category-preview-prev').addEventListener('click',()=>showCategoryPreview(categoryPreviewIndex-1));
   categoryPreview.querySelector('.category-preview-next').addEventListener('click',()=>showCategoryPreview(categoryPreviewIndex+1));
@@ -2229,12 +2269,5 @@
   .builder-entry__copy span { margin-top:3px; color:var(--text-secondary); font-size:12px; }
   .builder-entry__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
   @media(max-width:600px) { .builder-entry { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:20px; padding:14px; } .builder-entry__mark { width:36px;height:36px; } .builder-entry__copy strong { font-size:17px;line-height:1.25; } .builder-entry__copy span { font-size:11px;line-height:1.45; } .builder-entry__action { grid-column:2; } }
-</style></body>
+</style><script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
 </html>
-
-
-
-
-
-
-
