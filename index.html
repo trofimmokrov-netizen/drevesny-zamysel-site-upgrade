@@ -711,7 +711,9 @@
       .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-secondary); }
       .contact-item strong { color: var(--text-primary); }
       .contact-item a { color: inherit; text-decoration: none; transition: color 0.2s; }
+      .contact-item .contact-phone { color: var(--text-primary); font-weight: 600; }
       .contact-item a:hover { color: var(--accent); }
+      .contact-meta { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; }
 
       .form-right form { display: flex; flex-direction: column; gap: 12px; }
       .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1450,7 +1452,7 @@
 </header>
 
 <!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Меню сайта" aria-hidden="true" inert>
   <nav class="mobile-nav-links">
     <a href="#why">О нас</a>
     <a href="#products">Каталог</a>
@@ -1928,7 +1930,7 @@
         <div class="form-contact-row">
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l1.5 4-2 1.5a10 10 0 004 4L11 9.5l4 1.5v4c0 1-1 1.5-2 1.5C5 16.5 0 10 0 4c0-1 .5-2 2-2z" stroke="currentColor" stroke-width="1.2"/></svg>
-            <span><strong>+7 (495) 275-14-23</strong> — 10:00–19:00</span>
+            <span class="contact-meta"><a class="contact-phone" href="tel:+74952751423" aria-label="Позвонить: +7 (495) 275-14-23">+7 (495) 275-14-23</a><span>10:00–19:00</span></span>
           </div>
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -1950,24 +1952,18 @@
 </main>
 
 <!-- FOOTER -->
-<footer>
+<footer class="site-footer">
   <div class="footer-brand">
     <div class="nav-logo-icon">
-      <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
+      <a href="./index.html" class="nav-logo" aria-label="Древесный Замысел — на главную">
         <img class="nav-logo-img" src="./assets/images/logo.png" alt="Древесный замысел"/>
       </a>
     </div>
-    Древесный замысел
+    <span>Древесный замысел</span>
   </div>
-  <div class="footer-links">
-    <a href="#why" class="active">О нас</a>
-    <a href="#products">Каталог</a>
-    <a href="#leonid-portfolio">Работы</a>
-    <a href="#materials">Материалы</a>
-    <a href="#process">Процесс</a>
-    <a href="#articles">Статьи</a>
-    <a href="#contact">Контакты</a>
-    <!-- Добавлен href для нормального курсора с data-атрибутом -->
+  <div class="footer-contact">
+    <a class="footer-phone" href="tel:+74952751423">+7 (495) 275-14-23</a>
+    <a class="footer-email" href="mailto:drevesnyzamysel@mail.ru">drevesnyzamysel@mail.ru</a>
     <a id="confPol" href="#confPol" data-micromodal-trigger="modal-1">Политика конфиденциальности</a>
   </div>
 </footer>
@@ -2070,12 +2066,32 @@
     burgerBtn.setAttribute('aria-expanded', String(isOpen));
     burgerBtn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
     mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    mobileMenu.inert = !isOpen;
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (isOpen) {
+      mobileMenu.querySelector('.mobile-nav-links a')?.focus({ preventScroll: true });
+    }
   }
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+    if (!mobileMenu.classList.contains('active')) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
       toggleBurgerMenu(false);
       burgerBtn.focus();
+      return;
+    }
+    if (event.key === 'Tab') {
+      const focusable = [...mobileMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 
@@ -2083,13 +2099,15 @@
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const hash = a.getAttribute('href');
+      const target = hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       if(mobileMenu.classList.contains('active')) {
-        toggleBurgerMenu();
+        toggleBurgerMenu(false);
+        burgerBtn.focus({ preventScroll: true });
       }
     });
   });
@@ -2163,7 +2181,10 @@
   const categoryPreviewImage = document.getElementById('categoryPreviewImage');
   const categoryPreviewCaption = document.getElementById('categoryPreviewCaption');
   function showCategoryPreview(index) {
-    categoryPreviewIndex=(index+categoryPreviewImages.length)%categoryPreviewImages.length;
+    if (!categoryPreviewImages.length) return;
+    // JavaScript's remainder stays negative for -1; normalize it so «назад»
+    // from the first photo correctly wraps to the last photo.
+    categoryPreviewIndex=((index % categoryPreviewImages.length)+categoryPreviewImages.length)%categoryPreviewImages.length;
     categoryPreviewImage.src=categoryPreviewImages[categoryPreviewIndex];
     categoryPreviewImage.alt=`${categoryNames[document.getElementById('categoryLightboxTitle').dataset.key]}, проект ${categoryPreviewIndex+1}`;
     categoryPreviewCaption.textContent=`Проект ${categoryPreviewIndex+1} из ${categoryPreviewImages.length}`;
@@ -2275,6 +2296,49 @@
     addLeonidPhotos();
   }
 
+  // Carry the stair configurator summary into the contact section without
+  // pretending that the cross-origin Bitrix form has received it automatically.
+  const stairConfigFromUrl = new URLSearchParams(window.location.search).get('stair_config');
+  if (stairConfigFromUrl) {
+    const contactStartNote = document.querySelector('#contact .contact-start-note');
+    if (contactStartNote) {
+      const handoff = document.createElement('div');
+      handoff.className = 'stair-config-handoff';
+      const title = document.createElement('strong');
+      title.textContent = 'Параметры для обсуждения';
+      const details = document.createElement('p');
+      details.className = 'stair-config-handoff__details';
+      details.textContent = stairConfigFromUrl.slice(0, 500);
+      const note = document.createElement('p');
+      note.className = 'stair-config-handoff__note';
+      note.textContent = 'Скопируйте выбранную конфигурацию, чтобы отправить её менеджеру вместе с заявкой.';
+      const copyButton = document.createElement('button');
+      copyButton.className = 'stair-config-handoff__copy';
+      copyButton.type = 'button';
+      copyButton.textContent = 'Скопировать параметры';
+      copyButton.addEventListener('click', async () => {
+        let copied = false;
+        try {
+          await navigator.clipboard.writeText(details.textContent);
+          copied = true;
+        } catch (_) {
+          const temporary = document.createElement('textarea');
+          temporary.value = details.textContent;
+          temporary.setAttribute('readonly', '');
+          temporary.style.position = 'fixed';
+          temporary.style.opacity = '0';
+          document.body.appendChild(temporary);
+          temporary.select();
+          copied = document.execCommand('copy');
+          temporary.remove();
+        }
+        copyButton.textContent = copied ? 'Параметры скопированы' : 'Не удалось скопировать';
+      });
+      handoff.append(title, details, note, copyButton);
+      contactStartNote.after(handoff);
+    }
+  }
+
 </script>
 <script>
   (function(w,d,u){
@@ -2291,5 +2355,55 @@
   .builder-entry__copy span { margin-top:3px; color:var(--text-secondary); font-size:12px; }
   .builder-entry__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
   @media(max-width:600px) { .builder-entry { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:20px; padding:14px; } .builder-entry__mark { width:36px;height:36px; } .builder-entry__copy strong { font-size:17px;line-height:1.25; } .builder-entry__copy span { font-size:11px;line-height:1.45; } .builder-entry__action { grid-column:2; } }
+</style>
+<style id="gallery-footer-refinements">
+  .category-lightbox__item img { object-fit:contain; padding:6px; background:#e8e3da; }
+  .leonid-lightbox { display:none; }
+  .leonid-lightbox[open] { display:block; }
+  .leonid-lightbox__panel { position:static; display:block; width:100%; height:100%; }
+  .leonid-lightbox__figure { position:fixed; top:50%; left:50%; display:flex; width:min(calc(100vw - 150px),1120px); height:auto; max-width:none; max-height:calc(100dvh - 120px); margin:0; transform:translate(-50%,-50%); }
+  .leonid-lightbox__figure img { display:block; width:100%; height:auto; max-width:none; max-height:calc(100dvh - 150px); object-fit:contain; }
+  .leonid-lightbox__figure figcaption { position:static; width:100%; padding-top:8px; }
+  .leonid-lightbox__close { position:fixed; top:18px; right:22px; z-index:12; }
+  .leonid-lightbox__nav { position:fixed; top:50%; z-index:11; transform:translateY(-50%); background:rgba(24,25,22,.38); backdrop-filter:blur(8px); }
+  .leonid-lightbox__prev { left:22px; }
+  .leonid-lightbox__next { right:22px; }
+  #categoryPhotoPreview .category-preview-prev { left:22px; right:auto; }
+  #categoryPhotoPreview .category-preview-next { right:22px; left:auto; }
+  .leonid-lightbox__nav:hover { transform:translateY(-50%) scale(1.05); }
+  .leonid-lightbox__figure figcaption { min-height:18px; text-align:center; }
+  .leonid-lightbox button:focus-visible { outline:3px solid #d2b98f; outline-offset:3px; }
+  .site-footer { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:104px; padding:20px clamp(24px,6vw,84px); border-top:1px solid rgba(255,255,255,.12); background:#292a26; color:#f8f7f4; }
+  .site-footer .footer-brand { gap:14px; color:#f8f7f4; font-family:'Cormorant Garamond',Georgia,serif; font-size:20px; letter-spacing:.015em; }
+  .site-footer .nav-logo-icon { display:flex; width:48px; height:48px; flex:0 0 48px; align-items:center; justify-content:center; overflow:hidden; background:#fff; }
+  .site-footer .nav-logo,.site-footer .nav-logo-img { display:block; width:100%; height:100%; }
+  .site-footer .nav-logo-img { object-fit:contain; }
+  .footer-contact { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:8px 24px; margin-right:30vw; }
+  .footer-contact a { color:#d3d0c8; font-size:11px; text-decoration:none; transition:color .2s; }
+  .footer-contact a:hover { color:#fff; }
+  .footer-contact .footer-phone { color:#fff; font-size:14px; font-weight:600; }
+  .stair-config-handoff { display:grid; gap:9px; margin:0 0 24px; padding:16px; border:1px solid var(--border); background:#f7f5f0; }
+  .stair-config-handoff > strong { color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:20px; font-weight:400; }
+  #contact .form-left .stair-config-handoff__details,#contact .form-left .stair-config-handoff__note { margin:0; }
+  .stair-config-handoff__details { color:var(--text-primary); font-size:12px; line-height:1.7; }
+  .stair-config-handoff__note { color:var(--text-muted); font-size:11px; line-height:1.55; }
+  .stair-config-handoff__copy { justify-self:start; min-height:40px; padding:9px 13px; border:1px solid var(--btn-bg); background:transparent; color:var(--btn-bg); font:600 11px 'Manrope',sans-serif; cursor:pointer; }
+  .stair-config-handoff__copy:hover { background:var(--btn-bg); color:#fff; }
+  @media(max-width:600px) {
+    .leonid-lightbox { padding:16px 8px; }
+    .leonid-lightbox__figure { width:calc(100vw - 104px); max-height:calc(100dvh - 120px); }
+    .leonid-lightbox__figure img { max-height:calc(100dvh - 150px); }
+    .leonid-lightbox__nav { width:38px; height:38px; }
+    .leonid-lightbox__prev { left:8px; }
+    .leonid-lightbox__next { right:8px; }
+    #categoryPhotoPreview .category-preview-prev { left:8px; right:auto; }
+    #categoryPhotoPreview .category-preview-next { right:8px; left:auto; }
+    .leonid-lightbox__close { top:10px; right:10px; width:40px; height:40px; }
+    .stair-config-handoff { padding:14px; }
+    .stair-config-handoff__copy { width:100%; }
+    .site-footer { align-items:flex-start; flex-direction:column; gap:18px; padding:22px 20px; }
+    .site-footer .footer-brand { font-size:18px; }
+    .footer-contact { align-items:flex-start; justify-content:flex-start; flex-direction:column; gap:8px; margin-right:0; padding-bottom:100px; }
+  }
 </style><script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
 </html>
