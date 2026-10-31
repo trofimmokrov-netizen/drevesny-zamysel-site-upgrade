@@ -1,0 +1,1 @@
+var e=``+new URL(`woody_1_preview-DRq_ek38.jpg`,import.meta.url).href;export{e as default};

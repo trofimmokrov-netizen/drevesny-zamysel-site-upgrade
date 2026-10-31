@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
+  <link rel="shortcut icon" href="./favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="./favicons/site.webmanifest" />
+  <link rel="canonical" href="https://древесный-замысел.рф/" />
+
+  <!-- SEO: Title & Description -->
+  <title>Лестницы любой сложности для вас — Древесный Замысел</title>
+  <meta name="description" content="Изготавливаем лестницы любой сложности, мебель и слэбы на заказ в Москве и Московской области. Собственное производство: замер, проектирование, изготовление и монтаж под ключ." />
+  <meta name="keywords" content="производство лестниц Москва, лестницы на заказ Московская область, мебель на заказ Москва, слэбы из дерева, изготовление лестниц под ключ, Древесный Замысел" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- OG / Social -->
+  <meta property="og:title" content="Лестницы любой сложности для вас — Древесный Замысел" />
+  <meta property="og:description" content="Лестницы любой сложности, мебель и слэбы на заказ. Собственное производство в Москве: от проекта до монтажа под ключ." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://древесный-замысел.рф/" />
+  <meta property="og:site_name" content="Древесный Замысел" />
+  <meta property="og:locale" content="ru_RU" />
+
+
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Древесный Замысел",
+      "description": "Производство лестниц любой сложности, мебели и слэбов на заказ в Москве и Московской области. Замер, проектирование, изготовление и монтаж под ключ.",
+      "url": "https://древесный-замысел.рф/",
+      "telephone": "+7 (495) 275-14-23",
+      "email": "drevesnyzamysel@mail.ru",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "дер. Губкино, 78 соор 5",
+        "addressLocality": "г. Москва",
+        "addressRegion": "Московская область",
+        "postalCode": "143400",
+        "addressCountry": "RU"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Москва и Московская область"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Изделия на заказ",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление лестниц любой сложности" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление мебели на заказ" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление слэбов и изделий из массива дерева" } }
+        ]
+      },
+      "priceRange": "₽₽₽",
+      "openingHours": "10:00-19:00"
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+          --white: #ffffff;
+          --off-white: #f8f7f5;
+          --light: #f0ede8;
+          /* RAL Цветовая Палитра */
+          --text-primary: #3b3332;
+          --heading-color: #384337;
+          --btn-bg: #006442;
+          /* Остальные цвета */
+          --text-secondary: #6b6560;
+          --text-muted: #a09990;
+          --accent: #8b6f47;
+          --accent-light: #c4a882;
+          --border: #e8e3dc;
+          --nav-bg: rgba(255,255,255,0.95);
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+          font-family: 'Inter', sans-serif;
+          background: var(--white);
+          color: var(--text-primary);
+          overflow-x: hidden;
+      }
+
+      /* ── HEADER & NAV ── */
+      .site-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 100;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
+          background: var(--nav-bg);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--border);
+          padding: 16px 60px;
+          gap: 20px;
+          transition: box-shadow 0.3s ease, padding 0.3s ease;
+      }
+
+      .header-left {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+      }
+
+      .nav-logo {
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: var(--text-primary);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
+          white-space: nowrap;
+      }
+
+      .nav-logo-icon {
+          width: 26px;
+          height: 26px;
+          border: 1.5px solid var(--text-primary);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .nav-logo svg { width: 12px; height: 12px; }
+
+      .nav-logo-img {
+          height: 50px;
+          aspect-ratio: 1;
+      }
+
+      .header-nav {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding-left: 40px;
+          overflow: hidden;
+      }
+
+      .header-nav a {
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--text-secondary);
+          text-decoration: none;
+          padding: 8px 16px;
+          border-radius: 30px;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+      }
+
+      .header-nav a:hover { color: var(--text-primary); background: var(--light); }
+      .header-nav a.active { color: var(--text-primary); background: var(--off-white); }
+
+      .header-right {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 24px;
+          flex-shrink: 0;
+      }
+
+      .header-socials {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+      }
+
+      .social-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+      }
+
+      .social-link img {
+          width: 28px;
+          aspect-ratio: 1;
+          transition: transform 300ms ease;
+      }
+
+      .social-link img:hover {
+          transform: scale(1.2);
+      }
+
+      .header-contacts {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 3px;
+          flex-shrink: 0;
+      }
+
+      .header-phone {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text-primary);
+          text-decoration: none;
+          transition: color 0.2s;
+          white-space: nowrap;
+      }
+      .header-phone:hover { color: var(--accent); }
+
+      .header-address {
+          font-size: 11px;
+          color: var(--text-muted);
+          letter-spacing: 0.02em;
+          white-space: nowrap;
+          text-decoration: none;
+      }
+      a.header-address:hover { color: var(--accent); }
+      .header-address-mobile { color: var(--text-muted); text-decoration: none; }
+      .header-address-mobile:hover { color: var(--accent); }
+
+      .header-cta {
+          background: var(--btn-bg) !important;
+          color: var(--white) !important;
+          padding: 10px 20px;
+          border-radius: 30px;
+          font-size: 12px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: background 0.2s;
+          white-space: nowrap;
+          flex-shrink: 0;
+      }
+      .header-cta:hover { background: #004b32 !important; }
+
+      /* ── BURGER MENU BUTTON ── */
+      .burger-btn { display: none; }
+
+      /* ── MOBILE MENU OVERLAY ── */
+      .mobile-menu {
+          position: fixed;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: var(--nav-bg);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          z-index: 99;
+          display: flex;
+          flex-direction: column;
+          padding: 100px 32px 40px;
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          overflow-y: auto;
+          border-left: 1px solid var(--border);
+      }
+      .mobile-menu.active { transform: translateX(0); }
+
+      .mobile-nav-links { display: flex; flex-direction: column; gap: 24px; margin-bottom: auto; }
+      .mobile-nav-links a { font-size: 24px; font-weight: 500; font-family: 'Playfair Display', serif; color: var(--text-primary); text-decoration: none; transition: color 0.2s; }
+      .mobile-nav-links a:hover { color: var(--accent); }
+
+      .mobile-nav-bottom { display: flex; flex-direction: column; gap: 24px; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 40px; }
+      .mobile-nav-bottom .header-phone { font-size: 20px; }
+      .mobile-nav-bottom .header-address { font-size: 13px; color: var(--text-secondary); white-space: normal; line-height: 1.5; }
+      .mobile-nav-bottom .mobile-cta { justify-content: center; text-align: center; font-size: 14px; padding: 14px 20px; }
+
+      /* ── HERO ── */
+      .hero {
+          min-height: 100vh;
+          width: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          max-width: none;
+          background:
+                  linear-gradient(90deg,
+                  rgba(255, 255, 255, 1) 0%,
+                  rgba(255, 255, 255, 0.98) 15%,
+                  rgba(255, 255, 255, 0.6) 40%,
+                  rgba(255, 255, 255, 0) 75%
+                  ),
+                  url('assets/images/hero.png');
+
+          background-repeat: no-repeat;
+          background-size: auto, cover;
+          background-position: left top, right -100px center;
+
+      }
+
+      .hero-content {
+          position: relative;
+          z-index: 2;
+          padding: 100px 60px 0;
+          width: 100%;
+      }
+
+      .hero-label {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          margin-bottom: 20px;
+      }
+
+      .hero-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(36px, 5vw, 64px);
+          font-weight: 400;
+          line-height: 1.15;
+          color: var(--text-primary);
+          max-width: 500px;
+          margin-bottom: 24px;
+      }
+
+      .hero-title em { font-style: italic; color: var(--accent); }
+      .hero-sub { font-size: 14px; color: #00694C; line-height: 1.7; max-width: 340px; }
+      .hero-sub-2 { font-size: 14px; margin-bottom: 40px;  }
+      .hero-sub-1 {
+          font-size: 20px;
+          margin-bottom: 20px;
+      }
+
+      .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+      .hero-tag {
+          font-size: 11px; font-weight: 500; letter-spacing: 0.05em; border: 1px solid var(--border); border-radius: 30px;
+          padding: 5px 14px; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; background: rgba(255,255,255,0.7); text-decoration: none;
+      }
+      .hero-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+      .hero-cta-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+      .btn-primary {
+          display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: var(--white);
+          font-size: 13px; font-weight: 500; padding: 13px 28px; border-radius: 50px; text-decoration: none;
+          transition: all 0.25s; border: none; cursor: pointer;
+      }
+      .btn-primary:hover { background: #004b32; transform: translateY(-1px); }
+
+      .btn-outline {
+          display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary);
+          text-decoration: none; padding: 13px 0; border-bottom: 1px solid transparent; transition: all 0.2s;
+      }
+      .btn-outline:hover { color: var(--btn-bg); border-bottom-color: var(--btn-bg); }
+
+      .hero-stats {
+          position: absolute;
+          bottom: 50px;
+          right: 60px;
+          z-index: 2;
+          display: flex;
+          gap: 40px;
+          background: rgba(255, 255, 255, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 24px 36px;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06);
+      }
+      .stat { text-align: center; }
+      .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--text-primary); display: block; }
+      .stat-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 4px; }
+
+      /* ── TICKER ── */
+      .ticker-wrap { overflow: hidden; border-bottom: 1px solid var(--border); padding: 14px 0; background: var(--off-white); }
+      .ticker { display: flex; gap: 60px; white-space: nowrap; animation: ticker 22s linear infinite; }
+      .ticker span { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+      .ticker span b { color: var(--accent); font-weight: 500; }
+      @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      /* ── SECTIONS ── */
+      section:not(.pswp__scroll-wrap, .hero) { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+      .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+
+
+      .section-title {
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(28px, 3.5vw, 46px);
+          font-weight: 400;
+          line-height: 1.2;
+          color: var(--heading-color);
+          margin-bottom: 20px;
+      }
+
+      .section-sub { font-size: 14px; color: var(--text-secondary); line-height: 1.8; max-width: 520px; }
+
+      /* ── WHY ── */
+      .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px; border: 1px solid var(--border); }
+      .why-item { padding: 40px; background: var(--white); border: 1px solid var(--border); position: relative; transition: background 0.3s; display: flex; flex-direction: column}
+      .why-item:hover { background: var(--off-white); }
+      .why-num {
+          font-family: 'Playfair Display', serif;
+          font-size: 40px;
+          color: var(--light);
+          position: relative;
+          line-height: 1;
+          user-select: none;
+          width: 100%;
+          text-align: right;
+          margin-bottom: 16px;
+      }
+      .why-icon { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent); }
+      .why-item h3 { font-size: 16px; font-weight: 600; color: var(--heading-color); margin-bottom: 10px; }
+      .why-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.7}
+
+      /* ── WHY EXTRA BANNER ── */
+      .why-extra {
+          margin-top: 60px;
+          display: flex;
+          background: var(--heading-color);
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+          position: relative;
+      }
+
+      .why-extra-content {
+          flex: 1;
+          padding: 60px 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+          z-index: 2;
+      }
+
+      .why-extra-label {
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--accent-light);
+          margin-bottom: 12px;
+      }
+
+      .why-extra-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 32px;
+          font-weight: 400;
+          color: var(--white);
+          margin-bottom: 30px;
+          line-height: 1.25;
+          max-width: 450px;
+      }
+
+      .why-extra-address {
+          font-style: normal;
+          display: inline-flex;
+          align-items: center;
+          gap: 16px;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.5;
+          color: var(--white);
+          background: rgba(255, 255, 255, 0.06);
+          padding: 20px 24px;
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          max-width: max-content;
+      }
+
+      .why-extra-address svg {
+          flex-shrink: 0;
+          color: var(--accent-light);
+          width: 24px;
+          height: 24px;
+      }
+
+      .why-extra-image {
+          width: 55%;
+          min-width: 350px;
+          position: relative;
+      }
+
+      .why-extra-image img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+
+      /* Градиентный маскирующий слой */
+      .why-extra-image::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, var(--heading-color) 4%, transparent 70%);
+          z-index: 1;
+      }
+
+      /* ── PRODUCTS ── */
+      .products-section { background: var(--off-white); max-width: 100%; padding: 100px 0; overflow: hidden; }
+      .products-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+      .products-section .section-sub {
+          max-width: 800px;
+      }
+
+      /* Базовые стили для Swiper взамен CDN */
+      .swiper { margin-left: auto; margin-right: auto; position: relative; overflow: hidden; list-style: none; padding: 0; z-index: 1; }
+      .swiper-wrapper { position: relative; width: 100%; height: 100%; z-index: 1; display: flex; transition-property: transform; box-sizing: content-box; }
+      .swiper-slide { flex-shrink: 0; width: 100%; height: auto; position: relative; transition-property: transform; }
+
+      .products-slider {
+          margin-top: 40px;
+          width: 100%;
+      }
+
+      .product-card {
+          background: var(--white);
+          border: 1px solid var(--border);
+          overflow: hidden;
+          border-radius: 4px;
+          transition: box-shadow 0.3s, transform 0.3s;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+      }
+
+      .product-card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(0,0,0,0.06); }
+      .product-visual { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+      .product-visual img { object-fit: cover; height: 100%; width: 100% }
+      .product-tag { position: absolute; top: 16px; left: 16px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--white); border: 1px solid var(--border); padding: 4px 10px; border-radius: 20px; color: var(--text-secondary); z-index: 2; }
+      .product-body { padding: 28px; display: flex; flex-direction: column; flex-grow: 1; }
+      .product-body h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--heading-color); }
+      .product-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+      .product-price { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text-primary); display: block; margin-bottom: 16px; }
+      .product-price span { font-size: 13px; font-family: 'Inter', sans-serif; color: var(--text-muted); }
+
+      .btn-card {
+          display: block; text-align: center; font-size: 12px; font-weight: 500; padding: 10px;
+          border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); background: transparent; cursor: pointer; width: 100%; transition: all 0.2s;
+      }
+      .btn-card:not(:last-child) {
+          margin-bottom: 16px;
+      }
+      .btn-card:hover { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); }
+
+      /* Swiper Controls CSS */
+      .slider-controls {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 32px;
+      }
+
+      .slider-nav {
+          display: flex;
+          gap: 12px;
+      }
+      .swiper-navigation-icon { display: none; }
+      .swiper-button-prev, .swiper-button-next {
+          display: flex; align-items: center; justify-content: center; position: static;
+          width: 44px; height: 44px; background: var(--white); border: 1px solid var(--border);
+          border-radius: 50%; color: var(--text-primary); margin: 0; cursor: pointer; transition: all 0.2s; z-index: 10;
+      }
+      .swiper-button-prev:hover, .swiper-button-next:hover { background: var(--btn-bg); color: var(--white); border-color: var(--btn-bg); }
+      .swiper-button-prev::after { padding-bottom: 3px; content: '←'; font-size: 16px; font-weight: bold; }
+      .swiper-button-next::after { padding-bottom: 3px; content: '→'; font-size: 16px; font-weight: bold; }
+      .swiper-pagination { position: static; width: auto !important; display: flex; align-items: center; gap: 6px; }
+      .swiper-pagination-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--border); opacity: 1; margin: 0 !important; cursor: pointer; transition: background 0.2s; }
+      .swiper-pagination-bullet-active { background: var(--btn-bg); }
+
+      /* ── MATERIALS ── */
+      .materials-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+          margin-top: 40px;
+      }
+
+      .material-card {
+          background: var(--white);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .material-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+      }
+
+      .material-img {
+          height: 200px;
+          overflow: hidden;
+      }
+
+      .material-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+      }
+
+      .material-card:hover .material-img img {
+          transform: scale(1.05);
+      }
+
+      .material-content {
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+      }
+
+      .material-content h3 {
+          font-size: 17px;
+          font-weight: 600;
+          color: var(--heading-color);
+          margin-bottom: 10px;
+      }
+
+      .material-content p {
+          font-size: 13px;
+          color: var(--text-secondary);
+          line-height: 1.6;
+      }
+
+      /* ── PROCESS ── */
+      .process-row { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+      .process-steps { display: flex; flex-direction: column; gap: 0; }
+      .step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); cursor: default; transition: all 0.2s; }
+      .step:first-child { border-top: 1px solid var(--border); }
+      .step:hover .step-num { color: var(--accent); }
+      .step-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--light); line-height: 1; min-width: 40px; transition: color 0.2s; }
+      .step-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--heading-color); }
+      .step-content p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+      .step-days { font-size: 11px; font-weight: 500; color: var(--accent); margin-top: 6px; letter-spacing: 0.04em; }
+
+      .process-right { position: sticky; top: 120px; }
+      .process-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 40px; }
+      .process-card h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px; color: var(--heading-color); }
+      .process-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; }
+      .process-meta { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+      .meta-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+      .meta-row span:first-child { color: var(--text-muted); }
+      .meta-row span:last-child { font-weight: 500; }
+
+      /* ── COVERAGE ── */
+      .coverage-section { background: var(--text-primary); color: var(--white); max-width: 100%; padding: 80px 0; }
+      .coverage-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+      .coverage-inner .section-label { color: var(--accent-light); }
+      .coverage-inner .section-title { color: var(--white); }
+      .cities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+      .city-item { padding: 20px 24px; border: 1px solid rgba(255,255,255,0.08); font-size: 14px; color: rgba(255,255,255,0.7); cursor: default; transition: all 0.2s; }
+      .city-item:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+      .city-item b { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--accent-light); margin-bottom: 2px; }
+
+      /* ── YANDEX REVIEWS ── */
+      .reviews-section { background: var(--off-white); max-width: 100%; }
+      .reviews-inner { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+      .reviews-card {
+          margin-top: 42px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 40px;
+          padding: 42px;
+          background: var(--white);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          box-shadow: 0 18px 50px rgba(59, 51, 50, 0.06);
+      }
+      .reviews-yandex { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+      .reviews-yandex-logo {
+          width: 52px; height: 52px; border-radius: 12px; background: #fc3f1d; color: #fff;
+          display: grid; place-items: center; font-size: 30px; font-weight: 600;
+      }
+      .reviews-yandex strong { display: block; font-size: 18px; color: var(--heading-color); margin-bottom: 4px; }
+      .reviews-yandex span { font-size: 12px; color: var(--text-muted); }
+      .reviews-text { max-width: 650px; font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
+      .reviews-button { min-width: 230px; justify-content: center; }
+
+      /* ── FORM ── */
+      .form-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+      .form-left h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 400; margin-bottom: 20px; color: var(--heading-color); }
+      .form-left p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; }
+      .form-contact-row { display: flex; flex-direction: column; gap: 10px; }
+      .contact-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-secondary); }
+      .contact-item strong { color: var(--text-primary); }
+      .contact-item a { color: inherit; text-decoration: none; transition: color 0.2s; }
+      .contact-item a:hover { color: var(--accent); }
+
+      .form-right form { display: flex; flex-direction: column; gap: 12px; }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .field { display: flex; flex-direction: column; gap: 6px; }
+      .field label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+      .field input, .field select, .field textarea {
+          border: 1px solid var(--border); border-radius: 4px; padding: 12px 14px; font-size: 14px;
+          font-family: 'Inter', sans-serif; color: var(--text-primary); background: var(--white); outline: none; transition: border-color 0.2s; resize: none;
+      }
+      .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+      .field.full { grid-column: 1 / -1; }
+      .form-submit { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .privacy { font-size: 11px; color: var(--text-muted); line-height: 1.5; max-width: 220px; }
+
+      /* ── FOOTER ── */
+      footer { border-top: 1px solid var(--border); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+      .footer-brand { font-size: 15px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+      .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+      .footer-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+      .footer-links a:hover { color: var(--text-primary); }
+      .footer-copy { font-size: 11px; color: var(--text-muted); }
+
+      /* ── SUCCESS MSG ── */
+      .success-msg { display: none; text-align: center; padding: 32px; background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; }
+      .success-msg h3 { font-size: 18px; margin-bottom: 8px; color: var(--heading-color); }
+      .success-msg p { font-size: 13px; color: var(--text-secondary); }
+
+      /* ── MODAL ── */
+      .modal { display: none; }
+      .modal.is-open { display: block; }
+      .modal__overlay {
+          position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center;
+          z-index: 999; padding: 20px;
+      }
+      .modal__container {
+          background-color: var(--white); padding: 30px; max-width: 700px; width: 100%; max-height: 90vh;
+          border-radius: 8px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      }
+      .modal__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+      .modal__title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--heading-color); margin: 0; }
+      .modal__close {
+          background: transparent; border: 0; cursor: pointer; padding: 0; width: 24px; height: 24px;
+          display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: color 0.2s;
+      }
+      .modal__close:hover { color: var(--text-primary); }
+      .modal__close::before, .modal__close::after {
+          content: ''; position: absolute; width: 16px; height: 2px; background: currentColor;
+      }
+      .modal__close::before { transform: rotate(45deg); }
+      .modal__close::after { transform: rotate(-45deg); }
+
+      .modal__content {
+          flex: 1; overflow-y: auto; padding-right: 15px; margin-bottom: 20px;
+          color: var(--text-secondary); font-size: 13px; line-height: 1.6;
+      }
+      .modal__content::-webkit-scrollbar { width: 6px; }
+      .modal__content::-webkit-scrollbar-track { background: var(--off-white); border-radius: 4px; }
+      .modal__content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+      .modal__content h3 { font-size: 15px; color: var(--text-primary); margin: 24px 0 10px; font-weight: 600; }
+      .modal__content h3:first-child { margin-top: 0; }
+      .modal__content p { margin-bottom: 12px; }
+      .modal__content ul { margin-bottom: 12px; padding-left: 20px; list-style: disc; }
+
+      .modal__footer { display: flex; justify-content: flex-end; }
+      .modal__btn {
+          background: var(--btn-bg); color: var(--white); border: none; padding: 10px 24px;
+          border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 500; transition: background 0.2s;
+      }
+      .modal__btn:hover { background: #004b32; }
+
+      /* Micromodal Animations */
+      .micromodal-slide[aria-hidden="false"] .modal__overlay { animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1); }
+      .micromodal-slide[aria-hidden="false"] .modal__container { animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1); }
+      .micromodal-slide[aria-hidden="true"] .modal__overlay { animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1); }
+      .micromodal-slide[aria-hidden="true"] .modal__container { animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1); }
+      @keyframes mmfadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes mmfadeOut { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes mmslideIn { from { transform: translateY(15%); } to { transform: translateY(0); } }
+      @keyframes mmslideOut { from { transform: translateY(0); } to { transform: translateY(-10%); } }
+
+      /* ── ADAPTIVE ── */
+      /* ── PORTFOLIO: сразу после первого экрана ── */
+      .portfolio-section {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 76px 60px 88px;
+      }
+      .portfolio-heading { max-width: 760px; margin-bottom: 34px; }
+      .portfolio-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+      }
+      .portfolio-card {
+          overflow: hidden;
+          background: var(--off-white);
+          border: 1px solid var(--border);
+          border-radius: 5px;
+      }
+      .portfolio-card img {
+          display: block;
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          transition: transform .35s ease;
+      }
+      .portfolio-card:hover img { transform: scale(1.035); }
+      .portfolio-card[role="button"] { cursor: pointer; }
+      .portfolio-card[role="button"]:focus-visible { outline: 3px solid #b58a45; outline-offset: 4px; }
+      .portfolio-card h3 {
+          padding: 17px 18px 14px;
+          color: var(--heading-color);
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.45;
+      }
+      .portfolio-card-content { padding-bottom: 16px; }
+      .portfolio-card-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          padding: 0 14px;
+      }
+      .portfolio-card-actions .btn-card {
+          flex: 1 1 135px;
+          min-height: 42px;
+          margin: 0;
+          padding: 10px 12px;
+          font-size: 12px;
+          line-height: 1.3;
+      }
+      .portfolio-card-actions .btn-card + .btn-card {
+          background: transparent;
+          color: var(--heading-color);
+          border: 1px solid var(--border);
+      }
+      .portfolio-card-actions .btn-card + .btn-card:hover {
+          background: var(--heading-color);
+          color: #fff;
+      }
+      .portfolio-note {
+          margin-top: 24px;
+          color: var(--text-secondary);
+          font-size: 13px;
+          line-height: 1.7;
+      }
+      @media (max-width: 768px) {
+          .portfolio-section { padding: 58px 20px 64px; }
+          .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+          .portfolio-card h3 { padding: 13px 12px 12px; font-size: 13px; }\n          .portfolio-card-actions { padding: 0 10px; gap: 7px; }\n          .portfolio-card-actions .btn-card { flex-basis: 100%; width: 100%; }
+      }
+      @media (max-width: 480px) {
+          .portfolio-grid { grid-template-columns: 1fr; }
+          .portfolio-card img { aspect-ratio: 16 / 10; }
+      }
+
+      @media (max-width: 1250px) {
+          .site-header { padding: 16px 32px; }
+          .header-left { gap: 20px; }
+          .header-nav { gap: 4px; padding-left: 20px; }
+          .header-nav a { padding: 8px 12px; }
+          .header-right { gap: 16px; }
+
+          .why-extra-content { padding: 50px; }
+      }
+
+      @media (max-width: 1408px) {
+          .header-nav {
+              flex-basis: 100%;
+              order: 3;
+              justify-content: center;
+              padding-left: 0;
+              margin-top: 16px;
+              flex: initial;
+          }
+      }
+      @media (max-width: 1024px) {
+          .hero {
+              background:
+                      linear-gradient(90deg,
+                      rgba(255, 255, 255, 1) 0%,
+                      rgba(255, 255, 255, 0.95) 20%,
+                      rgba(255, 255, 255, 0.6) 50%,
+                      rgba(255, 255, 255, 0.2) 85%),
+                      url('assets/images/hero.png');
+            background-repeat: no-repeat;
+            background-size: auto, cover;
+            background-position: left top, right -100px center;
+          }
+
+          /* Tablet: навигация на второй строке, контакты остаются */
+
+          .header-right {
+              flex: 1;
+          }
+
+          section { padding: 80px 32px; }
+          .hero-content { padding: 110px 32px 60px; }
+          .products-inner, .coverage-inner { padding: 0 32px; }
+          footer { padding: 40px 32px; }
+
+          .hero-stats {
+              position: relative;
+              bottom: unset;
+              right: unset;
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: 30px;
+              margin-top: 48px;
+              display: inline-flex;
+              padding: 24px;
+              background: rgba(255, 255, 255, 0.9);
+          }
+          .stat { text-align: left; }
+
+          .why-extra { flex-direction: column; }
+          .why-extra-image { width: 100%; height: 350px; min-width: auto; }
+          .why-extra-image::after {
+              background: linear-gradient(to bottom, var(--heading-color) 5%, transparent 70%);
+          }
+
+          .materials-grid {
+              grid-template-columns: repeat(2, 1fr);
+              gap: 20px;
+          }
+
+          .process-row { grid-template-columns: 1fr; gap: 40px; }
+          .process-right { position: static; }
+          .form-section { grid-template-columns: 1fr; gap: 40px; }
+          .reviews-inner { padding: 80px 32px; }
+      }
+
+      @media (max-width: 768px) {
+          section:not(.pswp__scroll-wrap, .hero) {
+              padding: 50px 16px;
+          }
+          .hero {
+              background:
+                      linear-gradient(90deg,
+                      rgba(255, 255, 255, 0.98) 0%,
+                      rgba(255, 255, 255, 0.75) 100%),
+                      url('assets/images/hero.png');
+            background-repeat: no-repeat;
+            background-size: auto, cover;
+            background-position: left top, right -100px center;
+          }
+
+          /* Mobile: прячем навигацию и контакты, включаем бургер */
+          .header-nav, .header-socials:not(.mobile-socials), .header-contacts { display: none !important; }
+
+          .burger-btn {
+              display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+              width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; z-index: 101;
+          }
+
+          .burger-btn span {
+              display: block; width: 22px; height: 2px; background: var(--text-primary);
+              transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s; transform-origin: center;
+          }
+
+          .burger-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+          .burger-btn.active span:nth-child(2) { opacity: 0; }
+          .burger-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+          .site-header { padding: 12px 20px; }
+          .header-right { gap: 10px; }
+          .header-cta { padding: 8px 16px; font-size: 11px; }
+
+          section { padding: 70px 20px; }
+          .hero-content { padding: 110px 20px 50px; }
+          .products-inner, .coverage-inner { padding: 0 20px; }
+          footer { padding: 32px 20px; flex-direction: column; gap: 20px; align-items: flex-start; }
+
+          .hero-stats {
+              gap: 20px;
+              padding: 20px;
+              width: 100%;
+              justify-content: space-around;
+          }
+          .why-grid { grid-template-columns: 1fr; }
+
+          .why-extra-content { padding: 40px 24px; }
+          .why-extra-title { font-size: 26px; }
+          .why-extra-image { height: 260px; }
+          .why-extra-address { gap: 12px; }
+
+          .materials-grid {
+              grid-template-columns: 1fr;
+              gap: 16px;
+          }
+
+          .cities-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+          .city-item { padding: 16px; }
+          .form-row { grid-template-columns: 1fr; }
+          .reviews-inner { padding: 50px 16px; }
+          .reviews-card { grid-template-columns: 1fr; padding: 28px 22px; gap: 28px; }
+          .reviews-button { width: 100%; }
+
+          .modal__container { padding: 20px; }
+      }
+
+      @media (max-width: 500px) {
+          .nav-logo-text {
+              display: none;
+          }
+      }
+
+      /* COOKIE CONSENT */
+      .cookie-banner {
+          position: fixed;
+          left: 24px;
+          right: 24px;
+          bottom: 24px;
+          z-index: 1000;
+          display: none;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          max-width: 920px;
+          margin: 0 auto;
+          padding: 18px 20px;
+          background: rgba(255, 255, 255, 0.98);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          box-shadow: 0 14px 45px rgba(56, 67, 55, 0.18);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+      }
+
+      .cookie-banner.is-visible { display: flex; }
+      .cookie-banner__text { font-size: 13px; line-height: 1.55; color: var(--text-secondary); }
+      .cookie-banner__text strong { display: block; margin-bottom: 3px; color: var(--text-primary); font-size: 14px; }
+      .cookie-banner__policy {
+          padding: 0;
+          border: 0;
+          background: none;
+          color: var(--btn-bg);
+          font: inherit;
+          text-decoration: underline;
+          cursor: pointer;
+      }
+      .cookie-banner__accept {
+          flex-shrink: 0;
+          min-width: 130px;
+          padding: 11px 22px;
+          border: 0;
+          border-radius: 30px;
+          background: var(--btn-bg);
+          color: var(--white);
+          font: inherit;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s ease;
+      }
+      .cookie-banner__accept:hover { background: #004b32; }
+
+      @media (max-width: 600px) {
+          .cookie-banner {
+              left: 12px;
+              right: 12px;
+              bottom: 12px;
+              align-items: stretch;
+              flex-direction: column;
+              gap: 14px;
+              padding: 16px;
+          }
+          .cookie-banner__accept { width: 100%; }
+      }
+
+</style>
+  <script type="module" crossorigin src="./assets/index-BZ8r6WAu.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DOg8h1BU.css">
+
+  <style id="premium-redesign">
+    :root {
+      --white: #f8f7f4; --off-white: #f1eee8; --light: #e9e3d9;
+      --text-primary: #292a26; --heading-color: #292a26; --btn-bg: #334538;
+      --text-secondary: #66665e; --text-muted: #89877d; --accent: #92734c;
+      --accent-light: #c8ad83; --border: #ded9ce; --nav-bg: rgba(248,247,244,.94);
+      --page-width: 1280px;
+    }
+    html { scroll-padding-top: 100px; }
+    body { background: var(--white); color: var(--text-primary); line-height: 1.65; }
+    :focus-visible { outline: 3px solid #9a784c; outline-offset: 4px; }
+    .site-header { padding: 10px clamp(18px, 4vw, 64px); min-height: 82px; }
+    .nav-logo-img { height: 48px; width: auto; object-fit: contain; }
+    .nav-logo-text { letter-spacing: .02em; }
+    .header-nav { gap: 2px; padding-left: clamp(10px, 2vw, 32px); }
+    .header-nav a { padding: 9px 13px; }
+    .header-cta, .btn-primary, .mobile-cta { border-radius: 3px; box-shadow: none; }
+    .hero { min-height: min(820px, 100svh); padding: 130px clamp(20px, 8vw, 120px) 80px; background-color: #e8e2d8; background-position: left top, center center; }
+    .hero::before { background: linear-gradient(90deg, rgba(248,247,244,.97) 0%, rgba(248,247,244,.91) 33%, rgba(248,247,244,.42) 65%, rgba(248,247,244,.08) 100%); }
+    .hero-content { max-width: 660px; position: relative; z-index: 1; }
+    .hero-label, .section-label { color: var(--accent); letter-spacing: .16em; font-size: 11px; }
+    .hero-title { max-width: 650px; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; letter-spacing: -.035em; line-height: 1.03; font-size: clamp(48px, 6.3vw, 82px); }
+    .hero-sub-1 { color: var(--text-primary); font-size: clamp(18px, 2vw, 23px); line-height: 1.4; max-width: 540px; }
+    .hero-sub-2 { max-width: 550px; color: var(--text-secondary); }
+    .hero-tag { background: rgba(248,247,244,.65); border: 1px solid rgba(74,69,58,.2); border-radius: 2px; }
+    .btn-primary, .btn-outline { min-height: 50px; padding: 14px 22px; }
+    .btn-outline { border-radius: 3px; border-color: rgba(41,42,38,.4); }
+    .ticker-wrap { background: #334538; }
+    .products-section, #why, #materials, #process, #contact, .reviews-section { padding-top: clamp(64px, 9vw, 116px); padding-bottom: clamp(64px, 9vw, 116px); }
+    .products-inner, #why, #materials, #process { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; }
+    .section-title, #why h2, #materials h2, #process h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(34px, 4.3vw, 54px); font-weight: 400; letter-spacing: -.025em; line-height: 1.14; max-width: 900px; }
+    .section-sub { max-width: 760px; color: var(--text-secondary); line-height: 1.8; }
+    .product-card, .why-item, .material-card, .process-item { border-radius: 2px; box-shadow: none; }
+    .product-card { border: 1px solid var(--border); background: #fffefa; }
+    .product-visual { overflow: hidden; }
+    .product-visual img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .product-visual img { transform: scale(1.035); }
+    .product-body { padding: 26px; }
+    .product-body h3, .why-item h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 25px; font-weight: 400; }
+    .btn-card { min-height: 44px; border-radius: 2px; }
+    .why-grid { gap: 0; border-top: 1px solid var(--border); }
+    .why-item { padding: 28px 24px 28px 0; border-bottom: 1px solid var(--border); }
+    .why-num { color: var(--accent); }
+    .form-section { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; gap: clamp(32px, 7vw, 100px); }
+    #contact { background: var(--off-white); }
+    .form-left h2 { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.2vw, 54px); line-height: 1.12; }
+    .form-right { min-width: 0; }
+    .cookie-banner { border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(36,34,29,.12); border-radius: 3px; }
+    footer { padding: 32px clamp(20px, 5vw, 72px); background: #292a26; color: #f8f7f4; }
+    footer a { color: #e6e1d7; }
+    .modal__container { border-radius: 3px; }
+    @media (max-width: 900px) {
+      .site-header { min-height: 70px; padding: 8px 20px; }
+      .header-nav, .header-socials, .header-contacts, .header-cta { display: none; }
+      .header-right { margin-left: auto; }
+      .hero { min-height: 740px; min-height: min(790px, 100svh); padding: 120px 24px 64px; background-position: left top, 58% center; }
+      .hero::before { background: linear-gradient(90deg, rgba(248,247,244,.95), rgba(248,247,244,.7) 68%, rgba(248,247,244,.35)); }
+      .hero-title { font-size: clamp(46px, 9vw, 72px); }
+    }
+    @media (max-width: 600px) {
+      html { scroll-padding-top: 76px; }
+      .nav-logo-img { height: 42px; }
+      .nav-logo-text { font-size: 13px; }
+      .hero { min-height: 730px; min-height: 100svh; padding: 108px 20px 46px; background-position: left top, 61% center; }
+      .hero-title { font-size: clamp(42px, 12vw, 60px); }
+      .hero-sub-1 { font-size: 18px; }
+      .hero-tags { gap: 8px; }
+      .hero-tag { font-size: 12px; padding: 7px 10px; }
+      .hero-cta-row { align-items: stretch; flex-direction: column; max-width: 340px; }
+      .hero-cta-row a { justify-content: center; }
+      .products-inner, #why, #materials, #process { width: calc(100% - 40px); }
+      .section-title, #why h2, #materials h2, #process h2 { font-size: 36px; }
+      .form-section { width: calc(100% - 40px); }
+      .mobile-menu { padding: 92px 24px 32px; }
+      .mobile-nav-links a { min-height: 52px; }
+      .cookie-banner { left: 12px; right: 12px; bottom: 12px; width: auto; }
+      footer { gap: 24px; }
+      .footer-links { gap: 10px 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+<style id="portfolio-refinements">
+      /* Keep the desktop header balanced at common laptop widths */
+    .site-header { padding:10px clamp(16px,2.4vw,38px); gap:clamp(8px,1.25vw,20px); }
+    .header-nav { padding-left:clamp(0px,1.2vw,18px); gap:0; }
+    .header-nav a { padding:8px clamp(8px,.8vw,13px); }
+    .header-right { gap:clamp(10px,1.1vw,18px); }
+    .header-socials { gap:6px; }
+    .header-cta { padding:10px 16px; font-size:11px; }
+    @media (max-width:1250px) {
+      .site-header { min-height:70px; padding:8px 20px; flex-wrap:nowrap; }
+      .header-nav, .header-socials, .header-contacts, .header-cta { display:none; }
+      .header-right { margin-left:auto; gap:0; }
+      .burger-btn { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; padding:0; background:transparent; border:0; cursor:pointer; z-index:101; }
+      .burger-btn span { display:block; width:22px; height:2px; background:var(--text-primary); transition:transform .3s,opacity .3s; }
+      .burger-btn.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+      .burger-btn.active span:nth-child(2) { opacity:0; }
+      .burger-btn.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    }
+    /* Refinements for the benefits and project portfolio */
+    #why .why-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin-top:42px; padding:1px; border:0; background:var(--border); }
+    #why .why-item { min-width:0; min-height:330px; padding:clamp(28px,3.5vw,50px); border:0; background:var(--white); transition:background-color .25s ease; }
+    #why .why-item:nth-child(2), #why .why-item:nth-child(3) { background:#f2efe9; }
+    #why .why-item:hover { background:#ece7dc; }
+    #why .why-num { margin:0 0 28px; color:var(--accent-light); font-size:34px; letter-spacing:-.03em; }
+    #why .why-item h3 { max-width:560px; margin:0 0 14px; color:var(--heading-color); font-family:'Playfair Display',Georgia,serif; font-size:clamp(22px,2vw,28px); font-weight:400; line-height:1.24; letter-spacing:-.015em; }
+    #why .why-item p { max-width:560px; color:var(--text-secondary); font-size:14px; line-height:1.8; letter-spacing:-.005em; }
+    .why-times { list-style:none; display:grid; gap:9px; margin:15px 0 0; padding:0; max-width:560px; }
+    .why-times li { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding-top:9px; border-top:1px solid var(--border); color:var(--text-secondary); font-size:12px; line-height:1.45; }
+    .why-times strong { color:var(--text-primary); font-weight:600; white-space:nowrap; }
+    .products-slider { margin-top:46px; }
+    .product-card { border:1px solid var(--border); border-radius:2px; background:#fffefa; transition:border-color .25s ease,transform .3s ease; }
+    .product-card:hover { border-color:#c7b99f; transform:translateY(-3px); }
+    .product-visual { height:250px; background:#eee9e0; }
+    .product-visual img { transition:transform .55s cubic-bezier(.2,.7,.2,1); }
+    .product-card:hover .product-visual img { transform:scale(1.035); }
+    .product-body { padding:24px; }
+    .product-body h3 { margin-bottom:10px; font-family:'Playfair Display',Georgia,serif; font-size:22px; font-weight:400; line-height:1.25; }
+    .product-body p { font-size:13px; line-height:1.75; }
+    .product-body .btn-card { min-height:46px; padding:12px 14px; border:1px solid var(--btn-bg); border-radius:2px; font-size:12px; letter-spacing:.02em; transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
+    .product-body .btn-card:first-of-type { background:var(--btn-bg); color:var(--white); }
+    .product-body .btn-card:first-of-type:hover { background:#26392c; border-color:#26392c; }
+    .product-body .btn-card:last-of-type { background:transparent; color:var(--btn-bg); }
+    .product-body .btn-card:last-of-type:hover { background:var(--off-white); border-color:var(--accent); color:var(--text-primary); }
+    .swiper-button-prev:focus-visible, .swiper-button-next:focus-visible, .swiper-pagination-bullet:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+    @media (max-width:767px) {
+      #why .why-grid { grid-template-columns:minmax(0,1fr); margin-top:30px; }
+      #why .why-item { min-height:0; padding:28px 24px; }
+      #why .why-num { margin-bottom:18px; font-size:30px; }
+      #why .why-item h3 { font-size:24px; }
+      #why .why-item p { font-size:14px; }
+      #why .why-item:nth-child(2), #why .why-item:nth-child(3) { background:var(--white); }
+      #why .why-item:nth-child(even) { background:#f2efe9; }
+      .product-visual { height:230px; }
+      .product-body { padding:22px; }
+    }
+    
+    @media (max-width:767px) {
+      .why-times li { flex-wrap:wrap; gap:4px 12px; }
+      .why-times strong { white-space:normal; }
+    }
+
+</style>
+
+<style id="articles-and-leonid-gallery">
+  .articles-section { background:var(--off-white); }
+  .articles-inner,.leonid-inner { width:min(var(--page-width,1280px),calc(100% - 48px)); margin:0 auto; }
+  .articles-inner > .section-sub { margin-top:18px; }
+  .articles-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:38px; }
+  .article-card { display:flex; flex-direction:column; min-width:0; padding:clamp(24px,3vw,36px); border:1px solid var(--border); background:#fffefa; }
+  .article-kicker { margin-bottom:18px; color:var(--accent); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+  .article-card h3 { margin-bottom:14px; color:var(--heading-color); font-family:'Playfair Display',Georgia,serif; font-size:clamp(21px,2vw,26px); font-weight:400; line-height:1.25; }
+  .article-lead,.article-details div { color:var(--text-secondary); font-size:13px; line-height:1.75; }
+  .article-details { margin-top:auto; padding-top:22px; }
+  .article-details summary { display:inline-flex; align-items:center; gap:10px; min-height:42px; color:var(--btn-bg); cursor:pointer; font-size:12px; font-weight:600; list-style:none; }
+  .article-details summary::-webkit-details-marker { display:none; }
+  .article-details summary::after { content:'+'; color:var(--accent); font-size:18px; font-weight:400; }
+  .article-details[open] summary::after { content:'−'; }
+  .article-details div { padding-top:14px; border-top:1px solid var(--border); }
+  .article-details div p { margin:0; }
+  .leonid-section { padding:clamp(60px,8vw,100px) 0; background:#fffefa; }
+  .leonid-heading-row { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:32px; }
+  .leonid-heading-row .section-sub { margin-top:14px; }
+  .leonid-count { flex:0 0 auto; color:var(--accent); font-family:'Playfair Display',Georgia,serif; font-size:30px; line-height:1; text-align:right; }
+  .leonid-count span { display:block; margin-top:7px; color:var(--text-secondary); font-family:Inter,sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .leonid-jump { display:flex; justify-content:center; margin:28px 0 8px; }
+  .leonid-jump a { display:inline-flex; align-items:center; gap:12px; color:var(--btn-bg); font-size:13px; font-weight:600; text-decoration:none; }
+  .leonid-jump a:hover { color:var(--accent); }
+  .leonid-gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .leonid-photo { display:block; width:100%; padding:0; border:0; background:#eee9e0; cursor:zoom-in; overflow:hidden; }
+  .leonid-photo img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .45s ease; }
+  .leonid-photo:hover img { transform:scale(1.04); }
+  .leonid-gallery-more { display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:30px; }
+  .leonid-gallery-more p { color:var(--text-muted); font-size:12px; }
+  .leonid-gallery-more button { min-width:190px; cursor:pointer; }
+  .leonid-lightbox { width:100vw; max-width:none; height:100dvh; max-height:none; padding:24px; border:0; background:rgba(24,25,22,.96); color:#fff; }
+  .leonid-lightbox::backdrop { background:rgba(24,25,22,.92); }
+  .leonid-lightbox__panel { position:relative; display:flex; align-items:center; justify-content:center; gap:22px; width:100%; height:100%; }
+  .leonid-lightbox__figure { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; max-width:calc(100vw - 170px); max-height:100%; margin:0; }
+  .leonid-lightbox__figure img { display:block; max-width:100%; max-height:calc(100dvh - 100px); object-fit:contain; }
+  .leonid-lightbox__figure figcaption { color:rgba(255,255,255,.72); font-size:12px; }
+  .leonid-lightbox__close,.leonid-lightbox__nav { display:flex; align-items:center; justify-content:center; width:46px; height:46px; border:1px solid rgba(255,255,255,.3); border-radius:50%; background:transparent; color:#fff; cursor:pointer; }
+  .leonid-lightbox__close { position:absolute; top:2px; right:2px; font-size:30px; }
+  .leonid-lightbox__nav { flex:0 0 auto; font-size:30px; }
+  .leonid-lightbox__close:hover,.leonid-lightbox__nav:hover { background:rgba(255,255,255,.14); }
+  .leonid-photo:focus-visible,.article-details summary:focus-visible,.leonid-lightbox button:focus-visible { outline:3px solid var(--accent-light); outline-offset:3px; }
+  @media(max-width:900px) { .articles-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .leonid-gallery { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media(max-width:600px) {
+    .articles-inner,.leonid-inner { width:calc(100% - 40px); }
+    .articles-grid { grid-template-columns:1fr; gap:12px; margin-top:26px; }
+    .article-card { padding:24px; }
+    .leonid-heading-row { align-items:start; }
+    .leonid-count { font-size:24px; }
+    .leonid-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .leonid-lightbox { padding:16px 10px; }
+    .leonid-lightbox__panel { gap:8px; }
+    .leonid-lightbox__figure { max-width:calc(100vw - 112px); }
+    .leonid-lightbox__nav,.leonid-lightbox__close { width:38px; height:38px; }
+    .leonid-lightbox__figure img { max-height:calc(100dvh - 100px); }
+  }
+  @media(prefers-reduced-motion:reduce) { .leonid-photo img { transition:none; } }
+</style>
+
+<style id="local-gallery-fixes">
+  /* A stable card grid keeps the portfolio usable when this file is opened locally. */
+  .products-slider { overflow:visible; }
+  .products-slider .swiper-wrapper { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; transform:none !important; height:auto; }
+  .products-slider .swiper-slide { width:auto !important; height:auto; }
+  .products-slider .slider-controls { display:none; }
+  .product-card { height:100%; display:flex; flex-direction:column; }
+  .product-body { display:flex; flex:1; flex-direction:column; }
+  .product-body p { flex:1; }
+  .product-body .btn-card { width:100%; margin-top:10px; }
+  .leonid-section { background:#f2efe9; }
+  .leonid-heading-row { padding-bottom:25px; border-bottom:1px solid var(--border); }
+  .leonid-heading-row .section-label { margin-bottom:12px; }
+  .leonid-gallery { grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .leonid-photo { background:#e5dfd5; }
+  .leonid-photo img { aspect-ratio:4/3; object-fit:contain; }
+  .leonid-gallery-more button { min-width:230px; padding:14px 22px; }
+  .category-lightbox { width:min(1100px,calc(100vw - 32px)); max-width:none; max-height:90dvh; padding:0; border:0; background:#f8f7f4; color:var(--text-primary); box-shadow:0 24px 80px #0004; }
+  .category-lightbox::backdrop { background:#171914cc; }
+  .category-lightbox__head { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:22px 26px; border-bottom:1px solid var(--border); }
+  .category-lightbox__head h2 { margin:0; font-family:'Playfair Display',Georgia,serif; font-weight:400; font-size:26px; }
+  .category-lightbox__close { width:42px; height:42px; border:1px solid var(--border); border-radius:50%; background:transparent; font-size:26px; cursor:pointer; }
+  .category-lightbox__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; max-height:calc(90dvh - 90px); overflow:auto; padding:20px 26px 26px; }
+  .category-lightbox__item { display:block; padding:0; border:0; background:#e8e3da; cursor:zoom-in; overflow:hidden; }
+  .category-lightbox__item img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .35s; }
+  .category-lightbox__item:hover img { transform:scale(1.04); }
+  .category-lightbox__count { color:var(--text-muted); font-size:12px; }
+
+  .epoxy-project-link { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px 28px; margin-top:24px; padding:18px 22px; border:1px solid var(--border); background:#f7f5f0; color:var(--text-primary); text-decoration:none; transition:border-color .2s,background-color .2s; }
+  .epoxy-project-link:hover { border-color:var(--accent-light); background:#faf9f6; }
+  .epoxy-project-link__mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--border); color:var(--accent); font-family:'Playfair Display',Georgia,serif; font-size:21px; }
+  .epoxy-project-link__copy { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; min-width:0; }
+  .epoxy-project-link__copy strong { font-family:'Playfair Display',Georgia,serif; font-size:19px; font-weight:400; }
+  .epoxy-project-link__copy span { color:var(--text-secondary); font-size:12px; }
+  .epoxy-project-link__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
+  @media(max-width:600px) { .epoxy-project-link { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:18px; padding:14px; } .epoxy-project-link__mark { width:36px; height:36px; } .epoxy-project-link__copy { display:block; } .epoxy-project-link__copy strong { display:block; font-size:17px; line-height:1.25; } .epoxy-project-link__copy span { display:block; margin-top:4px; font-size:11px; line-height:1.45; } .epoxy-project-link__action { grid-column:2; } }
+
+  @media(max-width:900px) { .products-slider .swiper-wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:600px) { .products-slider .swiper-wrapper { grid-template-columns:1fr; } .leonid-gallery { grid-template-columns:minmax(0,1fr); gap:14px; } .leonid-photo img { width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#e5dfd5; } .leonid-lightbox__panel { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:6px; } .leonid-lightbox__figure { max-width:100%; width:100%; } .leonid-lightbox__figure img { width:100%; max-height:calc(100dvh - 130px); object-fit:contain; } .leonid-lightbox__nav,.leonid-lightbox__close { width:44px; height:44px; } .category-lightbox__grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:14px; gap:8px; } .category-lightbox__head { padding:16px; } .category-lightbox__head h2 { font-size:21px; } }
+</style>
+<style id="full-bleed-section-system">
+  :root { --white:#f6f4ef; --off-white:#f0eee8; }
+  body { background:var(--off-white); }
+  /* Background bands should span the viewport; only their content stays constrained. */
+  section.articles-section, section.leonid-section, #contact { width:100%; max-width:none; margin-inline:0; background:var(--off-white); }
+  section.articles-section, section.leonid-section { padding-inline:clamp(20px,4vw,60px); }
+  #contact { padding-inline:clamp(20px,4vw,60px); }
+  .articles-inner, .leonid-inner { width:min(var(--page-width,1280px),100%); }
+  #contact .form-section { width:min(var(--page-width,1280px),100%); }
+  .article-card, .product-card, .reviews-card, .process-card, .material-card { background:#f7f5f0; box-shadow:none; border-color:var(--border); }
+  .article-card { border-radius:2px; }
+  .reviews-card { border-radius:2px; }
+  @media(max-width:600px) {
+    section.articles-section, section.leonid-section, #contact { padding-inline:20px; }
+    .articles-inner, .leonid-inner, #contact .form-section { width:100%; }
+  }
+</style>
+
+
+</head>
+<body>
+
+<!-- HEADER & NAV -->
+<header class="site-header">
+  <div class="header-left">
+    <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
+      <img class="nav-logo-img" src="./assets/images/logo.png" alt="Древесный замысел"/>
+      <span class="nav-logo-text">Древесный замысел</span>
+    </a>
+  </div>
+
+  <!-- Навигация теперь вне левого блока для удобного переноса на вторую строку -->
+  <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+    <a href="#why" class="active">О нас</a>
+    <a href="#products">Каталог</a>
+    <a href="#leonid-portfolio">Работы</a>
+    <a href="#materials">Материалы</a>
+    <a href="#process">Процесс</a>
+    <a href="#articles">Статьи</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+
+  <div class="header-right">
+    <!-- Блок ссылок на соцсети Desktop -->
+    <div class="header-socials">
+      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='VK'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%235281b8'/%3e%3cpath%20fill='%23ffffff'%20d='M274%20363c5-1%2014-3%2014-15%200%200-1-30%2013-34s32%2029%2051%2042c14%209%2025%208%2025%208l51-1s26-2%2014-23c-1-2-9-15-39-42-31-30-26-25%2011-76%2023-31%2033-50%2030-57-4-7-20-6-20-6h-57c-6%200-9%201-12%206%200%200-9%2025-21%2045-25%2043-35%2045-40%2042-9-5-7-24-7-37%200-45%207-61-13-65-13-2-59-4-73%203-7%204-11%2011-8%2012%203%200%2012%201%2017%207%208%2013%209%2075-2%2081-15%2011-53-62-62-86-2-6-5-7-12-9H79c-6%200-15%201-11%2013%2027%2056%2083%20193%20184%20192z'/%3e%3c/svg%3e" alt="">
+      </a>
+      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
+      </a>
+      <a href="http://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
+      </a>
+    </div>
+
+    <div class="header-contacts">
+      <a href="tel:+74952751423" class="header-phone">+7 (495) 275-14-23</a>
+      <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" class="header-address" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5</a>
+      <a href="mailto:drevesnyzamysel@mail.ru" class="header-address">drevesnyzamysel@mail.ru</a>
+    </div>
+
+    <a href="#contact" class="header-cta btn-primary">Обсудить проект</a>
+
+    <!-- Burger Button -->
+    <button class="burger-btn" type="button" aria-label="Открыть меню" aria-controls="mobileMenu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-nav-links">
+    <a href="#why">О нас</a>
+    <a href="#products">Каталог</a>
+    <a href="#leonid-portfolio">Работы</a>
+    <a href="#materials">Материалы</a>
+    <a href="#process">Процесс</a>
+    <a href="#articles">Статьи</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+  <div class="mobile-nav-bottom">
+    <div class="header-socials mobile-socials">
+      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='VK'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%235281b8'/%3e%3cpath%20fill='%23ffffff'%20d='M274%20363c5-1%2014-3%2014-15%200%200-1-30%2013-34s32%2029%2051%2042c14%209%2025%208%2025%208l51-1s26-2%2014-23c-1-2-9-15-39-42-31-30-26-25%2011-76%2023-31%2033-50%2030-57-4-7-20-6-20-6h-57c-6%200-9%201-12%206%200%200-9%2025-21%2045-25%2043-35%2045-40%2042-9-5-7-24-7-37%200-45%207-61-13-65-13-2-59-4-73%203-7%204-11%2011-8%2012%203%200%2012%201%2017%207%208%2013%209%2075-2%2081-15%2011-53-62-62-86-2-6-5-7-12-9H79c-6%200-15%201-11%2013%2027%2056%2083%20193%20184%20192z'/%3e%3c/svg%3e" alt="">
+      </a>
+      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
+      </a>
+      <a href="http://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+        <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
+      </a>
+    </div>
+    <a href="tel:+74952751423" class="header-phone">+7 (495) 275-14-23</a>
+    <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" class="header-address-mobile" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5<br>10:00 - 19:00</a>
+    <a href="#contact" class="btn-primary mobile-cta">Обсудить проект</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<main>
+  <section class="hero" aria-label="Главный экран">
+    <div class="hero-content">
+      <p class="hero-label">Лестницы под ключ · Московская область</p>
+      <h1 class="hero-title">
+        Лестницы любой сложности
+      </h1>
+      <p class="hero-sub hero-sub-1">
+        Мы предоставляем возможность людям комфортно и безопасно подниматься выше!
+      </p>
+      <p class="hero-sub hero-sub-2">
+        Проектируем, изготавливаем на собственном производстве и монтируем лестницы для дома и коммерческих пространств любой сложности
+      </p>
+      <div class="hero-tags">
+        <a href="#products" class="hero-tag">Открытый тип</a>
+        <a href="#products" class="hero-tag">Закрытый тип</a>
+        <a href="#products" class="hero-tag">Обшивка бетона</a>
+        <a href="#products" class="hero-tag">Деревянные изделия</a>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn-primary">
+          Обсудить проект
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#products" class="btn-outline">Смотреть проекты →</a>
+        <a href="./constructor.html" class="btn-outline">3D-конструктор лестницы ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker">
+      <span>10 лет опыта</span>
+      <span>·</span>
+      <span>Собственное производство</span>
+      <span>·</span>
+      <span>Гарантия качества</span>
+      <span>·</span>
+      <span>10 лет опыта</span>
+      <span>·</span>
+      <span>Собственное производство</span>
+      <span>·</span>
+      <span>Гарантия качества</span>
+      <span>·</span>
+      <span>10 лет опыта</span>
+      <span>·</span>
+      <span>Собственное производство</span>
+      <span>·</span>
+      <span>Гарантия качества</span>
+      <span>·</span>
+      <span>10 лет опыта</span>
+      <span>·</span>
+      <span>Собственное производство</span>
+      <span>·</span>
+      <span>Гарантия качества</span>
+      <span>·</span>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="products-section" id="products">
+    <div class="products-inner">
+      <p class="section-label">Наше портфолио</p>
+      <h2 class="section-title">Примеры наших работ</h2>
+      <p class="section-sub">Каждая лестница проектируется под конкретный проём и высоту, от них зависит её конфигурация - маршевая прямая, П-образная, Г-образная, с площадкой или с забежными ступенями, есть комбинированные варианты. Оптимальную под Ваши условия конфигурацию предложит наш инженер на замере, затем он подготовит подробный проект лестницы. </p>
+
+      <a class="builder-entry" href="./constructor.html">
+        <span class="builder-entry__mark" aria-hidden="true">3D</span>
+        <span class="builder-entry__copy"><strong>Примерьте лестницу в 3D</strong><span>Настройте форму, размеры, каркас и древесину в интерактивном конструкторе</span></span>
+        <span class="builder-entry__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="swiper products-slider">
+        <div class="swiper-wrapper">
+          <!-- Слайд 1 -->
+          <div class="swiper-slide">
+            <article class="product-card">
+              <div class="product-visual" style="background:#f5f0ea;">
+                <img src="./assets/preview-DsgEsqXk.jpg" alt="Лестницы закрытого типа">
+              </div>
+              <div class="product-body">
+                <h3>Лестницы закрытого типа</h3>
+                <p>Классические конструкции с подступёнками. Выглядят монолитно и строго, хорошо вписываются в классический, скандинавский и современный интерьер. Обеспечивают дополнительную пространство под лестницей. Косоуры изготавливаются из швеллера, или из листа металла. </p>
+                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
+                <button class="btn-card" type="button" id="btn-gallery-closedType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы закрытого типа">Примеры работ</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- Слайд 2 -->
+          <div class="swiper-slide">
+            <article class="product-card">
+              <div class="product-visual" style="background:#f0ede8;">
+                <img src="./assets/preview-D2-kV2v_.jpg" alt="Лестницы открытого типа">
+              </div>
+              <div class="product-body">
+                <h3>Лестницы открытого типа</h3>
+                <p>Создают ощущение воздушности и лёгкости в интерьере. Популярный выбор для современных домов в стиле лофт, минимализм, хай-тек.
+                  Пропускают свет, без подступенков, металлокаркас остаётся виден, его можно покрасить в любой цвет. Есть несколько видов лестниц открытого типа с различными косоурами: на монокосоуре, на ломанных косоурах, на тетивах, консольные, винтовые. </p>
+                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
+                <button class="btn-card" type="button" id="btn-gallery-openType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы открытого типа">Примеры работ</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- Слайд 3 -->
+          <div class="swiper-slide">
+            <article class="product-card">
+              <div class="product-visual" style="background:#ede8e0;">
+                <img src="./assets/preview-BoW3_B0a.jpg" alt="Обшивка бетонных лестниц">
+              </div>
+              <div class="product-body">
+                <h3>Обшивка бетонных лестниц</h3>
+                <p>Если в вашем доме уже есть бетонная лестница, которая выглядит незаконченно — мы превратим её в стильный элемент интерьера. Полная обшивка: ступени, подступёнки, боковины и ограждение.  </p>
+                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
+                <button class="btn-card" type="button" id="btn-gallery-covering" aria-haspopup="dialog" aria-label="Открыть примеры работ: обшивка бетонных лестниц">Примеры работ</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- Слайд 4 -->
+          <div class="swiper-slide">
+            <article class="product-card">
+              <div class="product-visual" style="background:#f0ede8;">
+                <img src="./assets/preview-CIS6C_n6.jpg" alt="Ограждения">
+              </div>
+              <div class="product-body">
+                <h3>Ограждения</h3>
+                <p>Правильно подобранные ограждения — залог безопасности и визитная карточка любой лестницы. Изготавливаем и устанавливаем деревянные, металлические, комбинированные (деревянные с коваными элементами) и стеклянные ограждения. </p>
+                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
+                <button class="btn-card" type="button" id="btn-gallery-fences" aria-haspopup="dialog" aria-label="Открыть примеры работ: ограждения">Примеры работ</button>
+              </div>
+            </article>
+          </div>
+
+          <!-- Слайд 5 -->
+          <div class="swiper-slide">
+            <article class="product-card">
+              <div class="product-visual" style="background:#ede8e0;">
+                <img src="./assets/woody_1_preview-DRq_ek38.jpg" alt="Деревянные изделия">
+              </div>
+              <div class="product-body">
+                <h3>Деревянные изделия</h3>
+                <p>Помимо лестниц, мы производим шкафы, столы, слэбы, стеновые панели, перегородки для зонирования, предметы интерьера</p>
+                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
+                <button class="btn-card" type="button" id="btn-gallery-wood" aria-haspopup="dialog" aria-label="Открыть примеры работ: деревянные изделия">Примеры работ</button>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <!-- Swiper Controls -->
+        <div class="slider-controls">
+          <div class="slider-nav">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+
+      <a class="epoxy-project-link" href="https://trofimmokrov-netizen.github.io/ksusha_epoxy_premium/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть отдельное портфолио Ксюши с изделиями из эпоксидной смолы">
+        <span class="epoxy-project-link__mark" aria-hidden="true">Э</span>
+        <span class="epoxy-project-link__copy"><strong>Проекты Ксюши</strong><span>Изделия из эпоксидной смолы — отдельное портфолио мастерской</span></span>
+        <span class="epoxy-project-link__action">Смотреть проекты <span aria-hidden="true">↗</span></span>
+      </a>
+      <div class="leonid-jump"><a href="#leonid-portfolio">Смотреть фотографии работ мастерской <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </div>
+
+
+  <section id="leonid-portfolio" class="leonid-section" aria-labelledby="leonid-heading">
+    <div class="leonid-inner">
+      <div class="leonid-heading-row">
+        <div>
+          <p class="section-label">Портфолио мастера</p>
+          <h2 class="section-title" id="leonid-heading">Работы мастера мастерской «Древесный Замысел»</h2>
+          <p class="section-sub">Лестницы, мебель и изделия из дерева — в фотографиях мастера. Выберите снимок, чтобы рассмотреть детали.</p>
+        </div>
+        <span class="leonid-count">138 <span>фотографий работ</span></span>
+      </div>
+      <div class="leonid-gallery" id="leonidGallery" aria-label="Фотографии работ мастерской «Древесный Замысел»"></div>
+      <div class="leonid-gallery-more">
+        <p id="leonidGalleryStatus" aria-live="polite">Откройте подборку и смотрите все проекты</p>
+        <button id="leonidLoadMore" class="btn-outline" type="button">Показать ещё фотографии</button>
+      </div>
+    </div>
+  </section>
+  <dialog class="leonid-lightbox" id="leonidLightbox" aria-label="Просмотр фотографий работ мастерской">
+    <div class="leonid-lightbox__panel">
+      <button class="leonid-lightbox__close" type="button" aria-label="Закрыть просмотр">×</button>
+      <button class="leonid-lightbox__nav leonid-lightbox__prev" type="button" aria-label="Предыдущее фото">‹</button>
+      <figure class="leonid-lightbox__figure">
+        <img id="leonidLightboxImage" src="" alt="">
+        <figcaption id="leonidLightboxCaption"></figcaption>
+      </figure>
+      <button class="leonid-lightbox__nav leonid-lightbox__next" type="button" aria-label="Следующее фото">›</button>
+    </div>
+  </dialog>
+
+  <!-- WHY -->
+  <section id="why" aria-labelledby="why-heading">
+    <p class="section-label">Почему мы</p>
+    <h2 class="section-title" id="why-heading">Ищете надежную, долговечную и стильную лестницу, которая идеально впишется в архитектуру и интерьер вашего дома? </h2>
+    <p class="section-sub">Компания Древесный замысел предлагает полный комплекс услуг по изготовлению лестниц на металлическом каркасе под ключ в Москве и в Московской области. Мы берем на себя все этапы — от индивидуального проекта до финишной отделки. У нас своё производство, мы не работаем через посредников — это позволяет держать цены честными и соблюдать сроки. </p>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <h3>Почему стоит выбрать металлический каркас?</h3>
+        <p>Стальной каркас подходит для прямых, поворотных и винтовых лестниц, в том числе для конструкций с открытым визуальным силуэтом. Он сохраняет форму при перепадах влажности и не рассыхается; деревянная отделка добавляет интерьеру тепла. На металлокаркас действует гарантия 10 лет по договору.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <h3> Мы работаем «под ключ»</h3>
+        <p>Инженеры, сварщики, плотники и маляры работают над проектом вместе — вам не нужно искать специалистов по отдельности. У команды есть профильное образование и опыт от 5 лет. Каждую лестницу проектируем индивидуально, с учётом геометрии помещения, материалов и деталей отделки.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <h3>Деревянные изделия</h3>
+        <p>Кроме лестниц на металлокаркасе, мастерская изготавливает обшивку бетонных лестниц, шкафы, столы, слэбы, стеновые панели, перегородки для зонирования и предметы интерьера.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <h3>Стоимость и сроки</h3>
+        <p>Стоимость зависит от сложности конструкции, высоты и выбранных материалов. Каркас обычно устанавливают на этапе черновой отделки, деревянную обшивку — после чистовой. Ограждение можно смонтировать вместе с каркасом или после обшивки.</p><ul class="why-times"><li><span>Металлокаркас</span><strong>15–20 рабочих дней</strong></li><li><span>Обшивка открытой лестницы</span><strong>20–25 рабочих дней</strong></li><li><span>Обшивка закрытой лестницы</span><strong>20–30 рабочих дней</strong></li></ul>
+      </div>
+    </div>
+
+    <!-- Обновленный блок why-extra -->
+    <div class="why-extra">
+      <div class="why-extra-content">
+        <span class="why-extra-label">Собственное производство</span>
+        <h4 class="why-extra-title">Вы можете посетить наше производство, расположенное по адресу:</h4>
+        <address class="why-extra-address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          г. Москва, НАО, р-н Коммунарка,<br>дер. Губкино, 78 соор 5
+        </address>
+      </div>
+      <div class="why-extra-image">
+        <img src="./assets/images/factory2.jpg?v=20260828" alt="Цех компании Древесный Замысел — производство лестниц, мебели и слэбов" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section id="materials" aria-labelledby="materials-heading">
+    <h2 class="section-title" id="materials-heading">Материалы</h2>
+    <p class="section-sub">Используем только проверенные материалы, массив разных пород дерева - лиственницы, дуба, ясеня, американского ореха, натуральный шпон, делаем комбинированные решения</p>
+
+    <div class="materials-grid">
+      <article class="material-card">
+        <div class="material-img">
+          <img src="./assets/images/materials/listvennitsa.jpg" alt="Лиственница" loading="lazy">
+        </div>
+        <div class="material-content">
+          <h3>Лиственица</h3>
+          <p>Долговечная древесина с высокой природной устойчивостью к влаге и перепадам температуры. Благодаря содержанию смол отлично подходит для лестниц в частных домах и загородных коттеджах.</p>
+        </div>
+      </article>
+      <article class="material-card">
+        <div class="material-img">
+          <img src="./assets/images/materials/yasen.jpg" alt="Ясень" loading="lazy">
+        </div>
+        <div class="material-content">
+          <h3>Ясень</h3>
+          <p>Премиальная древесина с выразительной текстурой и высокой эластичностью. Хорошо выдерживает интенсивные нагрузки, не боится деформаций и подходит для современных интерьеров.</p>
+        </div>
+      </article>
+      <article class="material-card">
+        <div class="material-img">
+          <img src="./assets/images/materials/oak.jpg" alt="Дуб" loading="lazy">
+        </div>
+        <div class="material-content">
+          <h3>Дуб</h3>
+          <p>
+            Эталон прочности и долговечности.
+            Благородная текстура, высокая износостойкость и срок службы в несколько десятилетий делают дуб лучшим выбором для лестниц премиум-класса.
+          </p>
+        </div>
+      </article>
+      <article class="material-card">
+        <div class="material-img">
+          <img src="./assets/images/materials/american.jpg" alt="Американский орех" loading="lazy">
+        </div>
+        <div class="material-content">
+          <h3>Американский орех</h3>
+          <p>В отличие от европейских пород, американский орех имеет уникальный, шоколадно-карамельный оттенок с изящными темными прожилками. Он всегда выглядит дорого и благородно. </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" aria-labelledby="process-heading">
+    <p class="section-label">Как мы работаем</p>
+    <h2 class="section-title" id="process-heading">От звонка до<br/>готовой лестницы</h2>
+
+    <div class="process-row">
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div class="step-content">
+            <h4>Заявка и первичная консультация</h4>
+            <p>Обсуждаем задачу, Ваши пожелания, проём, стиль интерьера. Помогаем подобрать оптимальное решение. Делаем предварительную оценку стоимости.</p>
+            <span class="step-days">День 1</span>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div class="step-content">
+            <h4>Выездной замер и договор</h4>
+            <p>Наш специалист приезжает на объект, снимает точные размеры, предлагает варианты конфигурации лестницы, ограждений и материалов обшивки. Делает точный расчет стоимости, можно сразу заключить договор и внести предоплату. В некоторых случаях нужно дополнительно 1-2 дня на подготовку точного расчета. Договор заключаем удаленно после согласования всех деталей.</p>
+            <span class="step-days">День 2–4</span>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div class="step-content">
+            <h4>Проект</h4>
+            <p>Инженер готовит подробный проект металлокаркаса лестницы со всеми размерами. Вы согласовываете внешний вид лестницы до начала работ по её изготовлению.</p>
+            <span class="step-days">День 3–5</span>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <div class="step-content">
+            <h4>Производство</h4>
+            <p>Подбираем качественные материалы. Изготавливаем металлокаркас и деревянные элементы в нашем цехе.  </p>
+            <span class="step-days">День 10–35</span>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">5</span>
+          <div class="step-content">
+            <h4>Монтаж и сдача</h4>
+            <p>Бригада монтирует металлокаркас лестницы за 1–3 дня. После установки каркаса приезжает столяр для снятия точных размеров и согласования цвета покраски элементов. После монтажа обшивки лестницы и ограждений проверяем качество и даём рекомендации по уходу.</p>
+            <span class="step-days">День 15–45</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-right">
+        <div class="process-card">
+          <h3>Всё включено в цену</h3>
+          <p>Вы платите один раз — без скрытых доплат за выезд, проект или монтаж.</p>
+          <div class="process-meta">
+            <div class="meta-row"><span>Замер</span><span>Бесплатно</span></div>
+            <div class="meta-row"><span>3D-проект</span><span>Бесплатно</span></div>
+            <div class="meta-row"><span>Доставка по МО</span><span>Включена</span></div>
+            <div class="meta-row"><span>Монтаж</span><span>Включён</span></div>
+            <div class="meta-row"><span>Гарантия</span><span>10 лет</span></div>
+          </div>
+          <a href="#contact" class="btn-primary" style="width:100%; justify-content:center;">
+            Обсудить проект
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <div class="coverage-section" id="coverage">
+    <div class="coverage-inner">
+      <p class="section-label">Зона работ</p>
+      <h2 class="section-title">Работаем по всей<br/>Московской области</h2>
+
+      <div class="cities-grid">
+        <div class="city-item"><b>Север МО</b>Мытищи, Пушкино, Королёв</div>
+        <div class="city-item"><b>Восток МО</b>Балашиха, Электросталь, Ногинск</div>
+        <div class="city-item"><b>Юг МО</b>Домодедово, Подольск, Чехов</div>
+        <div class="city-item"><b>Запад МО</b>Красногорск, Одинцово, Звенигород</div>
+        <div class="city-item"><b>С-Восток</b>Щёлково, Фрязево, Хотьково</div>
+        <div class="city-item"><b>С-Запад</b>Химки, Лобня, Зеленоград</div>
+        <div class="city-item"><b>Ю-Восток</b>Люберцы, Жуковский, Раменское</div>
+        <div class="city-item"><b>Ю-Запад</b>Наро-Фоминск, Апрелевка, Троицк</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YANDEX REVIEWS -->
+
+  <section class="articles-section" id="articles" aria-labelledby="articles-heading">
+    <div class="articles-inner">
+      <p class="section-label">Полезное</p>
+      <h2 class="section-title" id="articles-heading">Несколько слов о лестницах</h2>
+      <p class="section-sub">Короткие заметки о материалах и этапах изготовления — на основе процесса работы мастерской.</p>
+      <div class="articles-grid">
+        <article class="article-card">
+          <p class="article-kicker">Этапы проекта</p>
+          <h3>Когда устанавливают металлический каркас?</h3>
+          <p class="article-lead">Каркас обычно монтируют во время черновой отделки, а деревянную обшивку — после чистовой.</p>
+          <details class="article-details"><summary>Читать заметку</summary><div><p>Такой порядок учитывает этапы ремонта дома. На замере специалист снимает размеры, обсуждает конфигурацию лестницы, ограждения и материалы. Деревянные элементы устанавливают после чистовой отделки.</p></div></details>
+        </article>
+        <article class="article-card">
+          <p class="article-kicker">Материалы</p>
+          <h3>Как выбрать древесину для отделки?</h3>
+          <p class="article-lead">Мастерская работает с лиственницей, ясенем, дубом, американским орехом и натуральным шпоном.</p>
+          <details class="article-details"><summary>Читать заметку</summary><div><p>Породу и сочетание материалов можно обсудить при замере. Выбор зависит от проекта и того, как лестница должна сочетаться с интерьером и другими деревянными элементами дома.</p></div></details>
+        </article>
+        <article class="article-card">
+          <p class="article-kicker">Замер и проект</p>
+          <h3>Зачем нужен замер на объекте?</h3>
+          <p class="article-lead">Размеры проёма и высота помещения помогают спроектировать лестницу под конкретный дом.</p>
+          <details class="article-details"><summary>Читать заметку</summary><div><p>Специалист снимает размеры, предлагает варианты конфигурации, ограждений и отделки, затем рассчитывает стоимость. После согласования инженер готовит проект металлокаркаса с размерами.</p></div></details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="reviews-section" id="reviews">
+    <div class="reviews-inner">
+      <p class="section-label">Отзывы клиентов</p>
+      <h2 class="section-title">Что говорят о нашей работе</h2>
+      <p class="section-sub">Посмотрите реальные отзывы заказчиков о компании «Древесный Замысел» на Яндекс Картах.</p>
+
+      <div class="reviews-card">
+        <div>
+          <div class="reviews-yandex">
+            <div class="reviews-yandex-logo" aria-hidden="true">Я</div>
+            <div>
+              <strong>Древесный Замысел</strong>
+              <span>Отзывы на Яндекс Картах</span>
+            </div>
+          </div>
+          <p class="reviews-text">Отзывы размещены на независимой площадке Яндекса. Там можно увидеть оценки клиентов, прочитать их впечатления и оставить собственный отзыв после выполненного заказа.</p>
+        </div>
+        <a class="btn-primary reviews-button" href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/reviews/?ll=37.463763%2C55.532365&amp;z=17" target="_blank" rel="noopener noreferrer" aria-label="Открыть отзывы о Древесном Замысле на Яндекс Картах">
+          Читать все отзывы
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="form-section">
+      <div class="form-left">
+        <p class="section-label">Контакты</p>
+        <h2 id="contact-heading">Обсудим ваш проект</h2>
+        <p>Оставьте заявку — перезвоним в течение 30 минут в рабочее время. Выезд замерщика по всей Московской области.</p>
+        <div class="form-contact-row">
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l1.5 4-2 1.5a10 10 0 004 4L11 9.5l4 1.5v4c0 1-1 1.5-2 1.5C5 16.5 0 10 0 4c0-1 .5-2 2-2z" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span><strong>+7 (495) 275-14-23</strong> — 10:00–19:00</span>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.2"/></svg>
+            <a href="mailto:drevesnyzamysel@mail.ru">drevesnyzamysel@mail.ru</a>
+          </div>
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M8 1C4.686 1 2 3.686 2 7c0 4 6 9 6 9s6-5 6-9c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.2"/></svg>
+            <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-right">
+        <script data-b24-form="inline/1/8dtwm1" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/form/loader_1.js');</script>
+      </div>
+    </div>
+  </section>
+  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="nav-logo-icon">
+      <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
+        <img class="nav-logo-img" src="./assets/images/logo.png" alt="Древесный замысел"/>
+      </a>
+    </div>
+    Древесный замысел
+  </div>
+  <div class="footer-links">
+    <a href="#why" class="active">О нас</a>
+    <a href="#products">Каталог</a>
+    <a href="#leonid-portfolio">Работы</a>
+    <a href="#materials">Материалы</a>
+    <a href="#process">Процесс</a>
+    <a href="#articles">Статьи</a>
+    <a href="#contact">Контакты</a>
+    <!-- Добавлен href для нормального курсора с data-атрибутом -->
+    <a id="confPol" href="#confPol" data-micromodal-trigger="modal-1">Политика конфиденциальности</a>
+  </div>
+</footer>
+
+<!-- POLICY MODAL -->
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">Согласие на обработку данных</h2>
+        <button class="modal__close" aria-label="Закрыть окно" data-micromodal-close></button>
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <p>Настоящий документ определяет политику и порядок обработки персональных данных пользователей сайта и разработан в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» (далее – 152-ФЗ) и иными нормативными правовыми актами Российской Федерации в области защиты персональных данных.</p>
+
+        <h3>1. Основные положения</h3>
+        <p>1.1. Настоящее Согласие на обработку персональных данных (далее – Согласие) является публичным и открытым документом.</p>
+        <p>1.2. Используя функционал сайта и оставляя свои данные в веб-формах (регистрация, заказ обратного звонка, подписка, отправка сообщения), Пользователь дает свое добровольное согласие Индивидуальному предпринимателю Ярошенко Илье Васильевичу, действующему на основании ОГРНИП 325508100048690, (далее – Оператор) на обработку своих персональных данных на условиях, изложенных в настоящем Согласии.</p>
+        <p>1.3. Согласие действует в отношении всех персональных данных, которые Пользователь предоставляет Оператору.</p>
+        <p>1.4. Настоящее Согласие составлено в соответствии с требованиями ст. 9 152-ФЗ и является отдельным документом, не подлежащим включению в текст договора оферты, пользовательского соглашения или иных документов.</p>
+
+        <h3>2. Состав (перечень) персональных данных</h3>
+        <p>2.1. Согласие дается на обработку следующих персональных данных, не являющихся специальными или биометрическими:</p>
+        <ul>
+          <li>Фамилия, Имя, Отчество;</li>
+          <li>Номер контактного телефона;</li>
+          <li>Адрес электронной почты (e-mail);</li>
+          <li>Данные, получаемые с помощью файлов cookie и счетчиков посещаемости (в том числе: IP-адрес, тип и версия операционной системы и браузера, тип устройства и разрешение экрана, источник перехода на сайт, язык операционной системы и браузера, совершенные клики и переходы по страницам).</li>
+        </ul>
+
+        <h3>3. Цели обработки персональных данных</h3>
+        <p>3.1. Обработка персональных данных осуществляется в следующих целях:</p>
+        <ul>
+          <li>Для обработки обращений, поступивших от Пользователя, с целью предоставления консультаций и ответов на вопросы;</li>
+          <li>Для заключения и исполнения договоров с Пользователем (в том числе по оформлению заказов и оказанию услуг);</li>
+          <li>Для направления уведомлений, информационных и рекламных материалов, а также новостной рассылки (при условии отдельного согласия на маркетинг);</li>
+          <li>Для анализа поведения Пользователя на сайте и улучшения функционала сайта.</li>
+        </ul>
+
+        <h3>4. Перечень действий, совершаемых с персональными данными</h3>
+        <p>4.1. Обработка персональных данных осуществляется с использованием средств автоматизации и без их использования.</p>
+        <p>4.2. Оператор имеет право совершать следующие действия: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление, уничтожение персональных данных.</p>
+        <p>4.3. Передача (распространение, предоставление) персональных данных третьим лицам осуществляется только с письменного согласия Пользователя, за исключением случаев, предусмотренных законодательством РФ (например, по запросу суда или уполномоченных органов).</p>
+
+        <h3>5. Сроки обработки и хранения</h3>
+        <p>5.1. Срок обработки персональных данных определяется до момента достижения целей обработки, если иное не предусмотрено договором или законодательством РФ.</p>
+        <p>5.2. Хранение персональных данных осуществляется не дольше, чем этого требуют цели их обработки, либо в течение срока, установленного федеральным законом (в том числе архивным законодательством, согласно № 125-ФЗ).</p>
+        <p>5.3. Обработка персональных данных прекращается в следующих случаях:</p>
+        <ul>
+          <li>По истечении сроков, указанных в п. 5.2;</li>
+          <li>По требованию Пользователя об отзыве согласия;</li>
+          <li>При ликвидации или реорганизации Оператора.</li>
+        </ul>
+
+        <h3>6. Отзыв согласия</h3>
+        <p>6.1. Пользователь (субъект персональных данных) вправе в любой момент отозвать свое согласие на обработку персональных данных, направив письменное заявление в свободной форме по адресу местонахождения Оператора или на электронную почту: drevesnyzamysel@mail.ru.</p>
+        <p>6.2. При получении письменного заявления об отзыве согласия Оператор обязан прекратить обработку персональных данных и уничтожить их в срок, не превышающий 30 дней с даты поступления отзыва, если иное не предусмотрено договором или законодательством (п. 2–11 ч. 1 ст. 6 152-ФЗ).</p>
+        <p>6.3. Оператор сохраняет за собой право продолжить обработку персональных данных без согласия Пользователя при наличии оснований, указанных в ч. 2–11 ст. 6, ч. 2 ст. 10 и ч. 2 ст. 11 152-ФЗ (исполнение договора, обязанности по закону, защита жизни и т.д.).</p>
+
+        <h3>7. Заключительные положения</h3>
+        <p>7.1. Пользователь, оставляя данные на Сайте, подтверждает, что он ознакомлен с настоящим Согласием, понимает его положения и согласен с ними.</p>
+        <p>7.2. Оператор вправе вносить изменения в текст Согласия. Актуальная редакция всегда доступна на Сайте.</p>
+        <p>7.3. Во всем остальном, не урегулированном настоящим Согласием, стороны руководствуются действующим законодательством Российской Федерации.</p>
+      </main>
+      <footer class="modal__footer">
+        <button class="modal__btn" data-micromodal-close aria-label="Закрыть окно">Закрыть</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
+  <div class="cookie-banner__text">
+    <strong>Мы используем cookie-файлы</strong>
+    Они помогают сайту работать корректно и делают его удобнее. Продолжая работу с сайтом, вы соглашаетесь с использованием cookie и
+    <button class="cookie-banner__policy" id="cookiePolicyButton" type="button">политикой конфиденциальности</button>.
+  </div>
+  <button class="cookie-banner__accept" id="cookieAcceptButton" type="button">Принять</button>
+</div>
+
+
+<dialog class="category-lightbox" id="categoryLightbox" aria-label="Примеры работ">
+  <div class="category-lightbox__head"><div><h2 id="categoryLightboxTitle">Примеры работ</h2><span class="category-lightbox__count" id="categoryLightboxCount"></span></div><button class="category-lightbox__close" type="button" aria-label="Закрыть">×</button></div>
+  <div class="category-lightbox__grid" id="categoryLightboxGrid"></div>
+</dialog>
+
+
+<dialog class="leonid-lightbox" id="categoryPhotoPreview" aria-label="Просмотр примера работы">
+  <div class="leonid-lightbox__panel"><button class="leonid-lightbox__close" type="button" aria-label="Закрыть просмотр">×</button><button class="leonid-lightbox__nav category-preview-prev" type="button" aria-label="Предыдущее фото">‹</button><figure class="leonid-lightbox__figure"><img id="categoryPreviewImage" src="" alt=""><figcaption id="categoryPreviewCaption"></figcaption></figure><button class="leonid-lightbox__nav category-preview-next" type="button" aria-label="Следующее фото">›</button></div>
+</dialog>
+
+<script>
+  // Smooth scroll for nav links & mobile menu handling
+  const burgerBtn = document.querySelector('.burger-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function toggleBurgerMenu(forceOpen) {
+    const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileMenu.classList.contains('active');
+    burgerBtn.classList.toggle('active', isOpen);
+    mobileMenu.classList.toggle('active', isOpen);
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+    burgerBtn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+      toggleBurgerMenu(false);
+      burgerBtn.focus();
+    }
+  });
+
+  burgerBtn.addEventListener('click', toggleBurgerMenu);
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if(mobileMenu.classList.contains('active')) {
+        toggleBurgerMenu();
+      }
+    });
+  });
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.header-nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`.header-nav a[href="#${entry.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => observer.observe(s));
+
+  // Open form with pre-selected type
+  function openForm(el) {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Кнопка «Примеры работ» открывает соответствующую существующую галерею каталога.
+  document.querySelectorAll('[data-open-gallery]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const galleryButton = document.getElementById(button.dataset.openGallery);
+      if (galleryButton) {
+        galleryButton.click();
+      }
+    });
+  });
+
+  // Header scroll effect
+  const header = document.querySelector('.site-header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 4px 30px rgba(0,0,0,0.08)'
+      : 'none';
+  });
+
+  // Cookie consent
+  const cookieBanner = document.getElementById('cookieBanner');
+  const cookieAcceptButton = document.getElementById('cookieAcceptButton');
+  const cookiePolicyButton = document.getElementById('cookiePolicyButton');
+  const cookieConsentKey = 'cookie_consent_accepted';
+
+  if (localStorage.getItem(cookieConsentKey) !== 'true') {
+    cookieBanner.classList.add('is-visible');
+  }
+
+  cookieAcceptButton.addEventListener('click', () => {
+    localStorage.setItem(cookieConsentKey, 'true');
+    document.cookie = `${cookieConsentKey}=true; Max-Age=31536000; Path=/; SameSite=Lax`;
+    cookieBanner.classList.remove('is-visible');
+  });
+
+  cookiePolicyButton.addEventListener('click', () => {
+    document.getElementById('confPol').click();
+  });
+
+
+
+  // Category galleries are rendered from local image paths so buttons work in file:// previews too.
+  const categoryGalleryImages = {"closedType": ["./assets/1-CxUltoDu.jpg", "./assets/2-BJIq9-oy.jpg", "./assets/3-8jQhtP3P.jpg", "./assets/3-C9nB9_oH.jpg", "./assets/5-Blm3M19A.jpg", "./assets/6-Hi8p20N-.jpg", "./assets/7-C8XRH--5.jpg", "./assets/8-C3Z67H-E.jpg", "./assets/9-DjhKNtfn.jpg", "./assets/10-D_rkeIGV.jpg", "./assets/11-DnxdNPyW.jpg", "./assets/12-DTjV_AdK.jpg", "./assets/13-CGemQoQ7.jpg", "./assets/14-HSMPNr1V.jpg", "./assets/15-A6owOzqB.jpg", "./assets/16--mXeW2rz.jpg", "./assets/17-CB7zBL8k.jpg", "./assets/18-z7fr1WQz.jpg", "./assets/19-BU2UqAuk.jpg", "./assets/20-Dh_xuONa.jpg"], "openType": ["./assets/1--DH2SMNH.jpg", "./assets/2-DWnqPifs.jpg", "./assets/3-C8Efcn-x.jpg", "./assets/4-Dh8PTKsn.jpg", "./assets/5-Dg8ckOS5.jpg", "./assets/6-B_Ukrso3.jpg", "./assets/7-wBAvjQHq.jpg", "./assets/8-H-pL3i4f.jpg", "./assets/9-_Bz0G8u_.jpg", "./assets/10-8DVXofCC.jpg", "./assets/11-DxcWBhXW.jpg", "./assets/12-CbXjA1JL.jpg", "./assets/13-C5ojDY7F.jpg", "./assets/14-CwGjac1q.jpg", "./assets/15-BLC1LFow.jpg", "./assets/16-BDqnMeti.jpg", "./assets/17-CC0uCPmE.jpg", "./assets/18-Bevvvrcc.jpg", "./assets/19-owCxcIhW.jpg", "./assets/20-B7tpguRX.jpg", "./assets/21-GsvSeBH1.jpg", "./assets/22-CMyfsUGU.jpg", "./assets/23-zBmwxGab.jpg", "./assets/24-BUEjkSUp.jpg", "./assets/25-B7ohV1lj.jpg"], "covering": ["./assets/1-D4GwR21c.jpg", "./assets/2-CspBG3A_.jpg", "./assets/3-BXiUXR3D.jpg", "./assets/4-B6ZH_2p3.jpg", "./assets/5-D4BPv4Wy.jpg", "./assets/6-d54soJ6E.jpg", "./assets/7-CuAJiayB.jpg"], "fences": ["./assets/1-BOUqfI1r.jpg", "./assets/2-CmcSfsqj.jpg", "./assets/3-C9nB9_oH.jpg", "./assets/4-DDS9Yf3O.jpg", "./assets/6-BWjQ7D_B.jpg", "./assets/7-BI8dJH5d.jpg", "./assets/8-nTCXksv_.jpg", "./assets/9-DXVBBtUL.jpg", "./assets/10-CanWqUzX.jpg", "./assets/11-DrYPhivd.jpg", "./assets/12-CPXGkuq_.jpg", "./assets/13-bLvOO8xX.jpg", "./assets/14-CfUO9YYB.jpg", "./assets/15-ImI0yQf0.jpg", "./assets/17-BbYFEbRm.jpg", "./assets/18-BN2_A1gL.jpg", "./assets/19-C4slPpDG.jpg", "./assets/20-B_cxpMDk.jpg", "./assets/21-Bb14Oeus.jpg", "./assets/22-CO9I29Nw.jpg", "./assets/23-DGnh8nbR.jpg", "./assets/24-rHhD7zb2.jpg", "./assets/25-hNkeg4F1.jpg", "./assets/26-Bewq-M7F.jpg"], "wood": ["./assets/1-B-ZNtbS7.jpg", "./assets/2-DR7RbDbI.jpg", "./assets/3-h7KFxRsf.jpg", "./assets/4-yXp121Z3.jpg", "./assets/5-C_fHDXD3.jpg", "./assets/6-sK_QQMJD.jpg", "./assets/7-64u5GCKc.jpg", "./assets/8-DIszJ1-V.jpg", "./assets/9-D_wspz2l.jpg"]};
+  const categoryNames = {closedType:'Лестницы закрытого типа',openType:'Лестницы открытого типа',covering:'Обшивка бетонных лестниц',fences:'Ограждения',wood:'Деревянные изделия'};
+  const categoryDialog = document.getElementById('categoryLightbox');
+  const categoryGrid = document.getElementById('categoryLightboxGrid');
+  let categoryPreviewImages = []; let categoryPreviewIndex = 0;
+  const categoryPreview = document.getElementById('categoryPhotoPreview');
+  const categoryPreviewImage = document.getElementById('categoryPreviewImage');
+  const categoryPreviewCaption = document.getElementById('categoryPreviewCaption');
+  function showCategoryPreview(index) {
+    categoryPreviewIndex=(index+categoryPreviewImages.length)%categoryPreviewImages.length;
+    categoryPreviewImage.src=categoryPreviewImages[categoryPreviewIndex];
+    categoryPreviewImage.alt=`${categoryNames[document.getElementById('categoryLightboxTitle').dataset.key]}, проект ${categoryPreviewIndex+1}`;
+    categoryPreviewCaption.textContent=`Проект ${categoryPreviewIndex+1} из ${categoryPreviewImages.length}`;
+    if(!categoryPreview.open) categoryPreview.showModal();
+  }
+  document.querySelectorAll('[id^="btn-gallery-"]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault(); event.stopImmediatePropagation();
+      const key = button.id.replace('btn-gallery-','');
+      const images = categoryGalleryImages[key] || [];
+      document.getElementById('categoryLightboxTitle').textContent = categoryNames[key] || 'Примеры работ';
+      document.getElementById('categoryLightboxTitle').dataset.key=key;
+      document.getElementById('categoryLightboxCount').textContent = `${images.length} проектов`;
+      categoryPreviewImages=images;
+      categoryGrid.replaceChildren();
+      images.forEach((src,index) => {
+        const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item';
+        item.setAttribute('aria-label',`Открыть проект ${index+1}`);
+        const img=document.createElement('img'); img.src=src; img.alt=`${categoryNames[key]}, проект ${index+1}`; img.loading='lazy';
+        item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
+        categoryGrid.appendChild(item);
+      });
+      categoryDialog.showModal();
+    });
+  });
+  categoryDialog.querySelector('.category-lightbox__close').addEventListener('click',()=>categoryDialog.close());
+  categoryDialog.addEventListener('click',event=>{if(event.target===categoryDialog)categoryDialog.close();});
+  categoryPreview.querySelector('.leonid-lightbox__close').addEventListener('click',()=>categoryPreview.close());
+  categoryPreview.querySelector('.category-preview-prev').addEventListener('click',()=>showCategoryPreview(categoryPreviewIndex-1));
+  categoryPreview.querySelector('.category-preview-next').addEventListener('click',()=>showCategoryPreview(categoryPreviewIndex+1));
+  categoryPreview.addEventListener('click',event=>{if(event.target===categoryPreview)categoryPreview.close();});
+  categoryPreview.addEventListener('keydown',event=>{if(event.key==='ArrowLeft')showCategoryPreview(categoryPreviewIndex-1); if(event.key==='ArrowRight')showCategoryPreview(categoryPreviewIndex+1);});
+  let categoryTouchStartX=null;
+  categoryPreview.addEventListener('touchstart',event=>{categoryTouchStartX=event.changedTouches[0].clientX;},{passive:true});
+  categoryPreview.addEventListener('touchend',event=>{if(categoryTouchStartX===null)return;const dx=event.changedTouches[0].clientX-categoryTouchStartX;categoryTouchStartX=null;if(Math.abs(dx)>45)showCategoryPreview(categoryPreviewIndex+(dx<0?1:-1));},{passive:true});
+
+  // Leonid portfolio: progressively reveal the optimized photo set.
+  const leonidGallery = document.getElementById('leonidGallery');
+  if (leonidGallery) {
+    const leonidPhotoCount = 138;
+    const leonidPageSize = 8;
+    const leonidStatus = document.getElementById('leonidGalleryStatus');
+    const leonidMoreButton = document.getElementById('leonidLoadMore');
+    const leonidDialog = document.getElementById('leonidLightbox');
+    const leonidDialogImage = document.getElementById('leonidLightboxImage');
+    const leonidDialogCaption = document.getElementById('leonidLightboxCaption');
+    let leonidShown = 0;
+    let leonidActiveIndex = 0;
+    function addLeonidPhotos() {
+      const next = Math.min(leonidShown + leonidPageSize, leonidPhotoCount);
+      for (let i = leonidShown + 1; i <= next; i++) {
+        const number = String(i).padStart(3, '0');
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'leonid-photo';
+        button.dataset.photo = String(i - 1);
+        button.dataset.full = `./assets/images/leonid/full/leonid-${number}.webp`;
+        button.setAttribute('aria-label', `Открыть фотографию проекта ${i} из ${leonidPhotoCount}`);
+        const image = document.createElement('img');
+        image.src = `./assets/images/leonid/thumbs/leonid-${number}.webp`;
+        image.alt = `Пример работы мастера мастерской «Древесный Замысел», фото ${i}`;
+        image.width = 640;
+        image.height = 480;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        button.appendChild(image);
+        leonidGallery.appendChild(button);
+      }
+      leonidShown = next;
+      leonidStatus.textContent = `Показано ${leonidShown} из ${leonidPhotoCount} фотографий`;
+      leonidMoreButton.hidden = leonidShown >= leonidPhotoCount;
+    }
+    function showLeonidPhoto(index) {
+      leonidActiveIndex = (index + leonidPhotoCount) % leonidPhotoCount;
+      const number = String(leonidActiveIndex + 1).padStart(3, '0');
+      leonidDialogImage.src = `./assets/images/leonid/full/leonid-${number}.webp`;
+      leonidDialogImage.alt = `Пример работы мастера мастерской «Древесный Замысел», фото ${leonidActiveIndex + 1}`;
+      leonidDialogCaption.textContent = `Фото ${leonidActiveIndex + 1} из ${leonidPhotoCount}`;
+      if (!leonidDialog.open) leonidDialog.showModal();
+    }
+    leonidGallery.addEventListener('click', event => {
+      const button = event.target.closest('.leonid-photo');
+      if (button) showLeonidPhoto(Number(button.dataset.photo));
+    });
+    leonidMoreButton.addEventListener('click', addLeonidPhotos);
+    leonidDialog.querySelector('.leonid-lightbox__close').addEventListener('click', () => leonidDialog.close());
+    leonidDialog.querySelector('.leonid-lightbox__prev').addEventListener('click', () => showLeonidPhoto(leonidActiveIndex - 1));
+    leonidDialog.querySelector('.leonid-lightbox__next').addEventListener('click', () => showLeonidPhoto(leonidActiveIndex + 1));
+    leonidDialog.addEventListener('click', event => { if (event.target === leonidDialog) leonidDialog.close(); });
+    leonidDialog.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') { event.preventDefault(); showLeonidPhoto(leonidActiveIndex - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); showLeonidPhoto(leonidActiveIndex + 1); }
+    });
+    let leonidTouchStartX = null;
+    leonidDialog.addEventListener('touchstart', event => { leonidTouchStartX = event.changedTouches[0].clientX; }, {passive:true});
+    leonidDialog.addEventListener('touchend', event => { if (leonidTouchStartX === null) return; const dx=event.changedTouches[0].clientX-leonidTouchStartX; leonidTouchStartX=null; if(Math.abs(dx)>45) showLeonidPhoto(leonidActiveIndex+(dx<0?1:-1)); }, {passive:true});
+    addLeonidPhotos();
+  }
+
+</script>
+<script>
+  (function(w,d,u){
+    var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+    var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+  })(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/site_button/loader_1_mxd7ow.js');
+</script>
+<style id="builder-entry-style">
+  .builder-entry { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px; margin:28px 0 4px; padding:18px 22px; border:1px solid var(--border); background:#f7f5f0; color:var(--text-primary); text-decoration:none; transition:border-color .2s,background-color .2s; }
+  .builder-entry:hover { border-color:var(--accent-light); background:#faf9f6; }
+  .builder-entry__mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--border); color:var(--accent); font-family:'Playfair Display',Georgia,serif; font-size:21px; }
+  .builder-entry__copy strong,.builder-entry__copy span { display:block; }
+  .builder-entry__copy strong { font-family:'Playfair Display',Georgia,serif; font-size:19px; font-weight:400; }
+  .builder-entry__copy span { margin-top:3px; color:var(--text-secondary); font-size:12px; }
+  .builder-entry__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
+  @media(max-width:600px) { .builder-entry { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:20px; padding:14px; } .builder-entry__mark { width:36px;height:36px; } .builder-entry__copy strong { font-size:17px;line-height:1.25; } .builder-entry__copy span { font-size:11px;line-height:1.45; } .builder-entry__action { grid-column:2; } }
+</style></body>
+</html>
+
+
+
+
+
+
+
