@@ -164,7 +164,7 @@
           color: var(--text-secondary);
           text-decoration: none;
           padding: 8px 16px;
-          border-radius: 30px;
+          border-radius: 3px;
           transition: all 0.2s ease;
           white-space: nowrap;
       }
@@ -1021,27 +1021,28 @@
       .cookie-banner {
           position: fixed;
           left: 24px;
-          right: 24px;
-          bottom: 24px;
+          right: auto;
+          bottom: 20px;
           z-index: 1000;
           display: none;
           align-items: center;
           justify-content: space-between;
-          gap: 24px;
-          max-width: 920px;
-          margin: 0 auto;
-          padding: 18px 20px;
+          gap: 16px;
+          width: min(560px, calc(100vw - 48px));
+          max-width: none;
+          margin: 0;
+          padding: 13px 15px;
           background: rgba(255, 255, 255, 0.98);
           border: 1px solid var(--border);
-          border-radius: 16px;
-          box-shadow: 0 14px 45px rgba(56, 67, 55, 0.18);
+          border-radius: 4px;
+          box-shadow: 0 10px 32px rgba(56, 67, 55, 0.16);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
       }
 
       .cookie-banner.is-visible { display: flex; }
-      .cookie-banner__text { font-size: 13px; line-height: 1.55; color: var(--text-secondary); }
-      .cookie-banner__text strong { display: block; margin-bottom: 3px; color: var(--text-primary); font-size: 14px; }
+      .cookie-banner__text { font-size: 11px; line-height: 1.45; color: var(--text-secondary); }
+      .cookie-banner__text strong { display: block; margin-bottom: 2px; color: var(--text-primary); font-size: 12px; }
       .cookie-banner__policy {
           padding: 0;
           border: 0;
@@ -1053,8 +1054,9 @@
       }
       .cookie-banner__accept {
           flex-shrink: 0;
-          min-width: 130px;
-          padding: 11px 22px;
+          min-width: 104px;
+          min-height: 42px;
+          padding: 9px 16px;
           border: 0;
           border-radius: 30px;
           background: var(--btn-bg);
@@ -1066,18 +1068,23 @@
           transition: background 0.2s ease;
       }
       .cookie-banner__accept:hover { background: #004b32; }
+      .cookie-banner__accept:focus-visible,
+      .cookie-banner__policy:focus-visible { outline: 3px solid #b58a45; outline-offset: 3px; }
 
       @media (max-width: 600px) {
           .cookie-banner {
               left: 12px;
               right: 12px;
-              bottom: 12px;
-              align-items: stretch;
-              flex-direction: column;
-              gap: 14px;
-              padding: 16px;
+              bottom: calc(92px + env(safe-area-inset-bottom));
+              align-items: center;
+              flex-direction: row;
+              gap: 10px;
+              width: auto;
+              padding: 11px 12px;
           }
-          .cookie-banner__accept { width: 100%; }
+          .cookie-banner__text { font-size: 10px; }
+          .cookie-banner__text strong { font-size: 11px; }
+          .cookie-banner__accept { width: auto; min-width: 88px; min-height: 42px; padding: 8px 12px; font-size: 11px; }
       }
 
 </style>
@@ -1161,7 +1168,7 @@
       .form-section { width: calc(100% - 40px); }
       .mobile-menu { padding: 92px 24px 32px; }
       .mobile-nav-links a { min-height: 52px; }
-      .cookie-banner { left: 12px; right: 12px; bottom: 12px; width: auto; }
+      .cookie-banner { left: 12px; right: 12px; bottom: calc(92px + env(safe-area-inset-bottom)); width: auto; }
       footer { gap: 24px; }
       .footer-links { gap: 10px 18px; }
     }
@@ -1356,6 +1363,15 @@
   @media(max-width:600px) { .product-visual { aspect-ratio:16/9; } .product-body { padding:20px; } .product-body h3 { font-size:20px; } .product-fit { margin-bottom:16px; } }
   @media(prefers-reduced-motion:reduce) { .product-card,.product-visual img,.builder-entry { transition:none; } }
 </style>
+<style id="materials-and-contact-ux">
+  .materials-advice { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:24px; padding:16px 0 0; border-top:1px solid var(--border); }
+  .materials-advice p { margin:0; color:var(--text-secondary); font-size:12px; line-height:1.6; }
+  .materials-advice a { display:inline-flex; align-items:center; gap:8px; flex:0 0 auto; color:var(--btn-bg); font-size:12px; font-weight:600; text-decoration:none; }
+  .materials-advice a:hover { color:var(--accent); }
+  .materials-advice a:focus-visible { outline:3px solid #b58a45; outline-offset:4px; }
+  .form-left .contact-start-note { max-width:440px; margin-top:-12px; margin-bottom:24px; padding-left:12px; border-left:2px solid var(--accent-light); color:var(--text-muted); font-size:12px; line-height:1.65; }
+  @media(max-width:600px) { .materials-advice { align-items:flex-start; flex-direction:column; gap:10px; margin-top:18px; } .form-left .contact-start-note { margin-top:-14px; } }
+</style>
 <style id="full-bleed-section-system">
   :root { --white:#f6f4ef; --off-white:#f0eee8; }
   body { background:var(--off-white); }
@@ -1518,7 +1534,7 @@
     <div class="products-inner">
       <p class="section-label">Наше портфолио</p>
       <h2 class="section-title">Примеры наших работ</h2>
-      <p class="section-sub">Каждая лестница проектируется под конкретный проём и высоту, от них зависит её конфигурация - маршевая прямая, П-образная, Г-образная, с площадкой или с забежными ступенями, есть комбинированные варианты. Оптимальную под Ваши условия конфигурацию предложит наш инженер на замере, затем он подготовит подробный проект лестницы. </p>
+      <p class="section-sub">Форма лестницы зависит от проёма и высоты помещения: это может быть прямой, Г- или П-образный марш, площадка или забежные ступени. Инженер предложит подходящую конфигурацию на замере и подготовит проект.</p>
 
       <a class="builder-entry" href="./constructor.html">
         <span class="builder-entry__mark" aria-hidden="true">3D</span>
@@ -1633,9 +1649,9 @@
     <div class="leonid-inner">
       <div class="leonid-heading-row">
         <div>
-          <p class="section-label">Портфолио мастера</p>
-          <h2 class="section-title" id="leonid-heading">Работы мастера мастерской «Древесный Замысел»</h2>
-          <p class="section-sub">Лестницы, мебель и изделия из дерева — в фотографиях мастера. Выберите снимок, чтобы рассмотреть детали.</p>
+          <p class="section-label">Портфолио мастерской</p>
+          <h2 class="section-title" id="leonid-heading">Работы мастерской «Древесный Замысел»</h2>
+          <p class="section-sub">138 фотографий лестниц, мебели и изделий из дерева. Нажмите на снимок, чтобы рассмотреть детали.</p>
         </div>
         <span class="leonid-count">138 <span>фотографий работ</span></span>
       </div>
@@ -1661,23 +1677,23 @@
   <!-- WHY -->
   <section id="why" aria-labelledby="why-heading">
     <p class="section-label">Почему мы</p>
-    <h2 class="section-title" id="why-heading">Ищете надежную, долговечную и стильную лестницу, которая идеально впишется в архитектуру и интерьер вашего дома? </h2>
-    <p class="section-sub">Компания Древесный замысел предлагает полный комплекс услуг по изготовлению лестниц на металлическом каркасе под ключ в Москве и в Московской области. Мы берем на себя все этапы — от индивидуального проекта до финишной отделки. У нас своё производство, мы не работаем через посредников — это позволяет держать цены честными и соблюдать сроки. </p>
+    <h2 class="section-title" id="why-heading">Стальной каркас и деревянная отделка — в одном проекте</h2>
+    <p class="section-sub">Берём на себя замер, проектирование, изготовление и монтаж лестницы. Работаем в Москве и Московской области на собственном производстве.</p>
 
     <div class="why-grid">
       <div class="why-item">
         <div class="why-num">01</div>
-        <h3>Почему стоит выбрать металлический каркас?</h3>
+        <h3>Стальной каркас</h3>
         <p>Стальной каркас подходит для прямых, поворотных и винтовых лестниц, в том числе для конструкций с открытым визуальным силуэтом. Он сохраняет форму при перепадах влажности и не рассыхается; деревянная отделка добавляет интерьеру тепла. На металлокаркас действует гарантия 10 лет по договору.</p>
       </div>
       <div class="why-item">
         <div class="why-num">02</div>
-        <h3> Мы работаем «под ключ»</h3>
+        <h3>Работы под ключ</h3>
         <p>Инженеры, сварщики, плотники и маляры работают над проектом вместе — вам не нужно искать специалистов по отдельности. У команды есть профильное образование и опыт от 5 лет. Каждую лестницу проектируем индивидуально, с учётом геометрии помещения, материалов и деталей отделки.</p>
       </div>
       <div class="why-item">
         <div class="why-num">03</div>
-        <h3>Деревянные изделия</h3>
+        <h3>Изделия из дерева</h3>
         <p>Кроме лестниц на металлокаркасе, мастерская изготавливает обшивку бетонных лестниц, шкафы, столы, слэбы, стеновые панели, перегородки для зонирования и предметы интерьера.</p>
       </div>
       <div class="why-item">
@@ -1708,8 +1724,9 @@
 
   <!-- MATERIALS -->
   <section id="materials" aria-labelledby="materials-heading">
+    <p class="section-label">Породы и отделка</p>
     <h2 class="section-title" id="materials-heading">Материалы</h2>
-    <p class="section-sub">Используем только проверенные материалы, массив разных пород дерева - лиственницы, дуба, ясеня, американского ореха, натуральный шпон, делаем комбинированные решения</p>
+    <p class="section-sub">Подбираем массив лиственницы, ясеня, дуба и американского ореха, натуральный шпон и комбинированные решения под проект и интерьер.</p>
 
     <div class="materials-grid">
       <article class="material-card">
@@ -1718,7 +1735,7 @@
         </div>
         <div class="material-content">
           <h3>Лиственница</h3>
-          <p>Долговечная древесина с высокой природной устойчивостью к влаге и перепадам температуры. Благодаря содержанию смол отлично подходит для лестниц в частных домах и загородных коттеджах.</p>
+          <p>Тёплый оттенок и заметный рисунок волокон. Лиственница естественно устойчива к влаге и хорошо подходит для лестниц в загородном доме.</p>
         </div>
       </article>
       <article class="material-card">
@@ -1727,7 +1744,7 @@
         </div>
         <div class="material-content">
           <h3>Ясень</h3>
-          <p>Премиальная древесина с выразительной текстурой и высокой эластичностью. Хорошо выдерживает интенсивные нагрузки, не боится деформаций и подходит для современных интерьеров.</p>
+          <p>Светлая древесина с выразительным рисунком волокон. Ясень хорошо сочетается с современными интерьерами и светлой отделкой.</p>
         </div>
       </article>
       <article class="material-card">
@@ -1736,10 +1753,7 @@
         </div>
         <div class="material-content">
           <h3>Дуб</h3>
-          <p>
-            Эталон прочности и долговечности.
-            Благородная текстура, высокая износостойкость и срок службы в несколько десятилетий делают дуб лучшим выбором для лестниц премиум-класса.
-          </p>
+          <p>Плотная древесина с заметной текстурой. Дуб подходит для лестниц, рассчитанных на ежедневное использование, и сочетается как со светлой, так и с тёмной отделкой.</p>
         </div>
       </article>
       <article class="material-card">
@@ -1748,9 +1762,13 @@
         </div>
         <div class="material-content">
           <h3>Американский орех</h3>
-          <p>В отличие от европейских пород, американский орех имеет уникальный, шоколадно-карамельный оттенок с изящными темными прожилками. Он всегда выглядит дорого и благородно. </p>
+          <p>Тёмный шоколадный оттенок и выразительные прожилки делают американский орех заметным акцентом в интерьере.</p>
         </div>
       </article>
+    </div>
+    <div class="materials-advice">
+      <p>Не уверены, какая порода и оттенок подойдут? Обсудим варианты под ваш интерьер.</p>
+      <a href="#contact">Подобрать материал <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
@@ -1773,7 +1791,7 @@
           <span class="step-num">2</span>
           <div class="step-content">
             <h4>Выездной замер и договор</h4>
-            <p>Наш специалист приезжает на объект, снимает точные размеры, предлагает варианты конфигурации лестницы, ограждений и материалов обшивки. Делает точный расчет стоимости, можно сразу заключить договор и внести предоплату. В некоторых случаях нужно дополнительно 1-2 дня на подготовку точного расчета. Договор заключаем удаленно после согласования всех деталей.</p>
+            <p>Специалист снимает размеры на объекте, обсуждает конфигурацию, ограждения и отделку. После замера готовим расчёт; если нужно больше времени на проработку, сообщим об этом заранее. Договор заключаем после согласования деталей.</p>
             <span class="step-days">День 2–4</span>
           </div>
         </div>
@@ -1902,6 +1920,7 @@
         <p class="section-label">Контакты</p>
         <h2 id="contact-heading">Обсудим ваш проект</h2>
         <p>Оставьте заявку — перезвоним в течение 30 минут в рабочее время. Выезд замерщика по всей Московской области.</p>
+        <p class="contact-start-note">Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.</p>
         <div class="form-contact-row">
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l1.5 4-2 1.5a10 10 0 004 4L11 9.5l4 1.5v4c0 1-1 1.5-2 1.5C5 16.5 0 10 0 4c0-1 .5-2 2-2z" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -2018,9 +2037,8 @@
 
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
   <div class="cookie-banner__text">
-    <strong>Мы используем cookie-файлы</strong>
-    Они помогают сайту работать корректно и делают его удобнее. Продолжая работу с сайтом, вы соглашаетесь с использованием cookie и
-    <button class="cookie-banner__policy" id="cookiePolicyButton" type="button">политикой конфиденциальности</button>.
+    <strong>Сайт использует cookie</strong>
+    Они нужны для корректной работы. Подробнее — в <button class="cookie-banner__policy" id="cookiePolicyButton" type="button">политике конфиденциальности</button>.
   </div>
   <button class="cookie-banner__accept" id="cookieAcceptButton" type="button">Принять</button>
 </div>

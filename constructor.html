@@ -20,7 +20,7 @@
 <section class="builder" aria-label="3D-конструктор лестницы">
 <div class="preview-column">
 <div class="viewer">
-<div class="viewer-toolbar"><span class="viewer-title"><i class="live-dot"></i>3D-предпросмотр</span><div class="viewer-actions"><button id="resetView" class="icon-button" type="button">Сбросить вид</button><button id="saveImage" class="icon-button" type="button">Скачать PNG</button></div></div>
+<div class="viewer-toolbar"><span class="viewer-title"><i class="live-dot"></i>3D-предпросмотр</span><div class="viewer-actions"><button id="zoomOut" class="icon-button zoom-button" type="button" aria-label="Отдалить модель" title="Отдалить">−</button><button id="zoomIn" class="icon-button zoom-button" type="button" aria-label="Приблизить модель" title="Приблизить">+</button><button id="resetView" class="icon-button" type="button">Вписать модель</button><button id="saveImage" class="icon-button" type="button">Скачать PNG</button></div></div>
 <div class="canvas-wrap" id="canvasWrap"><canvas id="stairCanvas" aria-label="Интерактивная трёхмерная модель лестницы"></canvas><div class="canvas-help">Зажмите и двигайте мышью, чтобы вращать · колесо — масштаб</div><div class="canvas-error" id="canvasError" hidden>Не удалось запустить 3D-просмотр. Попробуйте открыть страницу в актуальной версии Chrome, Edge или Safari.</div></div>
 <div class="viewer-caption"><span>Предварительная визуализация</span><span id="modelDimensions">900 × 2800 мм</span></div></div>
 <div class="spec-strip" aria-live="polite"><div><span>Подъём ступени</span><strong id="riseReadout">200 мм</strong></div><div><span>Количество подъёмов</span><strong id="stepsReadout">14</strong></div><div><span>Ширина марша</span><strong id="widthReadout">900 мм</strong></div></div>
