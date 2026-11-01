@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" as="image" href="./assets/images/hero.webp" fetchpriority="high" />
   <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
   <link rel="shortcut icon" href="./favicons/favicon.ico" />
@@ -23,6 +24,15 @@
   <meta property="og:url" content="https://древесный-замысел.рф/" />
   <meta property="og:site_name" content="Древесный Замысел" />
   <meta property="og:locale" content="ru_RU" />
+  <meta property="og:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Лестницы любой сложности — Древесный Замысел" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Лестницы любой сложности — Древесный Замысел" />
+  <meta name="twitter:description" content="Проектируем, изготавливаем и монтируем лестницы под ключ в Москве и Московской области." />
+  <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
 
 
 
@@ -64,6 +74,7 @@
 
   <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high" />
 
   <style>
       @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 300 800; font-display: swap; src: url('./assets/fonts/manrope-cyrillic.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
@@ -297,7 +308,7 @@
                   rgba(255, 255, 255, 0.6) 40%,
                   rgba(255, 255, 255, 0) 75%
                   ),
-                  url('assets/images/hero.png');
+                  url('assets/images/hero.webp');
 
           background-repeat: no-repeat;
           background-size: auto, cover;
@@ -865,7 +876,9 @@
       @media (max-width: 768px) {
           .portfolio-section { padding: 58px 20px 64px; }
           .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-          .portfolio-card h3 { padding: 13px 12px 12px; font-size: 13px; }\n          .portfolio-card-actions { padding: 0 10px; gap: 7px; }\n          .portfolio-card-actions .btn-card { flex-basis: 100%; width: 100%; }
+          .portfolio-card h3 { padding: 13px 12px 12px; font-size: 13px; }
+          .portfolio-card-actions { padding: 0 10px; gap: 7px; }
+          .portfolio-card-actions .btn-card { flex-basis: 100%; width: 100%; }
       }
       @media (max-width: 480px) {
           .portfolio-grid { grid-template-columns: 1fr; }
@@ -900,7 +913,7 @@
                       rgba(255, 255, 255, 0.95) 20%,
                       rgba(255, 255, 255, 0.6) 50%,
                       rgba(255, 255, 255, 0.2) 85%),
-                      url('assets/images/hero.png');
+                      url('assets/images/hero.webp');
             background-repeat: no-repeat;
             background-size: auto, cover;
             background-position: left top, right -100px center;
@@ -957,7 +970,7 @@
                       linear-gradient(90deg,
                       rgba(255, 255, 255, 0.98) 0%,
                       rgba(255, 255, 255, 0.75) 100%),
-                      url('assets/images/hero.png');
+                      url('assets/images/hero.webp');
             background-repeat: no-repeat;
             background-size: auto, cover;
             background-position: left top, right -100px center;
@@ -1034,10 +1047,10 @@
           align-items: center;
           justify-content: space-between;
           gap: 16px;
-          width: min(560px, calc(100vw - 48px));
+          width: min(460px, calc(100vw - 48px));
           max-width: none;
           margin: 0;
-          padding: 13px 15px;
+          padding: 11px 13px;
           background: rgba(255, 255, 255, 0.98);
           border: 1px solid var(--border);
           border-radius: 4px;
@@ -1060,9 +1073,9 @@
       }
       .cookie-banner__accept {
           flex-shrink: 0;
-          min-width: 104px;
-          min-height: 42px;
-          padding: 9px 16px;
+          min-width: 100px;
+          min-height: 44px;
+          padding: 8px 14px;
           border: 0;
           border-radius: 30px;
           background: var(--btn-bg);
@@ -1079,18 +1092,20 @@
 
       @media (max-width: 600px) {
           .cookie-banner {
-              left: 12px;
-              right: 12px;
+              left: 50%;
+              right: auto;
               bottom: calc(184px + env(safe-area-inset-bottom));
               align-items: center;
               flex-direction: row;
-              gap: 10px;
-              width: auto;
-              padding: 11px 12px;
+              gap: 8px;
+              width: min(440px, calc(100vw - 24px));
+              padding: 9px 10px;
+              transform: translateX(-50%);
           }
           .cookie-banner__text { font-size: 10px; }
-          .cookie-banner__text strong { font-size: 11px; }
-          .cookie-banner__accept { width: auto; min-width: 88px; min-height: 42px; padding: 8px 12px; font-size: 11px; }
+          .cookie-banner__text { min-width: 0; flex: 1 1 auto; }
+          .cookie-banner__text strong { display: inline; margin: 0 3px 0 0; font-size: 11px; }
+          .cookie-banner__accept { flex: 0 0 auto; width: auto; min-width: 88px; min-height: 44px; padding: 8px 12px; font-size: 11px; }
       }
 
 </style>
@@ -1160,8 +1175,10 @@
       html { scroll-padding-top: 76px; }
       .nav-logo-img { height: 42px; }
       .nav-logo-text { font-size: 13px; }
-      .hero { min-height: 730px; min-height: 100svh; padding: 108px 20px 46px; background-position: left top, 61% center; }
+      .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 92px 20px 40px; background-position: left top, 61% center; }
+      .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; }
       .hero-title { font-size: clamp(42px, 12vw, 60px); }
+      .hero-sub-1, .hero-sub-2 { width: 100%; max-width: 100%; overflow-wrap: anywhere; }
       .hero-sub-1 { font-size: 18px; }
       .hero-tags { gap: 8px; }
       .hero-tag { font-size: 12px; padding: 7px 10px; }
@@ -1174,7 +1191,7 @@
       .form-section { width: calc(100% - 40px); }
       .mobile-menu { padding: 92px 24px 32px; }
       .mobile-nav-links a { min-height: 52px; }
-      .cookie-banner { left: 12px; right: 12px; bottom: calc(184px + env(safe-area-inset-bottom)); width: auto; }
+      .cookie-banner { left: 50%; right: auto; bottom: calc(184px + env(safe-area-inset-bottom)); width: min(440px, calc(100vw - 24px)); transform: translateX(-50%); }
       footer { gap: 24px; }
       .footer-links { gap: 10px 18px; }
     }
@@ -1399,12 +1416,13 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main-content">Перейти к содержимому</a>
 
 <!-- HEADER & NAV -->
 <header class="site-header">
   <div class="header-left">
     <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
-      <img class="nav-logo-img" src="./assets/images/logo.png" alt="Древесный замысел"/>
+      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Древесный замысел" width="320" height="320" decoding="async"/>
       <span class="nav-logo-text">Древесный замысел</span>
     </a>
   </div>
@@ -1429,7 +1447,7 @@
       <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="http://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
       </a>
     </div>
@@ -1470,7 +1488,7 @@
       <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="http://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
       </a>
     </div>
@@ -1481,24 +1499,25 @@
 </div>
 
 <!-- HERO -->
-<main>
+<main id="main-content" tabindex="-1">
   <section class="hero" aria-label="Главный экран">
     <div class="hero-content">
-      <p class="hero-label">Проектирование · производство · монтаж · Москва и область</p>
-      <h1 class="hero-title">Лестница под ваш дом и интерьер</h1>
-      <p class="hero-sub hero-sub-1">От точного замера до установки — одна команда на всём пути.</p>
-      <p class="hero-sub hero-sub-2">Проектируем и изготавливаем лестницы на металлическом каркасе, подбираем деревянную отделку и ограждения под ваш проём.</p>
+      <p class="hero-label">Лестницы под ключ · Московская область</p>
+      <h1 class="hero-title">Лестницы<br>любой<br>сложности</h1>
+      <p class="hero-sub hero-sub-1">Мы предоставляем возможность людям комфортно и безопасно подниматься выше!</p>
+      <p class="hero-sub hero-sub-2">Проектируем, изготавливаем на собственном производстве и монтируем лестницы для дома и коммерческих пространств любой сложности.</p>
       <div class="hero-tags" aria-label="Виды работ">
-        <a href="#products" class="hero-tag">Металлокаркас</a>
-        <a href="#products" class="hero-tag">Отделка бетона</a>
-        <a href="#products" class="hero-tag">Дерево и ограждения</a>
+        <a href="#products" class="hero-tag">Открытый тип</a>
+        <a href="#products" class="hero-tag">Закрытый тип</a>
+        <a href="#products" class="hero-tag">Обшивка бетона</a>
+        <a href="#products" class="hero-tag">Деревянные изделия</a>
       </div>
       <div class="hero-cta-row">
         <a href="#contact" class="btn-primary">
           Обсудить проект
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
-        <a href="#products" class="btn-outline">Посмотреть работы <span aria-hidden="true">→</span></a>
+        <a href="#products" class="btn-outline">Посмотреть проекты <span aria-hidden="true">→</span></a>
         <a href="./constructor.html" class="hero-builder-link">Собрать лестницу в 3D <span aria-hidden="true">↗</span></a>
       </div>
       <p class="hero-note">Нет готового проекта? Расскажите о задаче — подскажем, с чего начать.</p>
@@ -1553,7 +1572,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f5f0ea;">
-                <img src="./assets/preview-DsgEsqXk.jpg" alt="Лестницы закрытого типа">
+                <img src="./assets/preview-DsgEsqXk.jpg" alt="Лестницы закрытого типа" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Лестницы закрытого типа</h3>
@@ -1569,7 +1588,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f0ede8;">
-                <img src="./assets/preview-D2-kV2v_.jpg" alt="Лестницы открытого типа">
+                <img src="./assets/preview-D2-kV2v_.jpg" alt="Лестницы открытого типа" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Лестницы открытого типа</h3>
@@ -1585,7 +1604,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#ede8e0;">
-                <img src="./assets/preview-BoW3_B0a.jpg" alt="Обшивка бетонных лестниц">
+                <img src="./assets/preview-BoW3_B0a.jpg" alt="Обшивка бетонных лестниц" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Обшивка бетонных лестниц</h3>
@@ -1601,7 +1620,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f0ede8;">
-                <img src="./assets/preview-CIS6C_n6.jpg" alt="Ограждения">
+                <img src="./assets/preview-CIS6C_n6.jpg" alt="Ограждения" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Ограждения</h3>
@@ -1617,7 +1636,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#ede8e0;">
-                <img src="./assets/woody_1_preview-DRq_ek38.jpg" alt="Деревянные изделия">
+                <img src="./assets/woody_1_preview-DRq_ek38.jpg" alt="Деревянные изделия" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Деревянные изделия</h3>
@@ -1723,7 +1742,7 @@
         </address>
       </div>
       <div class="why-extra-image">
-        <img src="./assets/images/factory2.jpg?v=20260828" alt="Цех компании Древесный Замысел — производство лестниц, мебели и слэбов" loading="lazy">
+        <img src="./assets/images/factory2.webp?v=20260828" alt="Цех компании Древесный Замысел — производство лестниц, мебели и слэбов" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -1764,7 +1783,7 @@
       </article>
       <article class="material-card">
         <div class="material-img">
-          <img src="./assets/images/materials/american.jpg" alt="Американский орех" loading="lazy">
+          <img src="./assets/images/materials/american.webp" alt="Американский орех" loading="lazy" decoding="async">
         </div>
         <div class="material-content">
           <h3>Американский орех</h3>
@@ -1944,11 +1963,24 @@
       </div>
 
       <div class="form-right">
+        <script>
+          (function () {
+            const stairConfig = new URLSearchParams(window.location.search).get('stair_config');
+            if (!stairConfig) return;
+            window.addEventListener('b24:form:init', function (event) {
+              const form = event.detail && event.detail.object;
+              const formId = form && form.identification && String(form.identification.id);
+              if (formId === '1' && typeof form.setProperty === 'function') {
+                form.setProperty('stair_config', stairConfig.slice(0, 500));
+              }
+            });
+          })();
+        </script>
         <script data-b24-form="inline/1/8dtwm1" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/form/loader_1.js');</script>
       </div>
     </div>
   </section>
-  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" title="Древесный Замысел на Яндекс Картах" width="100%" height="400" loading="lazy" frameborder="0"></iframe>
 </main>
 
 <!-- FOOTER -->
@@ -1956,7 +1988,7 @@
   <div class="footer-brand">
     <div class="nav-logo-icon">
       <a href="./index.html" class="nav-logo" aria-label="Древесный Замысел — на главную">
-        <img class="nav-logo-img" src="./assets/images/logo.png" alt="Древесный замысел"/>
+        <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Древесный замысел" width="320" height="320" decoding="async"/>
       </a>
     </div>
     <span>Древесный замысел</span>
@@ -2035,7 +2067,7 @@
   </div>
 </div>
 
-<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Согласие на использование cookie">
+      <div class="cookie-banner" id="cookieBanner" role="region" aria-live="polite" aria-label="Уведомление об использовании cookie">
   <div class="cookie-banner__text">
     <strong>Сайт использует cookie</strong>
     Они нужны для корректной работы. Подробнее — в <button class="cookie-banner__policy" id="cookiePolicyButton" type="button">политике конфиденциальности</button>.
@@ -2154,14 +2186,28 @@
   const cookieAcceptButton = document.getElementById('cookieAcceptButton');
   const cookiePolicyButton = document.getElementById('cookiePolicyButton');
   const cookieConsentKey = 'cookie_consent_accepted';
+  let cookieConsentAccepted = false;
+  try {
+    cookieConsentAccepted = localStorage.getItem(cookieConsentKey) === 'true';
+  } catch (error) {
+    // Keep the notice usable when browser storage is blocked.
+  }
 
-  if (localStorage.getItem(cookieConsentKey) !== 'true') {
+  if (!cookieConsentAccepted) {
     cookieBanner.classList.add('is-visible');
   }
 
   cookieAcceptButton.addEventListener('click', () => {
-    localStorage.setItem(cookieConsentKey, 'true');
-    document.cookie = `${cookieConsentKey}=true; Max-Age=31536000; Path=/; SameSite=Lax`;
+    try {
+      localStorage.setItem(cookieConsentKey, 'true');
+    } catch (error) {
+      // Dismissing the notice should not depend on browser storage availability.
+    }
+    try {
+      document.cookie = `${cookieConsentKey}=true; Max-Age=31536000; Path=/; SameSite=Lax`;
+    } catch (error) {
+      // The notice can still be dismissed for the current page view.
+    }
     cookieBanner.classList.remove('is-visible');
   });
 
@@ -2357,6 +2403,9 @@
   @media(max-width:600px) { .builder-entry { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:20px; padding:14px; } .builder-entry__mark { width:36px;height:36px; } .builder-entry__copy strong { font-size:17px;line-height:1.25; } .builder-entry__copy span { font-size:11px;line-height:1.45; } .builder-entry__action { grid-column:2; } }
 </style>
 <style id="gallery-footer-refinements">
+  .skip-link { position:fixed; top:12px; left:12px; z-index:2000; transform:translateY(calc(-100% - 20px)); padding:12px 16px; background:#334538; color:#fff; font-size:13px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,.18); transition:transform .2s ease; }
+  .skip-link:focus { transform:translateY(0); }
+  #main-content { scroll-margin-top:84px; }
   .category-lightbox__item img { object-fit:contain; padding:6px; background:#e8e3da; }
   .leonid-lightbox { display:none; }
   .leonid-lightbox[open] { display:block; }
@@ -2378,7 +2427,7 @@
   .site-footer .nav-logo-icon { display:flex; width:48px; height:48px; flex:0 0 48px; align-items:center; justify-content:center; overflow:hidden; background:#fff; }
   .site-footer .nav-logo,.site-footer .nav-logo-img { display:block; width:100%; height:100%; }
   .site-footer .nav-logo-img { object-fit:contain; }
-  .footer-contact { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:8px 24px; margin-right:30vw; }
+  .footer-contact { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:8px 24px; margin-right:0; }
   .footer-contact a { color:#d3d0c8; font-size:11px; text-decoration:none; transition:color .2s; }
   .footer-contact a:hover { color:#fff; }
   .footer-contact .footer-phone { color:#fff; font-size:14px; font-weight:600; }
@@ -2405,5 +2454,67 @@
     .site-footer .footer-brand { font-size:18px; }
     .footer-contact { align-items:flex-start; justify-content:flex-start; flex-direction:column; gap:8px; margin-right:0; padding-bottom:100px; }
   }
-</style><script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
+  @media(prefers-reduced-motion:reduce) { .skip-link { transition:none; } }
+</style>
+<style id="mobile-bitrix-refinements">
+  /* Keep Bitrix24's greeting from covering the first screen on phones. */
+  @media (max-width: 720px) {
+    .cookie-banner {
+      left: 12px !important;
+      right: auto !important;
+      width: min(300px, calc(100vw - 120px)) !important;
+      transform: none !important;
+    }
+    .b24-widget-button-wrapper {
+      position: fixed !important;
+      right: 12px !important;
+      bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+      transform: scale(.88) !important;
+      transform-origin: bottom right !important;
+      z-index: 10150 !important;
+    }
+    .b24-widget-button-position-bottom-right {
+      right: 12px !important;
+      bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    }
+    .b24-widget-button-popup {
+      position: fixed !important;
+      left: auto !important;
+      right: 12px !important;
+      bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+      width: min(205px, calc(100vw - 88px)) !important;
+      max-width: min(205px, calc(100vw - 88px)) !important;
+      padding: 8px 9px !important;
+      border-width: 1.5px !important;
+      border-radius: 12px !important;
+    }
+    body:has(#cookieBanner.is-visible) .b24-widget-button-popup {
+      display: none !important;
+    }
+    .b24-widget-button-popup-image {
+      margin-bottom: 5px !important;
+    }
+    .b24-widget-button-popup-image-item {
+      width: 28px !important;
+      height: 28px !important;
+    }
+    .b24-widget-button-popup-name {
+      font-size: 11px !important;
+      line-height: 1.25 !important;
+    }
+    .b24-widget-button-popup-description {
+      font-size: 10px !important;
+      line-height: 1.3 !important;
+      overflow-wrap: anywhere !important;
+    }
+  }
+  @media (max-width: 374px) {
+    .cookie-banner { width: calc(100vw - 24px) !important; }
+    .b24-widget-button-popup {
+      width: min(190px, calc(100vw - 84px)) !important;
+      max-width: min(190px, calc(100vw - 84px)) !important;
+    }
+  }
+</style>
+<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
 </html>
