@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preload" as="image" href="./assets/images/hero.webp" fetchpriority="high" />
   <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
   <link rel="shortcut icon" href="./favicons/favicon.ico" />
@@ -2469,24 +2468,28 @@
       position: fixed !important;
       right: 12px !important;
       bottom: calc(12px + env(safe-area-inset-bottom)) !important;
-      transform: scale(.88) !important;
-      transform-origin: bottom right !important;
+      transform: none !important;
       z-index: 10150 !important;
     }
+    .b24-widget-button-wrapper .b24-widget-button-block { width: 56px !important; height: 56px !important; }
     .b24-widget-button-position-bottom-right {
       right: 12px !important;
       bottom: calc(12px + env(safe-area-inset-bottom)) !important;
     }
-    .b24-widget-button-popup {
-      position: fixed !important;
+    .bx-touch .b24-widget-button-position-bottom-right .b24-widget-button-popup,
+    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup {
+      position: absolute !important;
+      top: auto !important;
       left: auto !important;
-      right: 12px !important;
-      bottom: calc(72px + env(safe-area-inset-bottom)) !important;
-      width: min(205px, calc(100vw - 88px)) !important;
-      max-width: min(205px, calc(100vw - 88px)) !important;
-      padding: 8px 9px !important;
+      right: 64px !important;
+      bottom: 0 !important;
+      width: min(228px, calc(100vw - 104px)) !important;
+      min-width: 0 !important;
+      max-width: min(228px, calc(100vw - 104px)) !important;
+      padding: 8px 10px !important;
       border-width: 1.5px !important;
       border-radius: 12px !important;
+      box-sizing: border-box !important;
     }
     body:has(#cookieBanner.is-visible) .b24-widget-button-popup {
       display: none !important;
@@ -2494,26 +2497,14 @@
     .b24-widget-button-popup-image {
       margin-bottom: 5px !important;
     }
-    .b24-widget-button-popup-image-item {
-      width: 28px !important;
-      height: 28px !important;
-    }
-    .b24-widget-button-popup-name {
-      font-size: 11px !important;
-      line-height: 1.25 !important;
-    }
-    .b24-widget-button-popup-description {
-      font-size: 10px !important;
-      line-height: 1.3 !important;
-      overflow-wrap: anywhere !important;
-    }
+    .b24-widget-button-popup-image-item { width: 26px !important; height: 26px !important; }
+    .b24-widget-button-popup-name { font-size: 11px !important; line-height: 1.25 !important; }
+    .b24-widget-button-popup-description { font-size: 10px !important; line-height: 1.3 !important; overflow-wrap: anywhere !important; }
   }
   @media (max-width: 374px) {
     .cookie-banner { width: calc(100vw - 24px) !important; }
-    .b24-widget-button-popup {
-      width: min(190px, calc(100vw - 84px)) !important;
-      max-width: min(190px, calc(100vw - 84px)) !important;
-    }
+    .bx-touch .b24-widget-button-position-bottom-right .b24-widget-button-popup,
+    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(205px, calc(100vw - 96px)) !important; max-width: min(205px, calc(100vw - 96px)) !important; right: 60px !important; }
   }
 </style>
 <script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>

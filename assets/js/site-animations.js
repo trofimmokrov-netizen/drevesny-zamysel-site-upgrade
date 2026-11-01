@@ -116,4 +116,15 @@
     window.setTimeout(() => ScrollTrigger.refresh(), 180);
   }, { passive: true });
   window.addEventListener("pageshow", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { passive: true });
+
+  // Mobile browsers resize the visual viewport as their address bar opens or
+  // closes. Refresh reveal triggers after that settles so sections animate at
+  // the right scroll position instead of appearing to skip their animation.
+  if (window.visualViewport) {
+    let viewportRefreshTimer = 0;
+    window.visualViewport.addEventListener("resize", () => {
+      window.clearTimeout(viewportRefreshTimer);
+      viewportRefreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 140);
+    }, { passive: true });
+  }
 })();
