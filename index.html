@@ -2265,75 +2265,6 @@
   categoryPreview.addEventListener('touchstart',event=>{categoryTouchStartX=event.changedTouches[0].clientX;},{passive:true});
   categoryPreview.addEventListener('touchend',event=>{if(categoryTouchStartX===null)return;const dx=event.changedTouches[0].clientX-categoryTouchStartX;categoryTouchStartX=null;if(Math.abs(dx)>45)showCategoryPreview(categoryPreviewIndex+(dx<0?1:-1));},{passive:true});
 
-  // Leonid portfolio: progressively reveal the optimized photo set.
-  const leonidGallery = document.getElementById('leonidGallery');
-  if (leonidGallery) {
-    const leonidSourcePhotoCount = 138;
-    // Exclude furniture examples identified in the owner's review screenshots.
-    const excludedLeonidPhotos = new Set([16, 17, 32, 34, 36, 43, 47, 48, 50, 53, 122]);
-    const leonidPhotoNumbers = Array.from({ length: leonidSourcePhotoCount }, (_, index) => index + 1)
-      .filter(number => !excludedLeonidPhotos.has(number));
-    const leonidPhotoCount = leonidPhotoNumbers.length;
-    const leonidPageSize = 8;
-    const leonidStatus = document.getElementById('leonidGalleryStatus');
-    const leonidMoreButton = document.getElementById('leonidLoadMore');
-    const leonidDialog = document.getElementById('leonidLightbox');
-    const leonidDialogImage = document.getElementById('leonidLightboxImage');
-    const leonidDialogCaption = document.getElementById('leonidLightboxCaption');
-    let leonidShown = 0;
-    let leonidActiveIndex = 0;
-    function addLeonidPhotos() {
-      const next = Math.min(leonidShown + leonidPageSize, leonidPhotoCount);
-      for (let i = leonidShown + 1; i <= next; i++) {
-        const number = String(leonidPhotoNumbers[i - 1]).padStart(3, '0');
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'leonid-photo';
-        button.dataset.photo = String(i - 1);
-        button.dataset.full = `./assets/images/leonid/full/leonid-${number}.webp`;
-        button.setAttribute('aria-label', `Открыть фотографию проекта ${i} из ${leonidPhotoCount}`);
-        const image = document.createElement('img');
-        image.src = `./assets/images/leonid/thumbs/leonid-${number}.webp`;
-        image.alt = `Пример работы мастера мастерской «Древесный Замысел», фото ${i}`;
-        image.width = 640;
-        image.height = 480;
-        image.loading = 'lazy';
-        image.decoding = 'async';
-        button.appendChild(image);
-        leonidGallery.appendChild(button);
-      }
-      leonidShown = next;
-      leonidStatus.textContent = `Показано ${leonidShown} из ${leonidPhotoCount} фотографий`;
-      leonidMoreButton.hidden = leonidShown >= leonidPhotoCount;
-    }
-    function showLeonidPhoto(index) {
-      leonidActiveIndex = (index + leonidPhotoCount) % leonidPhotoCount;
-      const photoNumber = leonidPhotoNumbers[leonidActiveIndex];
-      const number = String(photoNumber).padStart(3, '0');
-      leonidDialogImage.src = `./assets/images/leonid/full/leonid-${number}.webp`;
-      leonidDialogImage.alt = `Пример работы мастерской «Древесный Замысел», фото ${leonidActiveIndex + 1}`;
-      leonidDialogCaption.textContent = `Фото ${leonidActiveIndex + 1} из ${leonidPhotoCount}`;
-      if (!leonidDialog.open) leonidDialog.showModal();
-    }
-    leonidGallery.addEventListener('click', event => {
-      const button = event.target.closest('.leonid-photo');
-      if (button) showLeonidPhoto(Number(button.dataset.photo));
-    });
-    leonidMoreButton.addEventListener('click', addLeonidPhotos);
-    leonidDialog.querySelector('.leonid-lightbox__close').addEventListener('click', () => leonidDialog.close());
-    leonidDialog.querySelector('.leonid-lightbox__prev').addEventListener('click', () => showLeonidPhoto(leonidActiveIndex - 1));
-    leonidDialog.querySelector('.leonid-lightbox__next').addEventListener('click', () => showLeonidPhoto(leonidActiveIndex + 1));
-    leonidDialog.addEventListener('click', event => { if (event.target === leonidDialog) leonidDialog.close(); });
-    leonidDialog.addEventListener('keydown', event => {
-      if (event.key === 'ArrowLeft') { event.preventDefault(); showLeonidPhoto(leonidActiveIndex - 1); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); showLeonidPhoto(leonidActiveIndex + 1); }
-    });
-    let leonidTouchStartX = null;
-    leonidDialog.addEventListener('touchstart', event => { leonidTouchStartX = event.changedTouches[0].clientX; }, {passive:true});
-    leonidDialog.addEventListener('touchend', event => { if (leonidTouchStartX === null) return; const dx=event.changedTouches[0].clientX-leonidTouchStartX; leonidTouchStartX=null; if(Math.abs(dx)>45) showLeonidPhoto(leonidActiveIndex+(dx<0?1:-1)); }, {passive:true});
-    addLeonidPhotos();
-  }
-
   // Carry the stair configurator summary into the contact section without
   // pretending that the cross-origin Bitrix form has received it automatically.
   const stairConfigFromUrl = new URLSearchParams(window.location.search).get('stair_config');
@@ -2496,10 +2427,10 @@
       left: auto !important;
       right: 64px !important;
       bottom: 0 !important;
-      width: min(228px, calc(100vw - 104px)) !important;
+      width: min(188px, calc(100vw - 92px)) !important;
       min-width: 0 !important;
-      max-width: min(228px, calc(100vw - 104px)) !important;
-      padding: 8px 10px !important;
+      max-width: min(188px, calc(100vw - 92px)) !important;
+      padding: 7px 9px !important;
       border-width: 1.5px !important;
       border-radius: 12px !important;
       box-sizing: border-box !important;
@@ -2508,16 +2439,16 @@
       display: none !important;
     }
     .b24-widget-button-popup-image {
-      margin-bottom: 5px !important;
+      margin-bottom: 3px !important;
     }
-    .b24-widget-button-popup-image-item { width: 26px !important; height: 26px !important; }
-    .b24-widget-button-popup-name { font-size: 11px !important; line-height: 1.25 !important; }
-    .b24-widget-button-popup-description { font-size: 10px !important; line-height: 1.3 !important; overflow-wrap: anywhere !important; }
+    .b24-widget-button-popup-image-item { width: 22px !important; height: 22px !important; }
+    .b24-widget-button-popup-name { font-size: 10px !important; line-height: 1.2 !important; }
+    .b24-widget-button-popup-description { font-size: 9px !important; line-height: 1.25 !important; overflow-wrap: anywhere !important; }
   }
   @media (max-width: 374px) {
     .cookie-banner { width: calc(100vw - 24px) !important; }
     .bx-touch .b24-widget-button-position-bottom-right .b24-widget-button-popup,
-    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(205px, calc(100vw - 96px)) !important; max-width: min(205px, calc(100vw - 96px)) !important; right: 60px !important; }
+    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(170px, calc(100vw - 84px)) !important; max-width: min(170px, calc(100vw - 84px)) !important; right: 60px !important; }
   }
 </style>
 <script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>

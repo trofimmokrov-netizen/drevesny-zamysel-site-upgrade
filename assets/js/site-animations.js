@@ -49,14 +49,17 @@
     }
   };
 
-  if (!window.gsap || !window.ScrollTrigger) {
+  // On touch devices, use the native reveal path. Mobile browsers frequently
+  // resize their visual viewport while scrolling, which can make ScrollTrigger
+  // reveals fire before the section is actually visible.
+  const mobile = window.matchMedia("(max-width: 720px), (pointer: coarse)").matches;
+  if (mobile || !window.gsap || !window.ScrollTrigger) {
     animateWithoutGsap();
     return;
   }
 
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
-  const mobile = window.matchMedia("(max-width: 600px)").matches;
   try {
     gsap.registerPlugin(ScrollTrigger);
 
