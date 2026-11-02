@@ -1177,8 +1177,9 @@
       .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 92px 20px 40px; background-position: left top, 61% center; }
       .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; }
       .hero-title { font-size: clamp(42px, 12vw, 60px); }
-      .hero-sub-1, .hero-sub-2 { width: 100%; max-width: 100%; overflow-wrap: anywhere; }
-      .hero-sub-1 { font-size: 18px; }
+      .hero-sub-1, .hero-sub-2 { display: block; width: min(100%, 320px); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+      .hero-sub-1 { font-size: 13px; line-height: 1.55; }
+      .hero-sub-2 { font-size: 12px; line-height: 1.6; }
       .hero-tags { gap: 8px; }
       .hero-tag { font-size: 12px; padding: 7px 10px; }
       .hero-cta-row { align-items: stretch; flex-direction: column; max-width: 340px; }
@@ -1190,7 +1191,7 @@
       .form-section { width: calc(100% - 40px); }
       .mobile-menu { padding: 92px 24px 32px; }
       .mobile-nav-links a { min-height: 52px; }
-      .cookie-banner { left: 50%; right: auto; bottom: calc(184px + env(safe-area-inset-bottom)); width: min(440px, calc(100vw - 24px)); transform: translateX(-50%); }
+      .cookie-banner { left: 50%; right: auto; bottom: calc(12px + env(safe-area-inset-bottom)); width: min(440px, calc(100vw - 24px)); transform: translateX(-50%); }
       footer { gap: 24px; }
       .footer-links { gap: 10px 18px; }
     }
@@ -1675,9 +1676,9 @@
         <div>
           <p class="section-label">Портфолио мастерской</p>
           <h2 class="section-title" id="leonid-heading">Работы мастерской «Древесный Замысел»</h2>
-          <p class="section-sub">138 фотографий лестниц, мебели и изделий из дерева. Нажмите на снимок, чтобы рассмотреть детали.</p>
+          <p class="section-sub">Актуальные примеры лестниц и изделий мастерской. Нажмите на снимок, чтобы рассмотреть детали.</p>
         </div>
-        <span class="leonid-count">138 <span>фотографий работ</span></span>
+        <span class="leonid-count">127 <span>фотографий работ</span></span>
       </div>
       <div class="leonid-gallery" id="leonidGallery" aria-label="Фотографии работ мастерской «Древесный Замысел»"></div>
       <div class="leonid-gallery-more">
@@ -2281,7 +2282,12 @@
   // Leonid portfolio: progressively reveal the optimized photo set.
   const leonidGallery = document.getElementById('leonidGallery');
   if (leonidGallery) {
-    const leonidPhotoCount = 138;
+    const leonidSourcePhotoCount = 138;
+    // Exclude furniture examples identified in the owner's review screenshots.
+    const excludedLeonidPhotos = new Set([16, 17, 32, 34, 36, 43, 47, 48, 50, 53, 122]);
+    const leonidPhotoNumbers = Array.from({ length: leonidSourcePhotoCount }, (_, index) => index + 1)
+      .filter(number => !excludedLeonidPhotos.has(number));
+    const leonidPhotoCount = leonidPhotoNumbers.length;
     const leonidPageSize = 8;
     const leonidStatus = document.getElementById('leonidGalleryStatus');
     const leonidMoreButton = document.getElementById('leonidLoadMore');
@@ -2293,7 +2299,7 @@
     function addLeonidPhotos() {
       const next = Math.min(leonidShown + leonidPageSize, leonidPhotoCount);
       for (let i = leonidShown + 1; i <= next; i++) {
-        const number = String(i).padStart(3, '0');
+        const number = String(leonidPhotoNumbers[i - 1]).padStart(3, '0');
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'leonid-photo';
@@ -2316,9 +2322,10 @@
     }
     function showLeonidPhoto(index) {
       leonidActiveIndex = (index + leonidPhotoCount) % leonidPhotoCount;
-      const number = String(leonidActiveIndex + 1).padStart(3, '0');
+      const photoNumber = leonidPhotoNumbers[leonidActiveIndex];
+      const number = String(photoNumber).padStart(3, '0');
       leonidDialogImage.src = `./assets/images/leonid/full/leonid-${number}.webp`;
-      leonidDialogImage.alt = `Пример работы мастера мастерской «Древесный Замысел», фото ${leonidActiveIndex + 1}`;
+      leonidDialogImage.alt = `Пример работы мастерской «Древесный Замысел», фото ${leonidActiveIndex + 1}`;
       leonidDialogCaption.textContent = `Фото ${leonidActiveIndex + 1} из ${leonidPhotoCount}`;
       if (!leonidDialog.open) leonidDialog.showModal();
     }
