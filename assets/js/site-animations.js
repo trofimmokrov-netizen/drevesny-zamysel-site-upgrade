@@ -6,9 +6,8 @@
 
   const revealSelectors = [
     ".product-card",
-    ".portfolio-card",
     ".why-item",
-    ".process-item",
+    ".process-card",
     ".material-card",
     ".article-card",
     ".reviews-card",

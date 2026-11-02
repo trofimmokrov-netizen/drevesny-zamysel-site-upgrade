@@ -37,7 +37,8 @@ function flight(g,o){
   }
   if(o.shoes!=="none"){
     // One continuous wood fascia per selected side avoids visible seams between treads.
-    var shoeSides=o.shoes==="both"?[-1,1]:[o.shoes==="left"?-1:1];
+    // The side vector points to the left when looking up the flight.
+    var shoeSides=o.shoes==="both"?[-1,1]:[o.shoes==="left"?1:-1];
     shoeSides.forEach(function(side){addShoePanel(g,o,side);});
   }
   if(o.frame==="closed")[-1,1].forEach(function(side){addClosedStringer(g,o,side);});
