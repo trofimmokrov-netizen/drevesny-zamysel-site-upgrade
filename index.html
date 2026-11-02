@@ -1980,7 +1980,22 @@
       </div>
     </div>
   </section>
-  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" title="Древесный Замысел на Яндекс Картах" width="100%" height="400" loading="lazy" frameborder="0"></iframe>
+  <section class="location-map-section" aria-labelledby="location-map-heading">
+    <div class="location-map-card">
+      <div class="location-map-copy">
+        <p class="section-label">Как нас найти</p>
+        <h2 id="location-map-heading">Мастерская в Губкино</h2>
+        <p class="location-map-address">г. Москва, НАО, район Коммунарка,<br>деревня Губкино, 78, сооружение 5</p>
+        <p class="location-map-note">Нажмите на кнопку — Яндекс Карты проложат маршрут до мастерской.</p>
+        <a class="btn-primary location-route-link" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer">Построить маршрут <span aria-hidden="true">↗</span></a>
+        <a class="location-org-link" href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer">Открыть карточку мастерской на карте</a>
+      </div>
+      <a class="location-map-preview" href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer" aria-label="Открыть расположение мастерской в Яндекс Картах">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" title="Расположение мастерской «Древесный Замысел» на Яндекс Картах" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+        <span class="location-map-hint" aria-hidden="true">Нажмите, чтобы открыть карту ↗</span>
+      </a>
+    </div>
+  </section>
 </main>
 
 <!-- FOOTER -->
@@ -2444,6 +2459,18 @@
   .stair-config-handoff__note { color:var(--text-muted); font-size:11px; line-height:1.55; }
   .stair-config-handoff__copy { justify-self:start; min-height:40px; padding:9px 13px; border:1px solid var(--btn-bg); background:transparent; color:var(--btn-bg); font:600 11px 'Manrope',sans-serif; cursor:pointer; }
   .stair-config-handoff__copy:hover { background:var(--btn-bg); color:#fff; }
+  .location-map-section { padding:0 clamp(20px,6vw,84px) 72px; background:var(--off-white); }
+  .location-map-card { display:grid; grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr); max-width:1440px; min-height:380px; margin:0 auto; border:1px solid var(--border); background:#fffefa; }
+  .location-map-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:clamp(28px,4vw,58px); }
+  .location-map-copy .section-label { margin:0 0 14px; }
+  .location-map-copy h2 { margin:0 0 18px; color:var(--heading-color); font:400 clamp(28px,3vw,42px)/1.1 'Cormorant Garamond',Georgia,serif; }
+  .location-map-address { margin:0; color:var(--text-primary); font-size:15px; line-height:1.7; }
+  .location-map-note { max-width:380px; margin:12px 0 22px; color:var(--text-secondary); font-size:12px; line-height:1.65; }
+  .location-route-link { display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:13px 18px; text-decoration:none; }
+  .location-org-link { margin-top:14px; color:var(--text-secondary); font-size:11px; text-underline-offset:3px; }
+  .location-map-preview { position:relative; display:block; min-height:380px; overflow:hidden; background:#e8e6df; }
+  .location-map-preview iframe { position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
+  .location-map-hint { position:absolute; right:18px; bottom:18px; padding:10px 13px; background:#fffefa; color:var(--text-primary); font-size:11px; box-shadow:0 5px 22px rgba(28,30,26,.12); }
   @media(max-width:600px) {
     .leonid-lightbox { padding:16px 8px; }
     .leonid-lightbox__figure { width:calc(100vw - 104px); max-height:calc(100dvh - 120px); }
@@ -2458,6 +2485,14 @@
     .stair-config-handoff__copy { width:100%; }
     .site-footer { align-items:flex-start; flex-direction:column; gap:18px; padding:22px 20px; }
     .site-footer .footer-brand { font-size:18px; }
+    .location-map-section { padding:0 20px 44px; }
+    .location-map-card { grid-template-columns:minmax(0,1fr); }
+    .location-map-copy { padding:24px 20px; }
+    .location-map-copy h2 { font-size:30px; }
+    .location-map-address { font-size:14px; }
+    .location-route-link { width:100%; justify-content:center; }
+    .location-map-preview { min-height:260px; }
+    .location-map-hint { right:10px; bottom:10px; }
     .footer-contact { align-items:flex-start; justify-content:flex-start; flex-direction:column; gap:8px; margin-right:0; padding-bottom:100px; }
   }
   @media(prefers-reduced-motion:reduce) { .skip-link { transition:none; } }
