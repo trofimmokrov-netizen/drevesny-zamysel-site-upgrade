@@ -52,9 +52,14 @@
         "streetAddress": "дер. Губкино, 78 соор 5",
         "addressLocality": "г. Москва",
         "addressRegion": "Московская область",
-        "postalCode": "143400",
         "addressCountry": "RU"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 55.532426,
+        "longitude": 37.463958
+      },
+      "hasMap": "https://yandex.ru/maps/org/drevesny_zamysel/137748761398/",
       "areaServed": {
         "@type": "AdministrativeArea",
         "name": "Москва и Московская область"
@@ -74,14 +79,15 @@
   </script>
 
   <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./assets/css/typography.css" />
   <link rel="preload" href="./assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" href="./assets/css/wood-preview.css" />
+  <link rel="stylesheet" href="./assets/css/reviews.css" />
 
   <style>
-      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 300 800; font-display: swap; src: url('./assets/fonts/manrope-cyrillic.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
-      @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 300 800; font-display: swap; src: url('./assets/fonts/manrope-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+FEFF, U+FFFD; }
-      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('./assets/fonts/cormorant-garamond-cyrillic.woff2') format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
-      @font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('./assets/fonts/cormorant-garamond-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+FEFF, U+FFFD; }
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
@@ -1121,8 +1127,8 @@
       --accent-light: #c6a97a; --border: #ddd6ca; --nav-bg: rgba(251,250,247,.96);
       --page-width: 1280px;
     }
-    html { scroll-padding-top: 100px; }
-    body { background: var(--white); color: var(--text-primary); line-height: 1.65; }
+    html { scroll-padding-top: 100px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body { background: var(--white); color: var(--text-primary); line-height: 1.65; font-family: 'Manrope', Arial, sans-serif; font-synthesis: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     :focus-visible { outline: 3px solid #9a784c; outline-offset: 4px; }
     .site-header { padding: 10px clamp(18px, 4vw, 64px); min-height: 82px; }
     .nav-logo-img { height: 48px; width: auto; object-fit: contain; }
@@ -1177,7 +1183,7 @@
       .nav-logo-img { height: 42px; }
       .nav-logo-text { font-size: 13px; }
       .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 92px 20px 40px; background-position: left top, 61% center; }
-      .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; }
+      .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; transform: translate3d(0, var(--hero-text-drift, 0px), 0); will-change: transform; }
       .hero-title { font-size: clamp(42px, 12vw, 60px); }
       .hero-sub-1, .hero-sub-2 { display: block; width: min(100%, 320px); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
       .hero-sub-1 { font-size: 13px; line-height: 1.55; }
@@ -1443,13 +1449,13 @@
   <div class="header-right">
     <!-- Блок ссылок на соцсети Desktop -->
     <div class="header-socials">
-      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" target="_blank" rel="noopener noreferrer">
+      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" aria-label="Открыть сообщество Древесный Замысел во ВКонтакте" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='VK'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%235281b8'/%3e%3cpath%20fill='%23ffffff'%20d='M274%20363c5-1%2014-3%2014-15%200%200-1-30%2013-34s32%2029%2051%2042c14%209%2025%208%2025%208l51-1s26-2%2014-23c-1-2-9-15-39-42-31-30-26-25%2011-76%2023-31%2033-50%2030-57-4-7-20-6-20-6h-57c-6%200-9%201-12%206%200%200-9%2025-21%2045-25%2043-35%2045-40%2042-9-5-7-24-7-37%200-45%207-61-13-65-13-2-59-4-73%203-7%204-11%2011-8%2012%203%200%2012%201%2017%207%208%2013%209%2075-2%2081-15%2011-53-62-62-86-2-6-5-7-12-9H79c-6%200-15%201-11%2013%2027%2056%2083%20193%20184%20192z'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
+      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" aria-label="Написать Древесному Замыслу в Telegram" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" aria-label="Открыть канал Древесный Замысел в MAX" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
       </a>
     </div>
@@ -1484,13 +1490,13 @@
   </nav>
   <div class="mobile-nav-bottom">
     <div class="header-socials mobile-socials">
-      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" target="_blank" rel="noopener noreferrer">
+      <a href="https://vk.ru/thewoodplan" class="social-link" title="ВКонтакте" aria-label="Открыть сообщество Древесный Замысел во ВКонтакте" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='VK'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%235281b8'/%3e%3cpath%20fill='%23ffffff'%20d='M274%20363c5-1%2014-3%2014-15%200%200-1-30%2013-34s32%2029%2051%2042c14%209%2025%208%2025%208l51-1s26-2%2014-23c-1-2-9-15-39-42-31-30-26-25%2011-76%2023-31%2033-50%2030-57-4-7-20-6-20-6h-57c-6%200-9%201-12%206%200%200-9%2025-21%2045-25%2043-35%2045-40%2042-9-5-7-24-7-37%200-45%207-61-13-65-13-2-59-4-73%203-7%204-11%2011-8%2012%203%200%2012%201%2017%207%208%2013%209%2075-2%2081-15%2011-53-62-62-86-2-6-5-7-12-9H79c-6%200-15%201-11%2013%2027%2056%2083%20193%20184%20192z'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" target="_blank" rel="noopener noreferrer">
+      <a href="https://t.me/TheWoodPlan" class="social-link" title="Telegram" aria-label="Написать Древесному Замыслу в Telegram" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='utf-8'?%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Generator:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20xmlns='http://www.w3.org/2000/svg'%20aria-label='Telegram'%20role='img'%20viewBox='0%200%20512%20512'%3e%3crect%20width='512'%20height='512'%20rx='15%25'%20fill='%2337aee2'/%3e%3cpath%20fill='%23c8daea'%20d='M199%20404c-11%200-10-4-13-14l-32-105%20245-144'/%3e%3cpath%20fill='%23a9c9dd'%20d='M199%20404c7%200%2011-4%2016-8l45-43-56-34'/%3e%3cpath%20fill='%23f6fbfe'%20d='M204%20319l135%2099c14%209%2026%204%2030-14l55-258c5-22-9-32-24-25L79%20245c-21%208-21%2021-4%2026l83%2026%20190-121c9-5%2017-3%2011%204'/%3e%3c/svg%3e" alt="">
       </a>
-      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" target="_blank" rel="noopener noreferrer">
+      <a href="https://max.ru/channel_DrevesnyZamysel" class="social-link" title="MAX" aria-label="Открыть канал Древесный Замысел в MAX" target="_blank" rel="noopener noreferrer">
         <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%201000'%3e%3cdefs%3e%3clinearGradient%20id='b'%3e%3cstop%20offset='0'%20stop-color='%2300f'/%3e%3cstop%20offset='1'%20stop-opacity='0'/%3e%3c/linearGradient%3e%3clinearGradient%20id='a'%3e%3cstop%20offset='0'%20stop-color='%234cf'/%3e%3cstop%20offset='.662'%20stop-color='%2353e'/%3e%3cstop%20offset='1'%20stop-color='%2393d'/%3e%3c/linearGradient%3e%3clinearGradient%20id='c'%20x1='117.847'%20x2='1000'%20y1='760.536'%20y2='500'%20gradientUnits='userSpaceOnUse'%20href='%23a'/%3e%3cradialGradient%20id='d'%20cx='-87.392'%20cy='1166.116'%20r='500'%20fx='-87.392'%20fy='1166.116'%20gradientTransform='rotate(51.356%201551.478%20559.3)scale(2.42703433%201)'%20gradientUnits='userSpaceOnUse'%20href='%23b'/%3e%3c/defs%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23c)'%20ry='249.681'/%3e%3crect%20width='1000'%20height='1000'%20fill='url(%23d)'%20ry='249.681'/%3e%3cpath%20fill='%23fff'%20fill-rule='evenodd'%20d='M508.211%20878.328c-75.007%200-109.864-10.95-170.453-54.75-38.325%2049.275-159.686%2087.783-164.979%2021.9%200-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508%200-216.626%20177.754-379.597%20388.357-379.597%20210.785%200%20375.947%20171.001%20375.947%20381.604.707%20207.346-166.595%20376.118-373.94%20377.224m3.103-571.585c-102.564-5.292-182.499%2065.7-200.201%20177.024-14.6%2092.162%2011.315%20204.398%2033.397%20210.238%2010.585%202.555%2037.23-18.98%2053.837-35.587a189.8%20189.8%200%200%200%2092.71%2033.032c106.273%205.112%20197.08-75.794%20204.215-181.95%204.154-106.382-77.67-196.486-183.958-202.574Z'%20clip-rule='evenodd'/%3e%3c/svg%3e" alt="">
       </a>
     </div>
@@ -1574,7 +1580,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f5f0ea;">
-                <img src="./assets/images/portfolio/preview-closed-stairs.jpg" alt="Лестницы закрытого типа" loading="lazy" decoding="async">
+                <img src="./assets/images/portfolio/preview-closed-stairs.jpg" alt="Закрытая лестница с тёмными ступенями, светлыми подступёнками и металлическим ограждением" title="Пример закрытой лестницы с деревянными ступенями и металлическим ограждением" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Лестницы закрытого типа</h3>
@@ -1590,7 +1596,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f0ede8;">
-                <img src="./assets/images/portfolio/preview-open-stairs.jpg" alt="Лестницы открытого типа" loading="lazy" decoding="async">
+                <img src="./assets/images/portfolio/preview-open-stairs.jpg" alt="Открытая лестница с деревянными ступенями и стеклянным ограждением" title="Пример открытой лестницы с деревянными ступенями и стеклянным ограждением" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Лестницы открытого типа</h3>
@@ -1606,7 +1612,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#ede8e0;">
-                <img src="./assets/images/portfolio/preview-staircase-cladding.jpg" alt="Обшивка бетонных лестниц" loading="lazy" decoding="async">
+                <img src="./assets/images/portfolio/preview-staircase-cladding.jpg" alt="Бетонная лестница до отделки и готовая лестница с деревянными ступенями" title="Пример отделки бетонной лестницы деревом: до и после" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Обшивка бетонных лестниц</h3>
@@ -1622,7 +1628,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#f0ede8;">
-                <img src="./assets/images/portfolio/preview-stair-railings.jpg" alt="Ограждения" loading="lazy" decoding="async">
+                <img src="./assets/images/portfolio/preview-stair-railings.jpg" alt="Лестничное ограждение с деревянным поручнем и металлическими балясинами" title="Пример ограждения лестницы с деревянным поручнем и металлическими балясинами" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Ограждения</h3>
@@ -1638,7 +1644,7 @@
           <div class="swiper-slide">
             <article class="product-card">
               <div class="product-visual" style="background:#ede8e0;">
-                <img src="./assets/images/portfolio/preview-custom-woodwork.jpg" alt="Деревянные изделия" loading="lazy" decoding="async">
+                <img src="./assets/images/portfolio/preview-custom-woodwork.jpg" alt="Обеденный стол из массива дерева, изготовленный на заказ" title="Пример деревянной мебели: стол из массива на заказ" loading="lazy" decoding="async">
               </div>
               <div class="product-body">
                 <h3>Деревянные изделия</h3>
@@ -1729,7 +1735,7 @@
     <div class="materials-grid">
       <article class="material-card">
         <div class="material-img">
-          <img src="./assets/images/materials/listvennitsa.jpg" alt="Лиственница" loading="lazy">
+          <img src="./assets/images/materials/listvennitsa.jpg" alt="Текстура массива лиственницы для ступеней лестницы" title="Лиственница — текстура дерева для лестничных ступеней" loading="lazy" decoding="async">
         </div>
         <div class="material-content">
           <h3>Лиственница</h3>
@@ -1738,7 +1744,7 @@
       </article>
       <article class="material-card">
         <div class="material-img">
-          <img src="./assets/images/materials/yasen.jpg" alt="Ясень" loading="lazy">
+          <img src="./assets/images/materials/yasen.jpg" alt="Текстура древесины ясеня для лестничных ступеней" title="Ясень — текстура дерева для лестничных ступеней" loading="lazy" decoding="async">
         </div>
         <div class="material-content">
           <h3>Ясень</h3>
@@ -1747,7 +1753,7 @@
       </article>
       <article class="material-card">
         <div class="material-img">
-          <img src="./assets/images/materials/oak.jpg" alt="Дуб" loading="lazy">
+          <img src="./assets/images/materials/oak.jpg" alt="Текстура массива дуба для деревянных ступеней лестницы" title="Дуб — текстура массива для ступеней лестницы" loading="lazy" decoding="async">
         </div>
         <div class="material-content">
           <h3>Дуб</h3>
@@ -1756,7 +1762,7 @@
       </article>
       <article class="material-card">
         <div class="material-img">
-          <img src="./assets/images/materials/american.webp" alt="Американский орех" loading="lazy" decoding="async">
+          <img src="./assets/images/materials/american-walnut.jpg" alt="Американский орех с тёплой коричневой текстурой" title="Текстура массива американского ореха" loading="lazy" decoding="async">
         </div>
         <div class="material-content">
           <h3>Американский орех</h3>
@@ -1942,7 +1948,7 @@
         <p class="section-label">Контакты</p>
         <h2 id="contact-heading">Обсудим ваш проект</h2>
         <p>Оставьте заявку — перезвоним в течение 30 минут в рабочее время. Выезд замерщика по всей Московской области.</p>
-        <p class="contact-start-note">Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.</p>
+        <p class="contact-start-note" aria-live="polite">Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.</p>
         <div class="form-contact-row">
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l1.5 4-2 1.5a10 10 0 004 4L11 9.5l4 1.5v4c0 1-1 1.5-2 1.5C5 16.5 0 10 0 4c0-1 .5-2 2-2z" stroke="currentColor" stroke-width="1.2"/></svg>
@@ -2191,9 +2197,18 @@
   window.addEventListener('resize', scheduleActiveNavigation);
   scheduleActiveNavigation();
 
-  // Open form with pre-selected type
+  // Keep the selected service visible when a visitor moves from a product card to the form.
   function openForm(el) {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    const productCard = el && el.closest('.product-card');
+    const productTitle = productCard && productCard.querySelector('h3');
+    const contactNote = document.querySelector('#contact .contact-start-note');
+
+    if (productTitle && contactNote) {
+      const title = productTitle.textContent.trim();
+      contactNote.textContent = `Вы выбрали направление «${title}». Оставьте контакты — менеджер уточнит детали и поможет с расчётом.`;
+    }
+
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Кнопка «Примеры работ» открывает соответствующую существующую галерею каталога.
@@ -2285,7 +2300,7 @@
       images.forEach((src,index) => {
         const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item';
         item.setAttribute('aria-label',`Открыть проект ${index+1}`);
-        const img=document.createElement('img'); img.src=src; img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`; img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`; img.loading='lazy'; img.decoding='async';
+        const img=document.createElement('img'); img.src=src.replace('/portfolio/','/portfolio/thumbs/'); img.onerror=()=>{img.onerror=null;img.src=src;}; img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`; img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`; img.loading='lazy'; img.decoding='async';
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
       });
@@ -2452,6 +2467,18 @@
 <style id="mobile-bitrix-refinements">
   /* Keep Bitrix24's greeting from covering the first screen on phones. */
   @media (max-width: 720px) {
+    .b24-widget-button-popup {
+      position: absolute !important;
+      top: auto !important;
+      left: auto !important;
+      right: 64px !important;
+      bottom: 0 !important;
+      width: min(172px, calc(100vw - 92px)) !important;
+      min-width: 0 !important;
+      max-width: min(172px, calc(100vw - 92px)) !important;
+      padding: 7px 9px !important;
+      box-sizing: border-box !important;
+    }
     .cookie-banner {
       left: 12px !important;
       right: auto !important;
@@ -2477,9 +2504,9 @@
       left: auto !important;
       right: 64px !important;
       bottom: 0 !important;
-      width: min(188px, calc(100vw - 92px)) !important;
+      width: min(172px, calc(100vw - 92px)) !important;
       min-width: 0 !important;
-      max-width: min(188px, calc(100vw - 92px)) !important;
+      max-width: min(172px, calc(100vw - 92px)) !important;
       padding: 7px 9px !important;
       border-width: 1.5px !important;
       border-radius: 12px !important;
@@ -2497,9 +2524,11 @@
   }
   @media (max-width: 374px) {
     .cookie-banner { width: calc(100vw - 24px) !important; }
+    .b24-widget-button-popup,
     .bx-touch .b24-widget-button-position-bottom-right .b24-widget-button-popup,
-    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(170px, calc(100vw - 84px)) !important; max-width: min(170px, calc(100vw - 84px)) !important; right: 60px !important; }
+    .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(158px, calc(100vw - 84px)) !important; max-width: min(158px, calc(100vw - 84px)) !important; right: 60px !important; }
   }
 </style>
-<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
+
+<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
 </html>

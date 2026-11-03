@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="ru"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<style>@media(max-width:720px){.intro-copy{display:block;width:100%;max-width:100%;white-space:normal!important;overflow-wrap:anywhere}.viewer-toolbar{display:flex;flex-direction:column;align-items:stretch;min-width:0}.viewer-title{width:100%}.viewer-actions{display:flex!important;flex-wrap:wrap!important;justify-content:stretch;width:100%!important;min-width:0;gap:6px}.viewer-actions .icon-button{flex:1 1 calc(50% - 3px);width:auto;min-width:0;max-width:100%;white-space:normal;line-height:1.25}.viewer-caption{min-width:0;flex-wrap:wrap;overflow-wrap:anywhere}.viewer-caption>*{min-width:0}}</style>
+<link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./assets/css/typography.css">
+<link rel="stylesheet" href="./assets/css/wood-preview.css">
 <meta name="theme-color" content="#f1eee8">
 <title>3D-конструктор лестницы: размеры и материалы — Древесный Замысел</title>
 <meta name="description" content="Подберите форму, габариты, каркас, ступени, ограждение и подсветку лестницы в интерактивном 3D-конструкторе. Предварительный расчёт для дома в Москве и области.">
@@ -26,6 +31,7 @@
 <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg">
 <link rel="icon" href="./favicons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/css/stair-configurator.css">
+<link rel="stylesheet" href="./assets/css/constructor-mobile.css">
 <script src="./assets/vendor/three-0.159.0.min.js"></script>
 <script defer src="./assets/js/stair-configurator.js"></script>
 </head><body>
@@ -44,7 +50,7 @@
 <div class="canvas-wrap" id="canvasWrap"><canvas id="stairCanvas" aria-label="Интерактивная трёхмерная модель лестницы"></canvas><div class="canvas-help">Мышь: перетаскивание и колесо · Телефон: горизонтальный жест вращает модель, кнопки + / − меняют масштаб</div><div class="canvas-error" id="canvasError" hidden>Не удалось запустить 3D-просмотр. Попробуйте открыть страницу в актуальной версии Chrome, Edge или Safari.</div></div>
 <div class="viewer-caption"><span>Предварительная визуализация</span><span id="modelDimensions">900 × 2800 мм</span></div></div>
 <div class="spec-strip" aria-live="polite"><div><span>Подъём ступени</span><strong id="riseReadout">200 мм</strong></div><div><span>Количество подъёмов</span><strong id="stepsReadout">14</strong></div><div><span>Ширина марша</span><strong id="widthReadout">900 мм</strong></div></div>
-<section class="space-estimate" aria-live="polite" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь проекции</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div></div><p>Ориентировочный расчёт по заданным размерам. Фактический проём и монтажные зазоры проверит инженер.</p></section>
+<section class="space-estimate" aria-live="polite" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь проекции</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div></div><figure class="footprint-plan"><figcaption>Схема сверху · приблизительное место на полу</figcaption><svg id="footprintPlan" viewBox="0 0 240 140" role="img" aria-label="Схема занимаемого лестницей места сверху"><rect class="footprint-plan__floor" x="0" y="0" width="240" height="140" rx="2"></rect><g id="footprintPlanShape"></g></svg></figure><p>Ориентировочный расчёт по заданным размерам. Фактический проём и монтажные зазоры проверит инженер.</p></section>
 <p class="comfort-note" id="comfortNote">Визуализация помогает сравнить варианты и не заменяет инженерный проект и замер.</p>
 </div>
 <aside class="controls"><div class="controls-head"><div><p class="eyebrow">Настройки</p><h2>Ваша лестница</h2></div></div>
@@ -58,7 +64,7 @@
 <label class="field"><span><input type="checkbox" id="lighting"> Подсветка ступеней</span></label>
 <label class="field lighting-option"><span>Сценарий LED-подсветки</span><select id="lightingMode"><option value="standard">Стандартная · светятся все ступени</option><option value="smart">Умная · включение по ступеням</option></select></label>
 <label class="field lighting-option"><span><input type="checkbox" id="nightView"> Ночной вид</span></label>
-<label class="field"><span>Материал ступеней</span><select id="wood"><option value="oak">Дуб</option><option value="ash">Ясень</option><option value="larch">Лиственница</option><option value="walnut">Американский орех</option></select></label>
+<label class="field"><span>Материал ступеней</span><select id="wood"><option value="oak">Дуб</option><option value="ash">Ясень</option><option value="larch">Лиственница</option><option value="walnut">Американский орех</option></select></label><button class="wood-preview-trigger" id="woodPreviewTrigger" type="button">Рассмотреть текстуру дерева</button>
 <div class="range-field"><label for="width"><span>Ширина марша</span><output id="widthValue">900 мм</output></label><input id="width" type="range" min="700" max="1200" step="50" value="900"><div class="range-ends"><span>700 мм</span><span>1200 мм</span></div></div>
 <div class="range-field"><label for="height"><span>Высота между этажами</span><output id="heightValue">2800 мм</output></label><input id="height" type="range" min="2400" max="3400" step="100" value="2800"><div class="range-ends"><span>2400 мм</span><span>3400 мм</span></div></div>
 <div class="range-field"><label for="depth"><span>Глубина ступени</span><output id="depthValue">280 мм</output></label><input id="depth" type="range" min="230" max="320" step="10" value="280"><div class="range-ends"><span>230 мм</span><span>320 мм</span></div></div>
@@ -70,4 +76,5 @@
 <section class="howto"><p class="eyebrow">Управление</p><p><strong>Мышь:</strong> вращение левой кнопкой, приближение колёсиком. <strong>Телефон:</strong> горизонтальный жест вращает модель, кнопки «+» и «−» меняют масштаб. Вертикальный жест прокручивает страницу. Сравните древесину, каркас, подступенники и боковые опоры. Параметры предварительные — геометрию проверит инженер.</p></section>
 </main>
 <footer><a href="./index.html">Древесный Замысел</a><span>Лестницы на металлическом каркасе · Москва и Московская область</span></footer>
-<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/site-animations.js"></script></body></html>
+
+<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/site-animations.js"></script></body></html>

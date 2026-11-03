@@ -1,0 +1,71 @@
+/* Keep the constructor controls readable and the model fully framed on phones. */
+@media (max-width: 720px) {
+  .page {
+    width: calc(100% - 28px);
+    margin-inline: auto;
+  }
+
+  .intro,
+  .builder,
+  .preview-column,
+  .viewer,
+  .controls {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .intro h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(26px, 7.4vw, 32px);
+    line-height: 1.08;
+    text-align: center;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .intro-copy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 4px;
+    font-size: 12px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .viewer-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .viewer-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .viewer-actions .icon-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 40px;
+    padding: 7px 8px;
+    white-space: normal;
+    line-height: 1.25;
+  }
+
+  .canvas-wrap {
+    width: 100%;
+    height: min(92vw, 370px);
+    min-height: 280px;
+  }
+
+  #stairCanvas {
+    width: 100%;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,94 @@
+/* Shared local font files and rendering baseline for desktop and mobile. */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('../fonts/manrope-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('../fonts/manrope-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+FEFF, U+FFFD;
+}
+
+:root {
+  --font-body: 'Manrope', Arial, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-synthesis: none;
+}
+
+body {
+  font-family: var(--font-body);
+  font-synthesis: none;
+  /* Lock the same font axes on desktop and mobile; browser-default optical
+     sizing can otherwise make the same face look noticeably different. */
+  font-optical-sizing: none;
+  font-variation-settings: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-synthesis: none;
+  font-optical-sizing: none;
+  font-variation-settings: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  font-kerning: normal;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  font-synthesis: none;
+  font-optical-sizing: none;
+  font-variation-settings: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Keep text controls and browser-created text on the same local font stack. */
+body :where(a, p, li, label, small, summary, output) {
+  font-family: var(--font-body);
+}
+
+body :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-display);
+}
