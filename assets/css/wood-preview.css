@@ -4,7 +4,7 @@
 .wood-preview-trigger {
   display: block;
   width: 100%;
-  margin: -5px 0 14px;
+  margin: 0 0 14px;
   padding: 9px 12px;
   border: 1px solid #ded9ce;
   background: transparent;
@@ -14,6 +14,33 @@
   cursor: pointer;
 }
 .wood-preview-trigger:hover { border-color: #92734c; background: #f3f0e9; }
+
+.wood-material-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: -4px 0 12px;
+}
+.wood-material-option {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 48px;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  border: 1px solid #ded9ce;
+  background: #fbfaf7;
+  color: #334538;
+  font: 600 10px/1.25 Manrope, Arial, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s, transform .2s;
+}
+.wood-material-option:hover { border-color: #92734c; transform: translateY(-1px); }
+.wood-material-option[aria-pressed="true"] { border-color: #334538; background: #f0eee7; box-shadow: inset 0 0 0 1px #334538; }
+.wood-material-option img { display: block; width: 48px; height: 36px; object-fit: cover; }
+.wood-material-option:focus-visible,.wood-preview-trigger:focus-visible { outline: 3px solid #9a784c; outline-offset: 2px; }
 
 .wood-preview-dialog {
   position: fixed;
@@ -40,6 +67,9 @@
   background: #e8e3da;
 }
 .wood-preview-dialog figcaption { color: #73736b; font: 12px/1.5 Manrope, Arial, sans-serif; text-align: center; }
+.wood-preview-dialog__select { min-height: 44px; margin: 16px auto 0; padding: 11px 18px; border: 0; background: #334538; color: #fff; font: 600 12px Manrope, Arial, sans-serif; cursor: pointer; }
+.wood-preview-dialog__select:hover { background: #26382c; }
+.wood-preview-dialog__select:focus-visible { outline: 3px solid #9a784c; outline-offset: 3px; }
 .wood-preview-dialog__close {
   position: absolute;
   top: 8px;
@@ -58,6 +88,9 @@
 .wood-preview-dialog__close:focus-visible { outline: 3px solid #9a784c; outline-offset: 2px; }
 
 @media (max-width: 600px) {
+  .wood-material-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .wood-material-option { grid-template-columns: 40px minmax(0, 1fr); min-height: 44px; gap: 6px; font-size: 9px; }
+  .wood-material-option img { width: 40px; height: 32px; }
   .wood-preview-dialog {
     width: calc(100vw - 24px);
     max-height: calc(100dvh - 24px);

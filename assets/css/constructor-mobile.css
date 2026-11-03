@@ -14,6 +14,7 @@
   }
 
   #canvasWrap,
+  #spaceEstimate,
   #stairSettings {
     scroll-margin-top: 76px;
   }
@@ -21,13 +22,16 @@
   .mobile-config-nav {
     position: fixed;
     z-index: 20;
-    right: max(12px, env(safe-area-inset-right));
     bottom: calc(10px + env(safe-area-inset-bottom));
+    right: max(12px, env(safe-area-inset-right));
     left: max(12px, env(safe-area-inset-left));
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
-    width: min(440px, calc(100% - 24px));
+    box-sizing: border-box;
+    width: auto;
+    min-width: 0;
+    max-width: 440px;
     margin-inline: auto;
     padding: 6px;
     border: 1px solid rgba(222, 217, 206, .94);
@@ -37,22 +41,28 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
+  /* Keep the persistent quote action above, not on top of, the quick navigation. */
+  .controls .submit-link {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
   .mobile-config-nav a {
     display: flex;
+    min-width: 0;
     min-height: 46px;
     align-items: center;
     justify-content: center;
-    padding: 9px 12px;
+    padding: 9px 6px;
     border: 1px solid #ded9ce;
     color: #334538;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .mobile-config-nav a:last-child {
+  .mobile-config-nav a.is-active {
     border-color: #334538;
     background: #334538;
     color: #fff;
@@ -131,4 +141,10 @@
     width: 100%;
     max-width: 100%;
   }
+}
+@media (max-width: 720px) {
+  .mobile-motion-pending .topbar .brand,
+  .mobile-motion-pending .intro,
+  .mobile-motion-pending .viewer,
+  .mobile-motion-pending .mobile-config-nav { opacity: 0; }
 }

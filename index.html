@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    try {
+      if (matchMedia("(max-width: 720px), (pointer: coarse)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("mobile-motion-pending");
+        // Keep the first screen ready for its entrance animation on slower phones.
+        // site-animations.js removes this class as soon as it schedules the motion.
+        setTimeout(() => document.documentElement.classList.remove("mobile-motion-pending"), 2200);
+      }
+    } catch (_) {}
+  </script>
   <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
   <link rel="shortcut icon" href="./favicons/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png" />
   <link rel="manifest" href="./favicons/site.webmanifest" />
-  <link rel="canonical" href="https://древесный-замысел.рф/" />
+  <link rel="canonical" href="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/" />
 
   <!-- SEO: Title & Description -->
   <title>Лестницы любой сложности для вас — Древесный Замысел</title>
@@ -20,9 +30,9 @@
 
   <!-- OG / Social -->
   <meta property="og:title" content="Лестницы любой сложности для вас — Древесный Замысел" />
-  <meta property="og:description" content="Лестницы любой сложности и мебель на заказ. Собственное производство в Москве: от проекта до монтажа под ключ." />
+  <meta property="og:description" content="Проектирование и изготовление лестниц на заказ в Москве и Московской области: металлический каркас, ступени из массива, ограждения и монтаж под ключ." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://древесный-замысел.рф/" />
+  <meta property="og:url" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/" />
   <meta property="og:site_name" content="Древесный Замысел" />
   <meta property="og:locale" content="ru_RU" />
   <meta property="og:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
@@ -43,15 +53,16 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Древесный Замысел",
-      "description": "Проектирование и изготовление лестниц любой сложности и мебели на заказ в Москве и Московской области. Замер, производство и монтаж под ключ.",
-      "url": "https://древесный-замысел.рф/",
+      "description": "Проектирование, изготовление и монтаж лестниц на заказ в Москве и Московской области: металлические каркасы, деревянные ступени и ограждения.",
+      "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/hero.webp",
+      "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "telephone": "+7 (495) 275-14-23",
       "email": "drevesnyzamysel@mail.ru",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "дер. Губкино, 78 соор 5",
-        "addressLocality": "г. Москва",
-        "addressRegion": "Московская область",
+        "streetAddress": "деревня Губкино, 78, сооружение 5",
+        "addressLocality": "Москва",
+        "addressRegion": "Москва",
         "addressCountry": "RU"
       },
       "geo": {
@@ -60,6 +71,11 @@
         "longitude": 37.463958
       },
       "hasMap": "https://yandex.ru/maps/org/drevesny_zamysel/137748761398/",
+      "sameAs": [
+        "https://vk.ru/thewoodplan",
+        "https://t.me/TheWoodPlan",
+        "https://max.ru/channel_DrevesnyZamysel"
+      ],
       "areaServed": {
         "@type": "AdministrativeArea",
         "name": "Москва и Московская область"
@@ -73,8 +89,7 @@
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление деревянных элементов интерьера на заказ" } }
         ]
       },
-      "priceRange": "₽₽₽",
-      "openingHours": "10:00-19:00"
+      "priceRange": "₽₽₽"
     }
   </script>
 
@@ -734,6 +749,9 @@
       .contact-meta { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; }
 
       .form-right form { display: flex; flex-direction: column; gap: 12px; }
+      .form-load-fallback { margin-top: 14px; padding: 16px 18px; border: 1px solid var(--border); background: var(--off-white); color: var(--text-secondary); font-size: 13px; line-height: 1.65; }
+      .form-load-fallback p { margin: 0; }
+      .form-load-fallback a { color: var(--text-primary); font-weight: 600; text-underline-offset: 3px; }
       .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
       .field { display: flex; flex-direction: column; gap: 6px; }
       .field label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
@@ -1099,15 +1117,15 @@
 
       @media (max-width: 600px) {
           .cookie-banner {
-              left: 50%;
+              left: 12px;
               right: auto;
-              bottom: calc(184px + env(safe-area-inset-bottom));
+              bottom: calc(12px + env(safe-area-inset-bottom));
               align-items: center;
               flex-direction: row;
               gap: 8px;
-              width: min(440px, calc(100vw - 24px));
+              width: min(360px, calc(100vw - 112px));
               padding: 9px 10px;
-              transform: translateX(-50%);
+              transform: none;
           }
           .cookie-banner__text { font-size: 10px; }
           .cookie-banner__text { min-width: 0; flex: 1 1 auto; }
@@ -1182,18 +1200,20 @@
       html { scroll-padding-top: 76px; }
       .nav-logo-img { height: 42px; }
       .nav-logo-text { font-size: 13px; }
-      .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 92px 20px 40px; background-position: left top, 61% center; }
+      .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 82px 20px 40px; background-position: left top, 61% center; }
       .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; transform: translate3d(0, var(--hero-text-drift, 0px), 0); will-change: transform; }
-      .hero-title { font-size: clamp(42px, 12vw, 60px); }
+      .hero-label { max-width: 100%; margin-bottom: 12px; font-size: 10px; letter-spacing: .12em; white-space: normal; overflow-wrap: anywhere; }
+      .hero-title { margin-bottom: 16px; }
+      .hero-title { font-size: clamp(40px, 11vw, 54px); margin-bottom: 12px; }
       .hero-sub-1, .hero-sub-2 { display: block; width: min(100%, 320px); max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
-      .hero-sub-1 { font-size: 13px; line-height: 1.55; }
-      .hero-sub-2 { font-size: 12px; line-height: 1.6; }
-      .hero-tags { gap: 8px; }
-      .hero-tag { font-size: 12px; padding: 7px 10px; }
-      .hero-cta-row { align-items: stretch; flex-direction: column; max-width: 340px; }
+      .hero-sub-1 { margin-bottom: 12px; font-size: 13px; line-height: 1.55; }
+      .hero-sub-2 { margin-bottom: 14px; font-size: 12px; line-height: 1.6; }
+      .hero-tags { display: grid; width: 100%; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
+      .hero-tag { display: flex; width: 100%; min-width: 0; max-width: 100%; align-items: center; justify-content: center; font-size: 12px; padding: 7px 8px; text-align: center; white-space: normal; overflow-wrap: anywhere; }
+      .hero-cta-row { align-items: stretch; flex-direction: column; gap: 8px; max-width: 340px; }
       .hero-cta-row a { justify-content: center; }
       .hero-cta-row .hero-builder-link { justify-content:flex-start; align-self:flex-start; }
-      .hero-note { max-width:340px; }
+      .hero-note { max-width:340px; margin-top:12px; }
       .products-inner, #why, #materials, #process { width: calc(100% - 40px); }
       .section-title, #why h2, #materials h2, #process h2 { font-size: 36px; }
       .form-section { width: calc(100% - 40px); }
@@ -1205,6 +1225,11 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+    @media (max-width: 720px) {
+      .mobile-motion-pending .hero-content > * { opacity: 0; }
+      .mobile-motion-pending .site-header .nav-logo,
+      .mobile-motion-pending .site-header .burger-btn { opacity: 0; }
     }
     .hero { background-position-y: top, calc(50% + var(--hero-image-drift, 0px)); }
   </style>
@@ -1287,6 +1312,8 @@
   .article-details[open] summary::after { content:'−'; }
   .article-details div { padding-top:14px; border-top:1px solid var(--border); }
   .article-details div p { margin:0; }
+  .article-constructor-link { color:var(--btn-bg); font-weight:650; text-underline-offset:3px; }
+  .article-constructor-link:focus-visible { outline:3px solid var(--accent-light); outline-offset:3px; }
   .leonid-section { padding:clamp(60px,8vw,100px) 0; background:#fffefa; }
   .leonid-heading-row { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:32px; }
   .leonid-heading-row .section-sub { margin-top:14px; }
@@ -1431,7 +1458,7 @@
 <header class="site-header">
   <div class="header-left">
     <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
-      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Древесный замысел" width="320" height="320" decoding="async"/>
+      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="320" height="320" decoding="async"/>
       <span class="nav-logo-text">Древесный замысел</span>
     </a>
   </div>
@@ -1912,7 +1939,7 @@
           <p class="article-kicker">Размеры</p>
           <h3>Как заранее понять, сколько места займёт лестница?</h3>
           <p class="article-lead">Для оценки нужны высота между этажами, ширина марша, глубина ступеней и форма проёма.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Прямая лестница занимает место вдоль одного направления. Поворотная конструкция меняет направление марша и может вписаться в другой контур помещения, но требует места под площадку или забежные ступени. В 3D-конструкторе можно сравнить предварительный габарит и площадь проекции. Эти значения помогают оценить планировку, но не заменяют обмер и проверку высоты прохода специалистом.</p></div></details>
+          <details class="article-details"><summary>Читать заметку</summary><div><p>Прямая лестница занимает место вдоль одного направления. Поворотная конструкция меняет направление марша и может вписаться в другой контур помещения, но требует места под площадку или забежные ступени. В <a class="article-constructor-link" href="./constructor.html">3D-конструкторе</a> можно сравнить предварительный габарит и площадь проекции. Эти значения помогают оценить планировку, но не заменяют обмер и проверку высоты прохода специалистом.</p></div></details>
         </article>
         <article class="article-card">
           <p class="article-kicker">Планирование</p>
@@ -1960,7 +1987,8 @@
             <div class="reviews-yandex-logo" aria-hidden="true">Я</div>
             <div>
               <strong>Древесный Замысел</strong>
-              <span>Яндекс Карты · рейтинг 4,8 · 17 оценок</span>
+              <div class="reviews-rating" role="img" aria-label="Средняя оценка 4,8 из 5 по 17 оценкам на Яндекс Картах"><span aria-hidden="true">★★★★★</span><b>4,8 из 5</b></div>
+              <span>Яндекс Карты · 17 оценок</span>
             </div>
           </div>
           <p class="reviews-text">Отзывы клиентов о лестницах и изделиях мастерской. Ниже — тексты из предоставленной подборки Яндекс Карт.</p>
@@ -1975,7 +2003,7 @@
         <article class="review-card"><div class="review-card__meta"><strong>Ира Т.</strong><time>9 июля</time></div><blockquote>Очень довольны установкой лестницы! Лиственница выглядит потрясающе, пахнет настоящим деревом. Сборка идеальная, конструкция монолитная. Мастера вежливые и аккуратные. Рекомендую от души.</blockquote><span class="review-card__source">Отзыв с Яндекс Карт</span></article>
       </div>
       <details class="reviews-more">
-        <summary>Показать ещё отзывы</summary>
+        <summary>Ещё 14 отзывов</summary>
         <div class="reviews-more__grid">
           <article class="review-card review-card--excerpt"><div class="review-card__meta"><strong>Максим Тишкин</strong><time>6 августа</time></div><blockquote>Заказывали у «Древесного Замысла» лестницу и мебель для дома. Хотим отметить отличный подход к работе и качество исполнения. Особенно понравилось, что специалисты смогли грамотно использовать…</blockquote><a class="review-card__source" href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/reviews/?ll=37.463763%2C55.532365&amp;z=17" target="_blank" rel="noopener noreferrer">Фрагмент · полный отзыв на Яндекс Картах ↗</a></article>
           <article class="review-card review-card--excerpt"><div class="review-card__meta"><strong>Egor Ermolaev</strong><time>6 августа</time></div><blockquote>Заказывали лестницу, результатом остались очень довольны. Ступени и подступенники выполнены из дуба паркетной склейки, выглядит очень качественно…</blockquote><a class="review-card__source" href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/reviews/?ll=37.463763%2C55.532365&amp;z=17" target="_blank" rel="noopener noreferrer">Фрагмент · полный отзыв на Яндекс Картах ↗</a></article>
@@ -2034,7 +2062,11 @@
             });
           })();
         </script>
-        <script data-b24-form="inline/1/8dtwm1" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/form/loader_1.js');</script>
+        <script data-b24-form="inline/1/8dtwm1" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);s.onerror=function(){var fallback=d.getElementById('b24FormFallback');if(fallback)fallback.hidden=false;};var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/form/loader_1.js');</script>
+        <div class="form-load-fallback" id="b24FormFallback" role="status" hidden>
+          <p>Форма временно не загрузилась. Позвоните нам по номеру <a href="tel:+74952751423">+7 (495) 275-14-23</a> или напишите на <a href="mailto:drevesnyzamysel@mail.ru">drevesnyzamysel@mail.ru</a>.</p>
+        </div>
+        <noscript><div class="form-load-fallback"><p>Чтобы оставить заявку, позвоните нам по номеру <a href="tel:+74952751423">+7 (495) 275-14-23</a> или напишите на <a href="mailto:drevesnyzamysel@mail.ru">drevesnyzamysel@mail.ru</a>.</p></div></noscript>
       </div>
     </div>
   </section>
@@ -2061,7 +2093,7 @@
   <div class="footer-brand">
     <div class="nav-logo-icon">
       <a href="./index.html" class="nav-logo" aria-label="Древесный Замысел — на главную">
-        <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Древесный замысел" width="320" height="320" decoding="async"/>
+      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="320" height="320" decoding="async"/>
       </a>
     </div>
     <span>Древесный замысел</span>
@@ -2163,6 +2195,7 @@
   // Smooth scroll for nav links & mobile menu handling
   const burgerBtn = document.querySelector('.burger-btn');
   const mobileMenu = document.getElementById('mobileMenu');
+  const getScrollBehavior = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
   function toggleBurgerMenu(forceOpen) {
     const isOpen = typeof forceOpen === 'boolean' ? forceOpen : !mobileMenu.classList.contains('active');
@@ -2206,13 +2239,19 @@
     a.addEventListener('click', e => {
       const hash = a.getAttribute('href');
       const target = hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+      const menuWasOpen = mobileMenu.classList.contains('active');
+      if (menuWasOpen) toggleBurgerMenu(false);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      if(mobileMenu.classList.contains('active')) {
-        toggleBurgerMenu(false);
-        burgerBtn.focus({ preventScroll: true });
+        target.scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
+        if (menuWasOpen) {
+          const addTemporaryTabIndex = !target.hasAttribute('tabindex');
+          if (addTemporaryTabIndex) {
+            target.setAttribute('tabindex', '-1');
+            target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
+          }
+          target.focus({ preventScroll: true });
+        }
       }
     });
   });
@@ -2263,7 +2302,7 @@
       contactNote.textContent = `Вы выбрали направление «${title}». Оставьте контакты — менеджер уточнит детали и поможет с расчётом.`;
     }
 
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('contact').scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
   }
 
   // Кнопка «Примеры работ» открывает соответствующую существующую галерею каталога.
@@ -2354,7 +2393,7 @@
       categoryGrid.replaceChildren();
       images.forEach((src,index) => {
         const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item';
-        item.setAttribute('aria-label',`Открыть проект ${index+1}`);
+        item.setAttribute('aria-label',`Открыть фото: ${categoryImageDescriptions[key]}, проект ${index+1}`);
         const img=document.createElement('img'); img.src=src.replace('/portfolio/','/portfolio/thumbs/'); img.onerror=()=>{img.onerror=null;img.src=src;}; img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`; img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`; img.loading='lazy'; img.decoding='async';
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
@@ -2458,6 +2497,7 @@
   .leonid-lightbox__figure figcaption { position:static; width:100%; padding-top:8px; }
   .leonid-lightbox__close { position:fixed; top:18px; right:22px; z-index:12; }
   .leonid-lightbox__nav { position:fixed; top:50%; z-index:11; transform:translateY(-50%); background:rgba(24,25,22,.38); backdrop-filter:blur(8px); }
+  .leonid-lightbox__nav { touch-action:manipulation; }
   .leonid-lightbox__prev { left:22px; }
   .leonid-lightbox__next { right:22px; }
   #categoryPhotoPreview .category-preview-prev { left:22px; right:auto; }
@@ -2495,14 +2535,14 @@
   .location-map-hint { position:absolute; right:18px; bottom:18px; padding:10px 13px; background:#fffefa; color:var(--text-primary); font-size:11px; box-shadow:0 5px 22px rgba(28,30,26,.12); }
   @media(max-width:600px) {
     .leonid-lightbox { padding:16px 8px; }
-    .leonid-lightbox__figure { width:calc(100vw - 104px); max-height:calc(100dvh - 120px); }
+    .leonid-lightbox__figure { width:calc(100vw - 104px - env(safe-area-inset-left) - env(safe-area-inset-right)); max-height:calc(100dvh - 120px); }
     .leonid-lightbox__figure img { max-height:calc(100dvh - 150px); }
-    .leonid-lightbox__nav { width:38px; height:38px; }
-    .leonid-lightbox__prev { left:8px; }
-    .leonid-lightbox__next { right:8px; }
-    #categoryPhotoPreview .category-preview-prev { left:8px; right:auto; }
-    #categoryPhotoPreview .category-preview-next { right:8px; left:auto; }
-    .leonid-lightbox__close { top:10px; right:10px; width:40px; height:40px; }
+    .leonid-lightbox__nav { width:44px; height:44px; }
+    .leonid-lightbox__prev { left:calc(8px + env(safe-area-inset-left)); }
+    .leonid-lightbox__next { right:calc(8px + env(safe-area-inset-right)); }
+    #categoryPhotoPreview .category-preview-prev { left:calc(8px + env(safe-area-inset-left)); right:auto; }
+    #categoryPhotoPreview .category-preview-next { right:calc(8px + env(safe-area-inset-right)); left:auto; }
+    .leonid-lightbox__close { top:10px; right:calc(10px + env(safe-area-inset-right)); width:44px; height:44px; }
     .stair-config-handoff { padding:14px; }
     .stair-config-handoff__copy { width:100%; }
     .site-footer { align-items:flex-start; flex-direction:column; gap:18px; padding:22px 20px; }
@@ -2536,8 +2576,9 @@
     }
     .cookie-banner {
       left: 12px !important;
-      right: auto !important;
-      width: min(300px, calc(100vw - 120px)) !important;
+      right: 12px !important;
+      width: auto !important;
+      bottom: calc(76px + env(safe-area-inset-bottom)) !important;
       transform: none !important;
     }
     .b24-widget-button-wrapper {
@@ -2578,7 +2619,6 @@
     .b24-widget-button-popup-description { font-size: 9px !important; line-height: 1.25 !important; overflow-wrap: anywhere !important; }
   }
   @media (max-width: 374px) {
-    .cookie-banner { width: calc(100vw - 24px) !important; }
     .b24-widget-button-popup,
     .bx-touch .b24-widget-button-position-bottom-right .b24-widget-button-popup,
     .b24-widget-button-wrapper.b24-widget-button-position-bottom-right .b24-widget-button-popup { width: min(158px, calc(100vw - 84px)) !important; max-width: min(158px, calc(100vw - 84px)) !important; right: 60px !important; }
