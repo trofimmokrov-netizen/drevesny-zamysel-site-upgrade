@@ -68,6 +68,7 @@
       frame = 0;
       const progress = Math.max(0, Math.min(1, -hero.getBoundingClientRect().top / Math.max(hero.offsetHeight, 1)));
       hero.style.setProperty("--hero-text-drift", `${Math.round(progress * 14)}px`);
+      hero.style.setProperty("--hero-image-drift", `${Math.round(progress * 12)}px`);
     };
     window.addEventListener("scroll", () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -87,6 +88,15 @@
   try {
     const ScrollTrigger = window.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
+    if (hero) {
+      gsap.to(hero, {
+        "--hero-image-drift": "7px",
+        duration: 7.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }
     if (heroItems.length) {
       gsap.from(heroItems, {
         autoAlpha: 0, y: 22, duration: 0.72, stagger: 0.1,
