@@ -36,7 +36,7 @@
   display: block;
   width: min(100%, 660px);
   height: min(66dvh, 540px);
-  object-fit: cover;
+  object-fit: contain;
   background: #e8e3da;
 }
 .wood-preview-dialog figcaption { color: #73736b; font: 12px/1.5 Manrope, Arial, sans-serif; text-align: center; }
