@@ -141,6 +141,67 @@
     width: 100%;
     max-width: 100%;
   }
+
+  /* Final mobile guardrails: keep the viewer and its action row inside the viewport. */
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .page {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .intro,
+  .builder,
+  .preview-column,
+  .viewer,
+  .controls {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .builder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro-copy {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .controls {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .controls .submit-link {
+    position: static;
+    width: 100%;
+    margin-top: 14px;
+    box-shadow: none;
+  }
+
+  .viewer-toolbar,
+  .viewer-actions {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .viewer-actions .icon-button {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 @media (max-width: 720px) {
   .mobile-motion-pending .topbar .brand,

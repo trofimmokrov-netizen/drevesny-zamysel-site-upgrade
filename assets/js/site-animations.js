@@ -30,7 +30,7 @@
   const motion = mobile
     // Use one calm, readable entrance on phones: the copy arrives in order,
     // while movement stays short enough that the page feels immediately usable.
-    ? { duration: 0.78, lift: 18, scale: 0.99, blur: 0, ease: "power3.out", heroStagger: 0.12, sectionStagger: 0.07, sectionStaggerMax: 0.21 }
+    ? { duration: 0.86, lift: 20, scale: 0.99, blur: 0, ease: "power3.out", heroStagger: 0.105, sectionStagger: 0.075, sectionStaggerMax: 0.22 }
     : { duration: 0.62, lift: 18, scale: 1, blur: 0, ease: "power2.out", heroStagger: 0.065, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
@@ -72,31 +72,31 @@
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: 0.48, stagger: 0.055, ease: "power3.out", clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: 0.52, stagger: 0.06, ease: "power3.out", force3D: true, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
       }
       intro.fromTo(heroItems,
         { autoAlpha: 0, y: motion.lift },
-        { autoAlpha: 1, y: 0, duration: motion.duration, stagger: motion.heroStagger, ease: motion.ease, clearProps: "opacity,visibility,transform" },
-        0.1
+        { autoAlpha: 1, y: 0, duration: motion.duration, stagger: motion.heroStagger, ease: motion.ease, force3D: true, clearProps: "opacity,visibility,transform" },
+        0.08
       );
       heroItems.forEach((element) => initialTargets.add(element));
       const tags = hero.querySelectorAll(".hero-tags .hero-tag");
       if (tags.length) {
         intro.fromTo(tags,
           { autoAlpha: 0, y: 7 },
-          { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.045, ease: "power2.out", clearProps: "opacity,visibility,transform" },
-          0.75
+          { autoAlpha: 1, y: 0, duration: 0.46, stagger: 0.05, ease: "power3.out", force3D: true, clearProps: "opacity,visibility,transform" },
+          0.68
         );
       }
       const actions = hero.querySelectorAll(".hero-cta-row > a");
       if (actions.length) {
         intro.fromTo(actions,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: 0.44, stagger: 0.07, ease: "power2.out", clearProps: "opacity,visibility,transform" },
-          1.02
+          { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.075, ease: "power3.out", force3D: true, clearProps: "opacity,visibility,transform" },
+          0.92
         );
       }
     } else {
@@ -107,8 +107,8 @@
       initialTargets.add(heroMedia);
       if (mobile && gsap && heroItems.length) {
         gsap.fromTo(heroMedia,
-          { autoAlpha: 0, y: 12, scale: 0.99 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.85, delay: 0.35, ease: "power3.out", clearProps: "opacity,visibility,transform" }
+          { autoAlpha: 0, y: 14, scale: 1.035 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 1.05, delay: 0.24, ease: "power3.out", force3D: true, clearProps: "opacity,visibility,transform" }
         );
       } else {
         reveal(heroMedia, homeHeroItems.length ? 0.14 : 0.12);
