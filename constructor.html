@@ -53,7 +53,7 @@
 <section class="space-estimate" aria-live="polite" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь проекции</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div></div><figure class="footprint-plan"><figcaption>Схема сверху · приблизительное место на полу</figcaption><svg id="footprintPlan" viewBox="0 0 240 140" role="img" aria-label="Схема занимаемого лестницей места сверху"><rect class="footprint-plan__floor" x="0" y="0" width="240" height="140" rx="2"></rect><g id="footprintPlanShape"></g></svg></figure><p>Ориентировочный расчёт по заданным размерам. Фактический проём и монтажные зазоры проверит инженер.</p></section>
 <p class="comfort-note" id="comfortNote">Визуализация помогает сравнить варианты и не заменяет инженерный проект и замер.</p>
 </div>
-<aside class="controls"><div class="controls-head"><div><p class="eyebrow">Настройки</p><h2>Ваша лестница</h2></div></div>
+<aside class="controls" id="stairSettings"><div class="controls-head"><div><p class="eyebrow">Настройки</p><h2>Ваша лестница</h2></div></div>
 <label class="field"><span>Форма лестницы</span><select id="shape"><option value="straight">Прямая</option><option value="l">Г-образная с площадкой</option><option value="u">П-образная с площадкой</option></select></label>
 <label class="field"><span>Тип металлокаркаса</span><select id="frame"><option value="open-double">Открытый · два боковых косоура</option><option value="mono">Открытый · центральный косоур</option><option value="closed">Закрытый каркас</option></select></label>
 <label class="field"><span>Подступенники</span><select id="risers"><option value="none">Без подступенников</option><option value="white">Белые</option><option value="gray">Серые</option><option value="stone">Камень · светлый</option><option value="marble">Мрамор · белый</option></select></label>
@@ -75,6 +75,10 @@
 </aside></section>
 <section class="howto"><p class="eyebrow">Управление</p><p><strong>Мышь:</strong> вращение левой кнопкой, приближение колёсиком. <strong>Телефон:</strong> горизонтальный жест вращает модель, кнопки «+» и «−» меняют масштаб. Вертикальный жест прокручивает страницу. Сравните древесину, каркас, подступенники и боковые опоры. Параметры предварительные — геометрию проверит инженер.</p></section>
 </main>
+<nav class="mobile-config-nav" aria-label="Быстрый переход по конструктору">
+<a href="#canvasWrap" aria-label="Перейти к 3D-модели">3D-модель</a>
+<a href="#stairSettings" aria-label="Перейти к настройкам лестницы">Настройки</a>
+</nav>
 <footer><a href="./index.html">Древесный Замысел</a><span>Лестницы на металлическом каркасе · Москва и Московская область</span></footer>
 
 <script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/site-animations.js"></script></body></html>

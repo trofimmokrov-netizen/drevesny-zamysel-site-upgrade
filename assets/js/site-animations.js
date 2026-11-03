@@ -10,25 +10,40 @@
     ".hero-content .hero-label, .hero-content .hero-title, .hero-content .hero-sub, .hero-content .hero-tags, .hero-content .hero-cta-row, .hero-content .hero-stats"
   );
   const revealSelector = [
-    ".section-label", ".section-title", ".section-sub", ".product-card", ".why-item",
-    ".process-card", ".material-card", ".article-card", ".review-card", ".reviews-card",
+    ".section-label", ".section-title", ".section-sub", ".product-card", ".why-item", ".why-times li",
+    ".step", ".process-right", ".process-card", ".material-card", ".materials-advice", ".article-card", ".review-card", ".reviews-card",
     ".form-section", ".builder-entry", ".intro", ".viewer", ".controls", ".howto"
   ].join(",");
+  const gsap = window.gsap;
 
   function reveal(element, delay) {
+    if (gsap) {
+      gsap.fromTo(element,
+        { autoAlpha: 0, y: 18 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: mobile ? 0.48 : 0.62,
+          delay: delay || 0,
+          ease: "power2.out",
+          clearProps: "opacity,visibility,transform"
+        }
+      );
+      return;
+    }
     if (!element.animate) return;
     const animation = element.animate(
       [
         { opacity: 0, transform: "translate3d(0, 18px, 0)" },
         { opacity: 1, transform: "translate3d(0, 0, 0)" }
       ],
-      { duration: mobile ? 480 : 620, delay: delay || 0, easing: "cubic-bezier(.2,.7,.2,1)", fill: "both" }
+      { duration: mobile ? 480 : 620, delay: (delay || 0) * 1000, easing: "cubic-bezier(.2,.7,.2,1)", fill: "both" }
     );
     animation.onfinish = () => animation.cancel();
   }
 
-  function nativeMotion() {
-    heroItems.forEach((element, index) => reveal(element, index * 65));
+  function viewportMotion() {
+    heroItems.forEach((element, index) => reveal(element, index * 0.065));
     const targets = document.querySelectorAll(revealSelector);
     if (!("IntersectionObserver" in window)) {
       targets.forEach((element) => reveal(element));
@@ -60,16 +75,16 @@
     update();
   }
 
-  // Native, viewport-aware reveals are more reliable than ScrollTrigger on
-  // mobile browsers whose address bar changes the visual viewport on scroll.
-  if (mobile || !window.gsap || !window.ScrollTrigger) {
-    nativeMotion();
+  // Keep viewport detection in IntersectionObserver on phones, where the
+  // address bar can change the visual viewport during scroll. GSAP still
+  // handles the motion itself when it is available.
+  if (mobile || !gsap || !window.ScrollTrigger) {
+    viewportMotion();
     mobileHeroDrift();
     return;
   }
 
   try {
-    const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
     if (heroItems.length) {
@@ -88,6 +103,6 @@
     window.addEventListener("load", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { once: true });
     window.addEventListener("orientationchange", () => setTimeout(() => ScrollTrigger.refresh(), 180), { passive: true });
   } catch (error) {
-    nativeMotion();
+    viewportMotion();
   }
 })();

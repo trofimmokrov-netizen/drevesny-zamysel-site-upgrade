@@ -1,5 +1,68 @@
 /* Keep the constructor controls readable and the model fully framed on phones. */
+.mobile-config-nav {
+  display: none;
+}
+
 @media (max-width: 720px) {
+  html {
+    scroll-padding-top: 76px;
+    scroll-padding-bottom: 96px;
+  }
+
+  body {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  #canvasWrap,
+  #stairSettings {
+    scroll-margin-top: 76px;
+  }
+
+  .mobile-config-nav {
+    position: fixed;
+    z-index: 20;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: min(440px, calc(100% - 24px));
+    margin-inline: auto;
+    padding: 6px;
+    border: 1px solid rgba(222, 217, 206, .94);
+    background: rgba(248, 247, 244, .96);
+    box-shadow: 0 8px 28px rgba(41, 42, 38, .16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-config-nav a {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 12px;
+    border: 1px solid #ded9ce;
+    color: #334538;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-config-nav a:last-child {
+    border-color: #334538;
+    background: #334538;
+    color: #fff;
+  }
+
+  .mobile-config-nav a:focus-visible {
+    outline: 2px solid #92734c;
+    outline-offset: 2px;
+  }
+
   .page {
     width: calc(100% - 28px);
     margin-inline: auto;
