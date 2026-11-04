@@ -2543,6 +2543,50 @@
   }
   @media(prefers-reduced-motion:reduce) { .skip-link { transition:none; } }
 </style>
+<style id="mobile-content-centering">
+  @media (max-width: 767px) {
+    /* Center the mobile editorial sections while keeping their desktop layout intact. */
+    #why > .section-label,
+    #why > .section-title,
+    #why > .section-sub,
+    .articles-inner > .section-label,
+    .articles-inner > .section-title,
+    .articles-inner > .section-sub { margin-left:auto; margin-right:auto; text-align:center; }
+
+    #why .why-item { align-items:center; text-align:center; }
+    #why .why-num { width:auto; min-width:2ch; margin-left:auto; margin-right:auto; text-align:center; }
+    #why .why-item h3,
+    #why .why-item p,
+    #why .why-times { width:100%; margin-left:auto; margin-right:auto; text-align:center; }
+    #why .why-times li { justify-content:center; text-align:center; }
+
+    #why .why-extra { align-items:stretch; text-align:center; }
+    #why .why-extra-content { align-items:center; padding:32px 22px; }
+    #why .why-extra-label { text-align:center; }
+    #why .why-extra-title { max-width:28ch; margin:0 auto 22px; text-align:center; }
+    #why .why-extra-address { justify-content:center; width:100%; max-width:360px; box-sizing:border-box; text-align:center; }
+    #why .why-extra-route { justify-content:center; width:100%; margin-top:18px; text-align:center; }
+    #why .why-extra-image { width:100%; min-width:0; height:260px; }
+
+    .article-card { align-items:center; text-align:center; }
+    .article-card h3,
+    .article-lead { width:100%; max-width:36ch; margin-left:auto; margin-right:auto; text-align:center; }
+    .article-kicker { text-align:center; }
+    .article-read-link { justify-content:center; align-self:center; }
+
+    .location-map-copy { align-items:center; text-align:center; }
+    .location-map-copy .section-label,
+    .location-map-copy h2,
+    .location-map-address,
+    .location-map-note,
+    .location-org-link { text-align:center; }
+    .location-map-note { margin-left:auto; margin-right:auto; }
+    .location-route-link { align-self:stretch; }
+
+    .site-footer { align-items:center; text-align:center; }
+    .footer-contact { align-items:center; text-align:center; }
+  }
+</style>
 <style id="mobile-bitrix-refinements">
   /* Keep Bitrix24's greeting from covering the first screen on phones. */
   @media (max-width: 720px) {
