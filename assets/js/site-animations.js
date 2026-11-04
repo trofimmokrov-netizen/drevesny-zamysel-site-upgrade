@@ -15,6 +15,12 @@
     || (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4)
   );
   if (lowPowerDevice) document.documentElement.classList.add("motion-lite");
+  if (mobile && !document.getElementById("site-image-reveal-style")) {
+    const imageRevealStyle = document.createElement("style");
+    imageRevealStyle.id = "site-image-reveal-style";
+    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity .68s cubic-bezier(.16,1,.3,1)}";
+    document.head.appendChild(imageRevealStyle);
+  }
   const hero = document.querySelector(".hero");
   if (hero && "IntersectionObserver" in window) {
     const heroMotionObserver = new IntersectionObserver(([entry]) => {
@@ -80,7 +86,7 @@
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 0.92 : 1.38, lift: lowPowerDevice ? 10 : 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.12 : 0.2, sectionStagger: lowPowerDevice ? 0.04 : 0.075, sectionStaggerMax: lowPowerDevice ? 0.09 : 0.24 }
+    ? { duration: lowPowerDevice ? 1.08 : 1.3, lift: lowPowerDevice ? 10 : 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.12 : 0.2, sectionStagger: lowPowerDevice ? 0.06 : 0.1, sectionStaggerMax: lowPowerDevice ? 0.12 : 0.3 }
     : { duration: 1.18, lift: 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.18, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
@@ -133,7 +139,61 @@
     [".why-item", "h3, p"],
     [".process-card", "h3, p, ul"]
   ];
-  function revealSceneItem(element, delay) {
+  function waitForImage(image) {
+    const decode = () => typeof image.decode === "function"
+      ? Promise.resolve().then(() => image.decode()).catch(() => undefined)
+      : Promise.resolve();
+    if (image.complete) return decode();
+    image.classList.add("motion-image-pending");
+    return new Promise((resolve) => {
+      let timeout;
+      let settled = false;
+      const cleanup = () => {
+        window.clearTimeout(timeout);
+        image.removeEventListener("load", onLoad);
+        image.removeEventListener("error", onError);
+      };
+      const onLoad = () => {
+        cleanup();
+        decode().then(() => {
+          window.requestAnimationFrame(() => {
+            image.classList.remove("motion-image-pending");
+            image.classList.add("motion-image-ready");
+            if (!settled) {
+              settled = true;
+              resolve();
+            }
+          });
+        });
+      };
+      const onError = () => {
+        cleanup();
+        image.classList.remove("motion-image-pending");
+        if (!settled) {
+          settled = true;
+          resolve();
+        }
+      };
+      image.addEventListener("load", onLoad, { once: true });
+      image.addEventListener("error", onError, { once: true });
+      // Keep a broken or very slow image from holding the rest of the page.
+      timeout = window.setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        resolve();
+      }, 2400);
+    });
+  }
+
+  async function revealSceneItem(element, delay) {
+    // On phones, lazy images can finish decoding after the card's fade has
+    // completed. That makes the photo look like it flashes on top of the
+    // animation. Let visible card images decode first, then reveal the whole
+    // card as one smooth unit. Other text-only sections do not wait.
+    if (mobile) {
+      const images = Array.from(element.querySelectorAll("img"));
+      if (images.length) await Promise.all(images.map(waitForImage));
+    }
     reveal(element, delay);
     const group = copyLayers.find(([selector]) => element.matches(selector));
     if (!group) return;
