@@ -1,23 +1,11 @@
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  body,
-  body a,
-  body button,
-  body [role='button'],
-  body summary,
-  body label,
-  body select { cursor: none; }
-
-  body input,
-  body textarea,
-  body [contenteditable='true'] { cursor: text; }
-
   .stair-cursor {
     position: fixed;
-    z-index: 2147483000;
+    z-index: 1000;
     top: 0;
     left: 0;
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
     pointer-events: none;
     opacity: 0;
     will-change: transform, opacity;
@@ -28,8 +16,8 @@
 
   .stair-cursor__orb {
     display: grid;
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
     place-items: center;
     border: 1px solid rgba(146, 115, 76, .62);
     border-radius: 50%;
@@ -37,13 +25,13 @@
     box-shadow: 0 5px 18px rgba(37, 39, 34, .12), inset 0 0 0 4px rgba(255, 255, 255, .38);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    transform: scale(.76);
+    transform: scale(.78);
     transition: transform .32s cubic-bezier(.2,.8,.2,1), background .28s ease, border-color .28s ease, box-shadow .28s ease;
   }
 
   .stair-cursor__icon {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     overflow: visible;
     fill: none;
     stroke: #344638;

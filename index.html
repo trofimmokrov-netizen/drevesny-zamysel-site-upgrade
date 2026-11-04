@@ -1201,7 +1201,7 @@
       .nav-logo-img { height: 42px; }
       .nav-logo-text { font-size: 13px; }
       .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 82px 20px 40px; background-position: left top, 61% center; }
-      .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; transform: translate3d(0, var(--hero-text-drift, 0px), 0); will-change: transform; }
+      .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; transform: none; will-change: auto; }
       .hero-label { max-width: 100%; margin-bottom: 12px; font-size: 10px; letter-spacing: .12em; white-space: normal; overflow-wrap: anywhere; }
       .hero-title { margin-bottom: 16px; }
       .hero-title { font-size: clamp(40px, 11vw, 54px); margin-bottom: 12px; }
@@ -1213,12 +1213,11 @@
       .hero-cta-row { align-items: stretch; flex-direction: column; gap: 8px; max-width: 340px; }
       .hero-cta-row a { justify-content: center; }
       .hero-cta-row .hero-builder-link { justify-content:flex-start; align-self:flex-start; }
-      .hero-note { max-width:340px; margin-top:12px; }
       .products-inner, #why, #materials, #process { width: calc(100% - 40px); }
       .section-title, #why h2, #materials h2, #process h2 { font-size: 36px; }
       .form-section { width: calc(100% - 40px); }
       .mobile-menu { padding: 92px 24px 32px; }
-      .mobile-nav-links a { min-height: 52px; }
+      .mobile-nav-links a { min-height: 52px; justify-content:center; text-align:center; }
       .cookie-banner { left: 50%; right: auto; bottom: calc(12px + env(safe-area-inset-bottom)); width: min(440px, calc(100vw - 24px)); transform: translateX(-50%); }
       footer { gap: 24px; }
       .footer-links { gap: 10px 18px; }
@@ -1570,7 +1569,6 @@
         <a href="#products" class="btn-outline">Посмотреть проекты <span aria-hidden="true">→</span></a>
         <a href="./constructor.html" class="hero-builder-link">Собрать лестницу в 3D <span aria-hidden="true">↗</span></a>
       </div>
-      <p class="hero-note"><span class="hero-note__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19h5v-5h5V9h6M4 19V7m5 12v-5m5 0V9m5 0V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="hero-note__copy"><strong>Нет готового проекта?</strong><span>Расскажите о задаче — подскажем, с чего начать.</span></span></p>
     </div>
   </section>
 
@@ -2750,14 +2748,31 @@
     50% { box-shadow:0 10px 28px rgba(52,70,56,.12), 0 0 0 6px rgba(146,115,76,.075); }
   }
   @media(max-width:600px) {
+    .hero { align-items:center; }
     .hero-content { display:flex; flex-direction:column; align-items:center; margin-inline:auto; text-align:center; }
     .hero-label { width:100%; text-align:center; }
     .hero-title { width:100%; max-width:100%; margin-inline:auto; text-align:center; text-wrap:balance; }
     .hero-sub-1,
     .hero-sub-2 { margin-inline:auto; text-align:center; }
     .hero-tags { justify-items:stretch; }
-    .hero-note { justify-content:center; text-align:center; }
-    .hero-note__copy { justify-items:center; text-align:center; }
+    .section-label,
+    .section-title,
+    .section-sub,
+    .section-heading,
+    .form-left,
+    .builder-entry,
+    .end-cta { text-align:center; }
+    .section-title,
+    .section-sub,
+    .form-left,
+    .builder-entry,
+    .end-cta { margin-inline:auto; }
+    .section-sub { max-width:38rem; }
+    .form-left { display:flex; flex-direction:column; align-items:center; }
+    .form-left > * { max-width:100%; }
+    .builder-entry { justify-items:center; }
+    .end-cta .btn,
+    .end-cta a { margin-inline:auto; }
     .hero::before {
       background:
         radial-gradient(ellipse at 50% 42%, rgba(255,253,248,.78) 0%, rgba(255,253,248,.28) 60%, rgba(255,253,248,0) 100%),
@@ -2781,9 +2796,21 @@
     }
     .hero-cta-row .btn-outline { padding:12px 16px; border:1px solid var(--border); border-radius:999px; }
     .hero-cta-row .hero-builder-link { grid-column:1; margin:2px 0 0; }
-    .hero-note { width:min(100%,380px); margin-top:16px; padding:11px 14px; text-align:left; }
-    .hero-note__copy strong { font-size:16px; }
-    .hero-note__copy > span { font-size:11px; }
+    .hero-cta-row .hero-builder-link { justify-self:stretch; align-self:stretch; }
+    .product-body,
+    .why-item,
+    .process-card,
+    .material-card,
+    .review-card,
+    .reviews-card,
+    .price-card { text-align:center; }
+    .product-body > *,
+    .why-item > *,
+    .process-card > *,
+    .material-card > *,
+    .review-card > *,
+    .reviews-card > *,
+    .price-card > * { margin-inline:auto; }
   }
   @media(prefers-reduced-motion:reduce) {
     .hero-cta-row .hero-builder-link { animation:none; transition:none; }

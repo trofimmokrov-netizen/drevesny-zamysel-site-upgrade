@@ -31,7 +31,7 @@
   const motion = mobile
     // Use one calm, readable entrance on phones: the copy arrives in order,
     // while movement stays short enough that the page feels immediately usable.
-    ? { duration: 0.86, lift: 20, scale: 0.99, blur: 0, ease: "power3.out", heroStagger: 0.105, sectionStagger: 0.075, sectionStaggerMax: 0.22 }
+    ? { duration: 0.68, lift: 14, scale: 0.995, blur: 0, ease: "power3.out", heroStagger: 0.075, sectionStagger: 0.035, sectionStaggerMax: 0.105 }
     : { duration: 0.62, lift: 18, scale: 1, blur: 0, ease: "power2.out", heroStagger: 0.065, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
@@ -139,25 +139,8 @@
         reveal(entry.target, mobile ? Math.min(index * motion.sectionStagger, motion.sectionStaggerMax) : 0);
         activeObserver.unobserve(entry.target);
       });
-    }, { threshold: 0.08, rootMargin: "0px 0px -5% 0px" });
+    }, { threshold: mobile ? 0.04 : 0.08, rootMargin: mobile ? "0px 0px -2% 0px" : "0px 0px -5% 0px" });
     targets.forEach((element) => { if (!initialTargets.has(element)) observer.observe(element); });
-  }
-
-  // A restrained scroll-linked drift gives the first screen a little depth on
-  // touch devices without running a continuous animation or affecting layout.
-  function mobileHeroDrift() {
-    if (!mobile || !hero) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const progress = Math.max(0, Math.min(1, -hero.getBoundingClientRect().top / Math.max(hero.offsetHeight, 1)));
-      hero.style.setProperty("--hero-text-drift", `${Math.round(progress * 14)}px`);
-      hero.style.setProperty("--hero-image-drift", `${Math.round(progress * 12)}px`);
-    };
-    window.addEventListener("scroll", () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    }, { passive: true });
-    update();
   }
 
   // Keep viewport detection in IntersectionObserver on phones, where the
@@ -165,18 +148,6 @@
   // handles the motion itself when it is available.
   if (mobile || !gsap || !window.ScrollTrigger) {
     viewportMotion();
-    mobileHeroDrift();
-    if (mobile && gsap && hero) {
-      // Give the stair photograph the slow camera-like float seen on the
-      // reference site, while keeping the copy and controls steady on phones.
-      gsap.to(hero, {
-        "--hero-image-float": "8px",
-        duration: 9,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
-    }
     return;
   }
 

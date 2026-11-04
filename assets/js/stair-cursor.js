@@ -11,7 +11,9 @@
   cursor.innerHTML = '<span class="stair-cursor__orb"><svg class="stair-cursor__icon" viewBox="0 0 24 24"><path d="M4 19h5v-5h5V9h6"/><path d="M4 19V7m5 12v-5m5 0V9m5 0V5"/></svg></span>';
   document.body.append(cursor);
 
-  const offset = 21;
+  // Keep the native pointer visible; this marker is decorative and may sit
+  // underneath native dialogs and gallery lightboxes.
+  const offset = 34;
   let frame = 0;
   let x = -100;
   let y = -100;
