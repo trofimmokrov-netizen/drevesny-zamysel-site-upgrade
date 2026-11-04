@@ -165,15 +165,15 @@
     }
     if (heroItems.length) {
       gsap.from(heroItems, {
-        autoAlpha: 0, y: 22, duration: 0.72, stagger: 0.1,
-        ease: "power2.out", clearProps: "transform"
+        autoAlpha: 0, y: 18, duration: 0.92, delay: 0.16, stagger: 0.12,
+        ease: "power3.out", clearProps: "transform"
       });
     }
     gsap.utils.toArray(revealSelector).forEach((element) => {
       gsap.from(element, {
-        autoAlpha: 0, y: 24, duration: 0.65, ease: "power2.out",
+        autoAlpha: 0, y: 18, duration: 0.82, ease: "power3.out",
         clearProps: "transform",
-        scrollTrigger: { trigger: element, start: "top 88%", once: true }
+        scrollTrigger: { trigger: element, start: "top 90%", once: true, invalidateOnRefresh: true }
       });
     });
     window.addEventListener("load", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { once: true });

@@ -523,6 +523,23 @@
           height: 24px;
       }
 
+      .why-extra-route {
+          display: inline-flex;
+          align-items: center;
+          gap: 9px;
+          width: fit-content;
+          margin-top: 18px;
+          color: var(--white);
+          font-size: 12px;
+          font-weight: 600;
+          text-decoration: underline;
+          text-decoration-color: rgba(255,255,255,.38);
+          text-underline-offset: 5px;
+          transition: color .2s ease, text-decoration-color .2s ease;
+      }
+      .why-extra-route:hover { color: var(--accent-light); text-decoration-color: currentColor; }
+      .why-extra-route:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 5px; }
+
       .why-extra-image {
           width: 55%;
           min-width: 350px;
@@ -1297,6 +1314,10 @@
 
 <style id="articles-and-leonid-gallery">
   .articles-section { background:var(--off-white); }
+  .articles-inner > .section-label,
+  .articles-inner > .section-title,
+  .articles-inner > .section-sub { margin-inline:auto; text-align:center; }
+  .articles-inner > .section-title { max-width:100%; }
   .articles-inner,.leonid-inner { width:min(var(--page-width,1280px),calc(100% - 48px)); margin:0 auto; }
   .articles-inner > .section-sub { margin-top:18px; }
   .articles-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:38px; }
@@ -1771,6 +1792,7 @@
           </svg>
           г. Москва, НАО, р-н Коммунарка,<br>дер. Губкино, 78 соор 5
         </address>
+        <a class="why-extra-route" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer">Построить маршрут в Яндекс Картах <span aria-hidden="true">↗</span></a>
       </div>
       <div class="why-extra-image">
         <img src="./assets/images/factory2.webp?v=20260828" alt="Цех компании Древесный Замысел — производство лестниц и мебели" title="Собственное производство лестниц и мебели — Древесный Замысел" loading="lazy" decoding="async">
@@ -2814,6 +2836,23 @@
   }
   @media(prefers-reduced-motion:reduce) {
     .hero-cta-row .hero-builder-link { animation:none; transition:none; }
+  }
+</style>
+<style id="desktop-microinteractions">
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+    .product-body .btn-card:first-of-type {
+      transform:translateZ(0);
+      box-shadow:0 3px 10px rgba(39,57,44,.08);
+      transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s cubic-bezier(.2,.8,.2,1),background-color .22s ease,border-color .22s ease;
+    }
+    .product-body .btn-card:first-of-type:hover {
+      transform:translateY(-2px) scale(1.018);
+      box-shadow:0 10px 24px rgba(39,57,44,.18);
+    }
+    .product-body .btn-card:first-of-type:focus-visible {
+      outline:3px solid var(--accent-light);
+      outline-offset:3px;
+    }
   }
 </style>
 <script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/site-animations.js"></script></body>
