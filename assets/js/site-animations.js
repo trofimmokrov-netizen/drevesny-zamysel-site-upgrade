@@ -18,7 +18,7 @@
   if (mobile && !document.getElementById("site-image-reveal-style")) {
     const imageRevealStyle = document.createElement("style");
     imageRevealStyle.id = "site-image-reveal-style";
-    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity .68s cubic-bezier(.16,1,.3,1)}";
+    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity 1.45s cubic-bezier(.4,0,.2,1)}";
     document.head.appendChild(imageRevealStyle);
   }
   const hero = document.querySelector(".hero");
@@ -86,8 +86,8 @@
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 1.4 : 1.72, lift: lowPowerDevice ? 16 : 26, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.16 : 0.24, sectionStagger: lowPowerDevice ? 0.1 : 0.17, sectionStaggerMax: lowPowerDevice ? 0.28 : 0.52 }
-    : { duration: 1.32, lift: 22, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.2, sectionStagger: 0, sectionStaggerMax: 0 };
+    ? { duration: lowPowerDevice ? 1.75 : 1.95, lift: lowPowerDevice ? 16 : 26, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: lowPowerDevice ? 0.22 : 0.3, sectionStagger: lowPowerDevice ? 0.16 : 0.22, sectionStaggerMax: lowPowerDevice ? 0.48 : 0.68 }
+    : { duration: 1.68, lift: 22, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: 0.26, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
     if (gsap) {
@@ -125,7 +125,7 @@
     const animation = element.animate([from, to], {
       duration: motion.duration * 1000,
       delay: (delay || 0) * 1000,
-      easing: mobile ? "cubic-bezier(.16,1,.3,1)" : "cubic-bezier(.2,.7,.2,1)",
+      easing: "cubic-bezier(.4,0,.2,1)",
       fill: "both"
     });
     animation.onfinish = () => animation.cancel();
@@ -186,7 +186,7 @@
     });
   }
 
-  async function revealSceneItem(element, delay) {
+  async function revealSceneItem(element, delay, scrollLinked) {
     // On phones, lazy images can finish decoding after the card's fade has
     // completed. That makes the photo look like it flashes on top of the
     // animation. Let visible card images decode first, then reveal the whole
@@ -195,11 +195,40 @@
       const images = Array.from(element.querySelectorAll("img"));
       if (images.length) await Promise.all(images.map(waitForImage));
     }
-    reveal(element, delay);
     const group = copyLayers.find(([selector]) => element.matches(selector));
+    if (scrollLinked && gsap && window.ScrollTrigger) {
+      // On desktop, let the visitor's wheel or trackpad control the reveal.
+      // ScrollTrigger's scrub smoothing removes the abrupt start/stop of a
+      // time-only entrance when the page is moved in small increments.
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: element,
+          start: "top 90%",
+          end: "top 50%",
+          scrub: 1.25,
+          invalidateOnRefresh: true
+        }
+      });
+      timeline.fromTo(element,
+        { autoAlpha: 0, y: motion.lift },
+        { autoAlpha: 1, y: 0, duration: 1, ease: "none" },
+        0
+      );
+      if (group) {
+        element.querySelectorAll(group[1]).forEach((child, index) => {
+          timeline.fromTo(child,
+            { autoAlpha: 0, y: 8 },
+            { autoAlpha: 1, y: 0, duration: 0.62, ease: "none" },
+            0.16 + index * 0.12
+          );
+        });
+      }
+      return;
+    }
+    reveal(element, delay);
     if (!group) return;
     element.querySelectorAll(group[1]).forEach((child, index) => {
-      reveal(child, (delay || 0) + 0.12 + index * (lowPowerDevice ? 0.055 : 0.085));
+      reveal(child, (delay || 0) + 0.18 + index * (lowPowerDevice ? 0.09 : 0.12));
     });
   }
 
@@ -213,7 +242,7 @@
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 7 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.78 : 0.98, stagger: lowPowerDevice ? 0.07 : 0.1, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.12 : 1.32, stagger: lowPowerDevice ? 0.1 : 0.14, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
@@ -228,16 +257,16 @@
       if (tags.length) {
         intro.fromTo(tags,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.78 : 0.98, stagger: lowPowerDevice ? 0.06 : 0.09, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
-          0.92
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.05 : 1.28, stagger: lowPowerDevice ? 0.09 : 0.13, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          1.48
         );
       }
       const actions = hero.querySelectorAll(".hero-cta-row > a");
       if (actions.length) {
         intro.fromTo(actions,
           { autoAlpha: 0, y: 9 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.82 : 1.02, stagger: lowPowerDevice ? 0.07 : 0.1, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
-          1.24
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.12 : 1.36, stagger: lowPowerDevice ? 0.1 : 0.14, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          2.12
         );
       }
     } else {
@@ -253,7 +282,7 @@
       if (mobile && gsap && heroItems.length) {
         gsap.fromTo(heroMedia,
           { autoAlpha: 0, y: 14, scale: 1.035 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: lowPowerDevice ? 0.7 : 0.95, delay: 0.24, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" }
+          { autoAlpha: 1, y: 0, scale: 1, duration: lowPowerDevice ? 1.05 : 1.28, delay: 0.36, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" }
         );
       } else {
         reveal(heroMedia, homeHeroItems.length ? 0.14 : 0.12);
@@ -342,17 +371,17 @@
       // headline arrive first, supporting copy follows, then service tags and
       // calls to action. A small longer pause makes the first impression feel
       // deliberate without holding the visitor up.
-      const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const intro = gsap.timeline({ defaults: { ease: "power2.inOut" } });
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: 0.78, stagger: 0.07, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.1, clearProps: "opacity,visibility,transform" },
           0
         );
       }
       intro.fromTo(heroItems,
         { autoAlpha: 0, y: 26 },
-        { autoAlpha: 1, y: 0, duration: 1.28, stagger: 0.2, clearProps: "opacity,visibility,transform" },
+        { autoAlpha: 1, y: 0, duration: 1.85, stagger: 0.28, clearProps: "opacity,visibility,transform" },
         0.24
       );
       if (hero) {
@@ -361,27 +390,22 @@
         if (tags.length) {
           intro.fromTo(tags,
             { autoAlpha: 0, y: 12 },
-            { autoAlpha: 1, y: 0, duration: 0.72, stagger: 0.075, clearProps: "opacity,visibility,transform" },
-            1.12
+            { autoAlpha: 1, y: 0, duration: 1.08, stagger: 0.1, clearProps: "opacity,visibility,transform" },
+            1.75
           );
         }
         if (actions.length) {
           intro.fromTo(actions,
             { autoAlpha: 0, y: 14 },
-            { autoAlpha: 1, y: 0, duration: 0.86, stagger: 0.11, clearProps: "opacity,visibility,transform" },
-            1.48
+            { autoAlpha: 1, y: 0, duration: 1.22, stagger: 0.14, clearProps: "opacity,visibility,transform" },
+            2.42
           );
         }
       }
     }
-    ScrollTrigger.batch(gsap.utils.toArray(revealSelector), {
-      start: "top 90%",
-      once: true,
-      invalidateOnRefresh: true,
-      batchMax: 7,
-      onEnter: (batch) => batch.forEach((element, index) => {
-        revealSceneItem(element, index * 0.07);
-      })
+    const introElements = new Set(heroItems);
+    document.querySelectorAll(revealSelector).forEach((element) => {
+      if (!introElements.has(element)) revealSceneItem(element, 0, true);
     });
     window.addEventListener("load", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { once: true });
     window.addEventListener("orientationchange", () => setTimeout(() => ScrollTrigger.refresh(), 180), { passive: true });
