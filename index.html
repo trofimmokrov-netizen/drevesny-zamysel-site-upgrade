@@ -84,6 +84,7 @@
   </script>
 
   <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="./assets/css/typography.css">
   <link rel="preload" href="./assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high" />
@@ -2416,7 +2417,18 @@
       images.forEach((src,index) => {
         const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item';
         item.setAttribute('aria-label',`Открыть фото: ${categoryImageDescriptions[key]}, проект ${index+1}`);
-        const img=document.createElement('img'); img.src=src.replace('/portfolio/','/portfolio/thumbs/'); img.onerror=()=>{img.onerror=null;img.src=src;}; img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`; img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`; img.loading='lazy'; img.decoding='async';
+        const img=document.createElement('img');
+        img.className='gallery-image-loading';
+        img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`;
+        img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`;
+        img.loading='lazy'; img.decoding='async';
+        const revealGalleryImage=()=>{
+          const ready=()=>window.requestAnimationFrame(()=>img.classList.add('gallery-image-ready'));
+          if(typeof img.decode==='function') img.decode().then(ready).catch(ready); else ready();
+        };
+        img.addEventListener('load',revealGalleryImage,{once:true});
+        img.onerror=()=>{img.onerror=null;img.src=src;};
+        img.src=src.replace('/portfolio/','/portfolio/thumbs/');
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
       });
