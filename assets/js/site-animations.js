@@ -2,10 +2,7 @@
   "use strict";
 
   const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion) {
-    document.documentElement.classList.remove("mobile-motion-pending");
-    return;
-  }
+  if (reduceMotion) return;
 
   const mobile = window.matchMedia("(max-width: 720px), (pointer: coarse)").matches;
   const hero = document.querySelector(".hero");
@@ -123,9 +120,6 @@
           reveal(element, 0.1 + index * 0.1);
         });
     }
-    // The tiny head bootstrap prevents a flash of unanimated content on reload.
-    // Remove it as soon as entrance animations have been scheduled.
-    document.documentElement.classList.remove("mobile-motion-pending");
     const targets = document.querySelectorAll(revealSelector);
     if (!("IntersectionObserver" in window)) {
       targets.forEach((element) => { if (!initialTargets.has(element)) reveal(element); });

@@ -203,9 +203,3 @@
     overflow-wrap: anywhere;
   }
 }
-@media (max-width: 720px) {
-  .mobile-motion-pending .topbar .brand,
-  .mobile-motion-pending .intro,
-  .mobile-motion-pending .viewer,
-  .mobile-motion-pending .mobile-config-nav { opacity: 0; }
-}

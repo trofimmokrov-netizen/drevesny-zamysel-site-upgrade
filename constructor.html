@@ -1,15 +1,6 @@
 <!doctype html>
 <html lang="ru"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script>
-  try {
-    if (matchMedia("(max-width: 720px), (pointer: coarse)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.documentElement.classList.add("mobile-motion-pending");
-      // Keep the first editor view aligned with the site's mobile entrance timing.
-      setTimeout(() => document.documentElement.classList.remove("mobile-motion-pending"), 2200);
-    }
-  } catch (_) {}
-</script>
 <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
