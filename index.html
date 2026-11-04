@@ -1570,7 +1570,7 @@
         <a href="#products" class="btn-outline">Посмотреть проекты <span aria-hidden="true">→</span></a>
         <a href="./constructor.html" class="hero-builder-link">Собрать лестницу в 3D <span aria-hidden="true">↗</span></a>
       </div>
-      <p class="hero-note">Нет готового проекта? Расскажите о задаче — подскажем, с чего начать.</p>
+      <p class="hero-note"><span class="hero-note__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19h5v-5h5V9h6M4 19V7m5 12v-5m5 0V9m5 0V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="hero-note__copy"><strong>Нет готового проекта?</strong><span>Расскажите о задаче — подскажем, с чего начать.</span></span></p>
     </div>
   </section>
 
@@ -2690,6 +2690,26 @@
   }
 </style>
 <style id="premium-hero-actions">
+  .hero-note {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:min(100%, 540px);
+    max-width:540px;
+    margin:20px auto 0;
+    padding:12px 18px;
+    border:1px solid rgba(146,115,76,.2);
+    background:rgba(255,253,248,.72);
+    color:var(--text-secondary);
+    text-align:left;
+    box-shadow:0 8px 24px rgba(52,70,56,.045);
+  }
+  .hero-note__icon { display:grid; flex:0 0 34px; width:34px; height:34px; place-items:center; border:1px solid rgba(146,115,76,.28); border-radius:50%; color:var(--accent); }
+  .hero-note__icon svg { width:18px; height:18px; }
+  .hero-note__copy { display:grid; gap:2px; }
+  .hero-note__copy strong { color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:17px; font-weight:500; line-height:1.15; }
+  .hero-note__copy > span { color:var(--text-muted); font-size:11px; line-height:1.45; }
   .hero-cta-row {
     width:min(100%, 540px);
     display:grid;
@@ -2748,6 +2768,9 @@
     }
     .hero-cta-row .btn-outline { padding:12px 16px; border:1px solid var(--border); border-radius:999px; }
     .hero-cta-row .hero-builder-link { grid-column:1; margin:2px 0 0; }
+    .hero-note { width:min(100%,380px); margin-top:16px; padding:11px 14px; text-align:left; }
+    .hero-note__copy strong { font-size:16px; }
+    .hero-note__copy > span { font-size:11px; }
   }
   @media(prefers-reduced-motion:reduce) {
     .hero-cta-row .hero-builder-link { animation:none; transition:none; }
