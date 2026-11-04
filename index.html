@@ -3,16 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    try {
-      if (matchMedia("(max-width: 720px), (pointer: coarse)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.documentElement.classList.add("mobile-motion-pending");
-        // Keep the first screen ready for its entrance animation on slower phones.
-        // site-animations.js removes this class as soon as it schedules the motion.
-        setTimeout(() => document.documentElement.classList.remove("mobile-motion-pending"), 2200);
-      }
-    } catch (_) {}
-  </script>
   <link rel="icon" type="image/png" href="./favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./favicons/favicon.svg" />
   <link rel="shortcut icon" href="./favicons/favicon.ico" />
@@ -1243,9 +1233,6 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
     @media (max-width: 720px) {
-      .mobile-motion-pending .hero-content > * { opacity: 0; }
-      .mobile-motion-pending .site-header .nav-logo,
-      .mobile-motion-pending .site-header .burger-btn { opacity: 0; }
     }
     .hero { background-position-y: top, calc(50% + var(--hero-image-drift, 0px) + var(--hero-image-float, 0px)); }
   </style>
