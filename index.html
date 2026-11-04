@@ -1396,9 +1396,11 @@
   .category-lightbox__close { width:46px; height:46px; flex:0 0 46px; border:1px solid var(--border); border-radius:50%; background:transparent; font-size:25px; cursor:pointer; transition:background .2s,transform .2s; }
   .category-lightbox__close:hover { background:#ebe7df; transform:rotate(90deg); }
   .category-lightbox__grid { display:grid; flex:1 1 auto; grid-template-columns:repeat(4,minmax(0,1fr)); align-content:start; gap:16px; min-height:0; overflow:auto; overscroll-behavior:contain; padding:24px clamp(20px,5vw,72px) 48px; scrollbar-gutter:stable; }
-  .category-lightbox__item { position:relative; display:block; width:100%; height:auto; min-height:0; aspect-ratio:4/3; padding:0; border:1px solid rgba(90,77,57,.12); background:#e8e3da; cursor:zoom-in; overflow:hidden; box-shadow:0 5px 18px rgba(42,38,30,.06); transition:transform .28s,box-shadow .28s; }
+  .category-lightbox__item { position:relative; display:block; width:100%; height:auto; min-height:0; aspect-ratio:4/3; padding:0; border:1px solid rgba(90,77,57,.12); background:#e8e3da; cursor:zoom-in; overflow:hidden; opacity:1; transform:translate3d(0,0,0); box-shadow:0 5px 18px rgba(42,38,30,.06); transition:opacity 1.15s cubic-bezier(.16,1,.3,1),transform 1.15s cubic-bezier(.16,1,.3,1),box-shadow .35s; }
+  .category-lightbox__item.gallery-card-entering { opacity:0; transform:translate3d(0,16px,0); }
+  .category-lightbox__item.gallery-card-visible { opacity:1; transform:translate3d(0,0,0); }
   .category-lightbox__item:hover { transform:translateY(-3px); box-shadow:0 14px 30px rgba(42,38,30,.13); }
-  .category-lightbox__item img { position:absolute; inset:0; display:block; width:100%; height:100%; max-height:none; aspect-ratio:4/3; object-fit:cover; transition:transform .35s; }
+  .category-lightbox__item img { position:absolute; inset:0; display:block; width:100%; height:100%; max-height:none; aspect-ratio:4/3; object-fit:cover; opacity:0; transition:opacity 1.15s cubic-bezier(.16,1,.3,1),transform .45s ease; }
   .category-lightbox__item:hover img { transform:scale(1.04); }
   .category-lightbox__count { display:inline-block; margin-top:7px; color:var(--text-muted); font-size:12px; letter-spacing:.04em; }
   @media(max-width:1050px) { .category-lightbox__grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
@@ -2388,6 +2390,7 @@
   const categoryImageDescriptions = {closedType:'Лестница закрытого типа с отделкой деревом',openType:'Лестница на металлическом каркасе с открытыми ступенями',covering:'Отделка лестницы деревом по бетонному основанию',fences:'Деревянное или металлическое ограждение лестницы',wood:'Изделие из массива дерева мастерской Древесный Замысел'};
   const categoryDialog = document.getElementById('categoryLightbox');
   const categoryGrid = document.getElementById('categoryLightboxGrid');
+  let categoryGalleryRevealObserver=null;
   let categoryPreviewImages = []; let categoryPreviewIndex = 0;
   const categoryPreview = document.getElementById('categoryPhotoPreview');
   const categoryPreviewImage = document.getElementById('categoryPreviewImage');
@@ -2413,20 +2416,61 @@
       document.getElementById('categoryLightboxTitle').dataset.key=key;
       document.getElementById('categoryLightboxCount').textContent = `${images.length} проектов`;
       categoryPreviewImages=images;
+      if(categoryGalleryRevealObserver){categoryGalleryRevealObserver.disconnect();categoryGalleryRevealObserver=null;}
       categoryGrid.replaceChildren();
+      let galleryRevealOrder=0;
+      const revealCardWhenReady=(item,img)=>{
+        let entered=false;
+        let revealed=false;
+        let imageRevealQueued=false;
+        const revealCard=()=>{
+          if(!entered||revealed)return;
+          revealed=true;
+          item.style.transitionDelay=`${Math.min(galleryRevealOrder++*75,360)}ms`;
+          window.requestAnimationFrame(()=>item.classList.add('gallery-card-visible'));
+        };
+        const revealImage=()=>{
+          if(imageRevealQueued)return;
+          imageRevealQueued=true;
+          const ready=()=>window.requestAnimationFrame(()=>{
+            img.classList.remove('gallery-image-loading');
+            img.classList.add('gallery-image-ready');
+            revealCard();
+          });
+          if(typeof img.decode==='function'){
+            img.decode().then(ready).catch(ready);
+          }else{
+            ready();
+          }
+        };
+        img.addEventListener('load',revealImage);
+        const enter=()=>{
+          entered=true;
+          window.setTimeout(revealCard,2600);
+          if(img.complete){
+            if(img.naturalWidth) revealImage(); else revealCard();
+          }
+        };
+        return enter;
+      };
+      categoryGalleryRevealObserver='IntersectionObserver' in window
+        ? new IntersectionObserver(entries=>entries.forEach(entry=>{
+            if(!entry.isIntersecting)return;
+            if(!categoryGalleryRevealObserver)return;
+            categoryGalleryRevealObserver.unobserve(entry.target);
+            entry.target._enterGalleryCard();
+          }),{root:categoryGrid,rootMargin:'180px 0px',threshold:0.01})
+        : null;
       images.forEach((src,index) => {
-        const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item';
+        const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item gallery-card-entering';
         item.setAttribute('aria-label',`Открыть фото: ${categoryImageDescriptions[key]}, проект ${index+1}`);
         const img=document.createElement('img');
         img.className='gallery-image-loading';
         img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`;
         img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`;
         img.loading='lazy'; img.decoding='async';
-        const revealGalleryImage=()=>{
-          const ready=()=>window.requestAnimationFrame(()=>img.classList.add('gallery-image-ready'));
-          if(typeof img.decode==='function') img.decode().then(ready).catch(ready); else ready();
-        };
-        img.addEventListener('load',revealGalleryImage,{once:true});
+        const enterGalleryCard=revealCardWhenReady(item,img);
+        item._enterGalleryCard=enterGalleryCard;
         img.onerror=()=>{
           if(img.dataset.fullsizeFallback!=='tried'){
             img.dataset.fullsizeFallback='tried';
@@ -2436,23 +2480,18 @@
           img.classList.remove('gallery-image-loading');
           img.classList.add('gallery-image-ready');
           img.alt=`${categoryImageDescriptions[key]}, изображение временно недоступно`;
+          enterGalleryCard();
         };
         img.src=src.replace('/portfolio/','/portfolio/thumbs/');
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
+        if(categoryGalleryRevealObserver) categoryGalleryRevealObserver.observe(item); else enterGalleryCard();
       });
       categoryDialog.showModal();
       document.documentElement.classList.add('gallery-open');
       document.body.classList.add('gallery-open');
-      if(window.matchMedia('(max-width: 720px), (pointer: coarse)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-        categoryDialog.classList.remove('mobile-gallery-entering');
-        void categoryDialog.offsetWidth;
-        categoryDialog.classList.add('mobile-gallery-entering');
-        window.setTimeout(()=>categoryDialog.classList.remove('mobile-gallery-entering'),900);
-      }
       if(window.gsap && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && !window.matchMedia('(max-width:720px), (pointer:coarse)').matches){
-        gsap.fromTo(categoryDialog,{opacity:0,scale:.985},{opacity:1,scale:1,duration:.28,ease:"power2.out"});
-        gsap.fromTo(categoryGrid.children,{autoAlpha:0,y:16},{autoAlpha:1,y:0,duration:.38,stagger:.035,ease:"power2.out",delay:.08});
+        gsap.fromTo(categoryDialog,{opacity:0,scale:.99},{opacity:1,scale:1,duration:.55,ease:"power3.out"});
       }
     });
   });
@@ -2461,7 +2500,7 @@
       gsap.to(categoryDialog,{opacity:0,duration:.18,ease:"power1.in",onComplete:()=>{categoryDialog.close();categoryDialog.style.opacity="";}});
     }else categoryDialog.close();
   }
-  categoryDialog.addEventListener('close',()=>{document.documentElement.classList.remove('gallery-open');document.body.classList.remove('gallery-open');categoryDialog.style.opacity='';});
+  categoryDialog.addEventListener('close',()=>{document.documentElement.classList.remove('gallery-open');document.body.classList.remove('gallery-open');categoryDialog.style.opacity='';if(categoryGalleryRevealObserver){categoryGalleryRevealObserver.disconnect();categoryGalleryRevealObserver=null;}});
   categoryDialog.querySelector('.category-lightbox__close').addEventListener('click',closeCategoryGallery);
   categoryDialog.addEventListener('click',event=>{if(event.target===categoryDialog)closeCategoryGallery();});
   categoryPreview.querySelector('.leonid-lightbox__close').addEventListener('click',()=>categoryPreview.close());
@@ -3077,33 +3116,24 @@
   }
   .motion-lite .hero-cta-row .hero-builder-link { animation:none; }
   .motion-lite .ticker { animation-play-state:paused; }
-  .category-lightbox__item img.gallery-image-loading { opacity:0; transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .35s ease; }
-  .category-lightbox__item img.gallery-image-ready { opacity:1; transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .35s ease; }
-  @media (max-width:720px), (pointer:coarse) {
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item { animation:gallery-card-arrive .78s cubic-bezier(.16,1,.3,1) both; }
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(2n) { animation-delay:.035s; }
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(3n) { animation-delay:.07s; }
-  }
-  @keyframes gallery-card-arrive {
-    from { opacity:0; transform:translate3d(0,9px,0); }
-    to { opacity:1; transform:translate3d(0,0,0); }
-  }
+  .category-lightbox__item img.gallery-image-loading { opacity:0; }
+  .category-lightbox__item img.gallery-image-ready { opacity:1; }
   @media (prefers-reduced-motion:reduce) {
     .hero::after { animation:none; transform:scale(1.04); will-change:auto; }
     .motion-lite .hero::after { animation:none; }
     .ticker { animation:none; }
-    .category-lightbox__item img.gallery-image-ready { transition:none; }
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item { animation:none; }
+    .category-lightbox__item,.category-lightbox__item.gallery-card-entering,.category-lightbox__item.gallery-card-visible { opacity:1; transform:none; transition:none; }
+    .category-lightbox__item img,.category-lightbox__item img.gallery-image-loading,.category-lightbox__item img.gallery-image-ready { opacity:1; transition:none; }
   }
 </style>
 <style id="motion-css-fallback">
   .motion-css-fallback .motion-css-reveal {
     opacity:0;
     transform:translateY(14px);
-    transition:opacity .78s cubic-bezier(.16,1,.3,1), transform .78s cubic-bezier(.16,1,.3,1);
+    transition:opacity 1.12s cubic-bezier(.16,1,.3,1), transform 1.12s cubic-bezier(.16,1,.3,1);
   }
   .motion-css-fallback .motion-css-reveal.motion-css-visible { opacity:1; transform:translateY(0); }
-  .motion-lite.motion-css-fallback .motion-css-reveal { transform:translateY(8px); transition-duration:.56s; }
+  .motion-lite.motion-css-fallback .motion-css-reveal { transform:translateY(12px); transition-duration:.92s; }
   @media (prefers-reduced-motion:reduce) {
     .motion-css-fallback .motion-css-reveal { opacity:1; transform:none; transition:none; }
   }

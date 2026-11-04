@@ -86,8 +86,8 @@
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 1.08 : 1.3, lift: lowPowerDevice ? 10 : 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.12 : 0.2, sectionStagger: lowPowerDevice ? 0.06 : 0.1, sectionStaggerMax: lowPowerDevice ? 0.12 : 0.3 }
-    : { duration: 1.18, lift: 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.18, sectionStagger: 0, sectionStaggerMax: 0 };
+    ? { duration: lowPowerDevice ? 1.4 : 1.72, lift: lowPowerDevice ? 16 : 26, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.16 : 0.24, sectionStagger: lowPowerDevice ? 0.1 : 0.17, sectionStaggerMax: lowPowerDevice ? 0.28 : 0.52 }
+    : { duration: 1.32, lift: 22, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.2, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
     if (gsap) {
@@ -137,7 +137,8 @@
   const copyLayers = [
     [".product-card", ".product-body > h3, .product-body > p, .product-fit, .product-body > .btn-card"],
     [".why-item", "h3, p"],
-    [".process-card", "h3, p, ul"]
+    [".process-card", "h3, p, ul"],
+    [".review-card", ".review-card__meta, blockquote, .review-card__source"]
   ];
   function waitForImage(image) {
     const decode = () => typeof image.decode === "function"
@@ -212,7 +213,7 @@
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 7 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.56 : 0.72, stagger: lowPowerDevice ? 0.045 : 0.075, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.78 : 0.98, stagger: lowPowerDevice ? 0.07 : 0.1, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
@@ -227,7 +228,7 @@
       if (tags.length) {
         intro.fromTo(tags,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.56 : 0.72, stagger: lowPowerDevice ? 0.035 : 0.065, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.78 : 0.98, stagger: lowPowerDevice ? 0.06 : 0.09, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0.92
         );
       }
@@ -235,7 +236,7 @@
       if (actions.length) {
         intro.fromTo(actions,
           { autoAlpha: 0, y: 9 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.6 : 0.78, stagger: lowPowerDevice ? 0.04 : 0.075, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.82 : 1.02, stagger: lowPowerDevice ? 0.07 : 0.1, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           1.24
         );
       }
