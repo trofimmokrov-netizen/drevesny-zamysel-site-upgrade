@@ -1,7 +1,10 @@
 (function () {
   "use strict";
 
-  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  // Keep the page usable in older embedded/mobile browsers too. If motion
+  // preferences cannot be queried, continue with the regular reveal path.
+  const reduceMotion = typeof window.matchMedia === "function"
+    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) return;
 
   const mobile = window.matchMedia("(max-width: 720px), (pointer: coarse)").matches;
@@ -141,7 +144,19 @@
   // address bar can change the visual viewport during scroll. GSAP still
   // handles the motion itself when it is available.
   if (mobile || !gsap || !window.ScrollTrigger) {
-    viewportMotion();
+    try {
+      viewportMotion();
+    } catch (error) {
+      // Animation code must never leave the hero hidden if a browser has a
+      // partial Web Animations / GSAP implementation.
+      document.querySelectorAll(".site-header .nav-logo, .site-header .burger-btn, .topbar .brand, .hero, .hero *, .intro, .viewer, .mobile-config-nav")
+        .forEach((element) => {
+          element.style.opacity = "";
+          element.style.visibility = "";
+          element.style.transform = "";
+          element.style.filter = "";
+        });
+    }
     return;
   }
 
