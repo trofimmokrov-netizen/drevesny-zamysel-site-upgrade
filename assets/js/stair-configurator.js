@@ -48,8 +48,10 @@ function flight(g,o){
     var d=(i+.5)*o.depth,x=o.x+o.dx*d,z=o.z+o.dz*d,y=(o.base+i+1)*o.rise-board/2;
     addBox(g,alongX?o.depth:o.width,board,alongX?o.width:o.depth,x,y,z,woodMats[o.wood]);
     if(o.risers!=="none"){
-      var rh=Math.max(.08,o.rise-.055);
-      addBox(g,alongX?.042:o.width,rh,alongX?o.width:.042,x-o.dx*(o.depth/2-board/2),(o.base+i+.5)*o.rise,z-o.dz*(o.depth/2-board/2),riserMats[o.risers]);
+      // Extend the riser into both neighboring treads. This closes the visible
+      // seams while keeping its front face flush with the front edge of the tread.
+      var riserOverlap=.006,riserHeight=Math.max(.08,o.rise-board+2*riserOverlap),riserY=(o.base+i+.5)*o.rise-board;
+      addBox(g,alongX?board:o.width,riserHeight,alongX?o.width:board,x-o.dx*(o.depth/2-board/2),riserY,z-o.dz*(o.depth/2-board/2),riserMats[o.risers]);
     }
   }
   if(o.shoes!=="none"){

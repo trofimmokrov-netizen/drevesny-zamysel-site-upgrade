@@ -3093,10 +3093,10 @@
       });
     }
     (async function () {
-      // Mobile reveals use GSAP timelines without ScrollTrigger, so don't
-      // download the unused plugin on phones. Entry-level phones also use
-      // native motion and skip GSAP itself.
-      if (!lowPowerPhone && !reducedMotion && await loadScript("./assets/vendor/gsap.min.js")) {
+      // Mobile uses native Web Animations for reveals, so neither GSAP nor its
+      // scroll plugin needs to be downloaded on phones. Desktop keeps the GSAP
+      // timeline and batched scroll choreography.
+      if (!mobile && !lowPowerPhone && !reducedMotion && await loadScript("./assets/vendor/gsap.min.js")) {
         if (!mobile) await loadScript("./assets/vendor/ScrollTrigger.min.js");
       }
       await loadScript("./assets/js/site-animations.js");

@@ -80,7 +80,7 @@
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 0.82 : 1.18, lift: lowPowerDevice ? 10 : 18, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.11 : 0.18, sectionStagger: lowPowerDevice ? 0.025 : 0.055, sectionStaggerMax: lowPowerDevice ? 0.06 : 0.17 }
+    ? { duration: lowPowerDevice ? 0.92 : 1.38, lift: lowPowerDevice ? 10 : 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.12 : 0.2, sectionStagger: lowPowerDevice ? 0.04 : 0.075, sectionStaggerMax: lowPowerDevice ? 0.09 : 0.24 }
     : { duration: 1.18, lift: 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.18, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
@@ -123,6 +123,23 @@
       fill: "both"
     });
     animation.onfinish = () => animation.cancel();
+  }
+
+  // Let a card's message arrive in a small reading order: heading, explanation,
+  // supporting points, then actions. Staggering only these few text layers adds
+  // depth without animating every character or making long pages feel busy.
+  const copyLayers = [
+    [".product-card", ".product-body > h3, .product-body > p, .product-fit, .product-body > .btn-card"],
+    [".why-item", "h3, p"],
+    [".process-card", "h3, p, ul"]
+  ];
+  function revealSceneItem(element, delay) {
+    reveal(element, delay);
+    const group = copyLayers.find(([selector]) => element.matches(selector));
+    if (!group) return;
+    element.querySelectorAll(group[1]).forEach((child, index) => {
+      reveal(child, (delay || 0) + 0.12 + index * (lowPowerDevice ? 0.055 : 0.085));
+    });
   }
 
   function viewportMotion() {
@@ -229,7 +246,7 @@
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
       visibleEntries.forEach((entry, index) => {
-        reveal(entry.target, mobile ? Math.min(index * motion.sectionStagger, motion.sectionStaggerMax) : 0);
+        revealSceneItem(entry.target, mobile ? Math.min(index * motion.sectionStagger, motion.sectionStaggerMax) : 0);
         activeObserver.unobserve(entry.target);
       });
     }, { threshold: mobile ? 0.04 : 0.08, rootMargin: mobile ? "0px 0px -2% 0px" : "0px 0px -5% 0px" });
@@ -237,8 +254,8 @@
   }
 
   // Keep viewport detection in IntersectionObserver on phones, where the
-  // address bar can change the visual viewport during scroll. GSAP still
-  // handles the motion itself when it is available.
+  // address bar can change the visual viewport during scroll. Mobile reveals
+  // use the browser's Web Animations API; desktop uses GSAP and ScrollTrigger.
   if (mobile || !gsap || !window.ScrollTrigger) {
     try {
       viewportMotion();
@@ -296,12 +313,14 @@
         }
       }
     }
-    gsap.utils.toArray(revealSelector).forEach((element) => {
-      gsap.from(element, {
-        autoAlpha: 0, y: 18, duration: 0.82, ease: "power3.out",
-        clearProps: "transform",
-        scrollTrigger: { trigger: element, start: "top 90%", once: true, invalidateOnRefresh: true }
-      });
+    ScrollTrigger.batch(gsap.utils.toArray(revealSelector), {
+      start: "top 90%",
+      once: true,
+      invalidateOnRefresh: true,
+      batchMax: 7,
+      onEnter: (batch) => batch.forEach((element, index) => {
+        revealSceneItem(element, index * 0.07);
+      })
     });
     window.addEventListener("load", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { once: true });
     window.addEventListener("orientationchange", () => setTimeout(() => ScrollTrigger.refresh(), 180), { passive: true });
