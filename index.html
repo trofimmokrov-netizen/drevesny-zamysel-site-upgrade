@@ -22,15 +22,15 @@
 
   <!-- SEO: Title & Description -->
   <title>Лестницы любой сложности для вас — Древесный Замысел</title>
-  <meta name="description" content="Проектируем и изготавливаем лестницы любой сложности в Москве и области. Производим мебель и столы на заказ. Замер, изготовление и монтаж под ключ." />
+  <meta name="description" content="Лестницы любой сложности в Москве и области: проектирование и монтаж под ключ. Изготавливаем мебель на заказ и столы из слэбов." />
   <meta name="author" content="Древесный Замысел" />
   <meta name="theme-color" content="#fbfaf7" />
-  <meta name="keywords" content="изготовление лестниц Москва, лестницы любой сложности, проектирование лестниц, лестницы на заказ Московская область, изготовление мебели, столы на заказ, металлический каркас лестницы, деревянные ступени, ограждения, монтаж под ключ" />
+  <meta name="keywords" content="изготовление лестниц Москва, лестницы любой сложности, проектирование лестниц, лестницы на заказ Московская область, изготовление мебели на заказ, столы из слэбов, металлический каркас лестницы, деревянные ступени, ограждения, монтаж под ключ" />
   <meta name="robots" content="index, follow" />
 
   <!-- OG / Social -->
   <meta property="og:title" content="Лестницы любой сложности для вас — Древесный Замысел" />
-  <meta property="og:description" content="Лестницы любой сложности, мебель и столы на заказ в Москве и области. Проектирование, изготовление и монтаж под ключ." />
+  <meta property="og:description" content="Лестницы любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов. Проектирование и монтаж под ключ." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/" />
   <meta property="og:site_name" content="Древесный Замысел" />
@@ -42,7 +42,7 @@
   <meta property="og:image:alt" content="Лестницы любой сложности — Древесный Замысел" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Лестницы любой сложности — Древесный Замысел" />
-  <meta name="twitter:description" content="Лестницы любой сложности, мебель и столы на заказ в Москве и области. Проектирование, изготовление и монтаж под ключ." />
+  <meta name="twitter:description" content="Лестницы любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов. Проектирование и монтаж под ключ." />
   <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
 
 
@@ -53,7 +53,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Древесный Замысел",
-      "description": "Проектирование, изготовление и монтаж лестниц любой сложности в Москве и области. Также изготавливаем мебель и столы на заказ.",
+      "description": "Проектирование, изготовление и монтаж лестниц любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов.",
       "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/hero.webp",
       "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "telephone": "+7 (495) 275-14-23",
@@ -1231,7 +1231,7 @@
       .mobile-motion-pending .site-header .nav-logo,
       .mobile-motion-pending .site-header .burger-btn { opacity: 0; }
     }
-    .hero { background-position-y: top, calc(50% + var(--hero-image-drift, 0px)); }
+    .hero { background-position-y: top, calc(50% + var(--hero-image-drift, 0px) + var(--hero-image-float, 0px)); }
   </style>
 <style id="portfolio-refinements">
       /* Keep the desktop header balanced at common laptop widths */
@@ -1360,8 +1360,10 @@
 <style id="local-gallery-fixes">
   /* A stable card grid keeps the portfolio usable when this file is opened locally. */
   .products-slider { overflow:visible; }
-  .products-slider .swiper-wrapper { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; transform:none !important; height:auto; }
-  .products-slider .swiper-slide { width:auto !important; height:auto; }
+  .products-slider .swiper-wrapper { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:20px; transform:none !important; height:auto; }
+  .products-slider .swiper-slide { grid-column:span 2; width:auto !important; height:auto; }
+  .products-slider .swiper-slide:nth-child(4):nth-last-child(2) { grid-column:2 / span 2; }
+  .products-slider .swiper-slide:nth-child(5):last-child { grid-column:4 / span 2; }
   .products-slider .slider-controls { display:none; }
   .product-card { height:100%; display:flex; flex-direction:column; }
   .product-body { display:flex; flex:1; flex-direction:column; }
@@ -1399,15 +1401,20 @@
   .epoxy-project-link__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
   @media(max-width:600px) { .epoxy-project-link { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:18px; padding:14px; } .epoxy-project-link__mark { width:36px; height:36px; } .epoxy-project-link__copy { display:block; } .epoxy-project-link__copy strong { display:block; font-size:17px; line-height:1.25; } .epoxy-project-link__copy span { display:block; margin-top:4px; font-size:11px; line-height:1.45; } .epoxy-project-link__action { grid-column:2; } }
 
-  @media(max-width:900px) { .products-slider .swiper-wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media(max-width:600px) { .products-slider .swiper-wrapper { grid-template-columns:1fr; } .leonid-gallery { grid-template-columns:minmax(0,1fr); gap:14px; } .leonid-photo img { width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#e5dfd5; } .leonid-lightbox__panel { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:6px; } .leonid-lightbox__figure { max-width:100%; width:100%; } .leonid-lightbox__figure img { width:100%; max-height:calc(100dvh - 130px); object-fit:contain; } .leonid-lightbox__nav,.leonid-lightbox__close { width:44px; height:44px; } .category-lightbox__grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:14px 14px 28px; gap:10px; } .category-lightbox__head { padding:14px 16px; } .category-lightbox__head h2 { font-size:21px; } .category-lightbox__close { width:42px;height:42px;flex-basis:42px; } }
+  @media(max-width:900px) {
+    .products-slider .swiper-wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .products-slider .swiper-slide { grid-column:auto; }
+    .products-slider .swiper-slide:nth-child(4):nth-last-child(2) { grid-column:auto; }
+    .products-slider .swiper-slide:nth-child(5):last-child { grid-column:1 / -1; justify-self:center; width:min(100%, 520px) !important; }
+  }
+  @media(max-width:600px) { .products-slider .swiper-wrapper { grid-template-columns:1fr; } .products-slider .swiper-slide:nth-child(5):last-child { width:100% !important; } .leonid-gallery { grid-template-columns:minmax(0,1fr); gap:14px; } .leonid-photo img { width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#e5dfd5; } .leonid-lightbox__panel { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:6px; } .leonid-lightbox__figure { max-width:100%; width:100%; } .leonid-lightbox__figure img { width:100%; max-height:calc(100dvh - 130px); object-fit:contain; } .leonid-lightbox__nav,.leonid-lightbox__close { width:44px; height:44px; } .category-lightbox__grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:14px 14px 28px; gap:10px; } .category-lightbox__head { padding:14px 16px; } .category-lightbox__head h2 { font-size:21px; } .category-lightbox__close { width:42px;height:42px;flex-basis:42px; } }
 </style>
 <style id="catalog-polish">
   .product-card { border-radius:3px; transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .25s,box-shadow .3s; }
   .product-card:hover { border-color:#c7b99f; box-shadow:0 18px 42px rgba(48,45,37,.09); }
-  .product-visual { height:auto; aspect-ratio:16/10; background:#e8e3da !important; }
+  .product-visual { height:auto; aspect-ratio:16/9; background:#e8e3da !important; }
   .product-visual img { transition:transform .55s cubic-bezier(.2,.7,.2,1); }
-  .product-body { padding:24px; }
+  .product-body { padding:20px; }
   .product-body h3 { font-family:'Cormorant Garamond',Georgia,serif; font-size:21px; font-weight:400; line-height:1.25; }
   .product-body p { font-size:13px; line-height:1.75; }
   .product-fit { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 20px; padding:0; list-style:none; }

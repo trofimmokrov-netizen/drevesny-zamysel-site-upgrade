@@ -165,6 +165,17 @@
   if (mobile || !gsap || !window.ScrollTrigger) {
     viewportMotion();
     mobileHeroDrift();
+    if (mobile && gsap && hero) {
+      // Give the stair photograph the slow camera-like float seen on the
+      // reference site, while keeping the copy and controls steady on phones.
+      gsap.to(hero, {
+        "--hero-image-float": "8px",
+        duration: 9,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }
     return;
   }
 
