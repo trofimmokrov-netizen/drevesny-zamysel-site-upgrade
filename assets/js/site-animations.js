@@ -24,7 +24,7 @@
     ".form-section", ".builder-entry", ".intro", ".viewer", ".spec-strip", ".space-estimate", ".comfort-note", ".controls", ".howto", ".hero-media", ".ticker-wrap",
     ".featured-case", ".epoxy-project-link", ".contact-item",
     ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta",
-    ".article-header > *", ".article-cover", ".article-body > h2", ".article-body > p", ".article-aside", ".article-index__intro > *", ".article-index-card"
+    ".article-header > *", ".article-cover", ".article-summary", ".article-toc", ".article-section", ".article-checklist", ".article-faq", ".article-related", ".article-aside", ".article-index__intro > *", ".article-index-card"
   ].join(",");
   const gsap = window.gsap;
 

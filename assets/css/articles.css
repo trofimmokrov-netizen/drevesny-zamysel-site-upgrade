@@ -15,11 +15,36 @@
 .article-aside { position:sticky; top:110px; padding:26px; border:1px solid #e2ddd3; background:#fffdfa; }
 .article-aside p { color:#777166; font-size:13px; line-height:1.7; margin:0 0 18px; }
 .article-aside a { display:inline-flex; padding:13px 17px; background:#344638; color:#fff; text-decoration:none; font-size:12px; }
-.article-comments { margin-top:64px; padding-top:34px; border-top:1px solid #ddd7cc; }
-.article-comments h2 { color:#30352e; font:400 34px/1.15 'Cormorant Garamond',Georgia,serif; margin:0 0 10px; }
-.article-comments__note { color:#777166; font-size:13px; line-height:1.7; max-width:680px; }
-.article-comment-embed { margin-top:24px; min-height:80px; }
-.article-comment-status { padding:20px; border:1px solid #e2ddd3; background:#fffdfa; color:#777166; font-size:13px; line-height:1.7; }
+.article-summary { margin:0 0 24px; padding:23px 26px; border-left:3px solid #a17d50; background:#eeebe4; }
+.article-summary p:last-child { margin:0; color:#3d4039; }
+.article-summary__label { margin:0 0 8px!important; color:#9b7950; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.article-toc { margin:0 0 34px; border:1px solid #e2ddd3; background:#fffdfa; }
+.article-toc summary { padding:17px 20px; color:#30352e; cursor:pointer; font-size:13px; font-weight:650; }
+.article-toc nav { padding:0 20px 17px; }
+.article-toc ol { margin:0; padding-left:20px; color:#9b7950; }
+.article-toc li { padding:4px 0; }
+.article-toc a,.article-related a { color:#53604e; text-decoration-color:#b8b1a4; text-underline-offset:4px; }
+.article-toc a:hover,.article-related a:hover { color:#9b7950; }
+.article-section { margin:0 0 30px; }
+.article-section h2,.article-checklist h2,.article-faq h2,.article-related h2 { margin:34px 0 12px; color:#30352e; font:400 34px/1.15 'Cormorant Garamond',Georgia,serif; }
+.article-section p { margin:0; }
+.article-checklist { margin:38px 0; padding:24px 28px; background:#eeebe4; }
+.article-checklist h2 { margin:0 0 14px; }
+.article-checklist ul { margin:0; padding-left:20px; }
+.article-checklist li { padding:4px 0 4px 5px; }
+.article-faq { margin:42px 0; }
+.article-faq h2 { margin-top:0; }
+.article-faq__item { border-top:1px solid #e2ddd3; }
+.article-faq__item:last-child { border-bottom:1px solid #e2ddd3; }
+.article-faq__item summary { position:relative; padding:17px 34px 17px 0; color:#30352e; cursor:pointer; font-size:14px; font-weight:600; line-height:1.5; list-style:none; }
+.article-faq__item summary::-webkit-details-marker { display:none; }
+.article-faq__item summary::after { content:"+"; position:absolute; right:4px; top:14px; color:#9b7950; font-size:20px; font-weight:400; }
+.article-faq__item[open] summary::after { content:"−"; }
+.article-faq__item p { margin:0; padding:0 30px 18px 0; color:#6e6a62; font-size:14px; line-height:1.75; }
+.article-related { margin:42px 0 0; padding:22px 26px; border:1px solid #e2ddd3; background:#fffdfa; }
+.article-related h2 { margin:0 0 12px; font-size:29px; }
+.article-related ul { margin:0; padding-left:18px; }
+.article-related li { padding:5px 0; }
 .article-index { min-height:100vh; padding:132px 24px 80px; background:#f7f5f0; }
 .article-index__intro { max-width:760px; margin-bottom:42px; }
 .article-index__intro h1 { color:#252722; font:400 clamp(44px,7vw,76px)/1 'Cormorant Garamond',Georgia,serif; margin:0 0 16px; }
@@ -36,5 +61,5 @@
 .article-footer-link { margin-top:48px; }
 .article-footer-link a { color:#53604e; text-underline-offset:4px; }
 @media(max-width:850px) { .article-layout { grid-template-columns:1fr; gap:28px; } .article-aside { position:static; } .article-index-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:560px) { .article-page,.article-index { padding:104px 20px 56px; } .article-header h1 { font-size:44px; } .article-deck { font-size:15px; } .article-cover { aspect-ratio:4/3; margin:24px 0 30px; } .article-body { font-size:15px; line-height:1.8; } .article-body h2 { font-size:29px; } .article-index-grid { grid-template-columns:1fr; } .article-index-card__copy { padding:20px; } }
+@media(max-width:560px) { .article-page,.article-index { padding:104px 20px 56px; } .article-header h1 { font-size:44px; } .article-deck { font-size:15px; } .article-cover { aspect-ratio:4/3; margin:24px 0 30px; } .article-body { font-size:15px; line-height:1.8; } .article-section h2,.article-checklist h2,.article-faq h2 { font-size:29px; } .article-summary,.article-checklist,.article-related { padding:19px 20px; } .article-index-grid { grid-template-columns:1fr; } .article-index-card__copy { padding:20px; } }
 @media(prefers-reduced-motion:reduce) { .article-index-card { transition:none; } }
