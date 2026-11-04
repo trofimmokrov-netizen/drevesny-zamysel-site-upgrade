@@ -23,7 +23,8 @@
     ".step", ".process-right", ".process-card", ".material-card", ".materials-advice", ".article-card", ".review-card", ".reviews-card",
     ".form-section", ".builder-entry", ".intro", ".viewer", ".spec-strip", ".space-estimate", ".comfort-note", ".controls", ".howto", ".hero-media", ".ticker-wrap",
     ".featured-case", ".epoxy-project-link", ".contact-item",
-    ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta"
+    ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta",
+    ".article-header > *", ".article-cover", ".article-body > h2", ".article-body > p", ".article-aside", ".article-index__intro > *", ".article-index-card"
   ].join(",");
   const gsap = window.gsap;
 

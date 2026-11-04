@@ -1314,6 +1314,13 @@
   .article-details div p { margin:0; }
   .article-constructor-link { color:var(--btn-bg); font-weight:650; text-underline-offset:3px; }
   .article-constructor-link:focus-visible { outline:3px solid var(--accent-light); outline-offset:3px; }
+  .article-read-link { display:inline-flex; align-items:center; gap:10px; min-height:42px; margin-top:auto; padding-top:16px; color:var(--btn-bg); font-size:12px; font-weight:650; text-decoration:none; }
+  .article-read-link span,.articles-all-link span { transition:transform .2s ease; }
+  .article-read-link:hover span,.articles-all-link a:hover span { transform:translateX(4px); }
+  .articles-all-link { display:flex; justify-content:center; margin-top:34px; }
+  .articles-all-link a { display:inline-flex; align-items:center; gap:12px; min-height:48px; padding:0 22px; border:1px solid var(--btn-bg); color:var(--btn-bg); text-decoration:none; font-size:12px; font-weight:650; transition:background .2s ease,color .2s ease; }
+  .articles-all-link a:hover { background:var(--btn-bg); color:#fff; }
+  .article-read-link:focus-visible,.articles-all-link a:focus-visible { outline:3px solid var(--accent-light); outline-offset:3px; }
   .leonid-section { padding:clamp(60px,8vw,100px) 0; background:#fffefa; }
   .leonid-heading-row { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:32px; }
   .leonid-heading-row .section-sub { margin-top:14px; }
@@ -1918,67 +1925,17 @@
       <h2 class="section-title" id="articles-heading">Несколько слов о лестницах</h2>
       <p class="section-sub">Короткие заметки о материалах и этапах изготовления — на основе процесса работы мастерской.</p>
       <div class="articles-grid">
-        <article class="article-card">
-          <p class="article-kicker">Этапы проекта</p>
-          <h3>Когда устанавливают металлический каркас?</h3>
-          <p class="article-lead">Каркас обычно монтируют во время черновой отделки, а деревянную обшивку — после чистовой.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Такой порядок учитывает этапы ремонта дома. На замере специалист снимает размеры, обсуждает конфигурацию лестницы, ограждения и материалы. Деревянные элементы устанавливают после чистовой отделки.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Материалы</p>
-          <h3>Как выбрать древесину для отделки?</h3>
-          <p class="article-lead">Мастерская работает с лиственницей, ясенем, дубом, американским орехом и натуральным шпоном.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Породу и сочетание материалов можно обсудить при замере. Выбор зависит от проекта и того, как лестница должна сочетаться с интерьером и другими деревянными элементами дома.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Замер и проект</p>
-          <h3>Зачем нужен замер на объекте?</h3>
-          <p class="article-lead">Размеры проёма и высота помещения помогают спроектировать лестницу под конкретный дом.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Специалист снимает размеры, предлагает варианты конфигурации, ограждений и отделки, затем рассчитывает стоимость. После согласования инженер готовит проект металлокаркаса с размерами.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Конструкция</p>
-          <h3>Открытая или закрытая лестница: в чём разница?</h3>
-          <p class="article-lead">Открытый марш сохраняет просвет между ступенями, закрытый дополняют подступенниками.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Открытый вид пропускает больше света и подчёркивает форму каркаса. Подступенники закрывают пространство между ступенями и создают цельный силуэт; за ними также можно предусмотреть закрытое хранение, если это допускает планировка. Подходящий вариант зависит от проёма, интерьера и того, как лестницей будет пользоваться семья. Окончательное решение лучше принимать вместе с замерщиком.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Размеры</p>
-          <h3>Как заранее понять, сколько места займёт лестница?</h3>
-          <p class="article-lead">Для оценки нужны высота между этажами, ширина марша, глубина ступеней и форма проёма.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Прямая лестница занимает место вдоль одного направления. Поворотная конструкция меняет направление марша и может вписаться в другой контур помещения, но требует места под площадку или забежные ступени. В <a class="article-constructor-link" href="./constructor.html">3D-конструкторе</a> можно сравнить предварительный габарит и площадь проекции. Эти значения помогают оценить планировку, но не заменяют обмер и проверку высоты прохода специалистом.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Планирование</p>
-          <h3>Когда начинать планировать лестницу в новом доме?</h3>
-          <p class="article-lead">Ранний эскиз помогает увязать проём, направление марша и размещение лестницы с планировкой.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Основные размеры и предполагаемую форму лестницы полезно обсуждать до завершения перекрытий и отделки. Тогда проще оценить, достаточно ли места для марша и проёма, где будут опоры и как пройдут ограждения. Точный проект делают после обмера фактических конструкций: размеры на чертеже и на готовом объекте могут отличаться. Согласуйте предварительную схему с проектировщиком дома и специалистом по лестницам.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Ограждения</p>
-          <h3>Как выбрать ограждение и поручень для лестницы?</h3>
-          <p class="article-lead">Дерево, металл и стекло по-разному влияют на внешний вид и ощущение пространства.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Металлические балясины дают выразительный графичный рисунок, деревянный поручень добавляет тёплую тактильную поверхность, а стеклянные панели сохраняют визуальную открытость. Важно заранее согласовать высоту, способ крепления и стыки ограждения с проектом лестницы. Для конкретного дома конструкцию и безопасные параметры проверяет специалист.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Отделка бетона</p>
-          <h3>Как проходит обшивка бетонной лестницы деревом?</h3>
-          <p class="article-lead">Отделка включает замер основания, изготовление деталей и подгонку ступеней и подступенников.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Перед изготовлением мастер проверяет геометрию бетонного марша и состояние основания. Затем согласуются порода и оттенок древесины, форма торцов и вид боковой обшивки. Ступени и подступенники делают по размерам конкретного объекта, после чего устанавливают и подгоняют на месте. Срок и состав работ зависят от готовности бетона, сложности поворотов и выбранной отделки.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Подсветка</p>
-          <h3>Какие варианты подсветки ступеней можно предусмотреть?</h3>
-          <p class="article-lead">Свет можно встроить в ступени, стену или каркас — место и проводку планируют заранее.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Локальная подсветка помогает выделить контур ступени и сделать лестницу заметнее в вечернее время. Светильники могут располагаться в подступеннике, стене рядом с маршем или в других элементах проекта. Для автоматических сценариев дополнительно согласуют датчики, блок питания и управление. Электрические выводы лучше предусмотреть до отделки, чтобы избежать видимых кабелей и переделок.</p></div></details>
-        </article>
-        <article class="article-card">
-          <p class="article-kicker">Уход</p>
-          <h3>Как ухаживать за деревянными ступенями?</h3>
-          <p class="article-lead">Повседневный уход зависит от покрытия и рекомендаций производителя отделочных материалов.</p>
-          <details class="article-details"><summary>Читать заметку</summary><div><p>Для регулярной уборки обычно достаточно мягкой сухой или слегка влажной ткани; воду и абразивные средства не оставляют на поверхности. Средства для очистки и обновления покрытия подбирают с учётом использованного масла, лака или краски. Точные рекомендации по уходу лучше получить при сдаче лестницы, чтобы сохранить фактуру и оттенок отделки.</p></div></details>
-        </article>
+        <article class="article-card"><p class="article-kicker">Этапы проекта</p><h3>Когда устанавливают металлический каркас лестницы?</h3><p class="article-lead">Металлический каркас обычно планируют до чистовой отделки, а деревянную облицовку устанавливают после завершения основных отделочных работ.</p><a class="article-read-link" href="./articles/metallicheskiy-karkas/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Материалы</p><h3>Как выбрать древесину для отделки лестницы?</h3><p class="article-lead">Дуб, ясень, лиственница и американский орех отличаются оттенком и рисунком. Выбирать породу удобнее по образцам в сочетании с интерьером.</p><a class="article-read-link" href="./articles/porody-drevesiny/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Замер и проект</p><h3>Зачем нужен замер лестницы на объекте?</h3><p class="article-lead">Точный обмер учитывает геометрию проёма и фактические условия дома. Это основа для проекта, расчёта и согласования деталей до производства.</p><a class="article-read-link" href="./articles/zamer-lestnicy/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Конструкция</p><h3>Открытая или закрытая лестница: в чём разница?</h3><p class="article-lead">Открытый марш оставляет просветы между ступенями, а закрытый дополняют подступенниками. Оба решения подбирают под проект и интерьер.</p><a class="article-read-link" href="./articles/otkrytaya-ili-zakrytaya/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Размеры</p><h3>Сколько места занимает лестница в доме?</h3><p class="article-lead">Для предварительной оценки важны высота этажа, ширина марша, глубина ступени, форма и размеры проёма.</p><a class="article-read-link" href="./articles/skolko-mesta-zanimaet/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Планирование</p><h3>Когда начинать планировать лестницу в новом доме?</h3><p class="article-lead">Предварительную геометрию полезно согласовать до устройства проёма и чистовой отделки. Это помогает увязать лестницу с планировкой.</p><a class="article-read-link" href="./articles/kogda-planirovat/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Ограждения</p><h3>Как выбрать ограждение и поручень для лестницы?</h3><p class="article-lead">Дерево, металл и стекло создают разное визуальное впечатление. Тип ограждения и способ его крепления согласуют с конструкцией марша.</p><a class="article-read-link" href="./articles/ograzhdenie-poruchen/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Отделка бетона</p><h3>Как проходит обшивка бетонной лестницы деревом?</h3><p class="article-lead">Работа начинается с проверки геометрии бетонного основания. Ступени, подступенники и боковые детали изготавливают по размерам конкретного объекта.</p><a class="article-read-link" href="./articles/obshivka-betonnoy-lestnicy/">Читать статью <span aria-hidden="true">→</span></a></article>
+        <article class="article-card"><p class="article-kicker">Освещение</p><h3>Какие варианты подсветки ступеней можно предусмотреть?</h3><p class="article-lead">Светильники можно разместить в стене, под ступенью или в других элементах. Проводку и управление лучше предусмотреть заранее.</p><a class="article-read-link" href="./articles/podsvetka-stupeney/">Читать статью <span aria-hidden="true">→</span></a></article>
       </div>
+      <div class="articles-all-link"><a class="btn-secondary" href="./articles/">Читать все статьи <span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
