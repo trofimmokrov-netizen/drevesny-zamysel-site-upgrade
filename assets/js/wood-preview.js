@@ -79,7 +79,7 @@
       option.className = "wood-material-option";
       option.dataset.wood = key;
       option.setAttribute("aria-pressed", String(select.value === key));
-      option.innerHTML = '<img src="' + paths[key] + '" alt="" loading="lazy" decoding="async"><span>' + names[key] + '</span>';
+      option.innerHTML = '<span class="wood-material-option__swatch" data-wood="' + key + '" aria-hidden="true"></span><span>' + names[key] + '</span>';
       option.addEventListener("click", () => {
         select.value = key;
         select.dispatchEvent(new Event("change", { bubbles: true }));

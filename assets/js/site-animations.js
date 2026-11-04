@@ -3,11 +3,13 @@
 
   // Keep the page usable in older embedded/mobile browsers too. If motion
   // preferences cannot be queried, continue with the regular reveal path.
-  const reduceMotion = typeof window.matchMedia === "function"
-    && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const matchesMedia = (query) => typeof window.matchMedia === "function"
+    && window.matchMedia(query).matches;
+  const reduceMotion = matchesMedia("(prefers-reduced-motion: reduce)");
   if (reduceMotion) return;
 
-  const mobile = window.matchMedia("(max-width: 720px), (pointer: coarse)").matches;
+  const mobile = matchesMedia("(max-width: 720px), (pointer: coarse)")
+    || (typeof window.matchMedia !== "function" && window.innerWidth <= 720);
   const lowPowerDevice = mobile && (
     (typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4)
     || (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4)
@@ -45,11 +47,41 @@
   const cssMotionFallback = !gsap && typeof Element.prototype.animate !== "function";
   if (cssMotionFallback) document.documentElement.classList.add("motion-css-fallback");
 
+  // Add a restrained camera response to the hero photo on desktop. Like the
+  // floating phone animation in the reference site, the visual reacts to the
+  // visitor, but only the image layer moves; text and controls stay steady.
+  // It is deliberately disabled on touch devices and reduced-power phones.
+  if (hero && !mobile && gsap && matchesMedia("(hover: hover) and (pointer: fine)")) {
+    const moveCamera = (event) => {
+      if (event.pointerType && event.pointerType !== "mouse") return;
+      const bounds = hero.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) return;
+      const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * -12;
+      const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * -8;
+      gsap.to(hero, {
+        "--hero-pointer-x": `${x.toFixed(1)}px`,
+        "--hero-pointer-y": `${y.toFixed(1)}px`,
+        duration: 1.15,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    };
+    const resetCamera = () => gsap.to(hero, {
+      "--hero-pointer-x": "0px",
+      "--hero-pointer-y": "0px",
+      duration: 1.5,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+    hero.addEventListener("pointermove", moveCamera, { passive: true });
+    hero.addEventListener("pointerleave", resetCamera, { passive: true });
+  }
+
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 0.56 : 0.78, lift: lowPowerDevice ? 9 : 16, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.075 : 0.11, sectionStagger: lowPowerDevice ? 0.018 : 0.045, sectionStaggerMax: lowPowerDevice ? 0.045 : 0.14 }
-    : { duration: 0.84, lift: 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.105, sectionStagger: 0, sectionStaggerMax: 0 };
+    ? { duration: lowPowerDevice ? 0.82 : 1.18, lift: lowPowerDevice ? 10 : 18, scale: 1, blur: 0, ease: "power3.out", heroStagger: lowPowerDevice ? 0.11 : 0.18, sectionStagger: lowPowerDevice ? 0.025 : 0.055, sectionStaggerMax: lowPowerDevice ? 0.06 : 0.17 }
+    : { duration: 1.18, lift: 20, scale: 1, blur: 0, ease: "power3.out", heroStagger: 0.18, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
     if (gsap) {
@@ -103,7 +135,7 @@
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 7 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.5 : 0.62, stagger: lowPowerDevice ? 0.04 : 0.065, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.56 : 0.72, stagger: lowPowerDevice ? 0.045 : 0.075, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
@@ -118,7 +150,7 @@
       if (tags.length) {
         intro.fromTo(tags,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.5 : 0.62, stagger: lowPowerDevice ? 0.03 : 0.055, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.56 : 0.72, stagger: lowPowerDevice ? 0.035 : 0.065, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0.92
         );
       }
@@ -126,7 +158,7 @@
       if (actions.length) {
         intro.fromTo(actions,
           { autoAlpha: 0, y: 9 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.52 : 0.68, stagger: lowPowerDevice ? 0.035 : 0.07, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 0.6 : 0.78, stagger: lowPowerDevice ? 0.04 : 0.075, ease: "power3.out", force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           1.24
         );
       }
@@ -228,10 +260,41 @@
     const ScrollTrigger = window.ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
     if (heroItems.length) {
-      gsap.from(heroItems, {
-        autoAlpha: 0, y: 18, duration: 0.92, delay: 0.16, stagger: 0.12,
-        ease: "power3.out", clearProps: "transform"
-      });
+      // Treat the opening screen as one composed sequence: the eyebrow and
+      // headline arrive first, supporting copy follows, then service tags and
+      // calls to action. A small longer pause makes the first impression feel
+      // deliberate without holding the visitor up.
+      const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+      if (headerItems.length) {
+        intro.fromTo(headerItems,
+          { autoAlpha: 0, y: 8 },
+          { autoAlpha: 1, y: 0, duration: 0.78, stagger: 0.07, clearProps: "opacity,visibility,transform" },
+          0
+        );
+      }
+      intro.fromTo(heroItems,
+        { autoAlpha: 0, y: 26 },
+        { autoAlpha: 1, y: 0, duration: 1.28, stagger: 0.2, clearProps: "opacity,visibility,transform" },
+        0.24
+      );
+      if (hero) {
+        const tags = hero.querySelectorAll(".hero-tags .hero-tag");
+        const actions = hero.querySelectorAll(".hero-cta-row > a");
+        if (tags.length) {
+          intro.fromTo(tags,
+            { autoAlpha: 0, y: 12 },
+            { autoAlpha: 1, y: 0, duration: 0.72, stagger: 0.075, clearProps: "opacity,visibility,transform" },
+            1.12
+          );
+        }
+        if (actions.length) {
+          intro.fromTo(actions,
+            { autoAlpha: 0, y: 14 },
+            { autoAlpha: 1, y: 0, duration: 0.86, stagger: 0.11, clearProps: "opacity,visibility,transform" },
+            1.48
+          );
+        }
+      }
     }
     gsap.utils.toArray(revealSelector).forEach((element) => {
       gsap.from(element, {

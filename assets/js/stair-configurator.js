@@ -15,7 +15,23 @@ var grid=new THREE.GridHelper(20,40,0xc9c1b4,0xded9cf);grid.position.y=.002;grid
 var woods={oak:{name:"дуб",base:"#a87943",grain:"#684827"},ash:{name:"ясень",base:"#c39a69",grain:"#80603d"},larch:{name:"лиственница",base:"#ae7950",grain:"#714729"},walnut:{name:"американский орех",base:"#704b3c",grain:"#3d2c27"}},woodMats={};
 Object.keys(woods).forEach(function(k){var s=woods[k],c=document.createElement("canvas");c.width=512;c.height=256;var x=c.getContext("2d");x.fillStyle=s.base;x.fillRect(0,0,c.width,c.height);if(k==="walnut"){var grad=x.createLinearGradient(0,0,0,256);grad.addColorStop(0,"#81583f");grad.addColorStop(.25,"#674431");grad.addColorStop(.52,"#8a6045");grad.addColorStop(.78,"#5b3b2e");grad.addColorStop(1,"#79533c");x.fillStyle=grad;x.fillRect(0,0,512,256);for(var band=0;band<70;band++){var a=(band*83)%512,phase=(band*29)%256;x.beginPath();x.moveTo(a,0);x.bezierCurveTo(a+18*Math.sin(phase),70,a-14*Math.cos(phase),180,a+8*Math.sin(phase+1),256);x.strokeStyle=band%5===0?"#36251f":(band%2?"#bb8b61":"#4a3026");x.globalAlpha=band%5===0?.25:.12;x.lineWidth=band%5===0?2.4:1.1;x.stroke();}[[112,86],[368,186]].forEach(function(knot){x.save();x.translate(knot[0],knot[1]);x.scale(1,.45);for(var ring=0;ring<5;ring++){x.beginPath();x.ellipse(0,0,4+ring*3,3+ring*2,.12,0,Math.PI*2);x.strokeStyle=ring%2?"#bd906a":"#40291f";x.globalAlpha=.22;x.lineWidth=1;x.stroke();}x.restore();});}else{for(var i=0;i<48;i++){var a=(i*37)%512,b=((i%5)-2)*4;x.beginPath();x.moveTo(a,0);x.bezierCurveTo(a+b,72,a-b,178,a+b*.4,256);x.strokeStyle=s.grain;x.globalAlpha=.08+(i%4)*.025;x.lineWidth=i%7===0?2:1;x.stroke();}}x.globalAlpha=1;var t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=THREE.RepeatWrapping;t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.2,1);woodMats[k]=new THREE.MeshStandardMaterial({map:t,roughness:k==="walnut"?.57:.66});});
 var materialTexturePaths={oak:{src:"./assets/images/materials/oak.jpg",filter:"brightness(1.22) sepia(.12) saturate(1.05)"},ash:{src:"./assets/images/materials/yasen.jpg",filter:"brightness(1.02) saturate(.95)"},larch:{src:"./assets/images/materials/listvennitsa.jpg",filter:"brightness(.98) sepia(.08) saturate(1.1)"},walnut:{src:"./assets/images/materials/american-walnut.jpg",filter:"brightness(1.06) contrast(1.04)"}};
-Object.keys(materialTexturePaths).forEach(function(k){new THREE.TextureLoader().load(materialTexturePaths[k].src,function(sourceTexture){var image=sourceTexture.image,texture=sourceTexture;if(image&&image.width&&image.height){var c=document.createElement("canvas");c.width=image.naturalWidth||image.width;c.height=image.naturalHeight||image.height;var context=c.getContext("2d");context.filter=materialTexturePaths[k].filter;context.drawImage(image,0,0,c.width,c.height);texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;sourceTexture.dispose();}texture.wrapS=THREE.RepeatWrapping;texture.wrapT=THREE.RepeatWrapping;texture.repeat.set(1.2,1);var fallback=woodMats[k].map;woodMats[k].map=texture;woodMats[k].needsUpdate=true;if(fallback)fallback.dispose();render();});});
+var materialTextureState={};
+function loadMaterialTexture(k){
+  if(!materialTexturePaths[k]||materialTextureState[k])return;
+  materialTextureState[k]="loading";
+  new THREE.TextureLoader().load(materialTexturePaths[k].src,function(sourceTexture){
+    var image=sourceTexture.image,texture=sourceTexture;
+    if(image&&image.width&&image.height){
+      var c=document.createElement("canvas");c.width=image.naturalWidth||image.width;c.height=image.naturalHeight||image.height;
+      var context=c.getContext("2d");context.filter=materialTexturePaths[k].filter;context.drawImage(image,0,0,c.width,c.height);
+      texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;sourceTexture.dispose();
+    }
+    texture.wrapS=THREE.RepeatWrapping;texture.wrapT=THREE.RepeatWrapping;texture.repeat.set(1.2,1);
+    var fallback=woodMats[k].map;woodMats[k].map=texture;woodMats[k].needsUpdate=true;if(fallback)fallback.dispose();
+    materialTextureState[k]="loaded";render();
+  },undefined,function(){materialTextureState[k]="failed";});
+}
+loadMaterialTexture(wood.value);
 var steel=new THREE.MeshStandardMaterial({color:0x343c37,metalness:.72,roughness:.34}),riserMats={white:new THREE.MeshStandardMaterial({color:0xf2efe8,roughness:.78}),gray:new THREE.MeshStandardMaterial({color:0x858681,roughness:.72}),stone:new THREE.MeshStandardMaterial({color:0xaaa69c,roughness:.88}),marble:new THREE.MeshStandardMaterial({color:0xe4e0d8,roughness:.28})},glassMat=new THREE.MeshPhysicalMaterial({color:0xb8d2d4,transparent:true,opacity:.23,roughness:.12,metalness:.02,depthWrite:false,side:THREE.DoubleSide}),model=null,lightingStrips=[],lightingTimer=null;
 var view={yaw:.72,pitch:.34,distance:7.5,fitDistance:7.5,zoom:1,target:new THREE.Vector3(0,1.3,0),drag:false,x:0,y:0};
 function addBox(g,a,b,c,x,y,z,mat){var m=new THREE.Mesh(new THREE.BoxGeometry(a,b,c),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;g.add(m);}
@@ -107,6 +123,7 @@ var rangeRebuildTimer=0;
 function scheduleRangeRebuild(){updateSummary();if(rangeRebuildTimer)return;rangeRebuildTimer=window.setTimeout(function(){rangeRebuildTimer=0;rebuild();},90);}
 function flushRangeRebuild(){if(rangeRebuildTimer){window.clearTimeout(rangeRebuildTimer);rangeRebuildTimer=0;}rebuild();}
 ["shape","frame","wood","risers","shoes","railing","railingSide","handrail","balusterStyle","lighting"].forEach(function(id){document.getElementById(id).addEventListener("change",rebuild);});
+wood.addEventListener("change",function(){loadMaterialTexture(wood.value);});
 lightingMode.addEventListener("change",function(){updateLightingPreview();updateSummary();});nightView.addEventListener("change",function(){updateLightingPreview();updateSummary();});
 [width,height,depth,steps].forEach(function(input){input.addEventListener("input",scheduleRangeRebuild);input.addEventListener("change",flushRangeRebuild);});
 var pointers=new Map();
