@@ -12,15 +12,15 @@
 
   <!-- SEO: Title & Description -->
   <title>Лестницы любой сложности для вас — Древесный Замысел</title>
-  <meta name="description" content="Лестницы любой сложности в Москве и области: проектирование и монтаж под ключ. Изготавливаем мебель на заказ и столы из слэбов." />
+  <meta name="description" content="Проектируем и изготавливаем лестницы любой сложности в Москве и области, выполняем монтаж под ключ. Также делаем мебель по индивидуальным размерам и столы из слэбов." />
   <meta name="author" content="Древесный Замысел" />
   <meta name="theme-color" content="#fbfaf7" />
-  <meta name="keywords" content="изготовление лестниц Москва, лестницы любой сложности, проектирование лестниц, лестницы на заказ Московская область, изготовление мебели на заказ, столы из слэбов, металлический каркас лестницы, деревянные ступени, ограждения, монтаж под ключ" />
+  <meta name="keywords" content="изготовление лестниц Москва, лестницы любой сложности, проектирование лестниц, лестницы на заказ Московская область, изготовление мебели на заказ, изготовление столов из слэбов, металлический каркас лестницы, деревянные ступени, ограждения, монтаж под ключ" />
   <meta name="robots" content="index, follow" />
 
   <!-- OG / Social -->
   <meta property="og:title" content="Лестницы любой сложности для вас — Древесный Замысел" />
-  <meta property="og:description" content="Лестницы любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов. Проектирование и монтаж под ключ." />
+  <meta property="og:description" content="Проектируем и изготавливаем лестницы любой сложности, мебель по индивидуальным размерам и столы из слэбов. Монтаж под ключ в Москве и области." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/" />
   <meta property="og:site_name" content="Древесный Замысел" />
@@ -32,7 +32,7 @@
   <meta property="og:image:alt" content="Лестницы любой сложности — Древесный Замысел" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Лестницы любой сложности — Древесный Замысел" />
-  <meta name="twitter:description" content="Лестницы любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов. Проектирование и монтаж под ключ." />
+  <meta name="twitter:description" content="Проектируем и изготавливаем лестницы любой сложности, мебель по индивидуальным размерам и столы из слэбов. Монтаж под ключ в Москве и области." />
   <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
 
 
@@ -43,7 +43,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Древесный Замысел",
-      "description": "Проектирование, изготовление и монтаж лестниц любой сложности в Москве и области. Изготавливаем мебель на заказ и столы из слэбов.",
+      "description": "Проектирование, изготовление и монтаж лестниц любой сложности в Москве и области. Также изготавливаем мебель по индивидуальным размерам и столы из слэбов.",
       "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/hero.webp",
       "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "telephone": "+7 (495) 275-14-23",
@@ -2427,7 +2427,16 @@
           if(typeof img.decode==='function') img.decode().then(ready).catch(ready); else ready();
         };
         img.addEventListener('load',revealGalleryImage,{once:true});
-        img.onerror=()=>{img.onerror=null;img.src=src;};
+        img.onerror=()=>{
+          if(img.dataset.fullsizeFallback!=='tried'){
+            img.dataset.fullsizeFallback='tried';
+            img.src=src;
+            return;
+          }
+          img.classList.remove('gallery-image-loading');
+          img.classList.add('gallery-image-ready');
+          img.alt=`${categoryImageDescriptions[key]}, изображение временно недоступно`;
+        };
         img.src=src.replace('/portfolio/','/portfolio/thumbs/');
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
@@ -3068,15 +3077,15 @@
   }
   .motion-lite .hero-cta-row .hero-builder-link { animation:none; }
   .motion-lite .ticker { animation-play-state:paused; }
-  .category-lightbox__item img.gallery-image-loading { opacity:0; }
-  .category-lightbox__item img.gallery-image-ready { opacity:1; transition:opacity .55s ease,transform .35s ease; }
+  .category-lightbox__item img.gallery-image-loading { opacity:0; transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .35s ease; }
+  .category-lightbox__item img.gallery-image-ready { opacity:1; transition:opacity .72s cubic-bezier(.16,1,.3,1),transform .35s ease; }
   @media (max-width:720px), (pointer:coarse) {
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item { animation:gallery-card-arrive .68s cubic-bezier(.16,1,.3,1) both; }
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(2n) { animation-delay:.055s; }
-    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(3n) { animation-delay:.11s; }
+    .category-lightbox.mobile-gallery-entering .category-lightbox__item { animation:gallery-card-arrive .78s cubic-bezier(.16,1,.3,1) both; }
+    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(2n) { animation-delay:.035s; }
+    .category-lightbox.mobile-gallery-entering .category-lightbox__item:nth-child(3n) { animation-delay:.07s; }
   }
   @keyframes gallery-card-arrive {
-    from { opacity:0; transform:translate3d(0,14px,0); }
+    from { opacity:0; transform:translate3d(0,9px,0); }
     to { opacity:1; transform:translate3d(0,0,0); }
   }
   @media (prefers-reduced-motion:reduce) {

@@ -50,7 +50,7 @@ function flight(g,o){
     if(o.risers!=="none"){
       // Extend the riser into both neighboring treads. This closes the visible
       // seams while keeping its front face flush with the front edge of the tread.
-      var riserOverlap=.006,riserHeight=Math.max(.08,o.rise-board+2*riserOverlap),riserY=(o.base+i+.5)*o.rise-board;
+      var riserOverlap=.006,riserHeight=Math.max(.08,o.rise-board+2*riserOverlap),riserY=(o.base+i+.5)*o.rise-board/2;
       addBox(g,alongX?board:o.width,riserHeight,alongX?o.width:board,x-o.dx*(o.depth/2-board/2),riserY,z-o.dz*(o.depth/2-board/2),riserMats[o.risers]);
     }
   }
