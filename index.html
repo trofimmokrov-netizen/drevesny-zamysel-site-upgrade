@@ -1207,7 +1207,7 @@
       html { scroll-padding-top: 76px; }
       .nav-logo-img { height: 42px; }
       .nav-logo-text { font-size: 13px; }
-      .hero { align-items: flex-start; min-height: 730px; min-height: calc(100svh - 70px); padding: 82px 20px 40px; background-position: left top, 61% center; }
+      .hero { align-items: flex-start; min-height: calc(100vh - 70px); min-height: calc(100svh - 70px); padding: 82px 20px 40px; background-position: left top, 61% center; }
       .hero-content { flex: 0 1 auto; width: calc(100vw - 40px); max-width: calc(100vw - 40px); min-width: 0; padding: 0; transform: none; will-change: auto; }
       .hero-label { max-width: 100%; margin-bottom: 12px; font-size: 10px; letter-spacing: .12em; white-space: normal; overflow-wrap: anywhere; }
       .hero-title { margin-bottom: 16px; }
@@ -1231,8 +1231,6 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-    }
-    @media (max-width: 720px) {
     }
     .hero { background-position-y: top, calc(50% + var(--hero-image-drift, 0px) + var(--hero-image-float, 0px)); }
   </style>
