@@ -3644,13 +3644,13 @@
      scroll reveals and on browsers with slightly different font rendering. */
   .training-card,.training-card .training-copy,.training-card .training-copy *,.training-card .training-offer,.training-card .training-offer * { opacity:1 !important; filter:none !important; }
   .training-card .training-lead { color:#fffefa !important; }
-  .training-card .training-program { border-top-color:rgba(255,254,250,.46); }
-  .training-card .training-program li { border-bottom-color:rgba(255,254,250,.46); }
+  .training-card .training-program { gap:10px; border-top:0; }
+  .training-card .training-program li { padding:16px; border:1px solid rgba(255,254,250,.34); border-radius:3px; background:rgba(255,254,250,.055); }
   .training-card .training-program li > span:nth-child(2) { text-align:left; }
   .training-card .training-program li strong { color:#fffefa !important; }
-  .training-card .training-program li small { color:#fffefa !important; font-size:15px !important; line-height:1.65; }
-  .training-card .training-program .training-day { color:#f0ce91 !important; }
-  .training-card .training-program li > b { color:#fffefa !important; font-size:14px !important; }
+  .training-card .training-program li small { color:#fffefa !important; font-size:15px !important; line-height:1.65; text-align:left; }
+  .training-card .training-program .training-day { color:#f0ce91 !important; font-size:14px; font-weight:700; }
+  .training-card .training-program li > b { justify-self:end; padding:5px 9px; border-radius:999px; background:rgba(255,254,250,.12); color:#fffefa !important; font-size:13px !important; }
   .training-card .training-program-note { color:#fffefa !important; font-size:14px !important; line-height:1.65; }
   .training-offer__label { color:#fffefa !important; }
   .training-offer > p { color:#fffefa !important; font-size:14px !important; line-height:1.65; }
@@ -3685,9 +3685,10 @@
     .training-card { justify-items:center; text-align:center; }
     .training-copy,.training-copy > * { max-width:100%; }
     .training-program { width:100%; text-align:center; }
-    .training-program li { grid-template-columns:minmax(0,1fr); justify-items:center; gap:7px; text-align:center; }
+    .training-program li { grid-template-columns:minmax(0,1fr); justify-items:center; gap:7px; text-align:center; padding:16px 12px; }
     .training-program li > b { grid-column:auto; justify-self:center; margin-top:0; text-align:center; }
-    .training-program li > span:nth-child(2) { width:100%; }
+    .training-card .training-program li > span:nth-child(2) { width:100%; text-align:center; }
+    .training-card .training-program li small { text-align:center; }
     .training-offer { justify-items:center; width:min(100%,480px); margin-inline:auto; text-align:center; }
     .training-offer > p { max-width:42ch; }
     .training-note { align-items:center; text-align:center; }
