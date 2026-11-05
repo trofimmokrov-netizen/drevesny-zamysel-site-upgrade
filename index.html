@@ -1900,8 +1900,9 @@
       <div class="process-right">
         <div class="process-card">
           <h3>Всё включено в цену</h3>
-          <p>Вы платите один раз — без скрытых доплат за выезд, проект или монтаж.</p>
+          <p>Оплата в два этапа: аванс до начала работ, затем окончательный расчёт при сдаче лестницы. Суммы и сроки фиксируются в договоре и спецификации.</p>
           <div class="process-meta">
+            <div class="meta-row"><span>Оплата</span><span>2 этапа по договору</span></div>
             <div class="meta-row"><span>Замер</span><span>Бесплатно</span></div>
             <div class="meta-row"><span>3D-проект</span><span>Бесплатно</span></div>
             <div class="meta-row"><span>Доставка по МО</span><span>Включена</span></div>
@@ -3511,6 +3512,90 @@
       padding-top: calc(82px + env(safe-area-inset-top)) !important;
       padding-bottom: calc(26px + env(safe-area-inset-bottom)) !important;
     }
+  }
+</style>
+<style id="training-and-certificate-dialog-layout">
+  .training-program {
+    display:grid;
+    gap:0;
+    margin:28px 0 0;
+    padding:0;
+    list-style:none;
+    border-top:1px solid var(--border);
+  }
+  .training-program li {
+    display:grid;
+    grid-template-columns:76px minmax(0,1fr) 64px;
+    align-items:start;
+    gap:14px;
+    padding:18px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .training-day { color:var(--accent); font-size:13px; font-weight:600; white-space:nowrap; }
+  .training-program li > span:nth-child(2) { min-width:0; }
+  .training-program li strong { display:block; color:var(--heading-color); font-weight:600; line-height:1.4; }
+  .training-program li small { display:block; margin-top:5px; color:var(--text-secondary); font-size:13px; line-height:1.55; }
+  .training-program li > b { color:var(--text-secondary); font-size:12px; font-weight:500; text-align:right; white-space:nowrap; }
+  .training-program-note { margin-top:14px; color:var(--text-secondary); font-size:12px; line-height:1.55; }
+
+  .training-chat-dialog,
+  .dealer-certificate-dialog {
+    width:min(600px,calc(100vw - 32px));
+    max-width:none;
+    max-height:min(90vh,900px);
+    max-height:min(90svh,900px);
+    margin:auto;
+    padding:0;
+    overflow:auto;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:var(--off-white);
+    color:var(--text-primary);
+    box-shadow:0 24px 80px rgba(22,31,25,.28);
+  }
+  .training-chat-dialog::backdrop,
+  .dealer-certificate-dialog::backdrop { background:rgba(19,25,21,.66); backdrop-filter:blur(5px); }
+  .training-chat-dialog__form { position:relative; display:grid; gap:12px; padding:clamp(24px,5vw,40px); }
+  .training-chat-dialog__form .section-label { margin:0; color:var(--accent); }
+  .training-chat-dialog__form h2 { margin:0; padding-right:36px; color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,5vw,42px); font-weight:400; line-height:1.05; }
+  .training-chat-dialog__topic { margin:0; padding:12px 14px; border-left:3px solid var(--accent); background:rgba(51,69,56,.06); color:var(--text-primary); line-height:1.5; }
+  .training-chat-dialog__form > label:not(.training-chat-dialog__consent) { margin-top:4px; color:var(--text-primary); font-size:13px; }
+  .training-chat-dialog__form input[type="tel"] { width:100%; min-height:50px; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#fffefa; color:var(--text-primary); font:inherit; font-size:16px; }
+  .training-chat-dialog__form input[type="tel"]:focus-visible { outline:3px solid rgba(181,138,69,.35); border-color:var(--accent); }
+  .training-chat-dialog__consent { display:grid; grid-template-columns:20px minmax(0,1fr); align-items:start; gap:10px; color:var(--text-secondary); font-size:12px; line-height:1.5; }
+  .training-chat-dialog__consent input { width:18px; height:18px; margin:1px 0 0; accent-color:var(--btn-bg); }
+  .training-chat-dialog__consent a { color:var(--btn-bg); text-underline-offset:3px; }
+  .training-chat-dialog__form > .btn-primary { width:100%; min-height:50px; justify-content:center; border:0; border-radius:10px; cursor:pointer; }
+  .training-chat-dialog__hint,.training-chat-dialog__status { margin:0; color:var(--text-secondary); font-size:12px; line-height:1.5; }
+  .training-chat-dialog__close,
+  .dealer-certificate-dialog__close { position:absolute; top:16px; right:16px; z-index:2; display:grid; width:40px; height:40px; place-items:center; border:1px solid var(--border); border-radius:50%; background:#fffefa; color:var(--text-primary); font-size:24px; line-height:1; cursor:pointer; }
+
+  .dealer-certificate-dialog { width:min(920px,calc(100vw - 32px)); }
+  .dealer-certificate-dialog__bar { position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 68px 18px 22px; border-bottom:1px solid var(--border); }
+  .dealer-certificate-dialog__bar h2 { margin:0; color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(22px,3vw,30px); font-weight:400; }
+  .dealer-certificate-dialog__bar .dealer-certificate-dialog__close { position:absolute; top:50%; right:16px; transform:translateY(-50%); }
+  .dealer-certificate-dialog__viewport { display:grid; place-items:center; min-height:180px; max-height:68svh; padding:16px; overflow:auto; background:#e9e5dc; }
+  .dealer-certificate-dialog__viewport img { display:block; width:auto; height:auto; max-width:100%; max-height:62svh; object-fit:contain; transition:transform .25s ease; }
+  .dealer-certificate-dialog.is-zoomed .dealer-certificate-dialog__viewport img { max-width:none; max-height:none; width:min(1200px,180vw); }
+  .dealer-certificate-dialog__actions { display:flex; justify-content:flex-end; gap:10px; padding:14px 18px; }
+  .dealer-certificate-dialog__actions button,.dealer-certificate-dialog__actions a { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:9px 14px; border:1px solid var(--border); border-radius:24px; background:#fffefa; color:var(--text-primary); font:inherit; font-size:13px; text-decoration:none; cursor:pointer; }
+  .dealer-certificate-dialog__actions a { background:var(--btn-bg); color:#fffefa; }
+
+  @media(max-width:600px) {
+    .training-program { margin-top:20px; }
+    .training-program li { grid-template-columns:58px minmax(0,1fr); gap:8px 12px; padding:15px 0; }
+    .training-program li > b { grid-column:2; justify-self:start; margin-top:2px; text-align:left; }
+    .training-program li small { font-size:12px; }
+    .training-chat-dialog,.dealer-certificate-dialog { width:calc(100vw - 24px); max-height:calc(100vh - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)); max-height:calc(100svh - 24px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)); border-radius:16px; }
+    .training-chat-dialog__form { gap:11px; padding:26px 20px 22px; }
+    .training-chat-dialog__close { top:12px; right:12px; width:36px; height:36px; }
+    .training-chat-dialog__form h2 { font-size:32px; }
+    .dealer-certificate-dialog__bar { padding:16px 60px 16px 16px; }
+    .dealer-certificate-dialog__bar .dealer-certificate-dialog__close { right:12px; width:36px; height:36px; }
+    .dealer-certificate-dialog__viewport { min-height:130px; max-height:65svh; padding:10px; }
+    .dealer-certificate-dialog__viewport img { max-height:58svh; }
+    .dealer-certificate-dialog__actions { justify-content:stretch; padding:12px; }
+    .dealer-certificate-dialog__actions > * { flex:1; min-width:0; padding-inline:8px; font-size:12px; }
   }
 </style>
 </body>
