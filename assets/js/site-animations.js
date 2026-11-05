@@ -51,7 +51,7 @@
     ".section-label", ".section-title", ".section-sub", ".product-card", ".why-item", ".why-times li",
     ".step", ".process-right", ".process-card", ".material-card", ".materials-advice", ".article-card", ".review-card", ".reviews-card",
     ".form-section", ".builder-entry", ".intro", ".viewer", ".spec-strip", ".space-estimate", ".comfort-note", ".controls", ".howto", ".hero-media", ".ticker-wrap",
-    ".featured-case", ".epoxy-project-link", ".contact-item", ".training-card", ".training-points li", ".training-offer",
+    ".featured-case", ".epoxy-project-link", ".contact-item", ".training-card", ".training-points li", ".training-offer", ".training-note", ".dealer-note",
     ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta",
     ".article-header > *", ".article-cover", ".article-summary", ".article-toc", ".article-section", ".article-checklist", ".article-faq", ".article-related", ".article-aside", ".article-index__intro > *", ".article-index-card"
   ].join(",");
