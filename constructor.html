@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,10 +30,10 @@
 <meta name="twitter:description" content="Выберите форму лестницы, размеры, каркас и материал ступеней.">
 <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg">
 <link rel="icon" href="./favicons/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="./assets/css/stair-configurator.css">
-<link rel="stylesheet" href="./assets/css/constructor-mobile.css">
+<link rel="stylesheet" href="./assets/css/stair-configurator.css?v=20261105-risers-v1">
+<link rel="stylesheet" href="./assets/css/constructor-mobile.css?v=20261105-mobile-v2">
 <script defer src="./assets/vendor/three-0.159.0.min.js"></script>
-<script defer src="./assets/js/stair-configurator.js"></script>
+<script defer src="./assets/js/stair-configurator.js?v=20261105-model-v3"></script>
 </head><body>
 <header class="topbar">
 <a class="brand" href="./index.html" aria-label="Древесный Замысел — главная"><img src="./assets/images/logo-transparent.png" alt="" title="Древесный Замысел — изготовление лестниц на заказ" width="160" height="160" decoding="async"><span>Древесный<br>замысел</span></a>
@@ -56,7 +56,7 @@
 <aside class="controls" id="stairSettings"><div class="controls-head"><div><p class="eyebrow">Настройки</p><h2>Ваша лестница</h2></div></div>
 <label class="field"><span>Форма лестницы</span><select id="shape"><option value="straight">Прямая</option><option value="l">Г-образная с площадкой</option><option value="u">П-образная с площадкой</option></select></label>
 <label class="field"><span>Тип металлокаркаса</span><select id="frame"><option value="open-double">Открытый · два боковых косоура</option><option value="mono">Открытый · центральный косоур</option><option value="closed">Закрытый каркас</option></select></label>
-<label class="field"><span>Подступенники</span><select id="risers"><option value="none">Без подступенников</option><option value="white">Белые</option><option value="gray">Серые</option><option value="stone">Камень · светлый</option><option value="marble">Мрамор · белый</option></select></label>
+<label class="field"><span>Подступенники</span><select id="risers" aria-describedby="riserHint"><option value="white" selected>Белые</option><option value="gray">Серые</option><option value="stone">Камень · светлый</option><option value="marble">Мрамор · белый</option><option value="none">Без подступенников · открытая лестница</option></select><small class="field-hint" id="riserHint">Материал закрывает просветы между ступенями. Для открытого вида выберите «Без подступенников».</small></label>
 <label class="field"><span>Боковая обшивка («сапожки»)</span><select id="shoes"><option value="none">Не устанавливать</option><option value="left">Слева при подъёме</option><option value="right">Справа при подъёме</option><option value="both">С обеих сторон</option></select></label>
 <label class="field"><span>Ограждение</span><select id="railing"><option value="none">Без ограждения</option><option value="glass">Стеклянное</option><option value="balusters">Балясины</option></select></label>
 <label class="field railing-side-field"><span>Сторона ограждения</span><select id="railingSide"><option value="left">Слева при подъёме</option><option value="right">Справа при подъёме</option><option value="both">С обеих сторон</option></select></label>
@@ -111,4 +111,4 @@
     targets.forEach((target) => observer.observe(target));
   })();
 </script>
-<script defer src="./assets/vendor/gsap.min.js"></script><script defer src="./assets/vendor/ScrollTrigger.min.js"></script><script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/site-animations.js"></script></body></html>
+<script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/motion-loader.js?v=20261105-loader-v5"></script></body></html>

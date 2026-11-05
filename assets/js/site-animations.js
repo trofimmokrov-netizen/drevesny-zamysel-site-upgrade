@@ -15,12 +15,6 @@
     || (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4)
   );
   if (lowPowerDevice) document.documentElement.classList.add("motion-lite");
-  if (mobile && !document.getElementById("site-image-reveal-style")) {
-    const imageRevealStyle = document.createElement("style");
-    imageRevealStyle.id = "site-image-reveal-style";
-    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity 1.8s cubic-bezier(.22,.61,.36,1)}";
-    document.head.appendChild(imageRevealStyle);
-  }
   const hero = document.querySelector(".hero");
   if (hero && "IntersectionObserver" in window) {
     const heroMotionObserver = new IntersectionObserver(([entry]) => {
@@ -29,6 +23,20 @@
     heroMotionObserver.observe(hero);
   } else if (hero) {
     document.documentElement.classList.add("hero-motion-active");
+  }
+  // Let touch scrolling take priority over decorative hero movement. This
+  // avoids animating a full-bleed image on every frame while an older phone
+  // is already compositing the page during a finger scroll.
+  if (mobile && hero) {
+    let heroScrollResumeTimer = 0;
+    const pauseHeroWhileScrolling = () => {
+      document.documentElement.classList.add("hero-scroll-paused");
+      window.clearTimeout(heroScrollResumeTimer);
+      heroScrollResumeTimer = window.setTimeout(() => {
+        document.documentElement.classList.remove("hero-scroll-paused");
+      }, 220);
+    };
+    window.addEventListener("scroll", pauseHeroWhileScrolling, { passive: true });
   }
   const homeHeroItems = document.querySelectorAll(
     ".hero-content .hero-label, .hero-content .hero-title, .hero-content .hero-sub, .hero-content .hero-note, .hero-content .hero-stats"
@@ -84,16 +92,34 @@
   }
 
   const motion = mobile
-    // Keep the entrance visible on phones, using only opacity and a short
-    // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 2.9 : 3.2, lift: lowPowerDevice ? 10 : 14, scale: 1, blur: 0, ease: "power1.inOut", heroStagger: lowPowerDevice ? 0.32 : 0.42, sectionStagger: lowPowerDevice ? 0.24 : 0.32, sectionStaggerMax: lowPowerDevice ? 0.72 : 1.02 }
-    : { duration: 2.05, lift: 18, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: 0.34, sectionStagger: 0, sectionStaggerMax: 0 };
+    // Keep phone content readable during the entrance; a short translation
+    // supplies the motion without fading copy or applying a blur.
+    ? { duration: lowPowerDevice ? 1.15 : 1.35, lift: lowPowerDevice ? 8 : 10, scale: 1, blur: 0, ease: "power2.out", heroStagger: lowPowerDevice ? 0.16 : 0.2, sectionStagger: lowPowerDevice ? 0.1 : 0.13, sectionStaggerMax: lowPowerDevice ? 0.28 : 0.4 }
+    : { duration: 1.2, lift: 14, scale: 1, blur: 0, ease: "power2.out", heroStagger: 0.24, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
     if (gsap) {
-      const from = { autoAlpha: 0, y: motion.lift, scale: motion.scale };
+      if (!mobile) {
+        const startDelay = delay || 0;
+        // Keep desktop content fully legible throughout the reveal. The
+        // screenshot-based review showed opacity made entire sections look
+        // washed out while they entered; a small lift carries the motion alone.
+        gsap.set(element, { autoAlpha: 1, y: motion.lift });
+        gsap.to(element, {
+          y: 0,
+          duration: motion.duration,
+          delay: startDelay,
+          ease: motion.ease,
+          force3D: true,
+          clearProps: "transform"
+        });
+        return;
+      }
+      // Keep mobile copy legible throughout the entrance; motion comes from
+      // the short lift only, never from fading the text out.
+      gsap.set(element, { autoAlpha: 1 });
+      const from = { y: motion.lift, scale: motion.scale };
       const to = {
-        autoAlpha: 1,
         y: 0,
         scale: 1,
         duration: motion.duration,
@@ -116,7 +142,7 @@
       window.setTimeout(() => element.classList.remove("motion-css-reveal", "motion-css-visible"), fallbackDelay + motion.duration * 1000 + 80);
       return;
     }
-    const from = { opacity: 0, transform: mobile ? `translateY(${motion.lift}px)` : `translate3d(0, ${motion.lift}px, 0) scale(${motion.scale})` };
+    const from = { opacity: 1, transform: mobile ? `translateY(${motion.lift}px)` : `translate3d(0, ${motion.lift}px, 0) scale(${motion.scale})` };
     const to = { opacity: 1, transform: mobile ? "translateY(0)" : "translate3d(0, 0, 0) scale(1)" };
     if (!mobile) {
       from.filter = `blur(${motion.blur}px)`;
@@ -131,61 +157,6 @@
     animation.onfinish = () => animation.cancel();
   }
 
-  // Mobile scroll reveals follow the user's scroll position instead of
-  // starting a timer as soon as an item enters the viewport. This keeps
-  // gradual finger scrolling gradual, while remaining lightweight on older
-  // phones (opacity + transform only, one shared animation frame loop).
-  const activeScrollReveals = new Set();
-  let scrollRevealFrame = 0;
-  function renderScrollReveals() {
-    scrollRevealFrame = 0;
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    // Batch layout reads before style writes to avoid repeated forced layout
-    // calculations when several cards enter together on lower-powered phones.
-    const updates = Array.from(activeScrollReveals, (entry) => {
-      const top = entry.element.getBoundingClientRect().top;
-      // Give each reveal more scroll distance. This is especially noticeable
-      // with a mouse wheel's small, repeated steps: the content now unfolds
-      // across most of the viewport instead of appearing in a short burst.
-      // Start just before the card reaches the viewport and let it unfold
-      // across most of the screen. This avoids a quick opacity jump during
-      // slow, small finger scrolls on phones.
-      const raw = Math.max(0, Math.min(1, (viewportHeight - top) / (viewportHeight * 0.82)));
-      const smooth = raw * raw * (3 - 2 * raw);
-      const children = entry.children.map((child, index) => {
-        const start = Math.min(0.34, 0.12 + index * 0.045);
-        const childRaw = Math.max(0, Math.min(1, (raw - start) / (1 - start)));
-        return { element: child, progress: childRaw * childRaw * (3 - 2 * childRaw) };
-      });
-      return { entry, raw, smooth, children };
-    });
-    updates.forEach(({ entry, raw, smooth, children }) => {
-      if (raw >= 1) {
-        entry.element.style.removeProperty("opacity");
-        entry.element.style.removeProperty("transform");
-        children.forEach(({ element }) => {
-          element.style.removeProperty("opacity");
-          element.style.removeProperty("transform");
-        });
-        activeScrollReveals.delete(entry);
-        return;
-      }
-      entry.element.style.opacity = String(smooth);
-      entry.element.style.transform = `translate3d(0, ${(1 - smooth) * 14}px, 0)`;
-      children.forEach(({ element, progress }) => {
-        element.style.opacity = String(progress);
-        element.style.transform = `translate3d(0, ${(1 - progress) * 8}px, 0)`;
-      });
-    });
-  }
-  function queueScrollRevealFrame() {
-    if (!scrollRevealFrame) scrollRevealFrame = window.requestAnimationFrame(renderScrollReveals);
-  }
-  if (mobile) {
-    window.addEventListener("scroll", queueScrollRevealFrame, { passive: true });
-    window.addEventListener("resize", queueScrollRevealFrame, { passive: true });
-  }
-
   // Let a card's message arrive in a small reading order: heading, explanation,
   // supporting points, then actions. Staggering only these few text layers adds
   // depth without animating every character or making long pages feel busy.
@@ -195,117 +166,15 @@
     [".process-card", "h3, p, ul"],
     [".review-card", ".review-card__meta, blockquote, .review-card__source"]
   ];
-  function waitForImage(image) {
-    const decode = () => typeof image.decode === "function"
-      ? Promise.resolve().then(() => image.decode()).catch(() => undefined)
-      : Promise.resolve();
-    if (image.complete) return decode();
-    image.classList.add("motion-image-pending");
-    return new Promise((resolve) => {
-      let timeout;
-      let settled = false;
-      const cleanup = () => {
-        window.clearTimeout(timeout);
-        image.removeEventListener("load", onLoad);
-        image.removeEventListener("error", onError);
-      };
-      const onLoad = () => {
-        cleanup();
-        decode().then(() => {
-          window.requestAnimationFrame(() => {
-            image.classList.remove("motion-image-pending");
-            image.classList.add("motion-image-ready");
-            if (!settled) {
-              settled = true;
-              resolve();
-            }
-          });
-        });
-      };
-      const onError = () => {
-        cleanup();
-        image.classList.remove("motion-image-pending");
-        if (!settled) {
-          settled = true;
-          resolve();
-        }
-      };
-      image.addEventListener("load", onLoad, { once: true });
-      image.addEventListener("error", onError, { once: true });
-      // Keep a broken or very slow image from holding the rest of the page.
-      timeout = window.setTimeout(() => {
-        if (settled) return;
-        settled = true;
-        cleanup();
-        // Never leave a slow image hidden if decoding takes longer than the
-        // reveal budget. The card should still become usable and visible.
-        image.classList.remove("motion-image-pending");
-        image.classList.add("motion-image-ready");
-        resolve();
-      }, 2400);
-    });
-  }
 
-  async function revealSceneItem(element, delay, scrollLinked) {
-    // On phones, lazy images can finish decoding after the card's fade has
-    // completed. That makes the photo look like it flashes on top of the
-    // animation. Let visible card images decode first, then reveal the whole
-    // card as one smooth unit. Other text-only sections do not wait.
-    if (mobile) {
-      const group = copyLayers.find(([selector]) => element.matches(selector));
-      const children = group ? Array.from(element.querySelectorAll(group[1])) : [];
-      const entry = { element, children };
-      // Apply the hidden start state before awaiting image decode. Otherwise
-      // the card can paint once, disappear when decoding finishes, then fade
-      // back in, which looks like a flash during slow scrolling.
-      element.style.opacity = "0";
-      element.style.transform = "translate3d(0, 14px, 0)";
-      children.forEach((child) => {
-        child.style.opacity = "0";
-        child.style.transform = "translate3d(0, 8px, 0)";
-      });
-      const images = Array.from(element.querySelectorAll("img"));
-      if (images.length) await Promise.all(images.map(waitForImage));
-      activeScrollReveals.add(entry);
-      queueScrollRevealFrame();
-      return;
-    }
+  function revealSceneItem(element, delay) {
+    // Reveal once when the item enters view. Keep text and photos at full
+    // opacity; the restrained lift carries the motion without reducing contrast.
     const group = copyLayers.find(([selector]) => element.matches(selector));
-    if (scrollLinked && gsap && window.ScrollTrigger) {
-      // On desktop, let the visitor's wheel or trackpad control the reveal.
-      // ScrollTrigger's scrub smoothing removes the abrupt start/stop of a
-      // time-only entrance when the page is moved in small increments.
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: element,
-          // Use a longer travel and a little more scrub smoothing so slow
-          // wheel/trackpad movement controls a calm, gradual reveal.
-          start: "top 96%",
-          end: () => `+=${Math.round(Math.max(window.innerHeight * 1.9, element.offsetHeight * 1.4))}`,
-          scrub: 2.4,
-          invalidateOnRefresh: true
-        }
-      });
-      timeline.fromTo(element,
-        { autoAlpha: 0, y: motion.lift },
-        { autoAlpha: 1, y: 0, duration: 1, ease: "none" },
-        0
-      );
-      if (group) {
-        element.querySelectorAll(group[1]).forEach((child, index) => {
-          timeline.fromTo(child,
-            { autoAlpha: 0, y: 8 },
-            { autoAlpha: 1, y: 0, duration: 1.08, ease: "none" },
-            0.3 + index * 0.2
-          );
-        });
-      }
-      return;
-    }
-    reveal(element, delay);
+    reveal(element, delay || 0);
     if (!group) return;
     element.querySelectorAll(group[1]).forEach((child, index) => {
-      reveal(child, (delay || 0) + 0.18 + index * (lowPowerDevice ? 0.09 : 0.12));
+      reveal(child, (delay || 0) + 0.12 + index * (lowPowerDevice ? 0.07 : 0.09));
     });
   }
 
@@ -318,14 +187,14 @@
       const intro = gsap.timeline();
       if (headerItems.length) {
         intro.fromTo(headerItems,
-          { autoAlpha: 0, y: 7 },
+          { autoAlpha: 1, y: 7 },
           { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.5 : 1.7, stagger: lowPowerDevice ? 0.12 : 0.16, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
       }
       intro.fromTo(heroItems,
-        { autoAlpha: 0, y: motion.lift },
+        { autoAlpha: 1, y: motion.lift },
         { autoAlpha: 1, y: 0, duration: motion.duration, stagger: motion.heroStagger, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
         0.12
       );
@@ -333,7 +202,7 @@
       const tags = hero.querySelectorAll(".hero-tags .hero-tag");
       if (tags.length) {
         intro.fromTo(tags,
-          { autoAlpha: 0, y: 8 },
+          { autoAlpha: 1, y: 8 },
           { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.4 : 1.65, stagger: lowPowerDevice ? 0.11 : 0.15, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           1.48
         );
@@ -341,7 +210,7 @@
       const actions = hero.querySelectorAll(".hero-cta-row > a");
       if (actions.length) {
         intro.fromTo(actions,
-          { autoAlpha: 0, y: 9 },
+          { autoAlpha: 1, y: 9 },
           { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.5 : 1.75, stagger: lowPowerDevice ? 0.12 : 0.16, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           2.12
         );
@@ -358,7 +227,7 @@
       initialTargets.add(heroMedia);
       if (mobile && gsap && heroItems.length) {
         gsap.fromTo(heroMedia,
-          { autoAlpha: 0, y: 14, scale: 1.035 },
+          { autoAlpha: 1, y: 14, scale: 1.035 },
           { autoAlpha: 1, y: 0, scale: 1, duration: lowPowerDevice ? 1.45 : 1.7, delay: 0.48, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" }
         );
       } else {
@@ -373,9 +242,14 @@
           reveal(element, 0.1 + index * 0.1);
         });
     }
-    // Keep scroll reveals on older phones too. IntersectionObserver starts
-    // each animation only as it enters view; the motion stays transform/opacity only.
-    const targets = document.querySelectorAll(revealSelector);
+    // Reveal each section once when it enters view. Motion is a brief lift,
+    // independent of scroll distance, so slow wheel or finger movement never
+    // leaves content half-revealed.
+    // Keep the catalog static and immediately readable. Its cards were
+    // appearing washed out on some desktop scroll paths even though the reveal
+    // only animates transforms; other sections retain their normal motion.
+    const targets = Array.from(document.querySelectorAll(revealSelector))
+      .filter((element) => !element.closest("#products"));
     if (!("IntersectionObserver" in window)) {
       if (cssMotionFallback) {
         const pending = Array.from(targets).filter((element) => !initialTargets.has(element));
@@ -420,73 +294,19 @@
     targets.forEach((element) => { if (!initialTargets.has(element)) observer.observe(element); });
   }
 
-  // Keep viewport detection in IntersectionObserver on phones, where the
-  // address bar can change the visual viewport during scroll. Mobile reveals
-  // use the browser's Web Animations API; desktop uses GSAP and ScrollTrigger.
-  if (mobile || !gsap || !window.ScrollTrigger) {
-    try {
-      viewportMotion();
-    } catch (error) {
-      // Animation code must never leave the hero hidden if a browser has a
-      // partial Web Animations / GSAP implementation.
-      document.querySelectorAll(".site-header .nav-logo, .site-header .burger-btn, .topbar .brand, .hero, .hero *, .intro, .viewer, .mobile-config-nav")
-        .forEach((element) => {
-          element.style.opacity = "";
-          element.style.visibility = "";
-          element.style.transform = "";
-          element.style.filter = "";
-        });
-    }
-    return;
-  }
-
+  // IntersectionObserver starts each reveal on entry; the animation then
+  // completes independently of wheel distance on desktop and finger motion.
   try {
-    const ScrollTrigger = window.ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
-    if (heroItems.length) {
-      // Treat the opening screen as one composed sequence: the eyebrow and
-      // headline arrive first, supporting copy follows, then service tags and
-      // calls to action. A small longer pause makes the first impression feel
-      // deliberate without holding the visitor up.
-      const intro = gsap.timeline({ defaults: { ease: "power2.inOut" } });
-      if (headerItems.length) {
-        intro.fromTo(headerItems,
-          { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: 1.12, stagger: 0.1, clearProps: "opacity,visibility,transform" },
-          0
-        );
-      }
-      intro.fromTo(heroItems,
-        { autoAlpha: 0, y: 26 },
-        { autoAlpha: 1, y: 0, duration: 1.85, stagger: 0.28, clearProps: "opacity,visibility,transform" },
-        0.24
-      );
-      if (hero) {
-        const tags = hero.querySelectorAll(".hero-tags .hero-tag");
-        const actions = hero.querySelectorAll(".hero-cta-row > a");
-        if (tags.length) {
-          intro.fromTo(tags,
-            { autoAlpha: 0, y: 12 },
-            { autoAlpha: 1, y: 0, duration: 1.08, stagger: 0.1, clearProps: "opacity,visibility,transform" },
-            1.75
-          );
-        }
-        if (actions.length) {
-          intro.fromTo(actions,
-            { autoAlpha: 0, y: 14 },
-            { autoAlpha: 1, y: 0, duration: 1.22, stagger: 0.14, clearProps: "opacity,visibility,transform" },
-            2.42
-          );
-        }
-      }
-    }
-    const introElements = new Set(heroItems);
-    document.querySelectorAll(revealSelector).forEach((element) => {
-      if (!introElements.has(element)) revealSceneItem(element, 0, true);
-    });
-    window.addEventListener("load", () => requestAnimationFrame(() => ScrollTrigger.refresh()), { once: true });
-    window.addEventListener("orientationchange", () => setTimeout(() => ScrollTrigger.refresh(), 180), { passive: true });
-  } catch (error) {
     viewportMotion();
+  } catch (error) {
+    // Animation code must never leave content hidden if a browser has a
+    // partial Web Animations / IntersectionObserver implementation.
+    document.querySelectorAll(".site-header .nav-logo, .site-header .burger-btn, .topbar .brand, .hero, .hero *, .intro, .viewer, .mobile-config-nav")
+      .forEach((element) => {
+        element.style.opacity = "";
+        element.style.visibility = "";
+        element.style.transform = "";
+        element.style.filter = "";
+      });
   }
 })();
