@@ -51,7 +51,7 @@
     ".section-label", ".section-title", ".section-sub", ".product-card", ".why-item", ".why-times li",
     ".step", ".process-right", ".process-card", ".material-card", ".materials-advice", ".article-card", ".review-card", ".reviews-card",
     ".form-section", ".builder-entry", ".intro", ".viewer", ".spec-strip", ".space-estimate", ".comfort-note", ".controls", ".howto", ".hero-media", ".ticker-wrap",
-    ".featured-case", ".epoxy-project-link", ".contact-item",
+    ".featured-case", ".epoxy-project-link", ".contact-item", ".training-card", ".training-points li", ".training-offer",
     ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta",
     ".article-header > *", ".article-cover", ".article-summary", ".article-toc", ".article-section", ".article-checklist", ".article-faq", ".article-related", ".article-aside", ".article-index__intro > *", ".article-index-card"
   ].join(",");
@@ -98,15 +98,19 @@
     : { duration: 1.2, lift: 14, scale: 1, blur: 0, ease: "power2.out", heroStagger: 0.24, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
+    const reviewCard = element.matches(".review-card");
+    const revealLift = motion.lift + (reviewCard ? 8 : 0);
+    const revealScale = reviewCard ? 0.985 : motion.scale;
     if (gsap) {
       if (!mobile) {
         const startDelay = delay || 0;
         // Keep desktop content fully legible throughout the reveal. The
         // screenshot-based review showed opacity made entire sections look
         // washed out while they entered; a small lift carries the motion alone.
-        gsap.set(element, { autoAlpha: 1, y: motion.lift });
+        gsap.set(element, { autoAlpha: 1, y: revealLift, scale: revealScale });
         gsap.to(element, {
           y: 0,
+          scale: 1,
           duration: motion.duration,
           delay: startDelay,
           ease: motion.ease,
@@ -118,7 +122,7 @@
       // Keep mobile copy legible throughout the entrance; motion comes from
       // the short lift only, never from fading the text out.
       gsap.set(element, { autoAlpha: 1 });
-      const from = { y: motion.lift, scale: motion.scale };
+      const from = { y: revealLift, scale: revealScale };
       const to = {
         y: 0,
         scale: 1,
@@ -142,7 +146,7 @@
       window.setTimeout(() => element.classList.remove("motion-css-reveal", "motion-css-visible"), fallbackDelay + motion.duration * 1000 + 80);
       return;
     }
-    const from = { opacity: 1, transform: mobile ? `translateY(${motion.lift}px)` : `translate3d(0, ${motion.lift}px, 0) scale(${motion.scale})` };
+    const from = { opacity: 1, transform: mobile ? `translateY(${revealLift}px) scale(${revealScale})` : `translate3d(0, ${revealLift}px, 0) scale(${revealScale})` };
     const to = { opacity: 1, transform: mobile ? "translateY(0)" : "translate3d(0, 0, 0) scale(1)" };
     if (!mobile) {
       from.filter = `blur(${motion.blur}px)`;
@@ -287,7 +291,10 @@
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
       visibleEntries.forEach((entry, index) => {
-        revealSceneItem(entry.target, mobile ? Math.min(index * motion.sectionStagger, motion.sectionStaggerMax) : 0);
+        const reviewCard = entry.target.matches(".review-card");
+        const stagger = reviewCard ? (lowPowerDevice ? 0.1 : 0.14) : motion.sectionStagger;
+        const staggerMax = reviewCard ? 0.42 : motion.sectionStaggerMax;
+        revealSceneItem(entry.target, Math.min(index * stagger, staggerMax));
         activeObserver.unobserve(entry.target);
       });
     }, { threshold: mobile ? 0.04 : 0.08, rootMargin: mobile ? "0px 0px -2% 0px" : "0px 0px -5% 0px" });

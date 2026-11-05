@@ -5,7 +5,7 @@
   if (!loaderScript || !loaderScript.src) return;
 
   var assetRoot = new URL("../", loaderScript.src);
-  var animationUrl = new URL("js/site-animations.js?v=20261105-motion-v7", assetRoot);
+  var animationUrl = new URL("js/site-animations.js?v=20261105-motion-v8", assetRoot);
   var gsapUrl = new URL("vendor/gsap.min.js", assetRoot);
   var matchesMedia = function (query) {
     return typeof window.matchMedia === "function" && window.matchMedia(query).matches;
