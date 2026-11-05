@@ -2129,8 +2129,8 @@
         <a class="location-org-link" href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer">Открыть карточку мастерской на карте</a>
       </div>
       <a class="location-map-preview" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer" aria-label="Построить маршрут до мастерской в Яндекс Картах">
-        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" title="Расположение мастерской «Древесный Замысел» на Яндекс Картах" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
-        <span class="location-map-hint" aria-hidden="true">Нажмите, чтобы открыть карту ↗</span>
+        <iframe data-src="https://yandex.ru/map-widget/v1/?um=constructor%3A3b21518626f7554839f286853f774f6ad5ae718ef8525c85d8d5b15a4008a551&amp;source=constructor" title="Расположение мастерской «Древесный Замысел» на Яндекс Картах" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe>
+        <span class="location-map-hint" aria-hidden="true">Встроенная карта загрузится после разрешения внешних сервисов. Маршрут доступен по кнопке выше.</span>
       </a>
     </div>
   </section>
@@ -2154,7 +2154,7 @@
       <div class="training-offer">
         <span class="training-offer__label">Стоимость курса</span>
         <strong class="training-price">55 000 <span>₽</span></strong>
-        <a class="btn-primary" href="#contact" data-training-cta>Узнать об обучении <span aria-hidden="true">↗</span></a>
+        <button class="btn-primary" type="button" data-chat-interest="Обучение столярному делу">Узнать об обучении <span aria-hidden="true">↗</span></button>
         <p>Оплату сразу или частями, даты и детали участия можно обсудить с менеджером. Сертификат подтверждает прохождение курса мастерской и не является документом о государственной квалификации.</p>
       </div>
     </div>
@@ -2196,83 +2196,18 @@
   <div class="footer-contact">
     <a class="footer-phone" href="tel:+74952751423">+7 (495) 275-14-23</a>
     <a class="footer-email" href="mailto:drevesnyzamysel@mail.ru">drevesnyzamysel@mail.ru</a>
-    <a id="confPol" href="#confPol" data-micromodal-trigger="modal-1">Политика конфиденциальности</a>
+    <a id="confPol" href="./privacy.html">Политика обработки персональных данных</a>
+    <button class="cookie-settings-link" id="cookieSettingsButton" type="button">Настройки cookie</button>
   </div>
 </footer>
 
-<!-- POLICY MODAL -->
-<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
-  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-      <header class="modal__header">
-        <h2 class="modal__title" id="modal-1-title">Согласие на обработку данных</h2>
-        <button class="modal__close" aria-label="Закрыть окно" data-micromodal-close></button>
-      </header>
-      <main class="modal__content" id="modal-1-content">
-        <p>Настоящий документ определяет политику и порядок обработки персональных данных пользователей сайта и разработан в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» (далее – 152-ФЗ) и иными нормативными правовыми актами Российской Федерации в области защиты персональных данных.</p>
-
-        <h3>1. Основные положения</h3>
-        <p>1.1. Настоящее Согласие на обработку персональных данных (далее – Согласие) является публичным и открытым документом.</p>
-        <p>1.2. Используя функционал сайта и оставляя свои данные в веб-формах (регистрация, заказ обратного звонка, подписка, отправка сообщения), Пользователь дает свое добровольное согласие Индивидуальному предпринимателю Ярошенко Илье Васильевичу, действующему на основании ОГРНИП 325508100048690, (далее – Оператор) на обработку своих персональных данных на условиях, изложенных в настоящем Согласии.</p>
-        <p>1.3. Согласие действует в отношении всех персональных данных, которые Пользователь предоставляет Оператору.</p>
-        <p>1.4. Настоящее Согласие составлено в соответствии с требованиями ст. 9 152-ФЗ и является отдельным документом, не подлежащим включению в текст договора оферты, пользовательского соглашения или иных документов.</p>
-
-        <h3>2. Состав (перечень) персональных данных</h3>
-        <p>2.1. Согласие дается на обработку следующих персональных данных, не являющихся специальными или биометрическими:</p>
-        <ul>
-          <li>Фамилия, Имя, Отчество;</li>
-          <li>Номер контактного телефона;</li>
-          <li>Адрес электронной почты (e-mail);</li>
-          <li>Данные, получаемые с помощью файлов cookie и счетчиков посещаемости (в том числе: IP-адрес, тип и версия операционной системы и браузера, тип устройства и разрешение экрана, источник перехода на сайт, язык операционной системы и браузера, совершенные клики и переходы по страницам).</li>
-        </ul>
-
-        <h3>3. Цели обработки персональных данных</h3>
-        <p>3.1. Обработка персональных данных осуществляется в следующих целях:</p>
-        <ul>
-          <li>Для обработки обращений, поступивших от Пользователя, с целью предоставления консультаций и ответов на вопросы;</li>
-          <li>Для заключения и исполнения договоров с Пользователем (в том числе по оформлению заказов и оказанию услуг);</li>
-          <li>Для направления уведомлений, информационных и рекламных материалов, а также новостной рассылки (при условии отдельного согласия на маркетинг);</li>
-          <li>Для анализа поведения Пользователя на сайте и улучшения функционала сайта.</li>
-        </ul>
-
-        <h3>4. Перечень действий, совершаемых с персональными данными</h3>
-        <p>4.1. Обработка персональных данных осуществляется с использованием средств автоматизации и без их использования.</p>
-        <p>4.2. Оператор имеет право совершать следующие действия: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, обезличивание, блокирование, удаление, уничтожение персональных данных.</p>
-        <p>4.3. Передача (распространение, предоставление) персональных данных третьим лицам осуществляется только с письменного согласия Пользователя, за исключением случаев, предусмотренных законодательством РФ (например, по запросу суда или уполномоченных органов).</p>
-
-        <h3>5. Сроки обработки и хранения</h3>
-        <p>5.1. Срок обработки персональных данных определяется до момента достижения целей обработки, если иное не предусмотрено договором или законодательством РФ.</p>
-        <p>5.2. Хранение персональных данных осуществляется не дольше, чем этого требуют цели их обработки, либо в течение срока, установленного федеральным законом (в том числе архивным законодательством, согласно № 125-ФЗ).</p>
-        <p>5.3. Обработка персональных данных прекращается в следующих случаях:</p>
-        <ul>
-          <li>По истечении сроков, указанных в п. 5.2;</li>
-          <li>По требованию Пользователя об отзыве согласия;</li>
-          <li>При ликвидации или реорганизации Оператора.</li>
-        </ul>
-
-        <h3>6. Отзыв согласия</h3>
-        <p>6.1. Пользователь (субъект персональных данных) вправе в любой момент отозвать свое согласие на обработку персональных данных, направив письменное заявление в свободной форме по адресу местонахождения Оператора или на электронную почту: drevesnyzamysel@mail.ru.</p>
-        <p>6.2. При получении письменного заявления об отзыве согласия Оператор обязан прекратить обработку персональных данных и уничтожить их в срок, не превышающий 30 дней с даты поступления отзыва, если иное не предусмотрено договором или законодательством (п. 2–11 ч. 1 ст. 6 152-ФЗ).</p>
-        <p>6.3. Оператор сохраняет за собой право продолжить обработку персональных данных без согласия Пользователя при наличии оснований, указанных в ч. 2–11 ст. 6, ч. 2 ст. 10 и ч. 2 ст. 11 152-ФЗ (исполнение договора, обязанности по закону, защита жизни и т.д.).</p>
-
-        <h3>7. Заключительные положения</h3>
-        <p>7.1. Пользователь, оставляя данные на Сайте, подтверждает, что он ознакомлен с настоящим Согласием, понимает его положения и согласен с ними.</p>
-        <p>7.2. Оператор вправе вносить изменения в текст Согласия. Актуальная редакция всегда доступна на Сайте.</p>
-        <p>7.3. Во всем остальном, не урегулированном настоящим Согласием, стороны руководствуются действующим законодательством Российской Федерации.</p>
-      </main>
-      <footer class="modal__footer">
-        <button class="modal__btn" data-micromodal-close aria-label="Закрыть окно">Закрыть</button>
-      </footer>
-    </div>
-  </div>
-</div>
-
       <div class="cookie-banner" id="cookieBanner" role="region" aria-live="polite" aria-label="Уведомление об использовании cookie">
   <div class="cookie-banner__text">
-    <strong>Сайт использует cookie</strong>
-    Они нужны для корректной работы. Подробнее — в <button class="cookie-banner__policy" id="cookiePolicyButton" type="button">политике конфиденциальности</button>.
+    <strong>Настройки cookie и внешних сервисов</strong>
+    Чат Битрикс24 и встроенная Яндекс Карта загрузятся после разрешения. Форма заявки Битрикс24 остаётся доступна; её отдельное согласие оформляется в форме. <a class="cookie-banner__policy" href="./privacy.html">Политика обработки данных</a>.
   </div>
-  <button class="cookie-banner__accept" id="cookieAcceptButton" type="button">Принять</button>
+  <button class="cookie-banner__reject" id="cookieRejectButton" type="button">Отклонить необязательные</button>
+  <button class="cookie-banner__accept" id="cookieAcceptButton" type="button">Разрешить сервисы</button>
 </div>
 
 
@@ -2298,42 +2233,13 @@
     <p class="section-label">Анна · менеджер</p><h2 id="trainingChatTitle">Запрос в чат</h2>
     <p class="training-chat-dialog__topic" id="trainingChatTopic"></p>
     <label for="trainingChatPhone">Ваш телефон</label><input id="trainingChatPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required>
-    <label class="training-chat-dialog__consent"><input type="checkbox" name="privacyConsent" required><span>Согласен(на) на обработку телефона для ответа на этот запрос. <a href="./privacy.html" target="_blank" rel="noopener">Политика обработки данных</a>.</span></label>
+    <label class="training-chat-dialog__consent"><input type="checkbox" name="privacyConsent" required><span>Согласен(на) на обработку телефона для ответа на этот запрос. <a href="./consent.html" target="_blank" rel="noopener">Текст согласия</a> · <a href="./privacy.html" target="_blank" rel="noopener">Политика обработки данных</a>.</span></label>
     <button class="btn-primary" type="submit">Подготовить сообщение и открыть чат</button>
     <p class="training-chat-dialog__hint">Мы скопируем текст запроса. В чате останется нажать на поле сообщения, вставить и отправить его.</p>
     <p class="training-chat-dialog__status" id="trainingChatStatus" role="status" aria-live="polite"></p>
   </form>
 </dialog>
 
-<script>
-  // Lightweight replacement for the old modal dependency used by the privacy
-  // policy link. Keep keyboard dismissal and restore focus without a framework.
-  (function () {
-    const modal = document.getElementById('modal-1');
-    if (!modal) return;
-    let returnFocus = null;
-    function closeModal() {
-      if (modal.getAttribute('aria-hidden') === 'true') return;
-      modal.setAttribute('aria-hidden', 'true');
-      modal.classList.remove('is-open');
-      document.body.style.removeProperty('overflow');
-      if (returnFocus) returnFocus.focus();
-    }
-    document.querySelectorAll('[data-micromodal-trigger="modal-1"]').forEach(trigger => {
-      trigger.addEventListener('click', event => {
-        event.preventDefault();
-        returnFocus = trigger;
-        modal.setAttribute('aria-hidden', 'false');
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        modal.querySelector('[data-micromodal-close]')?.focus();
-      });
-    });
-    modal.querySelectorAll('[data-micromodal-close]').forEach(button => button.addEventListener('click', closeModal));
-    modal.addEventListener('click', event => { if (event.target.classList.contains('modal__overlay')) closeModal(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
-  })();
-</script>
 <script>
   // Smooth scroll for nav links & mobile menu handling
   const burgerBtn = document.querySelector('.burger-btn');
@@ -2492,35 +2398,36 @@
   // Cookie consent
   const cookieBanner = document.getElementById('cookieBanner');
   const cookieAcceptButton = document.getElementById('cookieAcceptButton');
-  const cookiePolicyButton = document.getElementById('cookiePolicyButton');
-  const cookieConsentKey = 'cookie_consent_accepted';
-  let cookieConsentAccepted = false;
+  const cookieRejectButton = document.getElementById('cookieRejectButton');
+  const cookieConsentKey = 'site_cookie_choice';
+  let cookieConsentChoice = '';
   try {
-    cookieConsentAccepted = localStorage.getItem(cookieConsentKey) === 'true';
+    cookieConsentChoice = localStorage.getItem(cookieConsentKey) || '';
   } catch (error) {
     // Keep the notice usable when browser storage is blocked.
   }
 
-  if (!cookieConsentAccepted) {
+  if (!['accepted', 'rejected'].includes(cookieConsentChoice)) {
     cookieBanner.classList.add('is-visible');
   }
 
-  cookieAcceptButton.addEventListener('click', () => {
+  function saveCookieChoice(choice) {
+    const previousChoice = cookieConsentChoice;
+    cookieConsentChoice = choice;
     try {
-      localStorage.setItem(cookieConsentKey, 'true');
+      localStorage.setItem(cookieConsentKey, choice);
     } catch (error) {
       // Dismissing the notice should not depend on browser storage availability.
     }
-    try {
-      document.cookie = `${cookieConsentKey}=true; Max-Age=31536000; Path=/; SameSite=Lax`;
-    } catch (error) {
-      // The notice can still be dismissed for the current page view.
-    }
     cookieBanner.classList.remove('is-visible');
-  });
-
-  cookiePolicyButton.addEventListener('click', () => {
-    document.getElementById('confPol').click();
+    if (choice === 'accepted') window.enableOptionalSiteServices?.();
+    if (choice === 'rejected' && previousChoice === 'accepted') window.location.reload();
+  }
+  cookieAcceptButton.addEventListener('click', () => saveCookieChoice('accepted'));
+  cookieRejectButton.addEventListener('click', () => saveCookieChoice('rejected'));
+  document.getElementById('cookieSettingsButton')?.addEventListener('click', () => {
+    cookieBanner.classList.add('is-visible');
+    cookieBanner.querySelector('#cookieRejectButton')?.focus();
   });
 
 
@@ -2653,6 +2560,84 @@
   categoryPreview.addEventListener('touchstart',event=>{categoryTouchStartX=event.changedTouches[0].clientX;},{passive:true});
   categoryPreview.addEventListener('touchend',event=>{if(categoryTouchStartX===null)return;const dx=event.changedTouches[0].clientX-categoryTouchStartX;categoryTouchStartX=null;if(Math.abs(dx)>45)showCategoryPreview(categoryPreviewIndex+(dx<0?1:-1));},{passive:true});
 
+  // Bitrix exposes setCustomData to pass visitor details to the operator.
+  // The chat text itself is copied; the visitor deliberately pastes and sends it.
+  window.siteBitrixLiveChatWidget = null;
+  window.sitePendingChatContext = null;
+  window.addEventListener('onBitrixLiveChat', function(event) {
+    const widget = event.detail && event.detail.widget;
+    if (!widget) return;
+    window.siteBitrixLiveChatWidget = widget;
+    if (window.sitePendingChatContext && typeof widget.setCustomData === 'function') {
+      widget.setCustomData(window.sitePendingChatContext);
+    }
+  });
+  const trainingChatDialog = document.getElementById('trainingChatDialog');
+  const trainingChatForm = document.getElementById('trainingChatForm');
+  let trainingChatInterest = '';
+  document.querySelectorAll('[data-chat-interest]').forEach(button => button.addEventListener('click', () => {
+    trainingChatInterest = button.dataset.chatInterest || 'Вопрос менеджеру';
+    document.getElementById('trainingChatTopic').textContent = trainingChatInterest;
+    document.getElementById('trainingChatStatus').textContent = '';
+    trainingChatDialog.showModal();
+    document.getElementById('trainingChatPhone').focus();
+  }));
+  trainingChatDialog.querySelector('.training-chat-dialog__close').addEventListener('click', () => trainingChatDialog.close());
+  trainingChatDialog.addEventListener('click', event => { if (event.target === trainingChatDialog) trainingChatDialog.close(); });
+  trainingChatForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!trainingChatForm.reportValidity()) return;
+    const phone = trainingChatForm.elements.phone.value.trim();
+    const message = `Здравствуйте, Анна! Меня интересует: ${trainingChatInterest}. Мой телефон: ${phone}. Пожалуйста, свяжитесь со мной.`;
+    const status = document.getElementById('trainingChatStatus');
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(message);
+      copied = true;
+    } catch (_) {
+      const temporary = document.createElement('textarea');
+      temporary.value = message;
+      temporary.setAttribute('readonly', '');
+      temporary.style.position = 'fixed';
+      temporary.style.opacity = '0';
+      document.body.appendChild(temporary);
+      temporary.select();
+      copied = document.execCommand('copy');
+      temporary.remove();
+    }
+    const customData = [{ GRID: [
+      { NAME: 'Тема обращения', VALUE: trainingChatInterest, DISPLAY: 'LINE' },
+      { NAME: 'Телефон для связи', VALUE: phone, DISPLAY: 'LINE' }
+    ] }];
+    window.sitePendingChatContext = customData;
+    if (window.siteBitrixLiveChatWidget && typeof window.siteBitrixLiveChatWidget.setCustomData === 'function') {
+      window.siteBitrixLiveChatWidget.setCustomData(customData);
+      window.siteBitrixLiveChatWidget.open();
+    } else {
+      document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
+    }
+    status.textContent = copied
+      ? 'Сообщение скопировано. В открывшемся чате вставьте его и нажмите «Отправить».'
+      : 'Чат открыт. Скопируйте текст запроса вручную: ' + message;
+  });
+
+  const certificateDialog = document.getElementById('dealerCertificateDialog');
+  const certificateZoom = certificateDialog.querySelector('.dealer-certificate-dialog__zoom');
+  document.querySelector('.dealer-certificate-trigger').addEventListener('click', () => certificateDialog.showModal());
+  certificateDialog.querySelector('.dealer-certificate-dialog__close').addEventListener('click', () => certificateDialog.close());
+  certificateDialog.addEventListener('click', event => { if (event.target === certificateDialog) certificateDialog.close(); });
+  certificateZoom.addEventListener('click', () => {
+    const enlarged = certificateZoom.getAttribute('aria-pressed') !== 'true';
+    certificateZoom.setAttribute('aria-pressed', String(enlarged));
+    certificateDialog.classList.toggle('is-zoomed', enlarged);
+    certificateZoom.textContent = enlarged ? 'Уменьшить' : 'Увеличить';
+  });
+  certificateDialog.addEventListener('close', () => {
+    certificateDialog.classList.remove('is-zoomed');
+    certificateZoom.setAttribute('aria-pressed', 'false');
+    certificateZoom.textContent = 'Увеличить';
+  });
+
   // Carry the stair configurator summary into the contact section without
   // pretending that the cross-origin Bitrix form has received it automatically.
   const stairConfigFromUrl = new URLSearchParams(window.location.search).get('stair_config');
@@ -2700,18 +2685,17 @@
 <script>
   (function(w,d,u){
     var loaded=false;
-    function loadButton(){
+    function loadOptionalServices(){
       if(loaded)return;
       loaded=true;
+      var map=d.querySelector('.location-map-preview iframe[data-src]');
+      if(map){map.src=map.dataset.src;map.removeAttribute('data-src');}
       var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
       d.head.appendChild(s);
     }
-    function scheduleButton(){
-      if('requestIdleCallback' in w)w.requestIdleCallback(loadButton,{timeout:2500});
-      else w.setTimeout(loadButton,900);
-    }
-    if(d.readyState==='complete')scheduleButton();
-    else w.addEventListener('load',scheduleButton,{once:true});
+    w.enableOptionalSiteServices=loadOptionalServices;
+    try { if(w.localStorage.getItem('site_cookie_choice')==='accepted') loadOptionalServices(); }
+    catch (_) {}
   })(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/site_button/loader_1_mxd7ow.js');
 </script>
 <style id="builder-entry-style">
@@ -2844,6 +2828,23 @@
 
     .site-footer { align-items:center; text-align:center; }
     .footer-contact { align-items:center; text-align:center; }
+  }
+</style>
+<style id="privacy-cookie-controls">
+  .cookie-banner { flex-wrap:wrap; width:min(580px,calc(100vw - 48px)); }
+  .cookie-banner__text { flex:1 0 100%; }
+  .cookie-banner__reject { flex:1 1 auto; min-height:44px; padding:8px 12px; border:1px solid var(--border); border-radius:30px; background:#fffefa; color:var(--text-primary); font:inherit; font-size:12px; cursor:pointer; }
+  .cookie-banner__reject:hover { border-color:var(--accent); }
+  .cookie-banner__reject:focus-visible,.cookie-banner__accept:focus-visible,.cookie-settings-link:focus-visible { outline:3px solid var(--accent-light); outline-offset:3px; }
+  .cookie-banner__accept { flex:1 1 auto; }
+  .cookie-settings-link { display:block; padding:0; border:0; background:none; color:inherit; font:inherit; font-size:12px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+  .cookie-banner__policy { display:inline; }
+  @media(max-width:600px) {
+    .cookie-banner { left:12px!important; right:12px!important; bottom:calc(12px + env(safe-area-inset-bottom))!important; width:auto!important; max-width:none!important; padding:12px!important; display:none; flex-wrap:wrap; gap:8px; }
+    .cookie-banner.is-visible { display:flex; }
+    .cookie-banner__text { flex:1 0 100%; font-size:11px!important; }
+    .cookie-banner__text strong { display:block!important; margin:0 0 3px!important; font-size:12px!important; }
+    .cookie-banner__reject,.cookie-banner__accept { flex:1 1 calc(50% - 4px); min-width:0; min-height:44px; padding:8px 10px; font-size:11px; }
   }
 </style>
 <style id="mobile-bitrix-refinements">
