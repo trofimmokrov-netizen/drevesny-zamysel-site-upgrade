@@ -2840,11 +2840,43 @@
   .cookie-settings-link { display:block; padding:0; border:0; background:none; color:inherit; font:inherit; font-size:12px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
   .cookie-banner__policy { display:inline; }
   @media(max-width:600px) {
-    .cookie-banner { left:12px!important; right:12px!important; bottom:calc(12px + env(safe-area-inset-bottom))!important; width:auto!important; max-width:none!important; padding:12px!important; display:none; flex-wrap:wrap; gap:8px; }
+    .cookie-banner {
+      left:12px!important;
+      right:12px!important;
+      bottom:calc(76px + env(safe-area-inset-bottom, 0px))!important;
+      width:auto!important;
+      max-width:none!important;
+      max-height: min(44svh, 330px);
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      padding:14px!important;
+      display:none;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:stretch;
+      border-radius:16px;
+      box-shadow:0 12px 36px rgba(31,43,35,.2);
+      box-sizing:border-box;
+    }
     .cookie-banner.is-visible { display:flex; }
-    .cookie-banner__text { flex:1 0 100%; font-size:11px!important; }
-    .cookie-banner__text strong { display:block!important; margin:0 0 3px!important; font-size:12px!important; }
-    .cookie-banner__reject,.cookie-banner__accept { flex:1 1 calc(50% - 4px); min-width:0; min-height:44px; padding:8px 10px; font-size:11px; }
+    .cookie-banner__text { flex:1 0 100%; min-width:0; font-size:12px!important; line-height:1.45!important; }
+    .cookie-banner__text strong { display:block!important; margin:0 0 5px!important; font-size:14px!important; }
+    .cookie-banner__reject,.cookie-banner__accept {
+      flex:1 1 calc(50% - 5px);
+      min-width:0;
+      min-height:46px;
+      padding:9px 8px;
+      font-size:12px;
+      line-height:1.2;
+      white-space:normal;
+      overflow-wrap:anywhere;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
+  }
+  @media(max-width:370px) {
+    .cookie-banner { gap:8px; padding:12px!important; }
+    .cookie-banner__reject,.cookie-banner__accept { flex-basis:100%; min-height:44px; }
   }
 </style>
 <style id="mobile-bitrix-refinements">
