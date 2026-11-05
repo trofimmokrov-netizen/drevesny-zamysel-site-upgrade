@@ -18,7 +18,7 @@
   if (mobile && !document.getElementById("site-image-reveal-style")) {
     const imageRevealStyle = document.createElement("style");
     imageRevealStyle.id = "site-image-reveal-style";
-    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity 1.45s cubic-bezier(.4,0,.2,1)}";
+    imageRevealStyle.textContent = ".motion-image-pending{opacity:0!important}.motion-image-ready{opacity:1!important;transition:opacity 1.8s cubic-bezier(.22,.61,.36,1)}";
     document.head.appendChild(imageRevealStyle);
   }
   const hero = document.querySelector(".hero");
@@ -86,8 +86,8 @@
   const motion = mobile
     // Keep the entrance visible on phones, using only opacity and a short
     // translation so older devices do not pay for blur or scale effects.
-    ? { duration: lowPowerDevice ? 1.75 : 1.95, lift: lowPowerDevice ? 16 : 26, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: lowPowerDevice ? 0.22 : 0.3, sectionStagger: lowPowerDevice ? 0.16 : 0.22, sectionStaggerMax: lowPowerDevice ? 0.48 : 0.68 }
-    : { duration: 1.68, lift: 22, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: 0.26, sectionStagger: 0, sectionStaggerMax: 0 };
+    ? { duration: lowPowerDevice ? 2.9 : 3.2, lift: lowPowerDevice ? 10 : 14, scale: 1, blur: 0, ease: "power1.inOut", heroStagger: lowPowerDevice ? 0.32 : 0.42, sectionStagger: lowPowerDevice ? 0.24 : 0.32, sectionStaggerMax: lowPowerDevice ? 0.72 : 1.02 }
+    : { duration: 2.05, lift: 18, scale: 1, blur: 0, ease: "power2.inOut", heroStagger: 0.34, sectionStagger: 0, sectionStaggerMax: 0 };
 
   function reveal(element, delay) {
     if (gsap) {
@@ -129,6 +129,61 @@
       fill: "both"
     });
     animation.onfinish = () => animation.cancel();
+  }
+
+  // Mobile scroll reveals follow the user's scroll position instead of
+  // starting a timer as soon as an item enters the viewport. This keeps
+  // gradual finger scrolling gradual, while remaining lightweight on older
+  // phones (opacity + transform only, one shared animation frame loop).
+  const activeScrollReveals = new Set();
+  let scrollRevealFrame = 0;
+  function renderScrollReveals() {
+    scrollRevealFrame = 0;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    // Batch layout reads before style writes to avoid repeated forced layout
+    // calculations when several cards enter together on lower-powered phones.
+    const updates = Array.from(activeScrollReveals, (entry) => {
+      const top = entry.element.getBoundingClientRect().top;
+      // Give each reveal more scroll distance. This is especially noticeable
+      // with a mouse wheel's small, repeated steps: the content now unfolds
+      // across most of the viewport instead of appearing in a short burst.
+      // Start just before the card reaches the viewport and let it unfold
+      // across most of the screen. This avoids a quick opacity jump during
+      // slow, small finger scrolls on phones.
+      const raw = Math.max(0, Math.min(1, (viewportHeight - top) / (viewportHeight * 0.82)));
+      const smooth = raw * raw * (3 - 2 * raw);
+      const children = entry.children.map((child, index) => {
+        const start = Math.min(0.34, 0.12 + index * 0.045);
+        const childRaw = Math.max(0, Math.min(1, (raw - start) / (1 - start)));
+        return { element: child, progress: childRaw * childRaw * (3 - 2 * childRaw) };
+      });
+      return { entry, raw, smooth, children };
+    });
+    updates.forEach(({ entry, raw, smooth, children }) => {
+      if (raw >= 1) {
+        entry.element.style.removeProperty("opacity");
+        entry.element.style.removeProperty("transform");
+        children.forEach(({ element }) => {
+          element.style.removeProperty("opacity");
+          element.style.removeProperty("transform");
+        });
+        activeScrollReveals.delete(entry);
+        return;
+      }
+      entry.element.style.opacity = String(smooth);
+      entry.element.style.transform = `translate3d(0, ${(1 - smooth) * 14}px, 0)`;
+      children.forEach(({ element, progress }) => {
+        element.style.opacity = String(progress);
+        element.style.transform = `translate3d(0, ${(1 - progress) * 8}px, 0)`;
+      });
+    });
+  }
+  function queueScrollRevealFrame() {
+    if (!scrollRevealFrame) scrollRevealFrame = window.requestAnimationFrame(renderScrollReveals);
+  }
+  if (mobile) {
+    window.addEventListener("scroll", queueScrollRevealFrame, { passive: true });
+    window.addEventListener("resize", queueScrollRevealFrame, { passive: true });
   }
 
   // Let a card's message arrive in a small reading order: heading, explanation,
@@ -181,6 +236,11 @@
       timeout = window.setTimeout(() => {
         if (settled) return;
         settled = true;
+        cleanup();
+        // Never leave a slow image hidden if decoding takes longer than the
+        // reveal budget. The card should still become usable and visible.
+        image.classList.remove("motion-image-pending");
+        image.classList.add("motion-image-ready");
         resolve();
       }, 2400);
     });
@@ -192,8 +252,23 @@
     // animation. Let visible card images decode first, then reveal the whole
     // card as one smooth unit. Other text-only sections do not wait.
     if (mobile) {
+      const group = copyLayers.find(([selector]) => element.matches(selector));
+      const children = group ? Array.from(element.querySelectorAll(group[1])) : [];
+      const entry = { element, children };
+      // Apply the hidden start state before awaiting image decode. Otherwise
+      // the card can paint once, disappear when decoding finishes, then fade
+      // back in, which looks like a flash during slow scrolling.
+      element.style.opacity = "0";
+      element.style.transform = "translate3d(0, 14px, 0)";
+      children.forEach((child) => {
+        child.style.opacity = "0";
+        child.style.transform = "translate3d(0, 8px, 0)";
+      });
       const images = Array.from(element.querySelectorAll("img"));
       if (images.length) await Promise.all(images.map(waitForImage));
+      activeScrollReveals.add(entry);
+      queueScrollRevealFrame();
+      return;
     }
     const group = copyLayers.find(([selector]) => element.matches(selector));
     if (scrollLinked && gsap && window.ScrollTrigger) {
@@ -203,9 +278,11 @@
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: element,
-          start: "top 90%",
-          end: "top 50%",
-          scrub: 1.25,
+          // Use a longer travel and a little more scrub smoothing so slow
+          // wheel/trackpad movement controls a calm, gradual reveal.
+          start: "top 96%",
+          end: () => `+=${Math.round(Math.max(window.innerHeight * 1.9, element.offsetHeight * 1.4))}`,
+          scrub: 2.4,
           invalidateOnRefresh: true
         }
       });
@@ -218,8 +295,8 @@
         element.querySelectorAll(group[1]).forEach((child, index) => {
           timeline.fromTo(child,
             { autoAlpha: 0, y: 8 },
-            { autoAlpha: 1, y: 0, duration: 0.62, ease: "none" },
-            0.16 + index * 0.12
+            { autoAlpha: 1, y: 0, duration: 1.08, ease: "none" },
+            0.3 + index * 0.2
           );
         });
       }
@@ -242,7 +319,7 @@
       if (headerItems.length) {
         intro.fromTo(headerItems,
           { autoAlpha: 0, y: 7 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.12 : 1.32, stagger: lowPowerDevice ? 0.1 : 0.14, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.5 : 1.7, stagger: lowPowerDevice ? 0.12 : 0.16, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           0
         );
         headerItems.forEach((element) => initialTargets.add(element));
@@ -257,7 +334,7 @@
       if (tags.length) {
         intro.fromTo(tags,
           { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.05 : 1.28, stagger: lowPowerDevice ? 0.09 : 0.13, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.4 : 1.65, stagger: lowPowerDevice ? 0.11 : 0.15, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           1.48
         );
       }
@@ -265,7 +342,7 @@
       if (actions.length) {
         intro.fromTo(actions,
           { autoAlpha: 0, y: 9 },
-          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.12 : 1.36, stagger: lowPowerDevice ? 0.1 : 0.14, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
+          { autoAlpha: 1, y: 0, duration: lowPowerDevice ? 1.5 : 1.75, stagger: lowPowerDevice ? 0.12 : 0.16, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" },
           2.12
         );
       }
@@ -282,7 +359,7 @@
       if (mobile && gsap && heroItems.length) {
         gsap.fromTo(heroMedia,
           { autoAlpha: 0, y: 14, scale: 1.035 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: lowPowerDevice ? 1.05 : 1.28, delay: 0.36, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" }
+          { autoAlpha: 1, y: 0, scale: 1, duration: lowPowerDevice ? 1.45 : 1.7, delay: 0.48, ease: motion.ease, force3D: !lowPowerDevice, clearProps: "opacity,visibility,transform" }
         );
       } else {
         reveal(heroMedia, homeHeroItems.length ? 0.14 : 0.12);

@@ -1478,7 +1478,7 @@
 <header class="site-header">
   <div class="header-left">
     <a href="#" class="nav-logo" aria-label="Древесный Замысел — на главную">
-      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="320" height="320" decoding="async"/>
+      <img class="nav-logo-img" src="./assets/images/logo-transparent.png" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="160" height="160" decoding="async"/>
       <span class="nav-logo-text">Древесный замысел</span>
     </a>
   </div>
@@ -1510,7 +1510,7 @@
 
     <div class="header-contacts">
       <a href="tel:+74952751423" class="header-phone">+7 (495) 275-14-23</a>
-      <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" class="header-address" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5</a>
+      <a href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" class="header-address" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5</a>
       <a href="mailto:drevesnyzamysel@mail.ru" class="header-address">drevesnyzamysel@mail.ru</a>
     </div>
 
@@ -1549,7 +1549,7 @@
       </a>
     </div>
     <a href="tel:+74952751423" class="header-phone">+7 (495) 275-14-23</a>
-    <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" class="header-address-mobile" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5<br>10:00 - 19:00</a>
+    <a href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" class="header-address-mobile" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5<br>10:00 - 19:00</a>
     <a href="#contact" class="btn-primary mobile-cta">Обсудить проект</a>
   </div>
 </div>
@@ -2013,7 +2013,7 @@
           </div>
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M8 1C4.686 1 2 3.686 2 7c0 4 6 9 6 9s6-5 6-9c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.2"/></svg>
-            <a href="https://yandex.ru/maps/org/drevesny_zamysel/137748761398/?ll=37.463763%2C55.532365&amp;z=17" target="_blank" rel="noopener noreferrer">г. Москва, дер. Губкино, 78 соор 5</a>
+            <a href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer" aria-label="Открыть адрес мастерской «Древесный Замысел» в Яндекс Картах">г. Москва, дер. Губкино, 78 соор 5</a>
           </div>
         </div>
       </div>
@@ -2034,16 +2034,23 @@
         </script>
         <script data-b24-form="inline/1/8dtwm1" data-skip-moving="true">
           (function(w,d,u){
-            var loaded=false;
+            var loaded=false, formReady=false, fallbackTimer;
+            function showFallback(){var fallback=d.getElementById('b24FormFallback');if(fallback)fallback.hidden=false;}
+            w.addEventListener('b24:form:init',function(){
+              formReady=true;
+              w.clearTimeout(fallbackTimer);
+              var fallback=d.getElementById('b24FormFallback');if(fallback)fallback.hidden=true;
+            });
             function loadForm(){
               if(loaded)return;
               loaded=true;
               var s=d.createElement('script');
               s.async=true;
               s.src=u+'?'+(Date.now()/180000|0);
-              s.onerror=function(){var fallback=d.getElementById('b24FormFallback');if(fallback)fallback.hidden=false;};
+              s.onerror=showFallback;
               var h=d.getElementsByTagName('script')[0];
               h.parentNode.insertBefore(s,h);
+              fallbackTimer=w.setTimeout(function(){if(!formReady)showFallback();},12000);
             }
             var formHost=d.querySelector('#contact .form-right');
             if('IntersectionObserver' in w && formHost){
@@ -2089,7 +2096,7 @@
   <div class="footer-brand">
     <div class="nav-logo-icon">
       <a href="./index.html" class="nav-logo" aria-label="Древесный Замысел — на главную">
-      <img class="nav-logo-img" src="./assets/images/logo.webp" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="320" height="320" decoding="async"/>
+      <img class="nav-logo-img" src="./assets/images/logo-transparent.png" alt="Логотип компании «Древесный Замысел»" title="Древесный Замысел — изготовление лестниц на заказ в Москве" width="160" height="160" decoding="async"/>
       </a>
     </div>
     <span>Древесный замысел</span>
@@ -2609,9 +2616,9 @@
   .leonid-lightbox button:focus-visible { outline:3px solid #d2b98f; outline-offset:3px; }
   .site-footer { display:flex; align-items:center; justify-content:space-between; gap:28px; min-height:104px; padding:20px clamp(24px,6vw,84px); border-top:1px solid rgba(255,255,255,.12); background:#292a26; color:#f8f7f4; }
   .site-footer .footer-brand { gap:14px; color:#f8f7f4; font-family:'Cormorant Garamond',Georgia,serif; font-size:20px; letter-spacing:.015em; }
-  .site-footer .nav-logo-icon { display:flex; width:48px; height:48px; flex:0 0 48px; align-items:center; justify-content:center; overflow:hidden; background:#fff; }
+  .site-footer .nav-logo-icon { display:flex; width:48px; height:48px; flex:0 0 48px; align-items:center; justify-content:center; overflow:hidden; background:transparent; }
   .site-footer .nav-logo,.site-footer .nav-logo-img { display:block; width:100%; height:100%; }
-  .site-footer .nav-logo-img { object-fit:contain; }
+  .site-footer .nav-logo-img { object-fit:contain; filter:grayscale(1) brightness(0) invert(1); }
   .footer-contact { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:8px 24px; margin-right:0; }
   .footer-contact a { color:#d3d0c8; font-size:11px; text-decoration:none; transition:color .2s; }
   .footer-contact a:hover { color:#fff; }
@@ -2624,7 +2631,7 @@
   .stair-config-handoff__copy { justify-self:start; min-height:40px; padding:9px 13px; border:1px solid var(--btn-bg); background:transparent; color:var(--btn-bg); font:600 11px 'Manrope',sans-serif; cursor:pointer; }
   .stair-config-handoff__copy:hover { background:var(--btn-bg); color:#fff; }
   .location-map-section { padding:0 clamp(20px,6vw,84px) 72px; background:var(--off-white); }
-  .location-map-card { display:grid; grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr); max-width:1440px; min-height:380px; margin:0 auto; border:1px solid var(--border); background:#fffefa; }
+  .location-map-card { display:grid; grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr); max-width:1440px; min-height:380px; min-width:0; margin:0 auto; overflow:hidden; border:1px solid var(--border); background:#fffefa; }
   .location-map-copy { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:clamp(28px,4vw,58px); }
   .location-map-copy .section-label { margin:0 0 14px; }
   .location-map-copy h2 { margin:0 0 18px; color:var(--heading-color); font:400 clamp(28px,3vw,42px)/1.1 'Cormorant Garamond',Georgia,serif; }
@@ -2632,7 +2639,7 @@
   .location-map-note { max-width:380px; margin:12px 0 22px; color:var(--text-secondary); font-size:12px; line-height:1.65; }
   .location-route-link { display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:13px 18px; text-decoration:none; }
   .location-org-link { margin-top:14px; color:var(--text-secondary); font-size:11px; text-underline-offset:3px; }
-  .location-map-preview { position:relative; display:block; min-height:380px; overflow:hidden; background:#e8e6df; }
+  .location-map-preview { position:relative; display:block; min-width:0; min-height:380px; overflow:hidden; background:#e8e6df; }
   .location-map-preview iframe { position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
   .location-map-hint { position:absolute; right:18px; bottom:18px; padding:10px 13px; background:#fffefa; color:var(--text-primary); font-size:11px; box-shadow:0 5px 22px rgba(28,30,26,.12); }
   @media(max-width:600px) {
@@ -2650,13 +2657,13 @@
     .site-footer { align-items:flex-start; flex-direction:column; gap:18px; padding:22px 20px; }
     .site-footer .footer-brand { font-size:18px; }
     .location-map-section { padding:0 20px 44px; }
-    .location-map-card { grid-template-columns:minmax(0,1fr); }
+    .location-map-card { grid-template-columns:minmax(0,1fr); min-height:0; }
     .location-map-copy { padding:24px 20px; }
     .location-map-copy h2 { font-size:30px; }
     .location-map-address { font-size:14px; }
     .location-route-link { width:100%; justify-content:center; }
-    .location-map-preview { min-height:260px; }
-    .location-map-hint { right:10px; bottom:10px; }
+    .location-map-preview { width:100%; height:clamp(320px,82vw,420px); min-height:320px; }
+    .location-map-hint { right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); left:12px; max-width:calc(100% - 24px); margin-inline:auto; text-align:center; }
     .footer-contact { align-items:flex-start; justify-content:flex-start; flex-direction:column; gap:8px; margin-right:0; padding-bottom:100px; }
   }
   @media(prefers-reduced-motion:reduce) { .skip-link { transition:none; } }
@@ -2833,8 +2840,7 @@
   @media(prefers-reduced-motion:reduce) { .featured-case__image img { transition:none; } }
 </style>
 <style id="mobile-menu-polish">
-  /* Let the white logo tile visually merge into the light header. */
-  .site-header .nav-logo-img { mix-blend-mode:multiply; }
+  .site-header .nav-logo-img { mix-blend-mode:normal; }
   @media(max-width:900px) {
     .mobile-menu {
       align-items:center;
@@ -3141,6 +3147,108 @@
 <style id="stable-portfolio-grid">
   /* These five service cards are a grid, not a carousel. */
   .products-slider .slider-controls { display:none !important; }
+</style>
+<style id="reviews-card-layout">
+  .reviews-featured,
+  .reviews-more__grid {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    align-items:stretch;
+    gap:16px;
+  }
+  .reviews-featured { margin-top:18px; }
+  .review-card {
+    display:flex;
+    min-width:0;
+    min-height:100%;
+    flex-direction:column;
+    padding:24px;
+    border:1px solid var(--border);
+    border-radius:3px;
+    background:#fffdfa;
+    box-shadow:0 8px 24px rgba(48,45,38,.045);
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  }
+  .review-card > * { max-width:100%; margin-inline:0; }
+  .review-card:hover {
+    transform:translateY(-3px);
+    border-color:#c9b99c;
+    box-shadow:0 14px 32px rgba(48,45,38,.09);
+  }
+  .review-card__meta {
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    padding-bottom:13px;
+    border-bottom:1px solid var(--border);
+  }
+  .review-card__meta strong { color:var(--heading-color); font-size:13px; font-weight:600; }
+  .review-card__meta time { flex:0 0 auto; color:var(--text-muted); font-size:10px; }
+  .review-card blockquote {
+    width:100%;
+    margin:16px 0 20px;
+    color:var(--text-secondary);
+    font-size:13px;
+    line-height:1.75;
+  }
+  .review-card blockquote::before {
+    display:block;
+    margin-bottom:2px;
+    color:var(--accent-light);
+    content:"«";
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-size:34px;
+    line-height:.8;
+  }
+  .review-card__source {
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid rgba(50,65,53,.1);
+    color:var(--text-muted);
+    font-size:10px;
+    line-height:1.5;
+    text-decoration:none;
+    text-underline-offset:3px;
+  }
+  a.review-card__source:hover { color:var(--btn-bg); text-decoration:underline; }
+  .reviews-more { margin-top:22px; }
+  .reviews-more summary {
+    width:max-content;
+    max-width:100%;
+    margin:0 auto;
+    padding:13px 20px;
+    border:1px solid var(--border);
+    background:#fffdfa;
+    color:var(--btn-bg);
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+    text-align:center;
+    list-style:none;
+    transition:background-color .2s ease,border-color .2s ease;
+  }
+  .reviews-more summary::-webkit-details-marker { display:none; }
+  .reviews-more summary::after { content:"  +"; color:var(--accent); }
+  .reviews-more[open] summary::after { content:"  −"; }
+  .reviews-more summary:hover { border-color:#c9b99c; background:#f8f6f1; }
+  .reviews-more summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  .reviews-more__grid { margin-top:16px; }
+  @media(max-width:900px) {
+    .reviews-featured,.reviews-more__grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
+  @media(max-width:600px) {
+    .reviews-featured,.reviews-more__grid { grid-template-columns:minmax(0,1fr); gap:12px; }
+    .review-card { padding:21px; }
+    .reviews-more summary { width:100%; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .review-card { transition:none; }
+    .review-card:hover { transform:none; }
+  }
 </style>
 <script defer src="./assets/js/wood-preview.js"></script>
 <script>

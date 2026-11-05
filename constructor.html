@@ -36,7 +36,7 @@
 <script defer src="./assets/js/stair-configurator.js"></script>
 </head><body>
 <header class="topbar">
-<a class="brand" href="./index.html" aria-label="Древесный Замысел — главная"><img src="./assets/images/logo.webp" alt="" title="Древесный Замысел — изготовление лестниц на заказ" width="320" height="320" decoding="async"><span>Древесный<br>замысел</span></a>
+<a class="brand" href="./index.html" aria-label="Древесный Замысел — главная"><img src="./assets/images/logo-transparent.png" alt="" title="Древесный Замысел — изготовление лестниц на заказ" width="160" height="160" decoding="async"><span>Древесный<br>замысел</span></a>
 <a class="back-link" href="./index.html#products">← Вернуться в каталог</a>
 <a class="header-contact" href="./index.html#contact">Обсудить проект</a>
 </header>
@@ -71,7 +71,7 @@
 <div class="range-field"><label for="depth"><span>Глубина ступени</span><output id="depthValue">280 мм</output></label><input id="depth" type="range" min="230" max="320" step="10" value="280"><div class="range-ends"><span>230 мм</span><span>320 мм</span></div></div>
 <div class="range-field"><label for="steps"><span>Количество ступеней</span><output id="stepsValue">14</output></label><input id="steps" type="range" min="10" max="18" step="1" value="14"><div class="range-ends"><span>10</span><span>18</span></div></div>
 <div class="summary"><span class="summary-mark" aria-hidden="true">i</span><p id="summaryText">Прямая лестница · дуб · два боковых косоура</p></div>
-<a class="submit-link" href="./index.html#contact">Обсудить эту конфигурацию <span aria-hidden="true">↗</span></a>
+<a class="submit-link" id="submitLink" href="./index.html#contact">Обсудить эту конфигурацию <span aria-hidden="true">↗</span></a>
 <p class="fineprint">Параметры предварительные. Инженер проверит геометрию проёма и рассчитает конструкцию после замера.</p>
 </aside></section>
 <section class="howto"><p class="eyebrow">Управление</p><p><strong>Мышь:</strong> вращение левой кнопкой, приближение колёсиком. <strong>Телефон:</strong> горизонтальный жест вращает модель, кнопки «+» и «−» меняют масштаб. Вертикальный жест прокручивает страницу. Сравните древесину, каркас, подступенники и боковые опоры. Параметры предварительные — геометрию проверит инженер.</p></section>
@@ -80,6 +80,7 @@
 <a href="#canvasWrap" class="is-active" aria-current="location" aria-label="Перейти к 3D-модели">3D-модель</a>
 <a href="#spaceEstimate" aria-label="Перейти к габаритам и занимаемой площади">Габариты</a>
 <a href="#stairSettings" aria-label="Перейти к настройкам лестницы">Настройки</a>
+<a href="#submitLink" aria-label="Перейти к отправке конфигурации">Заявка</a>
 </nav>
 <footer><a href="./index.html">Древесный Замысел</a><span>Лестницы на металлическом каркасе · Москва и Московская область</span></footer>
 
