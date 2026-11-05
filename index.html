@@ -3598,5 +3598,102 @@
     .dealer-certificate-dialog__actions > * { flex:1; min-width:0; padding-inline:8px; font-size:12px; }
   }
 </style>
+<style id="compact-dealer-certificate-and-training-actions">
+  /* Keep the dealer proof informative, but never let the certificate artwork
+     determine the height of the page. The full document is available on demand. */
+  .dealer-note {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(150px,210px);
+    align-items:center;
+    gap:12px 28px;
+    box-sizing:border-box;
+  }
+  .dealer-note__copy { min-width:0; }
+  .dealer-note__copy h3 { margin:0 0 8px; color:var(--heading-color); font:400 clamp(22px,2.4vw,30px)/1.15 'Cormorant Garamond',Georgia,serif; }
+  .dealer-note__copy p:last-child { max-width:720px; }
+  .dealer-certificate-trigger {
+    display:grid;
+    justify-items:center;
+    gap:7px;
+    width:100%;
+    min-width:0;
+    padding:10px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#f4f1eb;
+    color:var(--btn-bg);
+    font:inherit;
+    font-size:12px;
+    line-height:1.35;
+    cursor:zoom-in;
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .dealer-certificate-trigger img {
+    display:block;
+    width:100%;
+    height:112px;
+    object-fit:contain;
+    background:#fff;
+  }
+  .dealer-certificate-trigger:hover { transform:translateY(-2px); border-color:var(--accent); box-shadow:0 8px 22px rgba(30,42,34,.1); }
+  .dealer-certificate-trigger:focus-visible,.training-chat-trigger:focus-visible,.training-offer .btn-primary:focus-visible { outline:3px solid rgba(181,138,69,.55); outline-offset:3px; }
+  .dealer-certificate-download { grid-column:2; justify-self:center; display:inline-flex; align-items:center; gap:6px; color:var(--btn-bg); font-size:12px; font-weight:600; text-decoration:underline; text-underline-offset:3px; }
+  .training-offer { box-sizing:border-box; min-width:0; }
+  .training-offer .btn-primary,.training-chat-trigger {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:50px;
+    padding:12px 20px;
+    border:1px solid transparent;
+    border-radius:8px;
+    background:var(--btn-bg);
+    color:#fffefa;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:600;
+    line-height:1.35;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .24s ease,background-color .24s ease,box-shadow .24s ease;
+  }
+  .training-offer .btn-primary { width:100%; background:#fffefa; color:#26392f; }
+  .training-chat-trigger:hover,.training-offer .btn-primary:hover { transform:translateY(-2px); box-shadow:0 9px 24px rgba(18,31,23,.16); }
+  .training-chat-trigger:hover { background:#344a3c; }
+  .training-note { display:flex; flex-direction:column; align-items:flex-start; min-width:0; box-sizing:border-box; }
+  .training-note .training-chat-trigger { margin-top:18px; }
+  .dealer-certificate-dialog__viewport { box-sizing:border-box; }
+  @media(max-width:820px) {
+    .training-card,.training-next-steps,.training-note,.training-offer,.dealer-note { width:100%; box-sizing:border-box; }
+    .training-card { justify-items:center; text-align:center; }
+    .training-copy,.training-copy > * { max-width:100%; }
+    .training-program { width:100%; text-align:center; }
+    .training-program li { grid-template-columns:minmax(0,1fr); justify-items:center; gap:7px; text-align:center; }
+    .training-program li > b { grid-column:auto; justify-self:center; margin-top:0; text-align:center; }
+    .training-program li > span:nth-child(2) { width:100%; }
+    .training-offer { justify-items:center; width:min(100%,480px); margin-inline:auto; text-align:center; }
+    .training-offer > p { max-width:42ch; }
+    .training-note { align-items:center; text-align:center; }
+    .training-note > p,.training-note h3 { width:100%; }
+    .training-note .training-chat-trigger { width:min(100%,420px); margin-inline:auto; }
+    .dealer-note { grid-template-columns:minmax(0,1fr); justify-items:center; gap:16px; text-align:center; }
+    .dealer-note__copy { width:100%; }
+    .dealer-certificate-trigger { width:min(100%,360px); }
+    .dealer-certificate-trigger img { height:100px; }
+    .dealer-certificate-download { grid-column:auto; justify-self:center; }
+    .dealer-certificate-dialog__bar h2 { text-align:left; }
+  }
+  @media(max-width:420px) {
+    .training-card { padding:24px 16px; }
+    .training-note { padding:24px 18px; }
+    .dealer-note { padding:18px 14px; }
+    .training-chat-trigger,.training-offer .btn-primary { min-height:48px; padding:11px 14px; font-size:13px; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .dealer-certificate-trigger,.training-chat-trigger,.training-offer .btn-primary { transition:none; }
+  }
+</style>
 </body>
 </html>
