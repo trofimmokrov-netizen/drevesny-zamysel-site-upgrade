@@ -2237,8 +2237,8 @@
     <p class="training-chat-dialog__topic" id="trainingChatTopic"></p>
     <label for="trainingChatPhone">Ваш телефон</label><input id="trainingChatPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required>
     <label class="training-chat-dialog__consent"><input type="checkbox" name="privacyConsent" required><span>Согласен(на) на обработку телефона для ответа на этот запрос. <a href="./consent.html" target="_blank" rel="noopener">Текст согласия</a> · <a href="./privacy.html" target="_blank" rel="noopener">Политика обработки данных</a>.</span></label>
-    <button class="btn-primary" type="submit">Подготовить сообщение и открыть чат</button>
-    <p class="training-chat-dialog__hint">После отправки откроется чат. Анна увидит тему и ваш телефон; готовый текст скопируется — в чате останется вставить его и отправить.</p>
+    <button class="btn-primary" type="submit">Скопировать запрос и открыть чат</button>
+    <p class="training-chat-dialog__hint">Тема и телефон передадутся менеджеру, а текст скопируется. В открытом чате вставьте его в поле сообщения (на компьютере — Ctrl+V, на телефоне — нажмите поле и выберите «Вставить») и отправьте.</p>
     <p class="training-chat-dialog__status" id="trainingChatStatus" role="status" aria-live="polite"></p>
   </form>
 </dialog>
@@ -2646,7 +2646,7 @@
       widget.open();
       trainingChatDialog.close();
       status.textContent = copied
-        ? 'Чат открыт. Тема и телефон переданы менеджеру; скопированный текст можно вставить в чат и отправить.'
+        ? 'Чат открыт. Тема и телефон переданы менеджеру; вставьте скопированный запрос в поле сообщения и отправьте.'
         : 'Чат открыт, тема и телефон переданы менеджеру. Напишите Анне прямо в чате.';
     } else {
       document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
@@ -3786,6 +3786,21 @@
   @media (prefers-reduced-motion:reduce) {
     .hero-cta-row .btn-primary,.hero-cta-row .hero-builder-link { animation:none; transition:none; }
     .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible,.hero-cta-row .hero-builder-link:hover,.hero-cta-row .hero-builder-link:focus-visible { transform:none; }
+  }
+</style>
+<style id="review-author-alignment-and-chat-clarity">
+  /* Keep review author names and dates centered at every viewport width. */
+  .review-card__meta {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-align: center;
+  }
+  .review-card__meta strong,
+  .review-card__meta time {
+    width: 100%;
+    text-align: center;
   }
 </style>
 </body>
