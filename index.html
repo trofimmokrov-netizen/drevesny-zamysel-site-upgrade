@@ -100,6 +100,7 @@
   <link rel="preload" href="./assets/images/hero.webp" as="image" type="image/webp" fetchpriority="high" />
   <link rel="stylesheet" href="./assets/css/wood-preview.css" />
   <link rel="stylesheet" href="./assets/css/reviews.css" />
+  <script src="./assets/js/yandex-metrika-consent.js" defer></script>
 
   <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2205,7 +2206,7 @@
       <div class="cookie-banner" id="cookieBanner" role="region" aria-live="polite" aria-label="Уведомление об использовании cookie">
   <div class="cookie-banner__text">
     <strong>Настройки cookie и внешних сервисов</strong>
-    Чат Битрикс24 и встроенная Яндекс Карта загрузятся после разрешения. Форма заявки Битрикс24 остаётся доступна; её отдельное согласие оформляется в форме. <a class="cookie-banner__policy" href="./privacy.html">Политика обработки данных</a>.
+    Чат Битрикс24, Яндекс Карты и Яндекс Метрика (статистика и Вебвизор) загрузятся после разрешения. Форма заявки Битрикс24 остаётся доступна; её отдельное согласие оформляется в форме. <a class="cookie-banner__policy" href="./privacy.html">Политика обработки данных</a>.
   </div>
   <button class="cookie-banner__reject" id="cookieRejectButton" type="button">Отклонить необязательные</button>
   <button class="cookie-banner__accept" id="cookieAcceptButton" type="button">Разрешить сервисы</button>
@@ -2421,7 +2422,10 @@
       // Dismissing the notice should not depend on browser storage availability.
     }
     cookieBanner.classList.remove('is-visible');
-    if (choice === 'accepted') window.enableOptionalSiteServices?.();
+    if (choice === 'accepted') {
+      window.enableOptionalSiteServices?.();
+      window.enableYandexMetrika?.();
+    }
     if (choice === 'rejected' && previousChoice === 'accepted') window.location.reload();
   }
   cookieAcceptButton.addEventListener('click', () => saveCookieChoice('accepted'));
@@ -2693,6 +2697,7 @@
       if(map){map.src=map.dataset.src;map.removeAttribute('data-src');}
       var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
       d.head.appendChild(s);
+      w.enableYandexMetrika?.();
     }
     w.enableOptionalSiteServices=loadOptionalServices;
     try { if(w.localStorage.getItem('site_cookie_choice')==='accepted') loadOptionalServices(); }
