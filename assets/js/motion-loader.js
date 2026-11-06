@@ -29,7 +29,10 @@
   }
 
   (async function () {
-    if (!mobile && !lowPowerPhone && !reducedMotion) await loadScript(gsapUrl);
+    // Modern phones get the same composed GSAP intro as desktop. Keep the
+    // native, lighter reveal path for reduced-motion preferences and phones
+    // identified as low-power so older devices do not pay the animation cost.
+    if (!lowPowerPhone && !reducedMotion) await loadScript(gsapUrl);
     await loadScript(animationUrl);
   })();
 })();

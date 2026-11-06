@@ -23,7 +23,13 @@ function loadMaterialTexture(k){
   new THREE.TextureLoader().load(materialTexturePaths[k].src,function(sourceTexture){
     var image=sourceTexture.image,texture=sourceTexture;
     if(image&&image.width&&image.height){
-      var c=document.createElement("canvas");c.width=image.naturalWidth||image.width;c.height=image.naturalHeight||image.height;
+      var sourceWidth=image.naturalWidth||image.width,sourceHeight=image.naturalHeight||image.height;
+      // Keep large material previews sharp, while reducing GPU texture memory
+      // on older phones. The full-resolution source remains available in the
+      // close-up material dialog.
+      var textureLimit=lowPowerDevice?768:(compactScreen?1024:1254);
+      var scale=Math.min(1,textureLimit/Math.max(sourceWidth,sourceHeight));
+      var c=document.createElement("canvas");c.width=Math.max(1,Math.round(sourceWidth*scale));c.height=Math.max(1,Math.round(sourceHeight*scale));
       var context=c.getContext("2d");context.filter=materialTexturePaths[k].filter;context.drawImage(image,0,0,c.width,c.height);
       texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;sourceTexture.dispose();
     }
