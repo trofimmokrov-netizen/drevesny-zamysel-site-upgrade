@@ -2238,7 +2238,7 @@
     <label for="trainingChatPhone">Ваш телефон</label><input id="trainingChatPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" required>
     <label class="training-chat-dialog__consent"><input type="checkbox" name="privacyConsent" required><span>Согласен(на) на обработку телефона для ответа на этот запрос. <a href="./consent.html" target="_blank" rel="noopener">Текст согласия</a> · <a href="./privacy.html" target="_blank" rel="noopener">Политика обработки данных</a>.</span></label>
     <button class="btn-primary" type="submit">Подготовить сообщение и открыть чат</button>
-    <p class="training-chat-dialog__hint">Мы скопируем текст запроса. В чате останется нажать на поле сообщения, вставить и отправить его.</p>
+    <p class="training-chat-dialog__hint">После отправки откроется чат. Анна увидит тему и ваш телефон; готовый текст скопируется — в чате останется вставить его и отправить.</p>
     <p class="training-chat-dialog__status" id="trainingChatStatus" role="status" aria-live="polite"></p>
   </form>
 </dialog>
@@ -2577,7 +2577,30 @@
     if (window.sitePendingChatContext && typeof widget.setCustomData === 'function') {
       widget.setCustomData(window.sitePendingChatContext);
     }
+    (window.siteBitrixChatWaiters || []).splice(0).forEach(resolve => resolve(widget));
   });
+  window.ensureSiteBitrixChat = function() {
+    if (window.siteBitrixLiveChatWidget) return Promise.resolve(window.siteBitrixLiveChatWidget);
+    return new Promise(resolve => {
+      let settled = false;
+      const finish = widget => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeout);
+        resolve(widget || null);
+      };
+      window.siteBitrixChatWaiters = window.siteBitrixChatWaiters || [];
+      window.siteBitrixChatWaiters.push(finish);
+      const timeout = setTimeout(() => finish(null), 10000);
+      if (!document.querySelector('script[data-site-bitrix-chat]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.dataset.siteBitrixChat = 'true';
+        script.src = 'https://cdn-ru.bitrix24.ru/b38606320/crm/site_button/loader_1_mxd7ow.js?' + (Date.now() / 60000 | 0);
+        document.head.appendChild(script);
+      }
+    });
+  };
   const trainingChatDialog = document.getElementById('trainingChatDialog');
   const trainingChatForm = document.getElementById('trainingChatForm');
   let trainingChatInterest = '';
@@ -2616,15 +2639,21 @@
       { NAME: 'Телефон для связи', VALUE: phone, DISPLAY: 'LINE' }
     ] }];
     window.sitePendingChatContext = customData;
-    if (window.siteBitrixLiveChatWidget && typeof window.siteBitrixLiveChatWidget.setCustomData === 'function') {
-      window.siteBitrixLiveChatWidget.setCustomData(customData);
-      window.siteBitrixLiveChatWidget.open();
+    status.textContent = copied ? 'Запрос готов. Подключаем чат…' : 'Открываем чат менеджера…';
+    const widget = await window.ensureSiteBitrixChat();
+    if (widget && typeof widget.open === 'function') {
+      if (typeof widget.setCustomData === 'function') widget.setCustomData(customData);
+      widget.open();
+      trainingChatDialog.close();
+      status.textContent = copied
+        ? 'Чат открыт. Тема и телефон переданы менеджеру; скопированный текст можно вставить в чат и отправить.'
+        : 'Чат открыт, тема и телефон переданы менеджеру. Напишите Анне прямо в чате.';
     } else {
       document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
+      status.textContent = copied
+        ? 'Не удалось открыть чат автоматически. Текст запроса скопирован — нажмите синюю кнопку чата и вставьте его.'
+        : 'Не удалось открыть чат автоматически. Нажмите синюю кнопку чата и напишите Анне.';
     }
-    status.textContent = copied
-      ? 'Сообщение скопировано. В открывшемся чате вставьте его и нажмите «Отправить».'
-      : 'Чат открыт. Скопируйте текст запроса вручную: ' + message;
   });
 
   const certificateDialog = document.getElementById('dealerCertificateDialog');
@@ -2659,11 +2688,11 @@
       details.textContent = stairConfigFromUrl.slice(0, 500);
       const note = document.createElement('p');
       note.className = 'stair-config-handoff__note';
-      note.textContent = 'Скопируйте выбранную конфигурацию, чтобы отправить её менеджеру вместе с заявкой.';
+      note.textContent = 'Нажмите кнопку: параметры скопируются, а чат с менеджером откроется. Менеджер также увидит конфигурацию.';
       const copyButton = document.createElement('button');
       copyButton.className = 'stair-config-handoff__copy';
       copyButton.type = 'button';
-      copyButton.textContent = 'Скопировать параметры';
+      copyButton.textContent = 'Скопировать и открыть чат';
       copyButton.addEventListener('click', async () => {
         let copied = false;
         try {
@@ -2680,7 +2709,19 @@
           copied = document.execCommand('copy');
           temporary.remove();
         }
-        copyButton.textContent = copied ? 'Параметры скопированы' : 'Не удалось скопировать';
+        const customData = [{ GRID: [
+          { NAME: 'Параметры лестницы', VALUE: details.textContent, DISPLAY: 'LINE' }
+        ] }];
+        window.sitePendingChatContext = customData;
+        const widget = await window.ensureSiteBitrixChat();
+        if (widget && typeof widget.open === 'function') {
+          if (typeof widget.setCustomData === 'function') widget.setCustomData(customData);
+          widget.open();
+          copyButton.textContent = copied ? 'Параметры скопированы · чат открыт' : 'Чат открыт';
+        } else {
+          document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
+          copyButton.textContent = copied ? 'Параметры скопированы · нажмите синюю кнопку чата' : 'Нажмите синюю кнопку чата';
+        }
       });
       handoff.append(title, details, note, copyButton);
       contactStartNote.after(handoff);
@@ -2696,8 +2737,8 @@
       loaded=true;
       var map=d.querySelector('.location-map-preview iframe[data-src]');
       if(map){map.src=map.dataset.src;map.removeAttribute('data-src');}
-      var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-      d.head.appendChild(s);
+      if(w.ensureSiteBitrixChat) w.ensureSiteBitrixChat();
+      else {var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);d.head.appendChild(s);}
       w.enableYandexMetrika?.();
     }
     w.enableOptionalSiteServices=loadOptionalServices;
@@ -3717,6 +3758,34 @@
   }
   @media(prefers-reduced-motion:reduce) {
     .dealer-certificate-trigger,.training-chat-trigger,.training-offer .btn-primary { transition:none; }
+  }
+</style>
+<style id="mobile-review-training-cta-refinements">
+  @media (max-width:600px) {
+    .review-card__meta { align-items:center; justify-content:center; text-align:center; }
+    .review-card__meta strong,.review-card__meta time { width:100%; text-align:center; }
+    .training-card .training-program li > b { grid-column:1; justify-self:center; margin-top:2px; text-align:center; }
+  }
+  .hero-cta-row .btn-primary {
+    animation: hero-discuss-pulse 5s ease-in-out infinite;
+    transition: transform .28s ease, box-shadow .28s ease, background-color .28s ease;
+  }
+  .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible {
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(38,57,47,.22);
+  }
+  .hero-cta-row .hero-builder-link { transition:transform .28s ease,background-color .28s ease,box-shadow .28s ease; }
+  .hero-cta-row .hero-builder-link:hover,.hero-cta-row .hero-builder-link:focus-visible { transform:translateY(-2px); }
+  @keyframes hero-discuss-pulse {
+    0%,100% { box-shadow:0 0 0 0 rgba(38,57,47,0),0 4px 14px rgba(38,57,47,.08); }
+    50% { box-shadow:0 0 0 5px rgba(181,138,69,.10),0 9px 24px rgba(38,57,47,.15); }
+  }
+  @media (max-width:600px) {
+    .hero-cta-row .btn-primary { animation-duration:6s; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .hero-cta-row .btn-primary,.hero-cta-row .hero-builder-link { animation:none; transition:none; }
+    .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible,.hero-cta-row .hero-builder-link:hover,.hero-cta-row .hero-builder-link:focus-visible { transform:none; }
   }
 </style>
 </body>
