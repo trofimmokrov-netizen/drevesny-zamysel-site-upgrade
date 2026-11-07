@@ -53,13 +53,54 @@ function addUnderStairStorage(g,o,mode){
   var crossX=-o.dz,crossZ=o.dx,thickness=.024,mat=woodMats[o.wood];
   [-1,1].forEach(function(side){var geometry=new THREE.ExtrudeGeometry(shape,{depth:thickness,bevelEnabled:false,steps:1});geometry.translate(0,0,-thickness/2);var edge=side*(o.width/2-.035),panel=new THREE.Mesh(geometry,mat);panel.position.set(o.x+crossX*edge,0,o.z+crossZ*edge);panel.rotation.y=Math.atan2(-o.dz,o.dx);panel.castShadow=true;panel.receiveShadow=true;g.add(panel);});
   if(mode==="closed")return;
-  function point(u,y,side){var edge=side*(o.width/2-.048);return{x:o.x+o.dx*u+crossX*edge,y:y,z:o.z+o.dz*u+crossZ*edge};}
-  var faceMat=new THREE.MeshStandardMaterial({color:0x292d29,roughness:.82});faceMat.userData.disposeOnRebuild=true;
-  [-1,1].forEach(function(side){
+  // Add real inset facade panels on both visible sides. Previously only thin
+  // divider/handle lines were drawn, so the selected cabinet looked like an
+  // empty frame instead of doors or drawers.
+  var facadeMat=woodMats[o.wood],gap=.018,facadeThickness=.012,facadeSides=[-1,1];
+  facadeSides.forEach(function(side){
+    var edge=side*(o.width/2-.035),faceOffset=side*(thickness/2+facadeThickness/2+.002);
+    function addFacade(points){
+      if(points.length<3)return;
+      var panelShape=new THREE.Shape();panelShape.moveTo(points[0][0],points[0][1]);
+      for(var i=1;i<points.length;i++)panelShape.lineTo(points[i][0],points[i][1]);
+      panelShape.closePath();
+      var geometry=new THREE.ExtrudeGeometry(panelShape,{depth:facadeThickness,bevelEnabled:false,steps:1});
+      geometry.translate(0,0,-facadeThickness/2);
+      var panel=new THREE.Mesh(geometry,facadeMat);
+      panel.position.set(o.x+crossX*edge+crossX*faceOffset,0,o.z+crossZ*edge+crossZ*faceOffset);
+      panel.rotation.y=Math.atan2(-o.dz,o.dx);panel.castShadow=true;panel.receiveShadow=true;g.add(panel);
+    }
+    function roofAt(u){return topStart+(topEnd-topStart)*(u/run);}
     if(mode==="doors"){
-      [1/3,2/3].forEach(function(ratio){var u=run*ratio,top=topStart+(topEnd-topStart)*ratio;addBeam(g,point(u,.035,side),point(u,Math.max(.04,top-.025),side),.008,.009,faceMat);var hy=top*.55;addBeam(g,point(u-.035,hy,side),point(u+.035,hy,side),.012,.012,steel);});
+      var cuts=[0,run/3,run*2/3,run];
+      for(var door=0;door<3;door++){
+        var x0=cuts[door]+(door?gap/2:0),x1=cuts[door+1]-(door<2?gap/2:0);
+        var y0=Math.max(.055,roofAt(x0)-gap),y1=Math.max(.055,roofAt(x1)-gap);
+        if(y1>.08)addFacade([[x0,.025],[x1,.025],[x1,y1],[x0,y0]]);
+      }
     }else{
-      for(var row=1;row<=3;row++){var y=topEnd*row/4,uMax=run*Math.max(.05,Math.min(1,(y-topStart)/(topEnd-topStart)));if(uMax>.16)addBeam(g,point(.04,y,side),point(Math.min(run-.03,uMax),y,side),.009,.009,faceMat);var hx=Math.min(run*.48,Math.max(.08,uMax*.55));addBeam(g,point(hx-.035,y+.035,side),point(hx+.035,y+.035,side),.012,.012,steel);}
+      // Divide drawers into bays. The top drawer in each bay follows the stair
+      // slope, keeping the facade below the flight instead of cutting through it.
+      var drawerGap=.018,bayCuts=[0,run/3,run*2/3,run];
+      for(var bay=0;bay<3;bay++){
+        var left=bayCuts[bay]+(bay?drawerGap/2:0),right=bayCuts[bay+1]-(bay<2?drawerGap/2:0);
+        var roofLeft=roofAt(left)-.035,roofRight=roofAt(right)-.035;
+        var usableHeight=Math.min(roofLeft,roofRight)-.025;
+        if(right-left<.12||usableHeight<.16)continue;
+        var drawerRows=Math.max(1,Math.min(5,Math.floor((usableHeight+drawerGap)/.38)));
+        var drawerHeight=(usableHeight-(drawerRows-1)*drawerGap)/drawerRows;
+        for(var row=0;row<drawerRows;row++){
+          var bottom=.025+row*(drawerHeight+drawerGap),isTop=row===drawerRows-1;
+          var topLeft=isTop?roofLeft:bottom+drawerHeight,topRight=isTop?roofRight:bottom+drawerHeight;
+          if(Math.min(topLeft,topRight)-bottom<.11)continue;
+          addFacade([[left,bottom],[right,bottom],[right,topRight],[left,topLeft]]);
+          var handleX=(left+right)/2,handleY=bottom+(Math.min(topLeft,topRight)-bottom)*.55;
+          addBeam(g,
+            {x:o.x+o.dx*(handleX-.035)+crossX*(edge+faceOffset+side*.009),y:handleY,z:o.z+o.dz*(handleX-.035)+crossZ*(edge+faceOffset+side*.009)},
+            {x:o.x+o.dx*(handleX+.035)+crossX*(edge+faceOffset+side*.009),y:handleY,z:o.z+o.dz*(handleX+.035)+crossZ*(edge+faceOffset+side*.009)},
+            .012,.012,steel);
+        }
+      }
     }
   });
 }
