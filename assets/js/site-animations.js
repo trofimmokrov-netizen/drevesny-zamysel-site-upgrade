@@ -101,6 +101,19 @@
     const reviewCard = element.matches(".review-card");
     const revealLift = motion.lift + (reviewCard ? 8 : 0);
     const revealScale = reviewCard ? 0.985 : motion.scale;
+    if (lowPowerDevice) {
+      // Entry-level phones use one short CSS transform per content block.
+      // Avoid allocating a Web Animations object for every text layer/card.
+      element.style.setProperty("--motion-lite-delay", `${Math.min(Math.max(delay || 0, 0), 0.28)}s`);
+      element.classList.add("motion-lite-reveal");
+      element.addEventListener("animationend", function finishLiteReveal(event) {
+        if (event.target !== element || event.animationName !== "motion-lite-rise") return;
+        element.classList.remove("motion-lite-reveal");
+        element.style.removeProperty("--motion-lite-delay");
+        element.removeEventListener("animationend", finishLiteReveal);
+      });
+      return;
+    }
     if (gsap) {
       if (!mobile) {
         const startDelay = delay || 0;
@@ -176,7 +189,7 @@
     // opacity; the restrained lift carries the motion without reducing contrast.
     const group = copyLayers.find(([selector]) => element.matches(selector));
     reveal(element, delay || 0);
-    if (!group) return;
+    if (!group || lowPowerDevice) return;
     element.querySelectorAll(group[1]).forEach((child, index) => {
       reveal(child, (delay || 0) + 0.12 + index * (lowPowerDevice ? 0.07 : 0.09));
     });

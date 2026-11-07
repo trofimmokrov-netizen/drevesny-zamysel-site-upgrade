@@ -2177,7 +2177,13 @@
         <strong class="training-price">55 000 <span>₽</span></strong>
         <button class="btn-primary" type="button" data-chat-interest="Обучение столярному делу">Узнать об обучении <span aria-hidden="true">↗</span></button>
         <a class="training-form-link" href="#contact" data-training-cta>Оставить телефон в форме</a>
-        <p>Оплату сразу или частями, даты и детали участия можно обсудить с менеджером. Сертификат подтверждает прохождение курса мастерской и не является документом о государственной квалификации.</p>
+        <details class="training-offer__details">
+          <summary>Даты, оплата и сертификат</summary>
+          <div>
+            <p>Перед записью менеджер подтвердит даты, состав группы и практические задания. Курс проходит очно в мастерской; каждое занятие длится 60 минут.</p>
+            <p>Оплату целиком или частями можно обсудить с менеджером. По окончании выдаётся сертификат мастерской о прохождении курса: он не заменяет государственную квалификацию и не является обещанием трудоустройства.</p>
+          </div>
+        </details>
       </div>
       <div class="training-details" aria-label="Подробнее об обучении">
         <details class="direction-detail">
@@ -2207,43 +2213,52 @@
       <article class="training-note training-note--partner">
         <p class="section-label">Партнёрство</p>
         <h3>Сотрудничество с мастерской</h3>
-        <p>Выберите формат, чтобы понять, чем он может быть полезен, кому подойдёт и с чего начать. Совместные проекты можно обсудить сейчас; региональное партнёрство и франшиза пока прорабатываются, поэтому их условия ещё не утверждены.</p>
+        <p>Здесь можно узнать, чем мастерская может быть полезна партнёру, кому подойдёт каждый формат и как начать разговор. Совместные проекты можно обсуждать сейчас. Региональная программа и франшиза пока прорабатываются: это предварительный интерес, а не готовое предложение с утверждёнными условиями.</p>
         <div class="cooperation-overview" aria-label="Направления сотрудничества">
           <article class="cooperation-overview__card">
             <span class="cooperation-overview__eyebrow">Для архитекторов, строителей и мастеров</span>
             <h4>Совместные проекты</h4>
-            <dl class="cooperation-overview__facts">
-              <div><dt>Что даёт</dt><dd>Можно подключить мастерскую к подбору материалов, согласованию узлов, изготовлению или монтажу лестницы.</dd></div>
-              <div><dt>Кому подходит</dt><dd>Архитекторам, дизайнерам, строителям, прорабам и мастерам с конкретным объектом.</dd></div>
-              <div><dt>Первый шаг</dt><dd>Опишите объект, этап работ и нужную помощь. Чертёж можно прислать позже.</dd></div>
-            </dl>
-            <span class="cooperation-overview__note">Состав работ, сроки и ответственность определяются отдельно.</span>
+            <details class="cooperation-quick cooperation-quick--overview"><summary>Что это и кому подойдёт</summary><div class="cooperation-quick__overview">
+              <dl class="cooperation-overview__facts">
+                <div><dt>Что даёт</dt><dd>Можно подключить мастерскую к подбору материалов, согласованию узлов, изготовлению или монтажу лестницы.</dd></div>
+                <div><dt>Кому подходит</dt><dd>Архитекторам, дизайнерам, строителям, прорабам и мастерам с конкретным объектом.</dd></div>
+                <div><dt>Первый шаг</dt><dd>Опишите объект, этап работ и нужную помощь. Чертёж можно прислать позже.</dd></div>
+              </dl>
+              <span class="cooperation-overview__note">Результат — согласованный план работ и понятное распределение задач. Состав работ, сроки, расчёты и ответственность определяются отдельно.</span>
+            </div></details>
             <details class="cooperation-quick"><summary>Как проходит сотрудничество</summary><div><p>Сначала обсуждаем объект, сроки и нужный этап: консультацию, согласование конструкции, изготовление или монтаж. Затем отдельно фиксируем роли, стоимость и порядок работы по конкретному проекту.</p><p>Для первого разговора достаточно телефона, города и краткого описания задачи. Чертежи и фотографии можно прислать позже.</p></div></details>
             <button class="cooperation-overview__link" type="button" data-open-direction="cooperation-project-formats">Подробно о форматах <span aria-hidden="true">↘</span></button>
+            <button class="cooperation-overview__request" type="button" data-chat-interest="Партнёрство по совместным проектам">Обсудить проект</button>
           </article>
           <article class="cooperation-overview__card cooperation-overview__card--future">
             <span class="cooperation-overview__eyebrow">Первый шаг — оценить регион</span>
             <h4>Партнёрство в регионе</h4>
-            <dl class="cooperation-overview__facts">
-              <div><dt>Что даёт</dt><dd>Проверить интерес к лестницам в своём городе и оценить сотрудничество на одном пилотном заказе.</dd></div>
-              <div><dt>Кому подходит</dt><dd>Местным предпринимателям и командам в строительстве, ремонте, дизайне или монтаже.</dd></div>
-              <div><dt>Первый шаг</dt><dd>Укажите город, опыт команды и как вы могли бы участвовать в проекте.</dd></div>
-            </dl>
-            <span class="cooperation-overview__note">Это предварительный разговор, не готовая программа.</span>
+            <details class="cooperation-quick cooperation-quick--overview"><summary>Что это и кому подойдёт</summary><div class="cooperation-quick__overview">
+              <dl class="cooperation-overview__facts">
+                <div><dt>Что даёт</dt><dd>Проверить интерес к лестницам в своём городе и оценить сотрудничество на одном пилотном заказе.</dd></div>
+                <div><dt>Кому подходит</dt><dd>Местным предпринимателям и командам в строительстве, ремонте, дизайне или монтаже.</dd></div>
+                <div><dt>Первый шаг</dt><dd>Укажите город, опыт команды и как вы могли бы участвовать в проекте.</dd></div>
+              </dl>
+              <span class="cooperation-overview__note">Первый результат — оценка региона и возможный пилот. Это предварительный разговор, не готовая программа и не обещание запуска.</span>
+            </div></details>
             <details class="cooperation-quick"><summary>Как начать в регионе</summary><div><p>Первый шаг — оценить ваш город, опыт команды и возможности замера и монтажа. Если есть взаимный интерес, можно обсудить пилотный заказ и проверить, как распределить работу.</p><p>До пилота стороны отдельно согласуют ответственность и условия. Заявка только фиксирует интерес и ни к чему не обязывает.</p></div></details>
             <button class="cooperation-overview__link" type="button" data-open-direction="cooperation-regional-pilot">Подробно о запуске <span aria-hidden="true">↘</span></button>
+            <button class="cooperation-overview__request" type="button" data-chat-interest="Региональное партнёрство">Оставить запрос по региону</button>
           </article>
           <article class="cooperation-overview__card cooperation-overview__card--future">
             <span class="cooperation-overview__eyebrow">Будущий формат</span>
             <h4>Франшиза</h4>
-            <dl class="cooperation-overview__facts">
-              <div><dt>Что может дать</dt><dd>В будущем — общие стандарты работы, обучение и поддержку мастерской для заказов на лестницы.</dd></div>
-              <div><dt>Как готовится запуск</dt><dd>Оценка региона, пилотные проекты, проверка процесса и только затем разработка модели и условий.</dd></div>
-              <div><dt>Что нужно сейчас</dt><dd>Предварительный интерес, ваш регион и краткий рассказ об опыте команды.</dd></div>
-            </dl>
-            <span class="cooperation-overview__note">Франшиза пока не запущена. Взносы, роялти, требования и дата старта не утверждены.</span>
+            <details class="cooperation-quick cooperation-quick--overview"><summary>Что может дать и как готовится</summary><div class="cooperation-quick__overview">
+              <dl class="cooperation-overview__facts">
+                <div><dt>Что может дать</dt><dd>В будущем — общие стандарты работы, обучение и поддержку мастерской для заказов на лестницы.</dd></div>
+                <div><dt>Как готовится запуск</dt><dd>Оценка региона, пилотные проекты, проверка процесса и только затем разработка модели и условий.</dd></div>
+                <div><dt>Что нужно сейчас</dt><dd>Предварительный интерес, ваш регион и краткий рассказ об опыте команды.</dd></div>
+              </dl>
+              <span class="cooperation-overview__note">Франшиза пока не запущена. Модель и её пользу предстоит проверить. Взносы, роялти, требования, территория и дата старта не утверждены.</span>
+            </div></details>
             <details class="cooperation-quick"><summary>Что даст формат и как его готовить</summary><div><p>Потенциально франшиза может объединить стандарты работы с заказом, обучение, поддержку и взаимодействие с производством. Сначала такую модель нужно проверить на пилотных проектах и рассчитать.</p><p>Франшиза пока не запущена: взносы, роялти, территории и дата старта не определены. Сейчас можно оставить только предварительный запрос с городом и опытом.</p></div></details>
             <button class="cooperation-overview__link" type="button" data-open-direction="cooperation-franchise-value">Подробно о франшизе <span aria-hidden="true">↘</span></button>
+            <button class="cooperation-overview__request" type="button" data-chat-interest="Предварительный интерес к будущей франшизе">Оставить предварительный запрос</button>
           </article>
         </div>
         <div class="cooperation-start" aria-label="Первые шаги к сотрудничеству">
@@ -2365,7 +2380,7 @@
 
 
 <dialog class="leonid-lightbox" id="categoryPhotoPreview" aria-label="Просмотр примера работы">
-  <div class="leonid-lightbox__panel"><button class="leonid-lightbox__close" type="button" aria-label="Закрыть просмотр">×</button><button class="leonid-lightbox__nav category-preview-prev" type="button" aria-label="Предыдущее фото">‹</button><figure class="leonid-lightbox__figure"><img id="categoryPreviewImage" src="" alt="" decoding="async"><figcaption id="categoryPreviewCaption"></figcaption></figure><button class="leonid-lightbox__nav category-preview-next" type="button" aria-label="Следующее фото">›</button></div>
+  <div class="leonid-lightbox__panel"><button class="leonid-lightbox__close" type="button" aria-label="Закрыть просмотр">×</button><button class="leonid-lightbox__nav category-preview-prev" type="button" aria-label="Предыдущее фото">‹</button><figure class="leonid-lightbox__figure"><img id="categoryPreviewImage" src="" alt="" decoding="async"><figcaption id="categoryPreviewCaption"></figcaption><p class="category-preview-swipe-hint">Листайте фото свайпом или стрелками</p></figure><button class="leonid-lightbox__nav category-preview-next" type="button" aria-label="Следующее фото">›</button></div>
 </dialog>
 
 <dialog class="dealer-certificate-dialog" id="dealerCertificateDialog" aria-labelledby="dealerCertificateTitle">
@@ -2390,6 +2405,15 @@
     <p class="training-chat-dialog__status" id="trainingChatStatus" role="status" aria-live="polite"></p>
   </form>
 </dialog>
+
+<aside class="chat-handoff-toast" id="chatHandoffToast" role="status" aria-live="polite" hidden>
+  <div class="chat-handoff-toast__copy">
+    <strong id="chatHandoffTitle">Запрос скопирован</strong>
+    <p id="chatHandoffMessage">В чате нажмите поле сообщения и вставьте текст.</p>
+  </div>
+  <button class="chat-handoff-toast__recopy" type="button">Скопировать ещё раз</button>
+  <button class="chat-handoff-toast__close" type="button" aria-label="Закрыть подсказку">×</button>
+</aside>
 
 <script>
   // Smooth scroll for nav links & mobile menu handling
@@ -2767,7 +2791,45 @@
   const trainingChatDialog = document.getElementById('trainingChatDialog');
   const trainingChatForm = document.getElementById('trainingChatForm');
   const trainingChatPartnerFields = document.getElementById('trainingChatPartnerFields');
+  const chatHandoffToast = document.getElementById('chatHandoffToast');
+  const chatHandoffTitle = document.getElementById('chatHandoffTitle');
+  const chatHandoffMessage = document.getElementById('chatHandoffMessage');
+  const chatHandoffRecopy = chatHandoffToast.querySelector('.chat-handoff-toast__recopy');
+  let chatHandoffText = '';
   let trainingChatInterest = '';
+  async function copyChatHandoffText(value) {
+    try {
+      await navigator.clipboard.writeText(value);
+      return true;
+    } catch (_) {
+      const temporary = document.createElement('textarea');
+      temporary.value = value;
+      temporary.setAttribute('readonly', '');
+      temporary.style.position = 'fixed';
+      temporary.style.opacity = '0';
+      document.body.appendChild(temporary);
+      temporary.select();
+      const copied = document.execCommand('copy');
+      temporary.remove();
+      return copied;
+    }
+  }
+  function showChatHandoff(message, copied, chatOpened) {
+    chatHandoffText = message;
+    chatHandoffTitle.textContent = copied ? 'Запрос скопирован' : 'Чат готов к сообщению';
+    chatHandoffMessage.textContent = copied
+      ? `${chatOpened ? 'Чат открыт.' : 'Нажмите синюю кнопку чата.'} Вставьте запрос в поле сообщения${/Android|iPhone|iPad/i.test(navigator.userAgent) ? ' (на телефоне — нажмите поле и выберите «Вставить»)' : ' (Ctrl+V)'} и отправьте его.`
+      : 'Тема и телефон переданы менеджеру. Скопируйте запрос кнопкой ниже, затем вставьте его в поле сообщения чата.';
+    chatHandoffToast.hidden = false;
+  }
+  chatHandoffRecopy.addEventListener('click', async () => {
+    const copied = chatHandoffText ? await copyChatHandoffText(chatHandoffText) : false;
+    chatHandoffTitle.textContent = copied ? 'Запрос скопирован' : 'Не удалось скопировать';
+    chatHandoffMessage.textContent = copied
+      ? 'Теперь нажмите поле сообщения в чате, выберите «Вставить» и отправьте запрос.'
+      : 'Разрешите доступ к буферу обмена или выделите и скопируйте текст запроса вручную.';
+  });
+  chatHandoffToast.querySelector('.chat-handoff-toast__close').addEventListener('click', () => { chatHandoffToast.hidden = true; });
   document.querySelectorAll('[data-chat-interest]').forEach(button => button.addEventListener('click', () => {
     trainingChatInterest = button.dataset.chatInterest || 'Вопрос менеджеру';
     document.getElementById('trainingChatTopic').textContent = trainingChatInterest;
@@ -2790,21 +2852,7 @@
     const partnerContext = [city && `Регион: ${city}`, experience && `Опыт/команда: ${experience}`].filter(Boolean).join('. ');
     const message = `Здравствуйте, Анна! Меня интересует: ${trainingChatInterest}.${partnerContext ? ` ${partnerContext}.` : ''} Мой телефон: ${phone}. Пожалуйста, свяжитесь со мной.`;
     const status = document.getElementById('trainingChatStatus');
-    let copied = false;
-    try {
-      await navigator.clipboard.writeText(message);
-      copied = true;
-    } catch (_) {
-      const temporary = document.createElement('textarea');
-      temporary.value = message;
-      temporary.setAttribute('readonly', '');
-      temporary.style.position = 'fixed';
-      temporary.style.opacity = '0';
-      document.body.appendChild(temporary);
-      temporary.select();
-      copied = document.execCommand('copy');
-      temporary.remove();
-    }
+    const copied = await copyChatHandoffText(message);
     const customData = [{ GRID: [
       { NAME: 'Тема обращения', VALUE: trainingChatInterest, DISPLAY: 'LINE' },
       { NAME: 'Телефон для связи', VALUE: phone, DISPLAY: 'LINE' },
@@ -2818,14 +2866,11 @@
       if (typeof widget.setCustomData === 'function') widget.setCustomData(customData);
       widget.open();
       trainingChatDialog.close();
-      status.textContent = copied
-        ? 'Чат открыт. Тема и телефон переданы менеджеру; вставьте скопированный запрос в поле сообщения и отправьте.'
-        : 'Чат открыт, тема и телефон переданы менеджеру. Напишите Анне прямо в чате.';
+      showChatHandoff(message, copied, true);
     } else {
       document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
-      status.textContent = copied
-        ? 'Не удалось открыть чат автоматически. Текст запроса скопирован — нажмите синюю кнопку чата и вставьте его.'
-        : 'Не удалось открыть чат автоматически. Нажмите синюю кнопку чата и напишите Анне.';
+      trainingChatDialog.close();
+      showChatHandoff(message, copied, false);
     }
   });
 
@@ -2867,21 +2912,7 @@
       copyButton.type = 'button';
       copyButton.textContent = 'Скопировать и открыть чат';
       copyButton.addEventListener('click', async () => {
-        let copied = false;
-        try {
-          await navigator.clipboard.writeText(details.textContent);
-          copied = true;
-        } catch (_) {
-          const temporary = document.createElement('textarea');
-          temporary.value = details.textContent;
-          temporary.setAttribute('readonly', '');
-          temporary.style.position = 'fixed';
-          temporary.style.opacity = '0';
-          document.body.appendChild(temporary);
-          temporary.select();
-          copied = document.execCommand('copy');
-          temporary.remove();
-        }
+        const copied = await copyChatHandoffText(details.textContent);
         const customData = [{ GRID: [
           { NAME: 'Параметры лестницы', VALUE: details.textContent, DISPLAY: 'LINE' }
         ] }];
@@ -2891,9 +2922,11 @@
           if (typeof widget.setCustomData === 'function') widget.setCustomData(customData);
           widget.open();
           copyButton.textContent = copied ? 'Параметры скопированы · чат открыт' : 'Чат открыт';
+          showChatHandoff(details.textContent, copied, true);
         } else {
           document.querySelector('.b24-widget-button-openline_livechat, .b24-widget-button-openline')?.click();
           copyButton.textContent = copied ? 'Параметры скопированы · нажмите синюю кнопку чата' : 'Нажмите синюю кнопку чата';
+          showChatHandoff(details.textContent, copied, false);
         }
       });
       handoff.append(title, details, note, copyButton);
@@ -2910,8 +2943,16 @@
       loaded=true;
       var map=d.querySelector('.location-map-preview iframe[data-src]');
       if(map){map.src=map.dataset.src;map.removeAttribute('data-src');}
-      if(w.ensureSiteBitrixChat) w.ensureSiteBitrixChat();
-      else {var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);d.head.appendChild(s);}
+      // Keep the chat available while letting the first screen render before
+      // the third-party widget adds its scripts, styles and floating UI.
+      var loadChat=function(){
+        if(w.ensureSiteBitrixChat) w.ensureSiteBitrixChat();
+        else if(!d.querySelector('script[data-site-bitrix-chat]')){
+          var s=d.createElement('script');s.async=true;s.dataset.siteBitrixChat='true';s.src=u+'?'+(Date.now()/60000|0);d.head.appendChild(s);
+        }
+      };
+      if('requestIdleCallback' in w) w.requestIdleCallback(loadChat,{timeout:2500});
+      else w.setTimeout(loadChat,1200);
       w.enableYandexMetrika?.();
     }
     w.enableOptionalSiteServices=loadOptionalServices;
@@ -2950,6 +2991,7 @@
   .leonid-lightbox__next { right:22px; }
   #categoryPhotoPreview .category-preview-prev { left:22px; right:auto; }
   #categoryPhotoPreview .category-preview-next { right:22px; left:auto; }
+  .category-preview-swipe-hint { display:none; }
   .leonid-lightbox__nav:hover { transform:translateY(-50%) scale(1.05); }
   .leonid-lightbox__figure figcaption { min-height:18px; text-align:center; }
   .leonid-lightbox button:focus-visible { outline:3px solid #d2b98f; outline-offset:3px; }
@@ -2984,12 +3026,14 @@
   @media(max-width:600px) {
     .leonid-lightbox { padding:16px 8px; }
     .leonid-lightbox__figure { width:calc(100vw - 104px - env(safe-area-inset-left) - env(safe-area-inset-right)); max-height:calc(100dvh - 120px); }
-    .leonid-lightbox__figure img { max-height:calc(100dvh - 150px); }
+    .leonid-lightbox__figure { gap:6px; }
+    .leonid-lightbox__figure img { max-height:calc(100dvh - 168px); }
     .leonid-lightbox__nav { width:44px; height:44px; }
     .leonid-lightbox__prev { left:calc(8px + env(safe-area-inset-left)); }
     .leonid-lightbox__next { right:calc(8px + env(safe-area-inset-right)); }
     #categoryPhotoPreview .category-preview-prev { left:calc(8px + env(safe-area-inset-left)); right:auto; }
     #categoryPhotoPreview .category-preview-next { right:calc(8px + env(safe-area-inset-right)); left:auto; }
+    .category-preview-swipe-hint { display:block; margin:0; padding-top:3px; color:rgba(255,255,255,.64); font-size:11px; line-height:1.35; text-align:center; }
     .leonid-lightbox__close { top:10px; right:calc(10px + env(safe-area-inset-right)); width:44px; height:44px; }
     .stair-config-handoff { padding:14px; }
     .stair-config-handoff__copy { width:100%; }
@@ -3536,6 +3580,14 @@
   }
 </style>
 <style id="motion-css-fallback">
+  @keyframes motion-lite-rise {
+    from { transform:translate3d(0,9px,0); }
+    to { transform:translate3d(0,0,0); }
+  }
+  .motion-lite .motion-lite-reveal {
+    animation:motion-lite-rise .62s cubic-bezier(.22,.61,.36,1) var(--motion-lite-delay,0s) both;
+  }
+  @media(prefers-reduced-motion:reduce) { .motion-lite .motion-lite-reveal { animation:none !important; } }
   .motion-css-fallback .motion-css-reveal {
     opacity:1;
     transform:translateY(14px);
@@ -3590,7 +3642,23 @@
   .cooperation-overview__facts dt { color:#596c5e; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
   .cooperation-overview__facts dd { margin:0; color:#414b44; font-size:12px; line-height:1.6; }
   .cooperation-overview__note { margin-top:auto; padding-top:15px; color:#555f58; font-size:11px; line-height:1.55; }
+  .cooperation-quick { width:100%; margin-top:14px; border-top:1px solid rgba(38,57,47,.12); }
+  .cooperation-quick summary { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:42px; color:#274536; font-size:12px; font-weight:600; line-height:1.45; cursor:pointer; list-style:none; }
+  .cooperation-quick summary::-webkit-details-marker { display:none; }
+  .cooperation-quick summary::after { content:"+"; flex:0 0 auto; color:#987545; font-size:19px; font-weight:400; transition:transform .22s ease; }
+  .cooperation-quick[open] summary::after { transform:rotate(45deg); }
+  .cooperation-quick summary:focus-visible { outline:2px solid #987545; outline-offset:2px; }
+  .cooperation-quick > div { display:grid; gap:8px; padding:0 0 12px; animation:direction-detail-reveal .28s cubic-bezier(.2,.7,.2,1) both; }
+  .cooperation-quick > div p { color:#414b44; font-size:12px; line-height:1.6; }
+  .cooperation-quick--overview { margin-top:4px; }
+  .cooperation-quick--overview summary { min-height:46px; font-size:13px; }
+  .cooperation-quick__overview { gap:12px !important; }
+  .cooperation-quick__overview .cooperation-overview__facts { gap:10px; }
+  .cooperation-quick__overview .cooperation-overview__note { margin:0; padding:10px 0 0; border-top:1px solid rgba(38,57,47,.12); }
   .cooperation-overview__link { display:inline-flex; align-items:center; gap:8px; margin-top:15px; padding:0; border:0; background:transparent; color:#274536; font-family:inherit; font-size:12px; font-weight:600; line-height:1.5; text-align:left; cursor:pointer; }
+  .cooperation-overview__request { display:flex; width:100%; min-height:44px; align-items:center; justify-content:center; margin-top:14px; padding:10px 14px; border:1px solid #26392f; border-radius:6px; background:#26392f; color:#fffefa; font-family:inherit; font-size:12px; font-weight:600; line-height:1.4; cursor:pointer; transition:transform .22s ease,background-color .22s ease,box-shadow .22s ease; }
+  .cooperation-overview__request:hover { transform:translateY(-2px); background:#344a3c; box-shadow:0 8px 20px rgba(18,31,23,.14); }
+  .cooperation-overview__request:focus-visible { outline:3px solid rgba(181,138,69,.6); outline-offset:3px; }
   .cooperation-overview__link span { color:#987545; font-size:17px; transition:transform .25s ease; }
   .cooperation-overview__link:hover span { transform:translate(2px,2px); }
   .cooperation-overview__link:focus-visible { outline:2px solid #987545; outline-offset:4px; }
@@ -3637,7 +3705,7 @@
   @media(max-width:980px) { .cooperation-overview { grid-template-columns:repeat(2,minmax(0,1fr)); } }
   @media(max-width:820px) { .training-next-steps { grid-template-columns:1fr; } .cooperation-overview { grid-template-columns:1fr; } .cooperation-start ol { grid-template-columns:1fr; text-align:left; } .dealer-note { align-items:flex-start; flex-direction:column; gap:12px; padding:18px; } }
   @media(max-width:820px) { .training-details { grid-column:auto; width:100%; } .direction-detail summary { min-height:50px; padding:13px 14px; text-align:left; } .direction-detail__body { padding:0 14px 14px; } }
-  @media(prefers-reduced-motion:reduce) { .training-note--partner a,.direction-detail summary::after,.cooperation-overview__link span,.cooperation-overview__card { transition:none; } .cooperation-overview__card:hover { transform:none; } .direction-detail[open] > .direction-detail__body { animation:none; } }
+  @media(prefers-reduced-motion:reduce) { .training-note--partner a,.direction-detail summary::after,.cooperation-quick summary::after,.training-offer__details summary::after,.cooperation-overview__link span,.cooperation-overview__card,.cooperation-overview__request { transition:none; } .cooperation-overview__card:hover,.cooperation-overview__request:hover { transform:none; } .direction-detail[open] > .direction-detail__body,.cooperation-quick[open] > div,.training-offer__details[open] > div { animation:none; } }
   .training-section { max-width:none !important; width:100%; padding:clamp(56px,8vw,100px) clamp(20px,5vw,60px) !important; background:#f4f1eb; }
   .training-card { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr); gap:clamp(28px,6vw,80px); align-items:center; width:min(1200px,100%); margin:0 auto; padding:clamp(26px,5vw,64px); background:#26392f; color:#fffefa; box-shadow:0 18px 44px rgba(31,43,35,.12); }
   .training-copy .section-label { color:#d3b783; }
@@ -3657,6 +3725,14 @@
   .training-price span { color:#d3b783; font-size:.72em; }
   .training-offer .btn-primary { min-height:48px; justify-content:center; width:100%; background:#fffefa; color:#26392f; }
   .training-offer .btn-primary:hover { background:#e9dfcd; }
+  .training-offer__details { width:100%; border-top:1px solid rgba(255,255,255,.22); }
+  .training-offer__details summary { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:44px; color:#fffefa; font-size:12px; font-weight:600; line-height:1.45; cursor:pointer; list-style:none; }
+  .training-offer__details summary::-webkit-details-marker { display:none; }
+  .training-offer__details summary::after { content:"+"; color:#d3b783; font-size:20px; font-weight:400; transition:transform .22s ease; }
+  .training-offer__details[open] summary::after { transform:rotate(45deg); }
+  .training-offer__details summary:focus-visible { outline:2px solid #d3b783; outline-offset:2px; }
+  .training-offer__details > div { display:grid; gap:8px; padding:0 0 12px; animation:direction-detail-reveal .28s cubic-bezier(.2,.7,.2,1) both; }
+  .training-offer__details p { color:#e0e6e0; font-size:12px; line-height:1.6; }
   .training-offer > p { margin:0; color:#deded6; font-size:11px; line-height:1.6; }
   @media(max-width:820px) {
     .training-card { grid-template-columns:1fr; gap:26px; padding:28px 22px; text-align:center; }
@@ -3848,6 +3924,15 @@
   .training-chat-dialog__consent a { color:var(--btn-bg); text-underline-offset:3px; }
   .training-chat-dialog__form > .btn-primary { width:100%; min-height:50px; justify-content:center; border:0; border-radius:10px; cursor:pointer; }
   .training-chat-dialog__hint,.training-chat-dialog__status { margin:0; color:var(--text-secondary); font-size:12px; line-height:1.5; }
+  .chat-handoff-toast { position:fixed; z-index:1000000; left:max(20px,env(safe-area-inset-left)); bottom:calc(20px + env(safe-area-inset-bottom)); display:grid; grid-template-columns:minmax(0,1fr) auto 32px; align-items:center; gap:14px; box-sizing:border-box; width:min(520px,calc(100vw - 40px)); padding:16px 14px 16px 18px; border:1px solid rgba(181,138,69,.48); border-radius:14px; background:#fffefa; color:var(--text-primary); box-shadow:0 14px 42px rgba(22,34,27,.22); }
+  .chat-handoff-toast[hidden] { display:none; }
+  .chat-handoff-toast__copy strong { display:block; margin-bottom:4px; color:var(--heading-color); font-size:14px; }
+  .chat-handoff-toast__copy p { margin:0; color:var(--text-secondary); font-size:12px; line-height:1.5; }
+  .chat-handoff-toast__recopy,.chat-handoff-toast__close { min-height:40px; border:1px solid var(--border); border-radius:22px; background:#f6f3ed; color:var(--text-primary); font:inherit; font-size:12px; cursor:pointer; }
+  .chat-handoff-toast__recopy { padding:8px 13px; white-space:nowrap; }
+  .chat-handoff-toast__recopy:hover { border-color:var(--accent); background:#efe9dc; }
+  .chat-handoff-toast__close { display:grid; width:32px; min-height:32px; place-items:center; padding:0; font-size:20px; }
+  .chat-handoff-toast button:focus-visible { outline:3px solid rgba(181,138,69,.45); outline-offset:2px; }
   .training-chat-dialog__close,
   .dealer-certificate-dialog__close { position:absolute; top:16px; right:16px; z-index:2; display:grid; width:40px; height:40px; place-items:center; border:1px solid var(--border); border-radius:50%; background:#fffefa; color:var(--text-primary); font-size:24px; line-height:1; cursor:pointer; }
 
@@ -3863,6 +3948,10 @@
   .dealer-certificate-dialog__actions a { background:var(--btn-bg); color:#fffefa; }
 
   @media(max-width:600px) {
+    .chat-handoff-toast { left:max(12px,env(safe-area-inset-left)); bottom:calc(88px + env(safe-area-inset-bottom)); grid-template-columns:minmax(0,1fr) 32px; gap:8px 10px; width:calc(100vw - 24px - env(safe-area-inset-left) - env(safe-area-inset-right)); padding:13px; border-radius:12px; }
+    .chat-handoff-toast__copy { grid-column:1; }
+    .chat-handoff-toast__close { grid-column:2; grid-row:1; }
+    .chat-handoff-toast__recopy { grid-column:1 / -1; width:100%; }
     .training-program { margin-top:20px; }
     .training-program li { grid-template-columns:58px minmax(0,1fr); gap:8px 12px; padding:15px 0; }
     .training-program li > b { grid-column:2; justify-self:start; margin-top:2px; text-align:left; }

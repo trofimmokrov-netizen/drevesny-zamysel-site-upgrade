@@ -123,8 +123,8 @@ function flight(g,o){
       // Give the riser a small hidden overlap into the lower tread along the
       // walking direction as well. Vertical overlap alone left a coplanar seam
       // at the tread edge, which could read as a thin gap in the 3D preview.
-      var riserDepth=board+riserOverlap,riserX=x-o.dx*(o.depth/2-board/2)-o.dx*riserOverlap/2,riserZ=z-o.dz*(o.depth/2-board/2)-o.dz*riserOverlap/2;
-      addBox(g,alongX?riserDepth:o.width,riserHeight,alongX?o.width:riserDepth,riserX,riserY,riserZ,riserMats[o.risers]);
+      var riserDepth=board+riserOverlap,riserWidth=o.width+.006,riserX=x-o.dx*(o.depth/2-board/2)-o.dx*riserOverlap/2,riserZ=z-o.dz*(o.depth/2-board/2)-o.dz*riserOverlap/2;
+      addBox(g,alongX?riserDepth:riserWidth,riserHeight,alongX?riserWidth:riserDepth,riserX,riserY,riserZ,riserMats[o.risers]);
     }
   }
   if(o.shoes!=="none"){
