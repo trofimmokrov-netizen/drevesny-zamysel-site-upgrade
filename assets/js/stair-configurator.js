@@ -3,11 +3,11 @@
 var canvas=document.getElementById("stairCanvas"),wrap=document.getElementById("canvasWrap"),errorBox=document.getElementById("canvasError");
 if(!window.THREE){errorBox.hidden=false;return;}
 var footprintPlanShape=document.getElementById("footprintPlanShape");
-var THREE=window.THREE,scene=new THREE.Scene();var width=document.getElementById("width"),height=document.getElementById("height"),depth=document.getElementById("depth"),steps=document.getElementById("steps"),shape=document.getElementById("shape"),frame=document.getElementById("frame"),wood=document.getElementById("wood"),risers=document.getElementById("risers"),shoes=document.getElementById("shoes"),underSpace=document.getElementById("underSpace"),railing=document.getElementById("railing"),railingSide=document.getElementById("railingSide"),handrail=document.getElementById("handrail"),balusterStyle=document.getElementById("balusterStyle"),lighting=document.getElementById("lighting"),lightingMode=document.getElementById("lightingMode"),nightView=document.getElementById("nightView"),widthValue=document.getElementById("widthValue"),heightValue=document.getElementById("heightValue"),depthValue=document.getElementById("depthValue"),stepsValue=document.getElementById("stepsValue"),riseReadout=document.getElementById("riseReadout"),stepsReadout=document.getElementById("stepsReadout"),widthReadout=document.getElementById("widthReadout"),modelDimensions=document.getElementById("modelDimensions"),summaryText=document.getElementById("summaryText"),comfortNote=document.getElementById("comfortNote"),footprintDimensions=document.getElementById("footprintDimensions"),projectedArea=document.getElementById("projectedArea"),landingDimensions=document.getElementById("landingDimensions");scene.background=new THREE.Color(0xf1eee8);scene.fog=new THREE.Fog(0xf1eee8,13,28);
+var THREE=window.THREE,scene=new THREE.Scene();var width=document.getElementById("width"),height=document.getElementById("height"),depth=document.getElementById("depth"),steps=document.getElementById("steps"),shape=document.getElementById("shape"),frame=document.getElementById("frame"),wood=document.getElementById("wood"),risers=document.getElementById("risers"),shoes=document.getElementById("shoes"),underSpace=document.getElementById("underSpace"),railing=document.getElementById("railing"),railingSide=document.getElementById("railingSide"),handrail=document.getElementById("handrail"),balusterStyle=document.getElementById("balusterStyle"),lighting=document.getElementById("lighting"),lightingMode=document.getElementById("lightingMode"),nightView=document.getElementById("nightView"),widthValue=document.getElementById("widthValue"),heightValue=document.getElementById("heightValue"),depthValue=document.getElementById("depthValue"),stepsValue=document.getElementById("stepsValue"),riseReadout=document.getElementById("riseReadout"),stepsReadout=document.getElementById("stepsReadout"),widthReadout=document.getElementById("widthReadout"),modelDimensions=document.getElementById("modelDimensions"),summaryText=document.getElementById("summaryText"),comfortNote=document.getElementById("comfortNote"),footprintDimensions=document.getElementById("footprintDimensions"),projectedArea=document.getElementById("projectedArea"),landingDimensions=document.getElementById("landingDimensions"),underSpaceMetric=document.getElementById("underSpaceMetric"),underSpaceDimensions=document.getElementById("underSpaceDimensions");scene.background=new THREE.Color(0xf1eee8);scene.fog=new THREE.Fog(0xf1eee8,13,28);
 var camera=new THREE.PerspectiveCamera(37,1,.05,100),renderer;
-try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:false,preserveDrawingBuffer:true});}catch(e){errorBox.hidden=false;return;}
 var compactScreen=window.matchMedia("(max-width: 720px)").matches,deviceMemory=Number(navigator.deviceMemory)||0,cores=Number(navigator.hardwareConcurrency)||0,lowPowerDevice=(deviceMemory>0&&deviceMemory<=4)||(cores>0&&cores<=4),pixelRatioLimit=compactScreen?(lowPowerDevice?1.15:1.4):(lowPowerDevice?1.4:1.75);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,pixelRatioLimit));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:!lowPowerDevice,alpha:false,preserveDrawingBuffer:true});}catch(e){errorBox.hidden=false;return;}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,pixelRatioLimit));renderer.shadowMap.enabled=!lowPowerDevice;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
 var ambient=new THREE.HemisphereLight(0xfaf7ef,0x786d5d,1.35);scene.add(ambient);
 var key=new THREE.DirectionalLight(0xfff4df,2.2);key.position.set(-4,8,6);key.castShadow=true;key.shadow.mapSize.set(compactScreen?512:1024,compactScreen?512:1024);key.shadow.camera.left=-8;key.shadow.camera.right=8;key.shadow.camera.top=8;key.shadow.camera.bottom=-8;key.shadow.bias=-.0004;scene.add(key);
 var fill=new THREE.DirectionalLight(0xffffff,.75);fill.position.set(4,4,-5);scene.add(fill);
@@ -15,7 +15,7 @@ var ground=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardM
 var grid=new THREE.GridHelper(20,40,0xc9c1b4,0xded9cf);grid.position.y=.002;grid.material.transparent=true;grid.material.opacity=.48;scene.add(grid);
 var woods={oak:{name:"дуб",base:"#a87943",grain:"#684827"},ash:{name:"ясень",base:"#c39a69",grain:"#80603d"},larch:{name:"лиственница",base:"#ae7950",grain:"#714729"},walnut:{name:"американский орех",base:"#704b3c",grain:"#3d2c27"}},woodMats={};
 Object.keys(woods).forEach(function(k){var s=woods[k],c=document.createElement("canvas");c.width=512;c.height=256;var x=c.getContext("2d");x.fillStyle=s.base;x.fillRect(0,0,c.width,c.height);if(k==="walnut"){var grad=x.createLinearGradient(0,0,0,256);grad.addColorStop(0,"#81583f");grad.addColorStop(.25,"#674431");grad.addColorStop(.52,"#8a6045");grad.addColorStop(.78,"#5b3b2e");grad.addColorStop(1,"#79533c");x.fillStyle=grad;x.fillRect(0,0,512,256);for(var band=0;band<70;band++){var a=(band*83)%512,phase=(band*29)%256;x.beginPath();x.moveTo(a,0);x.bezierCurveTo(a+18*Math.sin(phase),70,a-14*Math.cos(phase),180,a+8*Math.sin(phase+1),256);x.strokeStyle=band%5===0?"#36251f":(band%2?"#bb8b61":"#4a3026");x.globalAlpha=band%5===0?.25:.12;x.lineWidth=band%5===0?2.4:1.1;x.stroke();}[[112,86],[368,186]].forEach(function(knot){x.save();x.translate(knot[0],knot[1]);x.scale(1,.45);for(var ring=0;ring<5;ring++){x.beginPath();x.ellipse(0,0,4+ring*3,3+ring*2,.12,0,Math.PI*2);x.strokeStyle=ring%2?"#bd906a":"#40291f";x.globalAlpha=.22;x.lineWidth=1;x.stroke();}x.restore();});}else{for(var i=0;i<48;i++){var a=(i*37)%512,b=((i%5)-2)*4;x.beginPath();x.moveTo(a,0);x.bezierCurveTo(a+b,72,a-b,178,a+b*.4,256);x.strokeStyle=s.grain;x.globalAlpha=.08+(i%4)*.025;x.lineWidth=i%7===0?2:1;x.stroke();}}x.globalAlpha=1;var t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=THREE.RepeatWrapping;t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.2,1);woodMats[k]=new THREE.MeshStandardMaterial({map:t,roughness:k==="walnut"?.57:.66});});
-var materialTexturePaths={oak:{src:"./assets/images/materials/oak.jpg",filter:"brightness(1.22) sepia(.12) saturate(1.05)"},ash:{src:"./assets/images/materials/yasen.jpg",filter:"brightness(1.02) saturate(.95)"},larch:{src:"./assets/images/materials/listvennitsa.jpg",filter:"brightness(.98) sepia(.08) saturate(1.1)"},walnut:{src:"./assets/images/materials/american-walnut.jpg",filter:"brightness(.72) contrast(1.08) saturate(1.08)"}};
+var materialTexturePaths={oak:{src:"./assets/images/materials/oak.jpg",filter:"brightness(1.22) sepia(.12) saturate(1.05)"},ash:{src:"./assets/images/materials/yasen.jpg",filter:"brightness(1.02) saturate(.95)"},larch:{src:"./assets/images/materials/listvennitsa.jpg",filter:"brightness(.98) sepia(.08) saturate(1.1)"},walnut:{src:"./assets/images/materials/american-walnut.jpg",filter:"brightness(.58) contrast(1.16) saturate(1.08)"}};
 var materialTextureState={};
 function loadMaterialTexture(k){
   if(!materialTexturePaths[k]||materialTextureState[k])return;
@@ -48,7 +48,10 @@ function addGlassPanel(g,o,side,startStep,stepCount){var fullRun=stepCount*o.dep
 function addClosedStringer(g,o,side){var profile=[],plateHeight=.14,plateThickness=.065,crossX=-o.dz,crossZ=o.dx,edge=side*(o.width*.5-.025);profile.push([0,(o.base+1)*o.rise-.028]);for(var i=0;i<o.count;i++){profile.push([(i+1)*o.depth,(o.base+i+1)*o.rise-.028]);if(i<o.count-1)profile.push([(i+1)*o.depth,(o.base+i+2)*o.rise-.028]);}var shape=new THREE.Shape();shape.moveTo(profile[0][0],profile[0][1]);for(var p=1;p<profile.length;p++)shape.lineTo(profile[p][0],profile[p][1]);for(var q=profile.length-1;q>=0;q--)shape.lineTo(profile[q][0],profile[q][1]-plateHeight);shape.closePath();var geometry=new THREE.ExtrudeGeometry(shape,{depth:plateThickness,bevelEnabled:false,steps:1});geometry.translate(0,0,-plateThickness/2);var plate=new THREE.Mesh(geometry,steel);plate.position.set(o.x+crossX*edge,0,o.z+crossZ*edge);plate.rotation.y=Math.atan2(-o.dz,o.dx);plate.castShadow=true;plate.receiveShadow=true;g.add(plate);}
 function addUnderStairStorage(g,o,mode){
   if(!mode||mode==="none")return;
-  var run=o.count*o.depth,topStart=Math.max(.035,o.base*o.rise+.035),topEnd=Math.max(.06,(o.base+o.count)*o.rise-.09),profile=[[0,0],[run,0],[run,topEnd],[0,topStart]],shape=new THREE.Shape();
+  // Keep the enclosure tucked just below the actual underside of the stair
+  // boards at both ends. The old start/end offsets left a visible triangular
+  // opening near the first tread and a larger gap below the last one.
+  var run=o.count*o.depth,underBoardClearance=.004,topStart=Math.max(.035,(o.base+1)*o.rise-.055-underBoardClearance),topEnd=Math.max(topStart+.04,(o.base+o.count)*o.rise-.055-underBoardClearance),profile=[[0,0],[run,0],[run,topEnd],[0,topStart]],shape=new THREE.Shape();
   shape.moveTo(profile[0][0],profile[0][1]);for(var p=1;p<profile.length;p++)shape.lineTo(profile[p][0],profile[p][1]);shape.closePath();
   var crossX=-o.dz,crossZ=o.dx,thickness=.024,mat=woodMats[o.wood];
   [-1,1].forEach(function(side){var geometry=new THREE.ExtrudeGeometry(shape,{depth:thickness,bevelEnabled:false,steps:1});geometry.translate(0,0,-thickness/2);var edge=side*(o.width/2-.035),panel=new THREE.Mesh(geometry,mat);panel.position.set(o.x+crossX*edge,0,o.z+crossZ*edge);panel.rotation.y=Math.atan2(-o.dz,o.dx);panel.castShadow=true;panel.receiveShadow=true;g.add(panel);});
@@ -76,7 +79,14 @@ function addUnderStairStorage(g,o,mode){
       for(var door=0;door<3;door++){
         var x0=cuts[door]+(door?gap/2:0),x1=cuts[door+1]-(door<2?gap/2:0);
         var y0=Math.max(.055,roofAt(x0)-gap),y1=Math.max(.055,roofAt(x1)-gap);
-        if(y1>.08)addFacade([[x0,.025],[x1,.025],[x1,y1],[x0,y0]]);
+        if(y1>.08){
+          addFacade([[x0,.025],[x1,.025],[x1,y1],[x0,y0]]);
+          var pullRun=x1-.045,pullY=(y0+y1)/2,pullCross=edge+faceOffset+side*.012;
+          addBeam(g,
+            {x:o.x+o.dx*pullRun+crossX*pullCross,y:pullY-.045,z:o.z+o.dz*pullRun+crossZ*pullCross},
+            {x:o.x+o.dx*pullRun+crossX*pullCross,y:pullY+.045,z:o.z+o.dz*pullRun+crossZ*pullCross},
+            .014,.014,steel);
+        }
       }
     }else{
       // Divide drawers into bays. The top drawer in each bay follows the stair
@@ -184,16 +194,94 @@ function render(){renderer.render(scene,camera);}function updateCamera(){var h=v
 function fitView(){if(!model)return;var bounds=new THREE.Box3().setFromObject(model);if(bounds.isEmpty())return;var sphere=bounds.getBoundingSphere(new THREE.Sphere()),tanY=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),aspect=Math.max(camera.aspect,.7),tanX=tanY*aspect,fit=sphere.radius/Math.sin(Math.atan(Math.min(tanX,tanY)));view.target.copy(sphere.center);view.fitDistance=Math.max(4.2,fit*(camera.aspect<.85?1.38:1.2));view.distance=Math.max(3.2,Math.min(22,view.fitDistance*view.zoom));updateCamera();}
 function updateSummary(){var w=+width.value,h=+height.value,d=+depth.value,n=+steps.value,r=Math.round(h/n),names={straight:"Прямая лестница",l:"Г-образная лестница",u:"П-образная лестница"},frames={"open-double":"открытый каркас · два боковых косоура",mono:"открытый каркас · центральный косоур",closed:"закрытый каркас"},riserNames={none:"без подступенников",white:"белые подступенники",gray:"серые подступенники",stone:"светлый камень",marble:"белый мрамор"},shoeNames={none:"без боковой обшивки",left:"боковая обшивка слева при подъёме",right:"боковая обшивка справа при подъёме",both:"боковая обшивка с двух сторон"};widthValue.textContent=w+" мм";heightValue.textContent=h+" мм";depthValue.textContent=d+" мм";stepsValue.textContent=n;riseReadout.textContent=r+" мм";stepsReadout.textContent=n;widthReadout.textContent=w+" мм";modelDimensions.textContent=w+" × "+h+" мм";summaryText.textContent=names[shape.value]+" · "+woods[wood.value].name+" · "+frames[frame.value]+" · "+riserNames[risers.value]+" · "+shoeNames[shoes.value]+" · "+({none:"без ограждения",glass:"стеклянное ограждение",balusters:"балясины"}[railing.value])+" · "+(lighting.checked?"подсветка · "+(lightingMode.value==="smart"?"умный режим":"стандартный режим")+(nightView.checked?" · ночной вид":""):"без подсветки");comfortNote.textContent=r>220?"Подъём получается высоким. Проверьте число ступеней и высоту с инженером мастерской.":r<150?"Подъём получается низким. Проверьте удобство шага и проём с инженером мастерской.":d<250?"Глубина проступи небольшая. Итоговую эргономику проверит инженер на замере.":"Предварительная визуализация помогает сравнить варианты и не заменяет инженерный проект и замер.";}
 var updateSummaryBase=updateSummary;
-function updateSpaceReadouts(){var w=+width.value/1000,d=+depth.value/1000,n=+steps.value,first=Math.ceil(n/2),last=n-first,gap=.18,run=n*d,spanX=run,spanZ=w,area=run*w,landingX=0,landingZ=0;if(shape.value==="l"){spanX=first*d+w/2;spanZ=last*d+w;landingX=w;landingZ=w;area=run*w+w*w*.5;}else if(shape.value==="u"){spanX=first*d+w/2;spanZ=2*w+gap;landingX=w;landingZ=2*w+gap;area=run*w+w*(w+gap);}footprintDimensions.textContent=Math.round(spanX*1000)+" × "+Math.round(spanZ*1000)+" мм";projectedArea.textContent=area.toLocaleString("ru-RU",{minimumFractionDigits:2,maximumFractionDigits:2})+" м²";landingDimensions.textContent=landingX?Math.round(landingX*1000)+" × "+Math.round(landingZ*1000)+" мм":"Без площадки";drawFootprintPlan(w,d,n,first,last,gap);}
-function drawFootprintPlan(w,d,n,first,last,gap){if(!footprintPlanShape)return;var parts=[],tx=first*d,side=(w+gap)/2;function add(x,z,sx,sz,cls){parts.push({x:x,z:z,sx:sx,sz:sz,cls:cls||"footprint-plan__tread"});}if(shape.value==="straight"){for(var i=0;i<n;i++)add(i*d,-w/2,d,w);}else if(shape.value==="l"){for(var a=0;a<first;a++)add(a*d,-w/2,d,w);add(tx-w/2,-w/2,w,w,"footprint-plan__landing");for(var b=0;b<last;b++)add(tx-w/2,w/2+b*d,w,d);}else{for(var c=0;c<first;c++)add(c*d,-side-w/2,d,w);add(tx-w/2,-(w+gap/2),w,2*w+gap,"footprint-plan__landing");for(var e=0;e<last;e++)add(tx-(e+1)*d,side-w/2,d,w);}var minX=Infinity,minZ=Infinity,maxX=-Infinity,maxZ=-Infinity;parts.forEach(function(p){minX=Math.min(minX,p.x);minZ=Math.min(minZ,p.z);maxX=Math.max(maxX,p.x+p.sx);maxZ=Math.max(maxZ,p.z+p.sz);});var worldW=Math.max(maxX-minX,.01),worldZ=Math.max(maxZ-minZ,.01),scale=Math.min(208/worldW,108/worldZ),offsetX=(240-worldW*scale)/2,offsetY=(140-worldZ*scale)/2;footprintPlanShape.replaceChildren();parts.forEach(function(p){var rect=document.createElementNS("http://www.w3.org/2000/svg","rect");rect.setAttribute("class",p.cls);rect.setAttribute("x",(offsetX+(p.x-minX)*scale).toFixed(2));rect.setAttribute("y",(offsetY+(p.z-minZ)*scale).toFixed(2));rect.setAttribute("width",Math.max(1,p.sx*scale).toFixed(2));rect.setAttribute("height",Math.max(1,p.sz*scale).toFixed(2));rect.setAttribute("rx","1.2");footprintPlanShape.appendChild(rect);});}
-function updateLightingPreview(){document.querySelectorAll(".lighting-option").forEach(function(el){el.classList.toggle("is-visible",lighting.checked);});var dark=lighting.checked&&nightView.checked;scene.background.set(dark?0x111712:0xf1eee8);scene.fog.color.set(dark?0x111712:0xf1eee8);ambient.intensity=dark?.24:1.35;key.intensity=dark?.42:2.2;fill.intensity=dark?.12:.75;ground.material.color.set(dark?0x1b211c:0xece8df);grid.material.opacity=dark?.18:.48;if(lightingTimer){clearInterval(lightingTimer);lightingTimer=null;}lightingStrips.forEach(function(strip){strip.material.emissiveIntensity=lighting.checked?1.7:0;});if(lighting.checked&&lightingMode.value==="smart"&&lightingStrips.length){var active=-1;lightingTimer=setInterval(function(){active=(active+1)%lightingStrips.length;lightingStrips.forEach(function(strip,i){strip.material.emissiveIntensity=i===active?5.2:.08;});render();},145);}render();}
-updateSummary=function(){var hasRailing=railing.value!=="none";railingSide.closest(".field").style.display=hasRailing?"":"none";handrail.closest(".field").style.display=hasRailing?"":"none";balusterStyle.closest(".field").style.display=railing.value==="balusters"?"":"none";updateSummaryBase();updateSpaceReadouts();var storageNames={none:"пространство под лестницей открыто",closed:"закрытая обшивка под первым маршем",doors:"шкаф с фасадами под первым маршем",drawers:"выдвижные ящики под первым маршем"};summaryText.textContent+=" · "+storageNames[underSpace.value];if(hasRailing){var handrailNames={wood:"деревянный поручень",metal:"металлический поручень",none:"без поручня"};summaryText.textContent+=" · "+({left:"слева при подъёме",right:"справа при подъёме",both:"с обеих сторон"}[railingSide.value]||"")+" · "+handrailNames[handrail.value];if(railing.value==="balusters"){var balusterNames={square:"квадратные стойки",round:"круглые металлические",classic:"классические деревянные балясины"};summaryText.textContent+=" · "+balusterNames[balusterStyle.value];}}};
+function updateSpaceReadouts(){
+  var w=+width.value/1000,d=+depth.value/1000,n=+steps.value;
+  var first=Math.ceil(n/2),last=n-first,gap=.18,spanX=n*d,spanZ=w,landingX=0,landingZ=0;
+  if(shape.value==="l"){
+    spanX=first*d+w/2;
+    spanZ=last*d+w;
+    landingX=w;landingZ=w;
+  }else if(shape.value==="u"){
+    spanX=first*d+w/2;
+    spanZ=2*w+gap;
+    landingX=w;landingZ=2*w+gap;
+  }
+  var envelopeArea=spanX*spanZ;
+  footprintDimensions.textContent=Math.round(spanX*1000)+" × "+Math.round(spanZ*1000)+" мм";
+  projectedArea.textContent=envelopeArea.toLocaleString("ru-RU",{minimumFractionDigits:2,maximumFractionDigits:2})+" м²";
+  landingDimensions.textContent=landingX?Math.round(landingX*1000)+" × "+Math.round(landingZ*1000)+" мм":"Без площадки";
+  if(underSpaceMetric&&underSpaceDimensions){
+    var hasUnderSpace=underSpace&&underSpace.value!=="none";
+    underSpaceMetric.hidden=!hasUnderSpace;
+    if(hasUnderSpace){
+      var storageSteps=shape.value==="straight"?n:first;
+      var storageRun=storageSteps*d;
+      var firstRise=(+height.value/1000)/n;
+      var maxStorageHeight=Math.max(Math.max(.035,firstRise-.059)+.04,storageSteps*firstRise-.059);
+      underSpaceDimensions.textContent=Math.round(storageRun*1000)+" × "+Math.round(w*1000)+" мм · до "+Math.round(maxStorageHeight*1000)+" мм";
+    }
+  }
+  drawFootprintPlan(w,d,n,first,last,gap);
+}
+function drawFootprintPlan(w,d,n,first,last,gap){
+  if(!footprintPlanShape)return;
+  var parts=[],tx=first*d,side=(w+gap)/2;
+  function add(x,z,sx,sz,cls){parts.push({x:x,z:z,sx:sx,sz:sz,cls:cls||"footprint-plan__tread"});}
+  if(shape.value==="straight"){
+    for(var i=0;i<n;i++)add(i*d,-w/2,d,w);
+  }else if(shape.value==="l"){
+    for(var a=0;a<first;a++)add(a*d,-w/2,d,w);
+    add(tx-w/2,-w/2,w,w,"footprint-plan__landing");
+    for(var b=0;b<last;b++)add(tx-w/2,w/2+b*d,w,d);
+  }else{
+    for(var c=0;c<first;c++)add(c*d,-side-w/2,d,w);
+    add(tx-w/2,-(w+gap/2),w,2*w+gap,"footprint-plan__landing");
+    for(var e=0;e<last;e++)add(tx-(e+1)*d,side-w/2,d,w);
+  }
+  var minX=Infinity,minZ=Infinity,maxX=-Infinity,maxZ=-Infinity;
+  parts.forEach(function(p){minX=Math.min(minX,p.x);minZ=Math.min(minZ,p.z);maxX=Math.max(maxX,p.x+p.sx);maxZ=Math.max(maxZ,p.z+p.sz);});
+  var worldW=Math.max(maxX-minX,.01),worldZ=Math.max(maxZ-minZ,.01),scale=Math.min(208/worldW,108/worldZ),offsetX=(240-worldW*scale)/2,offsetY=(140-worldZ*scale)/2;
+  footprintPlanShape.replaceChildren();
+  parts.forEach(function(p){
+    var rect=document.createElementNS("http://www.w3.org/2000/svg","rect");
+    rect.setAttribute("class",p.cls);
+    rect.setAttribute("x",(offsetX+(p.x-minX)*scale).toFixed(2));
+    rect.setAttribute("y",(offsetY+(p.z-minZ)*scale).toFixed(2));
+    rect.setAttribute("width",Math.max(1,p.sx*scale).toFixed(2));
+    rect.setAttribute("height",Math.max(1,p.sz*scale).toFixed(2));
+    rect.setAttribute("rx","1.2");
+    footprintPlanShape.appendChild(rect);
+  });
+  var dimensionGroup=document.getElementById("footprintPlanDimensions");
+  if(!dimensionGroup)return;
+  dimensionGroup.replaceChildren();
+  var NS="http://www.w3.org/2000/svg";
+  function addDimension(x1,y1,x2,y2,label,tx,ty,rotation){
+    var line=document.createElementNS(NS,"line");
+    line.setAttribute("class","footprint-plan__dimension");
+    line.setAttribute("x1",x1);line.setAttribute("y1",y1);line.setAttribute("x2",x2);line.setAttribute("y2",y2);
+    dimensionGroup.appendChild(line);
+    var text=document.createElementNS(NS,"text");
+    text.setAttribute("class","footprint-plan__dimension-label");
+    text.setAttribute("text-anchor","middle");text.setAttribute("x",tx);text.setAttribute("y",ty);
+    if(rotation)text.setAttribute("transform","rotate("+rotation+" "+tx+" "+ty+")");
+    text.textContent=label;dimensionGroup.appendChild(text);
+  }
+  var planRight=offsetX+worldW*scale,planBottom=offsetY+worldZ*scale;
+  var widthLabel=Math.round(worldW*1000).toLocaleString("ru-RU").replace(/\u00a0/g," ")+" мм";
+  var depthLabel=Math.round(worldZ*1000).toLocaleString("ru-RU").replace(/\u00a0/g," ")+" мм";
+  addDimension(offsetX,130,planRight,130,widthLabel,(offsetX+planRight)/2,127,0);
+  addDimension(230,offsetY,230,planBottom,depthLabel,235,(offsetY+planBottom)/2,90);
+}
+function updateLightingPreview(){document.querySelectorAll(".lighting-option").forEach(function(el){el.classList.toggle("is-visible",lighting.checked);});var dark=lighting.checked&&nightView.checked;scene.background.set(dark?0x111712:0xf1eee8);scene.fog.color.set(dark?0x111712:0xf1eee8);ambient.intensity=dark?.24:1.35;key.intensity=dark?.42:2.2;fill.intensity=dark?.12:.75;ground.material.color.set(dark?0x1b211c:0xece8df);grid.material.opacity=dark?.18:.48;if(lightingTimer){clearInterval(lightingTimer);lightingTimer=null;}lightingStrips.forEach(function(strip){strip.material.emissiveIntensity=lighting.checked?1.7:0;});if(lighting.checked&&lightingMode.value==="smart"&&lightingStrips.length&&!document.hidden){var active=-1;lightingTimer=setInterval(function(){active=(active+1)%lightingStrips.length;lightingStrips.forEach(function(strip,i){strip.material.emissiveIntensity=i===active?5.2:.08;});render();},145);}render();}
+document.addEventListener("visibilitychange",function(){if(lighting.checked&&lightingMode.value==="smart")updateLightingPreview();});
+updateSummary=function(){var hasRailing=railing.value!=="none";railingSide.closest(".field").style.display=hasRailing?"":"none";handrail.closest(".field").style.display=hasRailing?"":"none";balusterStyle.closest(".field").style.display=railing.value==="balusters"?"":"none";updateSummaryBase();updateSpaceReadouts();var storageNames={none:"пространство под лестницей открыто",closed:"закрытая обшивка под первым маршем",doors:"шкаф с фасадами под первым маршем",drawers:"выдвижные ящики под первым маршем"};summaryText.textContent+=" · "+storageNames[underSpace.value];if(underSpace.value!=="none"&&underSpaceDimensions){summaryText.textContent+=" · ориентировочный габарит эскиза под маршем "+underSpaceDimensions.textContent;}if(hasRailing){var handrailNames={wood:"деревянный поручень",metal:"металлический поручень",none:"без поручня"};summaryText.textContent+=" · "+({left:"слева при подъёме",right:"справа при подъёме",both:"с обеих сторон"}[railingSide.value]||"")+" · "+handrailNames[handrail.value];if(railing.value==="balusters"){var balusterNames={square:"квадратные стойки",round:"круглые металлические",classic:"классические деревянные балясины"};summaryText.textContent+=" · "+balusterNames[balusterStyle.value];}}};
 function rebuild(){var w=+width.value/1000,h=+height.value/1000,d=+depth.value/1000,n=+steps.value,r=h/n,s=shape.value,f=frame.value,woodKey=wood.value,riserKey=risers.value,shoeKey=shoes.value;if(lightingTimer){clearInterval(lightingTimer);lightingTimer=null;}lightingStrips=[];clearModel();model=new THREE.Group();scene.add(model);var first=Math.ceil(n/2),last=n-first,gap=.18;
 if(s==="straight")flight(model,{x:0,z:0,dx:1,dz:0,base:0,count:n,width:w,depth:d,rise:r,frame:f,wood:woodKey,risers:riserKey,shoes:shoeKey,railing:railing.value,railingSide:railingSide.value,handrail:handrail.value,balusterStyle:balusterStyle.value,lighting:lighting.checked});
 else if(s==="l"){flight(model,{x:0,z:0,dx:1,dz:0,base:0,count:first,width:w,depth:d,rise:r,frame:f,wood:woodKey,risers:riserKey,shoes:shoeKey,railing:railing.value,railingSide:railingSide.value,handrail:handrail.value,balusterStyle:balusterStyle.value,lighting:lighting.checked});var cx=first*d;landing(model,cx,0,first*r,w,w,woodKey);flight(model,{x:cx,z:w/2,dx:0,dz:1,base:first,count:last,width:w,depth:d,rise:r,frame:f,wood:woodKey,risers:riserKey,shoes:shoeKey,railing:railing.value,railingSide:railingSide.value,handrail:handrail.value,balusterStyle:balusterStyle.value,lighting:lighting.checked});}
 else{var side=(w+gap)/2;flight(model,{x:0,z:-side,dx:1,dz:0,base:0,count:first,width:w,depth:d,rise:r,frame:f,wood:woodKey,risers:riserKey,shoes:shoeKey,railing:railing.value,railingSide:railingSide.value,handrail:handrail.value,balusterStyle:balusterStyle.value,lighting:lighting.checked});var tx=first*d;landing(model,tx,0,first*r,w,2*w+gap,woodKey);flight(model,{x:tx,z:side,dx:-1,dz:0,base:first,count:last,width:w,depth:d,rise:r,frame:f,wood:woodKey,risers:riserKey,shoes:shoeKey,railing:railing.value,railingSide:railingSide.value,handrail:handrail.value,balusterStyle:balusterStyle.value,lighting:lighting.checked});}
 if(underSpace.value!=="none"){var storageCount=s==="straight"?n:first,storageZ=s==="u"?-(w+gap)/2:0;addUnderStairStorage(model,{x:0,z:storageZ,dx:1,dz:0,base:0,count:storageCount,width:w,depth:d,rise:r,wood:woodKey},underSpace.value);}
-var bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;fitView();updateCamera();updateSummary();updateLightingPreview();var detailedConfig=summaryText.textContent+" · ширина марша "+Math.round(w*1000)+" мм · высота этажа "+Math.round(h*1000)+" мм · глубина ступени "+Math.round(d*1000)+" мм · "+n+" подъёмов · подъём "+Math.round(r*1000)+" мм · габарит в плане "+footprintDimensions.textContent+" · площадь проекции "+projectedArea.textContent+(landingDimensions.textContent!=="Без площадки"?" · площадка "+landingDimensions.textContent:"");var discussUrl=new URL("./index.html",window.location.href);discussUrl.searchParams.set("stair_config",detailedConfig.slice(0,500));discussUrl.hash="contact";document.querySelector(".submit-link").href=discussUrl.href;}
+var bounds=new THREE.Box3().setFromObject(model),center=bounds.getCenter(new THREE.Vector3());model.position.x-=center.x;model.position.z-=center.z;fitView();updateCamera();updateSummary();updateLightingPreview();var detailedConfig=summaryText.textContent+" · ширина марша "+Math.round(w*1000)+" мм · высота этажа "+Math.round(h*1000)+" мм · глубина ступени "+Math.round(d*1000)+" мм · "+n+" подъёмов · подъём "+Math.round(r*1000)+" мм · габарит в плане "+footprintDimensions.textContent+" · площадь по внешним габаритам "+projectedArea.textContent+(landingDimensions.textContent!=="Без площадки"?" · площадка "+landingDimensions.textContent:"");var discussUrl=new URL("./index.html",window.location.href);discussUrl.searchParams.set("stair_config",detailedConfig.slice(0,500));discussUrl.hash="contact";document.querySelector(".submit-link").href=discussUrl.href;}
 function resize(){var rect=wrap.getBoundingClientRect();if(rect.width<1||rect.height<1)return;renderer.setSize(rect.width,rect.height,false);camera.aspect=rect.width/rect.height;camera.updateProjectionMatrix();render();}
 var rangeRebuildTimer=0;
 function scheduleRangeRebuild(){updateSummary();if(rangeRebuildTimer)return;rangeRebuildTimer=window.setTimeout(function(){rangeRebuildTimer=0;rebuild();},90);}

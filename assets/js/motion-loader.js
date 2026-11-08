@@ -5,16 +5,22 @@
   if (!loaderScript || !loaderScript.src) return;
 
   var assetRoot = new URL("../", loaderScript.src);
-  var animationUrl = new URL("js/site-animations.js?v=20261105-motion-v8", assetRoot);
+  var animationUrl = new URL("js/site-animations.js?v=20261108-motion-v10", assetRoot);
   var gsapUrl = new URL("vendor/gsap.min.js", assetRoot);
   var matchesMedia = function (query) {
     return typeof window.matchMedia === "function" && window.matchMedia(query).matches;
   };
   var mobile = matchesMedia("(max-width: 720px), (pointer: coarse)")
     || (typeof window.matchMedia !== "function" && window.innerWidth <= 720);
+  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var constrainedConnection = !!connection && (
+    connection.saveData === true
+    || /^(slow-2g|2g|3g)$/.test(connection.effectiveType || "")
+  );
   var lowPowerPhone = mobile && (
     (typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4)
     || (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4)
+    || constrainedConnection
   );
   var reducedMotion = matchesMedia("(prefers-reduced-motion: reduce)");
 

@@ -1,6 +1,7 @@
 {
   "name": "Древесный Замысел",
   "short_name": "Древесный Замысел",
+  "lang": "ru-RU",
   "description": "Лестницы и изделия из дерева на заказ",
   "id": "../index.html",
   "start_url": "../index.html",

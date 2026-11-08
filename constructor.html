@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="./assets/css/stair-configurator.css?v=20261105-risers-v1">
 <link rel="stylesheet" href="./assets/css/constructor-mobile.css?v=20261105-mobile-v2">
 <script defer src="./assets/vendor/three-0.159.0.min.js"></script>
-<script defer src="./assets/js/stair-configurator.js?v=20261107-sealed-risers-v1"></script>
+<script defer src="./assets/js/stair-configurator.js?v=20261108-walnut-tone-v1"></script>
 <script src="assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
     <link rel="stylesheet" href="assets/css/cookie-consent.css?v=20261106-ui1">
 </head><body>
@@ -52,7 +52,7 @@
 <div class="canvas-wrap" id="canvasWrap"><canvas id="stairCanvas" aria-label="Интерактивная трёхмерная модель лестницы"></canvas><div class="canvas-help">Мышь: перетаскивание и колесо · Телефон: горизонтальный жест вращает модель, кнопки + / − меняют масштаб</div><div class="canvas-error" id="canvasError" hidden>Не удалось запустить 3D-просмотр. Попробуйте открыть страницу в актуальной версии Chrome, Edge или Safari.</div></div>
 <div class="viewer-caption"><span>Предварительная визуализация</span><span id="modelDimensions">900 × 2800 мм</span></div></div>
 <div class="spec-strip" aria-live="polite"><div><span>Высота подъёма</span><strong id="riseReadout">200 мм</strong></div><div><span>Количество ступеней</span><strong id="stepsReadout">14</strong></div><div><span>Ширина марша</span><strong id="widthReadout">900 мм</strong></div></div>
-<section class="space-estimate" id="spaceEstimate" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics" aria-live="polite" aria-atomic="true"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь проекции</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div></div><figure class="footprint-plan"><figcaption>Схема сверху · приблизительное место на полу</figcaption><svg id="footprintPlan" viewBox="0 0 240 140" role="img" aria-label="Схема занимаемого лестницей места сверху"><rect class="footprint-plan__floor" x="0" y="0" width="240" height="140" rx="2"></rect><g id="footprintPlanShape"></g><g id="footprintPlanDimensions" aria-hidden="true"></g></svg></figure><p>Ориентировочный расчёт по заданным размерам. Фактический проём и монтажные зазоры проверит инженер.</p></section>
+<section class="space-estimate" id="spaceEstimate" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics" aria-live="polite" aria-atomic="true"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь по внешним габаритам</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div><div id="underSpaceMetric" hidden><span>Эскиз под первым маршем · длина × ширина, высота до</span><strong id="underSpaceDimensions">—</strong></div></div><figure class="footprint-plan"><figcaption>Схема сверху · приблизительное место на полу</figcaption><svg id="footprintPlan" viewBox="0 0 240 140" role="img" aria-label="Схема занимаемого лестницей места сверху"><rect class="footprint-plan__floor" x="0" y="0" width="240" height="140" rx="2"></rect><g id="footprintPlanShape"></g><g id="footprintPlanDimensions" aria-hidden="true"></g></svg></figure><p>Площадь и эскиз под маршем — предварительные оценки без учёта проёма, стен и монтажных зазоров. Точные размеры мебели и возможность установки проверит инженер на объекте.</p></section>
 <p class="comfort-note" id="comfortNote">Визуализация помогает сравнить варианты и не заменяет инженерный проект и замер.</p>
 </div>
 <aside class="controls" id="stairSettings"><div class="controls-head"><div><p class="eyebrow">Настройки</p><h2>Ваша лестница</h2></div></div>
@@ -114,5 +114,5 @@
     targets.forEach((target) => observer.observe(target));
   })();
 </script>
-<script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/motion-loader.js?v=20261106-loader-v8"></script><script src="assets/js/cookie-consent-ui.js?v=20261106-ui1" defer></script>
+<script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/motion-loader.js?v=20261108-loader-v10"></script><script src="assets/js/cookie-consent-ui.js?v=20261108-ui2" defer></script>
 </body></html>

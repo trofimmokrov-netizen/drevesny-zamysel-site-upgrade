@@ -3,6 +3,10 @@
   const currentScript = document.currentScript;
   const siteRoot = currentScript ? new URL('../..', currentScript.src) : new URL('./', location.href);
   const policyUrl = new URL('privacy.html', siteRoot).href;
+  const analyticsOnly = currentScript?.dataset.services === 'analytics';
+  const serviceCopy = analyticsOnly
+    ? 'Яндекс Метрика и Вебвизор включаются только после вашего разрешения. Если отклонить, статистика останется выключенной. Выбор можно изменить в настройках ниже.'
+    : 'Яндекс Метрика (статистика и Вебвизор), чат и карта загружаются после разрешения. Выбор можно изменить в настройках внизу страницы. Форма заявки остаётся доступна; её согласие оформляется отдельно.';
   let choice = '';
 
   try { choice = localStorage.getItem(consentKey) || ''; } catch (_) { /* Keep consent controls usable if storage is blocked. */ }
@@ -15,7 +19,7 @@
     banner.setAttribute('role', 'region');
     banner.setAttribute('aria-live', 'polite');
     banner.setAttribute('aria-label', 'Настройки cookie и внешних сервисов');
-    banner.innerHTML = `<div><strong class="cookie-consent-banner__title">Настройки cookie и внешних сервисов</strong><span>Яндекс Метрика (статистика и Вебвизор), чат и карта загружаются после разрешения. Выбор можно изменить в настройках внизу страницы. Форма заявки остаётся доступна; её согласие оформляется отдельно.</span> <a class="cookie-consent-banner__policy" href="${policyUrl}">Политика обработки данных</a>.</div><div class="cookie-consent-banner__actions"><button class="cookie-consent-banner__button cookie-consent-banner__button--reject" id="cookieRejectButton" type="button">Отклонить необязательные</button><button class="cookie-consent-banner__button" id="cookieAcceptButton" type="button">Разрешить сервисы</button></div>`;
+    banner.innerHTML = `<div><strong class="cookie-consent-banner__title">Настройки cookie и внешних сервисов</strong><span>${serviceCopy}</span> <a class="cookie-consent-banner__policy" href="${policyUrl}">Политика обработки данных</a>.</div><div class="cookie-consent-banner__actions"><button class="cookie-consent-banner__button cookie-consent-banner__button--reject" id="cookieRejectButton" type="button">Отклонить необязательные</button><button class="cookie-consent-banner__button" id="cookieAcceptButton" type="button">Разрешить сервисы</button></div>`;
     document.body.append(banner);
   }
 
@@ -27,8 +31,14 @@
     host.append(wrapper);
   }
 
-  const showBanner = () => banner.classList.add('is-visible');
-  const hideBanner = () => banner.classList.remove('is-visible');
+  const showBanner = () => {
+    banner.classList.add('is-visible');
+    document.body.classList.add('cookie-banner-visible');
+  };
+  const hideBanner = () => {
+    banner.classList.remove('is-visible');
+    document.body.classList.remove('cookie-banner-visible');
+  };
   if (!['accepted', 'rejected'].includes(choice)) showBanner();
 
   function saveChoice(nextChoice) {

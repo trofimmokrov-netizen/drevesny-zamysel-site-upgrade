@@ -10,9 +10,15 @@
 
   const mobile = matchesMedia("(max-width: 720px), (pointer: coarse)")
     || (typeof window.matchMedia !== "function" && window.innerWidth <= 720);
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const constrainedConnection = !!connection && (
+    connection.saveData === true
+    || /^(slow-2g|2g|3g)$/.test(connection.effectiveType || "")
+  );
   const lowPowerDevice = mobile && (
     (typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4)
     || (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4)
+    || constrainedConnection
   );
   if (lowPowerDevice) document.documentElement.classList.add("motion-lite");
   const hero = document.querySelector(".hero");
@@ -53,6 +59,7 @@
     ".form-section", ".builder-entry", ".intro", ".viewer", ".spec-strip", ".space-estimate", ".comfort-note", ".controls", ".howto", ".hero-media", ".ticker-wrap",
     ".featured-case", ".epoxy-project-link", ".contact-item", ".training-card", ".training-points li", ".training-offer", ".training-note", ".dealer-note",
     ".spec", ".gallery figure", ".videos > div", ".price-card", ".end-cta",
+    ".cooperation-overview__card", ".cooperation-start", ".training-benefits li",
     ".article-header > *", ".article-cover", ".article-summary", ".article-toc", ".article-section", ".article-checklist", ".article-faq", ".article-related", ".article-aside", ".article-index__intro > *", ".article-index-card"
   ].join(",");
   // On entry-level phones, native opacity/position transitions are cheaper
@@ -189,7 +196,10 @@
     // opacity; the restrained lift carries the motion without reducing contrast.
     const group = copyLayers.find(([selector]) => element.matches(selector));
     reveal(element, delay || 0);
-    if (!group || lowPowerDevice) return;
+    // On phones, animate the card as one unit. Animating its heading, copy,
+    // and actions separately creates competing transforms during scroll and
+    // makes the reveal feel jittery on touch devices.
+    if (!group || mobile || lowPowerDevice) return;
     element.querySelectorAll(group[1]).forEach((child, index) => {
       reveal(child, (delay || 0) + 0.12 + index * (lowPowerDevice ? 0.07 : 0.09));
     });
