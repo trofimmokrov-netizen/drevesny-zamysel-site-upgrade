@@ -2615,7 +2615,15 @@
   }
 
   document.querySelectorAll('a[href="#contact"]:not([data-training-cta]):not([data-partnership-cta])').forEach((link) => {
-    link.addEventListener('click', () => window.setSiteLeadInterest?.('Обсуждение проекта'));
+    link.addEventListener('click', () => {
+      window.setSiteLeadInterest?.(incomingStairConfig ? 'Расчёт лестницы' : 'Обсуждение проекта');
+      // A previous service-specific click must not leave stale instructions in
+      // the form when the visitor later chooses the general project CTA.
+      if (!incomingStairConfig) {
+        const contactNote = document.querySelector('#contact .contact-start-note');
+        if (contactNote) contactNote.textContent = 'Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.';
+      }
+    });
   });
 
   document.querySelectorAll('[data-training-cta]').forEach((link) => {
@@ -4326,7 +4334,7 @@
     .training-card .training-program li > b { grid-column:1; justify-self:center; margin-top:2px; text-align:center; }
   }
   .hero-cta-row .btn-primary {
-    animation: hero-discuss-pulse 5s ease-in-out infinite;
+    animation: hero-discuss-pulse 5s ease-in-out 2;
     transition: transform .28s ease, box-shadow .28s ease, background-color .28s ease;
   }
   .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible {
@@ -4472,10 +4480,28 @@
   @media(prefers-reduced-motion:reduce) { .leonid-photo img { transition:none; } }
 </style>
 <style id="partnership-layout-balance">
-  /* Give the partnership cards enough room to read as a deliberate, balanced section. */
+  /* Keep cooperation as a full-width section; its cards must not inherit a narrow grid column. */
   #partnership.training-next-steps {
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    box-sizing:border-box;
     width:min(1480px,calc(100% - clamp(32px,8vw,120px)));
     margin-inline:auto;
+  }
+  #partnership > .training-note--partner {
+    grid-column:1 / -1;
+    width:100%;
+    min-width:0;
+    align-items:stretch;
+  }
+  #partnership .training-note--partner > .cooperation-overview {
+    display:grid;
+    grid-column:1 / -1;
+    align-self:stretch;
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
   #partnership .cooperation-overview {
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -4483,8 +4509,16 @@
     margin-top:26px;
   }
   #partnership .cooperation-overview__card {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-width:0;
+    height:100%;
     padding:clamp(22px,2.2vw,32px);
   }
+  #partnership .cooperation-overview__card h4,
+  #partnership .cooperation-overview__card p,
+  #partnership .cooperation-overview__card summary { overflow-wrap:anywhere; }
   #partnership .cooperation-overview__request-note { margin-top:auto !important; padding-top:18px; }
   #partnership .cooperation-overview__request { margin-top:12px; }
   #partnership .cooperation-start { margin-top:20px; }
@@ -4492,16 +4526,72 @@
     #partnership .cooperation-overview { grid-template-columns:repeat(2,minmax(0,1fr)); }
     #partnership .cooperation-overview__card:last-child { grid-column:1 / -1; }
   }
-  @media(max-width:700px) {
+  @media(max-width:820px) {
     #partnership.training-next-steps { width:100%; }
-    #partnership .cooperation-overview { grid-template-columns:minmax(0,1fr); gap:12px; }
+    #partnership > .training-note--partner { padding:clamp(22px,6vw,34px); }
+    #partnership .training-note--partner > .cooperation-overview { grid-column:1 / -1; }
+    #partnership .cooperation-overview { grid-template-columns:minmax(0,1fr); gap:14px; }
     #partnership .cooperation-overview__card:last-child { grid-column:auto; }
+    #partnership .cooperation-overview__card { width:100%; min-width:0; }
+    #partnership .cooperation-overview__card h4,
+    #partnership .cooperation-overview__card p,
+    #partnership .cooperation-overview__card summary { overflow-wrap:anywhere; }
+  }
+  @media(max-width:700px) {
+    #partnership > .training-note--partner { padding:22px 18px; }
+    #partnership .cooperation-overview { gap:12px; }
     #partnership .cooperation-overview__card { padding:22px 18px; }
     #partnership .cooperation-overview__request-note { margin-top:14px !important; padding-top:0; }
   }
   @media(prefers-reduced-motion:reduce) {
     #partnership .cooperation-overview__card { transition:none; }
     #partnership .cooperation-overview__card:hover { transform:none; }
+  }
+</style>
+<style id="low-power-rendering">
+  /* Keep the brief, translation-only hero entrance defined above; avoid
+     continuous parallax and expensive blurred fixed overlays on older phones. */
+  .motion-lite .site-header,
+  .motion-lite .mobile-menu,
+  .motion-lite .hero-stats,
+  .motion-lite .why-extra-address,
+  .motion-lite .cookie-banner,
+  .motion-lite .leonid-lightbox__nav {
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+  .motion-lite .category-lightbox::backdrop,
+  .motion-lite .dealer-certificate-dialog::backdrop,
+  .motion-lite .material-preview::backdrop {
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+</style>
+<style id="touch-action-feedback">
+  /* Give touch users the same clear action feedback as desktop hover, without
+     relying on sticky :hover states or adding extra animation layers. */
+  @media (hover:none) and (prefers-reduced-motion:no-preference) {
+    .btn-primary,
+    .btn-card,
+    .hero-builder-link,
+    .training-chat-trigger,
+    .cooperation-overview__request,
+    .mobile-nav-links a {
+      -webkit-tap-highlight-color:transparent;
+      transition:transform .14s ease,box-shadow .14s ease,background-color .14s ease;
+    }
+    .btn-primary:active,
+    .btn-card:active,
+    .hero-builder-link:active,
+    .training-chat-trigger:active,
+    .cooperation-overview__request:active,
+    .mobile-nav-links a:active {
+      transform:scale(.985);
+    }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .btn-primary,.btn-card,.hero-builder-link,.training-chat-trigger,
+    .cooperation-overview__request,.mobile-nav-links a { transition:none; }
   }
 </style>
 </body>
