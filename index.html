@@ -12,7 +12,7 @@
 
   <!-- SEO: Title & Description -->
   <title>Лестницы любой сложности в Москве — Древесный Замысел</title>
-  <meta name="description" content="Проектирование, изготовление и монтаж лестниц под ключ в Москве и Московской области. Металлокаркас, деревянная отделка и ограждения. Изготавливаем мебель, в том числе столы из слэбов." />
+  <meta name="description" content="Лестницы любой сложности под ключ в Москве и Московской области: проектирование, изготовление и монтаж. Также изготавливаем мебель на заказ и столы из слэбов." />
   <meta name="author" content="Древесный Замысел" />
   <meta name="application-name" content="Древесный Замысел" />
   <meta name="apple-mobile-web-app-title" content="Древесный Замысел" />
@@ -22,7 +22,7 @@
 
   <!-- OG / Social -->
   <meta property="og:title" content="Лестницы любой сложности в Москве — Древесный Замысел" />
-  <meta property="og:description" content="Проектирование, изготовление и монтаж лестниц под ключ в Москве и Московской области. Металлокаркас, деревянная отделка и ограждения. Изготавливаем мебель, в том числе столы из слэбов." />
+  <meta property="og:description" content="Лестницы любой сложности под ключ в Москве и Московской области: проектирование, изготовление и монтаж. Также изготавливаем мебель на заказ и столы из слэбов." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/" />
   <meta property="og:site_name" content="Древесный Замысел" />
@@ -34,7 +34,7 @@
   <meta property="og:image:alt" content="Лестницы любой сложности — Древесный Замысел" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Лестницы любой сложности в Москве — Древесный Замысел" />
-  <meta name="twitter:description" content="Проектирование, изготовление и монтаж лестниц под ключ в Москве и Московской области. Металлокаркас, деревянная отделка и ограждения. Изготавливаем мебель, в том числе столы из слэбов." />
+  <meta name="twitter:description" content="Лестницы любой сложности под ключ в Москве и Московской области: проектирование, изготовление и монтаж. Также изготавливаем мебель на заказ и столы из слэбов." />
   <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg" />
 
 
@@ -45,7 +45,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Древесный Замысел",
-      "description": "Проектирование, изготовление и монтаж лестниц под ключ в Москве и Московской области. Металлокаркас, деревянная отделка и ограждения. Изготавливаем мебель, в том числе столы из слэбов.",
+      "description": "Лестницы любой сложности под ключ в Москве и Московской области: проектирование, изготовление и монтаж. Также изготавливаем мебель на заказ и столы из слэбов.",
       "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/hero.webp",
       "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "telephone": "+7 (495) 275-14-23",
@@ -3815,9 +3815,11 @@
   .training-note .section-label { margin-bottom:12px; color:var(--accent); }
   .training-note h3 { margin:0 0 12px; color:var(--heading-color); font:400 clamp(24px,2.5vw,32px)/1.16 'Cormorant Garamond',Georgia,serif; }
   .training-note > p:last-of-type { margin:0; color:var(--text-secondary); font-size:13px; line-height:1.75; }
+  .training-note--partner,.training-note--chat { grid-column:1 / -1; }
   .training-note--partner { background:#f7f5f0; }
-  .cooperation-overview { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:22px 0 24px; }
-  .cooperation-overview__card { display:flex; flex-direction:column; align-items:flex-start; min-width:0; padding:20px; border:1px solid rgba(38,57,47,.14); background:#fffefa; transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
+  .cooperation-overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); align-items:stretch; gap:16px; width:100%; margin:22px 0 24px; }
+  .cooperation-overview__card { position:relative; display:flex; flex-direction:column; align-items:flex-start; min-width:0; min-height:100%; box-sizing:border-box; padding:24px; border:1px solid rgba(38,57,47,.14); background:#fffefa; box-shadow:0 8px 24px rgba(38,57,47,.035); transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease; }
+  .cooperation-overview__card::before { content:""; width:34px; height:2px; margin-bottom:16px; background:#987545; }
   .cooperation-overview__card:hover { transform:translateY(-3px); border-color:rgba(152,117,69,.48); box-shadow:0 12px 28px rgba(38,57,47,.08); }
   .cooperation-overview__card--future { background:#f0eee7; }
   .cooperation-overview__eyebrow { color:#8e7045; font-size:11px; font-weight:700; letter-spacing:.1em; line-height:1.5; text-transform:uppercase; }
@@ -3852,7 +3854,7 @@
   .cooperation-overview__link span { color:#987545; font-size:17px; transition:transform .25s ease; }
   .cooperation-overview__link:hover span { transform:translate(2px,2px); }
   .cooperation-overview__link:focus-visible { outline:2px solid #987545; outline-offset:4px; }
-  .cooperation-start { padding:22px; border:1px solid rgba(38,57,47,.13); background:#eeece5; }
+  .cooperation-start { padding:26px; border:1px solid rgba(38,57,47,.13); background:#eeece5; }
   .cooperation-start > h4 { margin:0 0 16px; color:#26392f; font:400 25px/1.15 'Cormorant Garamond',Georgia,serif; }
   .cooperation-start ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:0; padding:0; list-style:none; counter-reset:cooperation-step; }
   .cooperation-start li { display:grid; grid-template-columns:28px minmax(0,1fr); align-content:start; gap:2px 10px; counter-increment:cooperation-step; }
@@ -3891,7 +3893,7 @@
   .direction-detail__checklist li { padding:10px 12px; border-left:2px solid #b49462; background:rgba(38,57,47,.045); }
   .direction-detail__checklist strong { color:#26392f; }
   .training-details .direction-detail { max-width:100%; }
-  .cooperation-topics { display:grid; gap:10px; margin:18px 0 0; padding:0; list-style:none; }
+  .cooperation-topics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:18px 0 0; padding:0; list-style:none; }
   .cooperation-topics li { display:grid; gap:3px; padding:12px 14px; border-left:2px solid #b49462; background:rgba(38,57,47,.035); text-align:left; }
   .cooperation-topics strong { color:#26392f; font-size:13px; }
   .cooperation-topics span { color:#59615b; font-size:12px; line-height:1.55; }
@@ -3902,10 +3904,11 @@
   .dealer-note > a { flex:0 0 auto; color:var(--btn-bg); font-size:12px; font-weight:600; text-decoration:none; }
   .dealer-note > a:hover { color:var(--accent); }
   @media(max-width:980px) { .cooperation-overview { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-  @media(max-width:820px) { .training-next-steps { grid-template-columns:1fr; } .cooperation-overview { grid-template-columns:1fr; } .cooperation-start ol { grid-template-columns:1fr; text-align:left; } .franchise-value-grid,.franchise-roadmap { grid-template-columns:1fr; } .dealer-note { align-items:flex-start; flex-direction:column; gap:12px; padding:18px; } }
+  @media(max-width:980px) { .cooperation-topics { grid-template-columns:1fr; } }
+  @media(max-width:820px) { .training-next-steps { grid-template-columns:1fr; } .training-note--partner,.training-note--chat { grid-column:auto; } .cooperation-overview { grid-template-columns:1fr; } .cooperation-start ol { grid-template-columns:1fr; text-align:left; } .franchise-value-grid,.franchise-roadmap { grid-template-columns:1fr; } .dealer-note { align-items:flex-start; flex-direction:column; gap:12px; padding:18px; } }
   @media(max-width:820px) { .training-details { grid-column:auto; width:100%; } .direction-detail summary { min-height:50px; padding:13px 14px; text-align:left; } .direction-detail__body { padding:0 14px 14px; } }
   @media(prefers-reduced-motion:reduce) { .training-note--partner a,.direction-detail summary::after,.cooperation-quick summary::after,.training-offer__details summary::after,.cooperation-overview__link span,.cooperation-overview__card,.cooperation-overview__request { transition:none; } .cooperation-overview__card:hover,.cooperation-overview__request:hover { transform:none; } .direction-detail[open] > .direction-detail__body,.cooperation-quick[open] > div,.training-offer__details[open] > div { animation:none; } }
-  .training-section { max-width:none !important; width:100%; padding:clamp(56px,8vw,100px) clamp(20px,5vw,60px) !important; background:#f4f1eb; }
+  .training-section { box-sizing:border-box; max-width:none !important; width:100%; padding:clamp(56px,8vw,100px) clamp(20px,5vw,60px) !important; background:#f4f1eb; }
   .training-card { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(250px,.65fr); gap:clamp(28px,6vw,80px); align-items:center; width:min(1200px,100%); margin:0 auto; padding:clamp(26px,5vw,64px); background:#26392f; color:#fffefa; box-shadow:0 18px 44px rgba(31,43,35,.12); }
   .training-copy .section-label { color:#d3b783; }
   .training-copy .section-title { max-width:760px; margin:0 0 18px; color:#fffefa; }
@@ -3978,14 +3981,16 @@
   }
   .review-card__meta {
     display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:12px;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
     padding-bottom:13px;
     border-bottom:1px solid var(--border);
+    text-align:center;
   }
-  .review-card__meta strong { color:var(--heading-color); font-size:13px; font-weight:600; }
-  .review-card__meta time { flex:0 0 auto; color:var(--text-muted); font-size:10px; }
+  .review-card__meta strong { color:var(--heading-color); font-size:13px; font-weight:600; text-align:center; }
+  .review-card__meta time { flex:0 0 auto; color:var(--text-muted); font-size:10px; text-align:center; }
   .review-card blockquote {
     width:100%;
     margin:16px 0 20px;
@@ -4228,7 +4233,7 @@
   .training-card .training-program li { padding:16px; border:1px solid rgba(255,254,250,.34); border-radius:3px; background:rgba(255,254,250,.055); }
   .training-card .training-program li > span:nth-child(2) { text-align:left; }
   .training-card .training-program li strong { color:#fffefa !important; }
-  .training-card .training-program li small { color:#fffefa !important; font-size:15px !important; font-weight:500; line-height:1.65; text-align:left; text-shadow:0 1px 1px rgba(0,0,0,.12); }
+  .training-card .training-program li small { display:block; box-sizing:border-box; width:100%; margin-top:9px; padding:9px 12px; border-left:2px solid #c6a97a; border-radius:2px; background:rgba(9,18,13,.2); color:#fffefa !important; -webkit-text-fill-color:#fffefa !important; opacity:1 !important; font-size:15px !important; font-weight:500; line-height:1.65; text-align:left; text-shadow:0 1px 1px rgba(0,0,0,.12); }
   .training-card .training-program .training-day { color:#f0ce91 !important; font-size:14px; font-weight:700; }
   .training-card .training-program li > b { justify-self:center; padding:5px 11px; border:1px solid rgba(255,254,250,.28); border-radius:999px; background:rgba(255,254,250,.12); color:#fffefa !important; font-size:13px !important; text-align:center; }
   .training-card .training-program-note { color:#fffefa !important; font-size:14px !important; line-height:1.65; }
@@ -4456,5 +4461,48 @@
     });
   })();
 </script>
+<style id="portfolio-thumbnail-consistency">
+  /* Keep workshop portfolio thumbnails equal-sized without cropping the original photos. */
+  .leonid-photo { aspect-ratio:4/3; }
+  .leonid-photo img { width:100%; height:100%; aspect-ratio:auto; object-fit:contain; object-position:center; padding:6px; background:#e8e3da; }
+  @media(max-width:600px) {
+    .leonid-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .leonid-photo img { padding:4px; }
+  }
+  @media(prefers-reduced-motion:reduce) { .leonid-photo img { transition:none; } }
+</style>
+<style id="partnership-layout-balance">
+  /* Give the partnership cards enough room to read as a deliberate, balanced section. */
+  #partnership.training-next-steps {
+    width:min(1480px,calc(100% - clamp(32px,8vw,120px)));
+    margin-inline:auto;
+  }
+  #partnership .cooperation-overview {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    margin-top:26px;
+  }
+  #partnership .cooperation-overview__card {
+    padding:clamp(22px,2.2vw,32px);
+  }
+  #partnership .cooperation-overview__request-note { margin-top:auto !important; padding-top:18px; }
+  #partnership .cooperation-overview__request { margin-top:12px; }
+  #partnership .cooperation-start { margin-top:20px; }
+  @media(max-width:1050px) {
+    #partnership .cooperation-overview { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #partnership .cooperation-overview__card:last-child { grid-column:1 / -1; }
+  }
+  @media(max-width:700px) {
+    #partnership.training-next-steps { width:100%; }
+    #partnership .cooperation-overview { grid-template-columns:minmax(0,1fr); gap:12px; }
+    #partnership .cooperation-overview__card:last-child { grid-column:auto; }
+    #partnership .cooperation-overview__card { padding:22px 18px; }
+    #partnership .cooperation-overview__request-note { margin-top:14px !important; padding-top:0; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    #partnership .cooperation-overview__card { transition:none; }
+    #partnership .cooperation-overview__card:hover { transform:none; }
+  }
+</style>
 </body>
 </html>

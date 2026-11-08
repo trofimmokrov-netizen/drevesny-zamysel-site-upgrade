@@ -49,15 +49,19 @@
 .cookie-consent-preferences__button { padding: 0; border: 0; background: none; color: inherit; font: inherit; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 @media (max-width: 600px) {
   .cookie-consent-banner {
-    left: 12px;
-    right: 12px;
+    left: max(12px, env(safe-area-inset-left, 0px));
+    right: max(12px, env(safe-area-inset-right, 0px));
     bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     width: auto;
+    max-width: calc(100vw - 24px);
     max-height: min(52vh, 420px);
     max-height: min(52svh, 420px);
     padding: 16px;
     border-radius: 16px;
+    overflow-wrap: anywhere;
   }
+  .cookie-consent-banner > *,
+  .cookie-consent-banner__actions { min-width: 0; }
   .cookie-consent-banner__actions { flex-direction: column; }
   .cookie-consent-banner__button { flex: 1 0 auto; width: 100%; min-height: 48px; font-size: 14px; }
 }
