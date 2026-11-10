@@ -129,8 +129,9 @@
   <link rel="stylesheet" href="./assets/css/reviews.css" />
   <!-- Fetch the small interaction layer early, then apply it after page styles
        so hover, focus and active feedback wins the cascade without a late fetch. -->
-  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261110-interaction-v2" as="style" />
+  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" as="style" />
   <script src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
+  <script src="./assets/js/yandex-metrika-goals.js?v=20261110-goals-v1" defer></script>
   <style id="early-mobile-compositing">
     /* Apply before the first mobile paint; the interaction stylesheet is
        fetched above and applied at the end to preserve its intended cascade. */
@@ -1574,6 +1575,7 @@
 </style>
 
 
+  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -2941,23 +2943,20 @@
         const enterGalleryCard=revealCardWhenReady(item,img);
         item._enterGalleryCard=enterGalleryCard;
         img.onerror=()=>{
-          const fallbackStage=Number(img.dataset.fallbackStage||0);
-          if(fallbackStage===0){
-            img.dataset.fallbackStage='1';
-            img.src=src.replace('/portfolio/','/portfolio/thumbs/').replace(/\.webp$/i,'.jpg');
-            return;
-          }
-          if(fallbackStage===1){
-            img.dataset.fallbackStage='2';
-            img.src=src;
-            return;
-          }
+          // Never replace a full photo with a cropped thumbnail. If an
+          // original is unavailable, keep a clear placeholder instead.
           img.classList.remove('gallery-image-loading');
           img.classList.add('gallery-image-ready');
           img.alt=`${categoryImageDescriptions[key]}, изображение временно недоступно`;
+          item.disabled=true;
+          item.setAttribute('aria-label',`Фото временно недоступно: ${categoryImageDescriptions[key]}`);
+          item.classList.add('gallery-image-unavailable');
           enterGalleryCard();
         };
-        img.dataset.src=src.replace('/portfolio/','/portfolio/thumbs/');
+        // Use the complete source photo in the gallery. Some legacy thumb
+        // files are tightly cropped, so CSS cannot recover the missing edges.
+        // The intersection observer still loads full images only as needed.
+        img.dataset.src=src;
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
         if(categoryGalleryRevealObserver) categoryGalleryRevealObserver.observe(item); else enterGalleryCard();
@@ -5047,6 +5046,84 @@
     }
   }
 </style>
-<link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261110-mobile-layout-v3" />
+<style id="gallery-full-photo-final">
+  /* Preserve every source image's own proportions. Fixed tile ratios and
+     absolutely positioned images can crop or squash photos on mobile. */
+  #categoryLightbox[open] #categoryLightboxGrid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    align-content: start !important;
+    align-items: start !important;
+    gap: 16px !important;
+    padding: 24px clamp(20px, 5vw, 72px) 48px !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item {
+    position: relative !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: #e8e3da !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item > img {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    object-fit: unset !important;
+    object-position: center !important;
+    padding: 0 !important;
+    background: #e8e3da !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item.gallery-image-unavailable > img {
+    display: none !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item.gallery-image-unavailable::after {
+    content: "Фото временно недоступно";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    color: #566258;
+    font: 500 14px/1.45 Arial, sans-serif;
+    text-align: center;
+  }
+  @media (max-width: 1050px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+    }
+  }
+  @media (max-width: 720px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+      padding: 14px 14px 28px !important;
+    }
+  }
+  @media (max-width: 420px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+</style>
 </body>
 </html>
