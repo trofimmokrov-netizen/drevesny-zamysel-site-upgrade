@@ -1,0 +1,113 @@
+/* Small, purposeful interaction feedback. Motion only responds to an action;
+   nothing pulses continuously or competes with reading. */
+.btn-primary,
+.btn-outline,
+.btn-card,
+.hero-builder-link,
+.builder-entry,
+.training-chat-trigger,
+.training-form-link {
+  -webkit-tap-highlight-color: transparent;
+  transition-timing-function: cubic-bezier(.2, .7, .25, 1);
+}
+
+.btn-primary,
+.btn-outline,
+.btn-card,
+.hero-builder-link,
+.training-chat-trigger,
+.training-form-link {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: .28s;
+}
+
+.btn-primary:active,
+.btn-outline:active,
+.btn-card:active,
+.hero-builder-link:active,
+.training-chat-trigger:active,
+.training-form-link:active {
+  transform: translateY(1px) scale(.985);
+}
+
+.hero-builder-link,
+.builder-entry {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-builder-link span,
+.builder-entry > :last-child {
+  transition: transform .32s cubic-bezier(.2, .7, .25, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover,
+  .training-chat-trigger:hover,
+  .training-form-link:hover {
+    box-shadow: 0 10px 24px rgba(30, 54, 41, .18);
+    transform: translateY(-2px);
+  }
+
+  .hero-builder-link:hover span,
+  .builder-entry:hover > :last-child {
+    transform: translateX(4px);
+  }
+
+  .btn-card:hover {
+    box-shadow: 0 6px 16px rgba(30, 54, 41, .1);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-primary:focus-visible,
+.btn-outline:focus-visible,
+.btn-card:focus-visible,
+.hero-builder-link:focus-visible,
+.builder-entry:focus-visible,
+.training-chat-trigger:focus-visible,
+.training-form-link:focus-visible {
+  outline: 3px solid #b58a48;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-outline,
+  .btn-card,
+  .hero-builder-link,
+  .builder-entry,
+  .hero-builder-link span,
+  .builder-entry > :last-child,
+  .training-chat-trigger,
+  .training-form-link {
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Large backdrop filters are costly while compositing on older phones.
+   Keep the same visual hierarchy with solid, legible surfaces on touch. */
+@media (max-width: 900px), (pointer: coarse) {
+  .site-header,
+  .mobile-menu,
+  .cookie-banner {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .site-header,
+  .mobile-menu {
+    background-color: rgba(251, 250, 247, .98) !important;
+  }
+
+  .cookie-banner {
+    background-color: #fffefa !important;
+  }
+
+  .category-lightbox::backdrop,
+  .leonid-lightbox__nav {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}

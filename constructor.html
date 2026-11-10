@@ -2,7 +2,6 @@
 <html lang="ru"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="preload" href="./assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="./assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/cormorant-garamond-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="./assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="./assets/css/typography.css">
@@ -31,9 +30,8 @@
 <meta name="twitter:image" content="https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/social-preview.jpg">
 <link rel="icon" href="./favicons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./assets/css/stair-configurator.css?v=20261105-risers-v1">
-<link rel="stylesheet" href="./assets/css/constructor-mobile.css?v=20261108-mobile-fit-v3">
-<script defer src="./assets/vendor/three-0.159.0.min.js"></script>
-<script defer src="./assets/js/stair-configurator.js?v=20261108-walnut-tone-v1"></script>
+<link rel="stylesheet" href="./assets/css/constructor-mobile.css?v=20261109-low-power-overlays-v1">
+<script defer src="./assets/js/constructor-loader.js?v=20261110-lazy-3d-v4"></script>
 <script src="assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
     <link rel="stylesheet" href="assets/css/cookie-consent.css?v=20261108-mobile-fit-v2">
 </head><body>
@@ -49,7 +47,7 @@
 <div class="preview-column">
 <div class="viewer">
 <div class="viewer-toolbar"><span class="viewer-title"><i class="live-dot"></i>3D-предпросмотр</span><div class="viewer-actions"><button id="zoomOut" class="icon-button zoom-button" type="button" aria-label="Отдалить модель" title="Отдалить">−</button><button id="zoomIn" class="icon-button zoom-button" type="button" aria-label="Приблизить модель" title="Приблизить">+</button><button id="resetView" class="icon-button" type="button">Вписать модель</button><button id="saveImage" class="icon-button" type="button">Скачать PNG</button></div></div>
-<div class="canvas-wrap" id="canvasWrap"><canvas id="stairCanvas" aria-label="Интерактивная трёхмерная модель лестницы"></canvas><div class="canvas-help">Мышь: перетаскивание и колесо · Телефон: горизонтальный жест вращает модель, кнопки + / − меняют масштаб</div><div class="canvas-error" id="canvasError" hidden>Не удалось запустить 3D-просмотр. Попробуйте открыть страницу в актуальной версии Chrome, Edge или Safari.</div></div>
+<div class="canvas-wrap" id="canvasWrap" aria-busy="true"><canvas id="stairCanvas" aria-label="Интерактивная трёхмерная модель лестницы"></canvas><div class="canvas-help">Мышь: перетаскивание и колесо · Телефон: горизонтальный жест вращает модель, кнопки + / − меняют масштаб</div><div class="canvas-loading" id="canvasLoading" role="status" aria-live="polite" hidden>Подготавливаем 3D‑просмотр…</div><div class="canvas-error" id="canvasError" role="alert" hidden>Не удалось запустить 3D-просмотр. Попробуйте открыть страницу в актуальной версии Chrome, Edge или Safari.</div></div>
 <div class="viewer-caption"><span>Предварительная визуализация</span><span id="modelDimensions">900 × 2800 мм</span></div></div>
 <div class="spec-strip" aria-live="polite"><div><span>Высота подъёма</span><strong id="riseReadout">200 мм</strong></div><div><span>Количество ступеней</span><strong id="stepsReadout">14</strong></div><div><span>Ширина марша</span><strong id="widthReadout">900 мм</strong></div></div>
 <section class="space-estimate" id="spaceEstimate" aria-labelledby="spaceEstimateTitle"><div class="space-estimate__heading"><span class="eyebrow">Проверка места</span><h2 id="spaceEstimateTitle">Сколько пространства займёт лестница</h2></div><div class="space-estimate__metrics" aria-live="polite" aria-atomic="true"><div><span>Габарит в плане</span><strong id="footprintDimensions">3920 × 900 мм</strong></div><div><span>Площадь по внешним габаритам</span><strong id="projectedArea">3,53 м²</strong></div><div><span>Площадка</span><strong id="landingDimensions">—</strong></div><div id="underSpaceMetric" hidden><span>Эскиз под первым маршем · длина × ширина, высота до</span><strong id="underSpaceDimensions">—</strong></div></div><figure class="footprint-plan"><figcaption>Схема сверху · приблизительное место на полу</figcaption><svg id="footprintPlan" viewBox="0 0 240 140" role="img" aria-label="Схема занимаемого лестницей места сверху"><rect class="footprint-plan__floor" x="0" y="0" width="240" height="140" rx="2"></rect><g id="footprintPlanShape"></g><g id="footprintPlanDimensions" aria-hidden="true"></g></svg></figure><p>Площадь и эскиз под маршем — предварительные оценки без учёта проёма, стен и монтажных зазоров. Точные размеры мебели и возможность установки проверит инженер на объекте.</p></section>
@@ -114,5 +112,5 @@
     targets.forEach((target) => observer.observe(target));
   })();
 </script>
-<script defer src="./assets/js/wood-preview.js"></script><script defer src="./assets/js/motion-loader.js?v=20261108-loader-v10"></script><script src="assets/js/cookie-consent-ui.js?v=20261108-ui2" defer></script>
+<script defer src="./assets/js/wood-preview.js?v=20261109-walnut-webp"></script><script defer src="./assets/js/motion-loader.js?v=20261110-loader-v26"></script><script src="assets/js/cookie-consent-ui.js?v=20261108-ui2" defer></script>
 </body></html>

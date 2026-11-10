@@ -4,7 +4,7 @@
     oak: "./assets/images/materials/oak.jpg",
     ash: "./assets/images/materials/yasen.jpg",
     larch: "./assets/images/materials/listvennitsa.jpg",
-    walnut: "./assets/images/materials/american-walnut.jpg"
+    walnut: "./assets/images/materials/american-walnut.webp"
   };
   const filters = {};
   const names = { oak: "Дуб", ash: "Ясень", larch: "Лиственница", walnut: "Американский орех" };

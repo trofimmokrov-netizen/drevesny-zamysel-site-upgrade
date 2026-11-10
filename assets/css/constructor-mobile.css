@@ -237,3 +237,27 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* The configurator has its own stylesheet, so mirror the lightweight overlay
+   treatment used on the main page for older or data-saving mobile devices. */
+.motion-lite .topbar,
+.motion-lite .mobile-config-nav {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: #f8f7f4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-config-nav,
+  .mobile-config-nav a,
+  .icon-button,
+  .header-contact,
+  .submit-link {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* Small, quiet loading state shown only while the 3D viewer initializes. */
+.canvas-loading[hidden]{display:none}
+.canvas-loading{position:absolute;top:14px;left:50%;z-index:2;transform:translateX(-50%);padding:7px 12px;border:1px solid rgba(222,217,206,.9);border-radius:999px;background:rgba(248,247,244,.92);color:#56564f;font-size:11px;line-height:1.4;white-space:nowrap;box-shadow:0 3px 12px rgba(41,42,38,.06)}
+@media(max-width:420px){.canvas-loading{top:8px;font-size:10px}}
