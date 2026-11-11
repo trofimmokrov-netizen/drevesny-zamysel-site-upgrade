@@ -5206,5 +5206,48 @@
     #partnership .cooperation-overview__card:last-child { grid-column:1 / -1; }
   }
 </style>
+<style id="partnership-cards-mobile-v81">
+  /* On touch and tablet-sized layouts, stack partnership cards as full-width blocks. */
+  @media (max-width:1100px), (pointer:coarse) {
+    #partnership .training-note--partner > .cooperation-overview,
+    #partnership .cooperation-overview {
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:stretch !important;
+      width:100% !important;
+      min-width:0 !important;
+      gap:14px !important;
+    }
+    #partnership .cooperation-overview__card {
+      display:flex !important;
+      flex:0 0 auto !important;
+      width:100% !important;
+      max-width:100% !important;
+      min-width:0 !important;
+      min-height:0 !important;
+      height:auto !important;
+      grid-column:auto !important;
+      align-items:center !important;
+      box-sizing:border-box !important;
+      padding:24px clamp(18px,5vw,28px) !important;
+      text-align:center !important;
+    }
+    #partnership .cooperation-overview__card h4,
+    #partnership .cooperation-overview__card p,
+    #partnership .cooperation-overview__card summary,
+    #partnership .cooperation-overview__card button,
+    #partnership .cooperation-overview__card .cooperation-overview__eyebrow {
+      max-width:100% !important;
+      overflow-wrap:break-word !important;
+      word-break:normal !important;
+      hyphens:none !important;
+      text-align:center !important;
+    }
+    #partnership .cooperation-overview__request {
+      width:min(100%,360px) !important;
+      margin-inline:auto !important;
+    }
+  }
+</style>
 </body>
 </html>
