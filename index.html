@@ -2862,10 +2862,11 @@
   function enforceDesktopCategoryGalleryLayout(){
     if(!window.matchMedia('(min-width:721px)').matches)return;
     const important=(element,property,value)=>element.style.setProperty(property,value,'important');
-    const columns=window.innerWidth>=1400?4:window.innerWidth>=961?3:2;
+    const columns=window.innerWidth>=1400?3:window.innerWidth>=961?3:2;
     important(categoryDialog,'position','fixed');
     important(categoryDialog,'inset','0');
     important(categoryDialog,'width','100vw');
+    important(categoryDialog,'height','100vh');
     important(categoryDialog,'height','100dvh');
     important(categoryDialog,'max-width','none');
     important(categoryDialog,'max-height','none');
@@ -2878,8 +2879,6 @@
     important(categoryGrid,'flex','1 1 auto');
     important(categoryGrid,'min-height','0');
     important(categoryGrid,'grid-template-columns',`repeat(${columns},minmax(0,1fr))`);
-    // Fixed-ratio cells reserve their height before lazy images load. Fit the
-    // entire source photo inside each cell so portrait and landscape work stay intact.
     important(categoryGrid,'grid-auto-rows','max-content');
     important(categoryGrid,'grid-auto-flow','row');
     important(categoryGrid,'align-content','start');
@@ -2889,17 +2888,21 @@
     important(categoryGrid,'gap','18px');
     important(categoryGrid,'padding','24px clamp(24px,4vw,64px) 48px');
     categoryGrid.querySelectorAll(':scope > .category-lightbox__item').forEach(item=>{
+      const img=item.querySelector('img');
       important(item,'display','block');
       important(item,'position','relative');
+      important(item,'align-self','start');
       important(item,'width','100%');
       important(item,'height','auto');
       important(item,'min-height','0');
-      important(item,'aspect-ratio','4 / 3');
       important(item,'box-sizing','border-box');
       important(item,'overflow','hidden');
       important(item,'font-size','0');
       important(item,'line-height','0');
-      const img=item.querySelector('img');
+      // Reserve a card before the lazy image loads; after decode use the
+      // photograph's real proportions so the card itself never crops it.
+      important(item,'aspect-ratio',img&&img.naturalWidth&&img.naturalHeight
+        ? `${img.naturalWidth} / ${img.naturalHeight}` : '4 / 3');
       if(img){
         important(img,'position','absolute');
         important(img,'inset','0');
@@ -2978,6 +2981,9 @@
           if(imageRevealQueued)return;
           imageRevealQueued=true;
           const ready=()=>window.requestAnimationFrame(()=>{
+            if(window.matchMedia('(min-width:721px)').matches&&img.naturalWidth&&img.naturalHeight){
+              item.style.setProperty('aspect-ratio',`${img.naturalWidth} / ${img.naturalHeight}`,'important');
+            }
             img.classList.remove('gallery-image-loading');
             img.classList.add('gallery-image-ready');
             revealCard();
@@ -5220,6 +5226,29 @@
       transition:none !important;
     }
   }
+<style id="desktop-gallery-natural-cards-v78">
+  /* Desktop gallery: larger cards follow each decoded source photo's real ratio. */
+  @media (min-width:721px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-auto-rows:max-content !important;
+      align-content:start !important;
+      align-items:start !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+      min-height:0 !important;
+      overflow:hidden !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+      object-fit:contain !important;
+      object-position:center !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
+      content:"Нажмите, чтобы открыть фото" !important;
+      right:12px !important;
+      bottom:12px !important;
+    }
+  }
+</style>
 </style>
 </body>
 </html>
