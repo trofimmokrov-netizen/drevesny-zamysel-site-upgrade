@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="./assets/css/reviews.css" />
   <!-- Fetch the small interaction layer early, then apply it after page styles
        so hover, focus and active feedback wins the cascade without a late fetch. -->
-  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" as="style" />
+  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261111-desktop-gallery-v75" as="style" />
   <script src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
   <script src="./assets/js/yandex-metrika-goals.js?v=20261110-goals-v1" defer></script>
   <style id="early-mobile-compositing">
@@ -1575,7 +1575,7 @@
 </style>
 
 
-  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" />
+  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261111-desktop-gallery-v75" />
 </head>
 <body>
 <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -5046,82 +5046,94 @@
     }
   }
 </style>
-<style id="gallery-full-photo-final">
-  /* Preserve every source image's own proportions. Fixed tile ratios and
-     absolutely positioned images can crop or squash photos on mobile. */
-  #categoryLightbox[open] #categoryLightboxGrid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    grid-auto-rows: auto !important;
-    align-content: start !important;
-    align-items: start !important;
-    gap: 16px !important;
-    padding: 24px clamp(20px, 5vw, 72px) 48px !important;
-  }
-  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item {
-    position: relative !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: auto !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    aspect-ratio: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    background: #e8e3da !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-  }
-  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item > img {
-    position: static !important;
-    inset: auto !important;
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    max-width: 100% !important;
-    max-height: none !important;
-    aspect-ratio: auto !important;
-    object-fit: unset !important;
-    object-position: center !important;
-    padding: 0 !important;
-    background: #e8e3da !important;
-  }
-  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item.gallery-image-unavailable > img {
-    display: none !important;
-  }
-  #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item.gallery-image-unavailable::after {
-    content: "Фото временно недоступно";
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    padding: 18px;
-    color: #566258;
-    font: 500 14px/1.45 Arial, sans-serif;
-    text-align: center;
-  }
-  @media (max-width: 1050px) {
+<style id="desktop-gallery-fixed-height-v75">
+  /* Desktop gallery: fixed 4:3 frames with the complete image contained inside.
+     Mobile gallery rules remain unchanged. */
+  @media (min-width:721px) {
+    #categoryLightbox[open] {
+      position:fixed !important; inset:0 !important; display:flex !important;
+      flex-direction:column !important; box-sizing:border-box !important;
+      width:100vw !important; height:100vh !important; height:100dvh !important;
+      max-width:none !important; max-height:none !important; margin:0 !important;
+      padding:0 !important; overflow:hidden !important; border:0 !important;
+      background:#f4f1eb !important;
+    }
+    #categoryLightbox[open] .category-lightbox__head {
+      position:relative !important; z-index:2 !important; flex:0 0 auto !important;
+      box-sizing:border-box !important; width:100% !important; min-height:130px !important;
+      padding:22px clamp(24px,4vw,64px) !important; background:#f8f6f1 !important;
+      border-bottom:1px solid rgba(90,77,57,.18) !important;
+    }
+    #categoryLightbox[open] .category-lightbox__head h2 { margin:0 !important; }
     #categoryLightbox[open] #categoryLightboxGrid {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-      gap: 12px !important;
+      display:grid !important; flex:1 1 auto !important; min-width:0 !important;
+      min-height:0 !important; box-sizing:border-box !important;
+      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+      /* Explicit track size is essential: thumbnails are absolutely positioned,
+         so intrinsic max-content sizing can collapse the desktop grid rows. */
+      grid-auto-flow:row !important; grid-auto-rows:clamp(220px,22vw,320px) !important;
+      align-content:start !important; align-items:start !important; gap:18px !important;
+      overflow-x:hidden !important; overflow-y:auto !important;
+      row-gap:18px !important; column-gap:18px !important;
+      overscroll-behavior:contain !important;
+      padding:24px clamp(24px,4vw,64px) 48px !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+      position:relative !important; display:block !important; box-sizing:border-box !important;
+      width:100% !important; height:clamp(220px,22vw,320px) !important;
+      min-width:0 !important; min-height:0 !important; max-height:none !important;
+      aspect-ratio:auto !important; margin:0 !important;
+      padding:0 !important; overflow:hidden !important;
+      border:1px solid rgba(90,77,57,.2) !important; border-radius:4px !important;
+      background:#e8e3da !important; line-height:0 !important; font-size:0 !important;
+      appearance:none !important; -webkit-appearance:none !important;
+      cursor:zoom-in !important; box-shadow:0 5px 18px rgba(42,38,30,.07) !important;
+      transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+      position:absolute !important; inset:0 !important; display:block !important;
+      box-sizing:border-box !important; width:100% !important; height:100% !important;
+      min-width:0 !important; min-height:0 !important; max-width:none !important;
+      max-height:none !important; object-fit:contain !important;
+      object-position:center !important; margin:0 !important; padding:8px !important;
+      background:#e8e3da !important; pointer-events:none !important; transform:none !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover,
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible {
+      z-index:1 !important; border-color:rgba(90,77,57,.42) !important;
+      box-shadow:0 12px 28px rgba(42,38,30,.14) !important;
+      transform:translateY(-2px) !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
+      content:"Открыть фото" !important; position:absolute !important; right:10px !important;
+      bottom:10px !important; z-index:2 !important; padding:8px 11px !important;
+      border:1px solid rgba(255,255,255,.45) !important; border-radius:3px !important;
+      background:rgba(32,43,36,.9) !important; color:#fffefa !important;
+      font:500 12px/1.2 Arial,sans-serif !important; opacity:0 !important;
+      transition:opacity .18s ease !important; pointer-events:none !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover::after,
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible::after {
+      opacity:1 !important;
+    }
+    #categoryLightbox .category-lightbox__hint {
+      display:block !important; max-width:760px !important; margin-top:8px !important;
+      color:#59645c !important; font:400 14px/1.55 Arial,sans-serif !important;
     }
   }
-  @media (max-width: 720px) {
+  @media (min-width:961px) and (max-width:1399px) {
+    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+  }
+  @media (min-width:721px) and (max-width:960px) {
     #categoryLightbox[open] #categoryLightboxGrid {
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: 10px !important;
-      padding: 14px 14px 28px !important;
+      grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+      gap:14px !important; padding:18px 22px 32px !important;
     }
   }
-  @media (max-width: 420px) {
-    #categoryLightbox[open] #categoryLightboxGrid {
-      grid-template-columns: minmax(0, 1fr) !important;
+  @media (prefers-reduced-motion:reduce) {
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item,
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
+      transition:none !important;
     }
   }
 </style>
