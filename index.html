@@ -2832,6 +2832,7 @@
     if(!window.matchMedia('(min-width:721px)').matches)return;
     const important=(element,property,value)=>element.style.setProperty(property,value,'important');
     const columns=window.innerWidth>=1400?4:window.innerWidth>=961?3:2;
+    const tileHeight=Math.round(Math.max(230,Math.min(360,Math.min(window.innerWidth*0.3,window.innerHeight*0.34))));
     important(categoryDialog,'position','fixed');
     important(categoryDialog,'inset','0');
     important(categoryDialog,'width','100vw');
@@ -2848,10 +2849,16 @@
     important(categoryGrid,'flex','1 1 auto');
     important(categoryGrid,'min-height','0');
     important(categoryGrid,'grid-template-columns',`repeat(${columns},minmax(0,1fr))`);
-    important(categoryGrid,'grid-auto-rows','auto');
+    important(categoryGrid,'grid-auto-rows',`${tileHeight}px`);
     important(categoryGrid,'grid-auto-flow','row');
     important(categoryGrid,'align-content','start');
-    important(categoryGrid,'align-items','start');
+    important(categoryGrid,'align-items','stretch');
+    categoryGrid.querySelectorAll('.category-lightbox__item').forEach(item=>{
+      important(item,'height',`${tileHeight}px`);
+      important(item,'min-height',`${tileHeight}px`);
+      important(item,'align-self','stretch');
+      important(item,'aspect-ratio','auto');
+    });
     important(categoryGrid,'overflow-x','hidden');
     important(categoryGrid,'overflow-y','auto');
     important(categoryGrid,'gap','18px');
@@ -5101,16 +5108,16 @@
       display:grid !important; flex:1 1 auto !important; min-width:0 !important;
       min-height:0 !important; box-sizing:border-box !important;
       grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      grid-auto-flow:row !important; grid-auto-rows:auto !important;
-      align-content:start !important; align-items:start !important;
+      grid-auto-flow:row !important; grid-auto-rows:clamp(230px, min(30vw, 34vh), 360px) !important;
+      align-content:start !important; align-items:stretch !important;
       gap:18px !important; overflow-x:hidden !important; overflow-y:auto !important;
       overscroll-behavior:contain !important;
       padding:24px clamp(24px,4vw,64px) 48px !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
-      position:relative !important; display:block !important; align-self:start !important;
-      box-sizing:border-box !important; width:100% !important; height:auto !important;
-      min-width:0 !important; min-height:0 !important; aspect-ratio:4 / 3 !important;
+      position:relative !important; display:block !important; align-self:stretch !important;
+      box-sizing:border-box !important; width:100% !important; height:100% !important;
+      min-width:0 !important; min-height:0 !important; aspect-ratio:auto !important;
       margin:0 !important; padding:0 !important; overflow:hidden !important;
       border:1px solid rgba(90,77,57,.16) !important; border-radius:3px !important;
       background:#e8e3da !important; line-height:0 !important; font-size:0 !important;
@@ -5249,54 +5256,6 @@
     }
   }
 </style>
-<script id="desktop-gallery-tile-sizing-v83">
-(() => {
-  const dialog = document.getElementById('categoryLightbox');
-  const grid = document.getElementById('categoryLightboxGrid');
-  if (!dialog || !grid) return;
 
-  const desktopPointer = () => window.matchMedia('(min-width:721px) and (pointer:fine)').matches;
-  let frame = 0;
-
-  function sizeTiles() {
-    if (!desktopPointer()) {
-      grid.querySelectorAll('.category-lightbox__item').forEach((item) => {
-        item.style.removeProperty('height');
-        item.style.removeProperty('min-height');
-      });
-      return;
-    }
-    if (!dialog.open || !grid.clientWidth) return;
-
-    const firstTile = grid.querySelector('.category-lightbox__item');
-    if (!firstTile) return;
-    const width = firstTile.getBoundingClientRect().width;
-    if (!width) return;
-
-    // The image is absolutely positioned, so aspect-ratio alone can collapse
-    // the button in some desktop browsers. Give each tile a definite 4:3 frame.
-    const height = Math.round(width * 0.75);
-    grid.querySelectorAll('.category-lightbox__item').forEach((item) => {
-      item.style.setProperty('height', height + 'px', 'important');
-      item.style.setProperty('min-height', height + 'px', 'important');
-    });
-  }
-
-  function scheduleSizing() {
-    cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      frame = requestAnimationFrame(sizeTiles);
-    });
-  }
-
-  new MutationObserver(scheduleSizing).observe(dialog, {
-    attributes: true,
-    attributeFilter: ['open']
-  });
-  new MutationObserver(scheduleSizing).observe(grid, { childList: true });
-  window.addEventListener('resize', scheduleSizing, { passive: true });
-  window.addEventListener('orientationchange', scheduleSizing, { passive: true });
-})();
-</script>
 </body>
 </html>
