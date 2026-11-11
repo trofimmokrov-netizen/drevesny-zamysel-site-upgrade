@@ -144,7 +144,37 @@
   </style>
   <style id="mobile-offscreen-rendering">
     /* Set before body parsing so long mobile sections can defer their first
-       layout/paint instead of waiting for a late stylesheet near </body>. */
+       layout/paint instead of waiting for a late stylesheet near <style id="desktop-gallery-stable-frame-v77">
+  /* Reserve a stable desktop thumbnail frame before lazy images decode.
+     Contain keeps every edge of the original photo visible. */
+  @media (min-width:721px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-auto-rows:max-content !important;
+      align-items:start !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+      position:relative !important;
+      display:block !important;
+      width:100% !important;
+      height:auto !important;
+      min-height:0 !important;
+      aspect-ratio:4 / 3 !important;
+      overflow:hidden !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+      position:absolute !important;
+      inset:0 !important;
+      width:100% !important;
+      height:100% !important;
+      max-width:100% !important;
+      max-height:100% !important;
+      object-fit:contain !important;
+      object-position:center !important;
+      background:#e8e3da !important;
+    }
+  }
+</style>
+</body>. */
     @media (max-width: 900px), (pointer: coarse) {
       @supports (content-visibility: auto) {
         #products, #why, #materials, #process, #articles, #reviews, #contact,
@@ -2848,9 +2878,9 @@
     important(categoryGrid,'flex','1 1 auto');
     important(categoryGrid,'min-height','0');
     important(categoryGrid,'grid-template-columns',`repeat(${columns},minmax(0,1fr))`);
-    // Let each image's real aspect ratio determine its height. Fixed grid
-    // tracks and absolutely positioned images were squeezing photos into strips.
-    important(categoryGrid,'grid-auto-rows','auto');
+    // Fixed-ratio cells reserve their height before lazy images load. Fit the
+    // entire source photo inside each cell so portrait and landscape work stay intact.
+    important(categoryGrid,'grid-auto-rows','max-content');
     important(categoryGrid,'grid-auto-flow','row');
     important(categoryGrid,'align-content','start');
     important(categoryGrid,'align-items','start');
@@ -2864,22 +2894,23 @@
       important(item,'width','100%');
       important(item,'height','auto');
       important(item,'min-height','0');
-      important(item,'aspect-ratio','auto');
+      important(item,'aspect-ratio','4 / 3');
       important(item,'box-sizing','border-box');
-      important(item,'overflow','visible');
+      important(item,'overflow','hidden');
       important(item,'font-size','0');
       important(item,'line-height','0');
       const img=item.querySelector('img');
       if(img){
-        important(img,'position','static');
-        important(img,'inset','auto');
+        important(img,'position','absolute');
+        important(img,'inset','0');
         important(img,'display','block');
         important(img,'width','100%');
-        important(img,'height','auto');
+        important(img,'height','100%');
         important(img,'max-width','100%');
-        important(img,'max-height','none');
-        important(img,'object-fit','unset');
-        important(img,'object-position','unset');
+        important(img,'max-height','100%');
+        important(img,'object-fit','contain');
+        important(img,'object-position','center');
+        important(img,'background-color','#e8e3da');
       }
     });
   }
