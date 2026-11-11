@@ -5080,8 +5080,8 @@
     }
   }
 </style>
-<style id="desktop-gallery-clean-v82">
-  /* Desktop gallery: fixed thumbnail frames; show each full photo without cropping. */
+<style id="desktop-gallery-natural-v83">
+  /* Desktop gallery: stable rows with whole source photos visible. */
   @media (min-width:721px) {
     #categoryLightbox[open] {
       position:fixed !important; inset:0 !important; display:flex !important;
@@ -5092,8 +5092,8 @@
       background:#f4f1eb !important;
     }
     #categoryLightbox[open] .category-lightbox__head {
-      position:relative !important; z-index:2 !important; flex:0 0 auto !important;
-      box-sizing:border-box !important; width:100% !important; min-height:130px !important;
+      position:relative !important; z-index:3 !important; flex:0 0 auto !important;
+      box-sizing:border-box !important; width:100% !important; min-height:122px !important;
       padding:22px clamp(24px,4vw,64px) !important; background:#f8f6f1 !important;
       border-bottom:1px solid rgba(90,77,57,.18) !important;
     }
@@ -5101,29 +5101,30 @@
     #categoryLightbox[open] #categoryLightboxGrid {
       display:grid !important; flex:1 1 auto !important; min-width:0 !important;
       min-height:0 !important; box-sizing:border-box !important;
-      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      grid-auto-flow:row !important; grid-auto-rows:clamp(230px, min(30vw, 34vh), 360px) !important;
-      align-content:start !important; align-items:stretch !important;
+      grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+      grid-auto-flow:row !important; grid-auto-rows:min-content !important;
+      align-content:start !important; align-items:start !important;
       gap:18px !important; overflow-x:hidden !important; overflow-y:auto !important;
       overscroll-behavior:contain !important;
       padding:24px clamp(24px,4vw,64px) 48px !important;
+      scrollbar-gutter:stable !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
-      position:relative !important; display:block !important; align-self:stretch !important;
-      box-sizing:border-box !important; width:100% !important; height:100% !important;
+      position:relative !important; display:block !important; align-self:start !important;
+      box-sizing:border-box !important; width:100% !important; height:auto !important;
       min-width:0 !important; min-height:0 !important; aspect-ratio:auto !important;
       margin:0 !important; padding:0 !important; overflow:hidden !important;
-      border:1px solid rgba(90,77,57,.16) !important; border-radius:3px !important;
+      border:1px solid rgba(90,77,57,.16) !important; border-radius:4px !important;
       background:#e8e3da !important; line-height:0 !important; font-size:0 !important;
       appearance:none !important; -webkit-appearance:none !important; cursor:zoom-in !important;
       box-shadow:0 5px 18px rgba(42,38,30,.07) !important;
       transition:transform .24s ease,box-shadow .24s ease !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
-      position:absolute !important; inset:0 !important; display:block !important;
-      box-sizing:border-box !important; width:100% !important; height:100% !important;
+      position:static !important; inset:auto !important; display:block !important;
+      box-sizing:border-box !important; width:100% !important; height:auto !important;
       min-width:0 !important; min-height:0 !important; max-width:100% !important;
-      max-height:100% !important; object-fit:contain !important; object-position:center !important;
+      max-height:none !important; object-fit:contain !important; object-position:center !important;
       margin:0 !important; padding:8px !important; background:transparent !important;
       pointer-events:none !important; transform:none !important;
     }
@@ -5149,8 +5150,8 @@
       color:#59645c !important; font:400 14px/1.55 Arial,sans-serif !important;
     }
   }
-  @media (min-width:961px) and (max-width:1399px) {
-    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+  @media (min-width:1500px) {
+    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
   }
   @media (min-width:721px) and (max-width:960px) {
     #categoryLightbox[open] #categoryLightboxGrid {
