@@ -2848,9 +2848,12 @@
     important(categoryGrid,'flex','1 1 auto');
     important(categoryGrid,'min-height','0');
     important(categoryGrid,'grid-template-columns',`repeat(${columns},minmax(0,1fr))`);
-    important(categoryGrid,'grid-auto-rows','clamp(240px,24vw,340px)');
+    // Let each image's real aspect ratio determine its height. Fixed grid
+    // tracks and absolutely positioned images were squeezing photos into strips.
+    important(categoryGrid,'grid-auto-rows','auto');
     important(categoryGrid,'grid-auto-flow','row');
     important(categoryGrid,'align-content','start');
+    important(categoryGrid,'align-items','start');
     important(categoryGrid,'overflow-x','hidden');
     important(categoryGrid,'overflow-y','auto');
     important(categoryGrid,'gap','18px');
@@ -2859,24 +2862,24 @@
       important(item,'display','block');
       important(item,'position','relative');
       important(item,'width','100%');
-      important(item,'height','clamp(240px,24vw,340px)');
+      important(item,'height','auto');
       important(item,'min-height','0');
       important(item,'aspect-ratio','auto');
       important(item,'box-sizing','border-box');
-      important(item,'overflow','hidden');
+      important(item,'overflow','visible');
       important(item,'font-size','0');
       important(item,'line-height','0');
       const img=item.querySelector('img');
       if(img){
-        important(img,'position','absolute');
-        important(img,'inset','0');
+        important(img,'position','static');
+        important(img,'inset','auto');
         important(img,'display','block');
         important(img,'width','100%');
-        important(img,'height','100%');
-        important(img,'max-width','none');
+        important(img,'height','auto');
+        important(img,'max-width','100%');
         important(img,'max-height','none');
-        important(img,'object-fit','contain');
-        important(img,'object-position','center');
+        important(img,'object-fit','unset');
+        important(img,'object-position','unset');
       }
     });
   }
@@ -5099,9 +5102,9 @@
     }
   }
 </style>
-<style id="desktop-gallery-fixed-height-v75">
-  /* Desktop gallery: fixed 4:3 frames with the complete image contained inside.
-     Mobile gallery rules remain unchanged. */
+<style id="desktop-gallery-natural-ratio-v76">
+  /* Desktop: display every complete photo at its natural aspect ratio.
+     The phone layout remains unchanged. */
   @media (min-width:721px) {
     #categoryLightbox[open] {
       position:fixed !important; inset:0 !important; display:flex !important;
@@ -5122,39 +5125,36 @@
       display:grid !important; flex:1 1 auto !important; min-width:0 !important;
       min-height:0 !important; box-sizing:border-box !important;
       grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      /* Explicit track size is essential: thumbnails are absolutely positioned,
-         so intrinsic max-content sizing can collapse the desktop grid rows. */
-      grid-auto-flow:row !important; grid-auto-rows:clamp(220px,22vw,320px) !important;
-      align-content:start !important; align-items:start !important; gap:18px !important;
+      grid-auto-flow:row !important; grid-auto-rows:auto !important;
+      align-content:start !important; align-items:start !important;
+      gap:18px !important; row-gap:18px !important; column-gap:18px !important;
       overflow-x:hidden !important; overflow-y:auto !important;
-      row-gap:18px !important; column-gap:18px !important;
       overscroll-behavior:contain !important;
       padding:24px clamp(24px,4vw,64px) 48px !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
-      position:relative !important; display:block !important; box-sizing:border-box !important;
-      width:100% !important; height:clamp(220px,22vw,320px) !important;
+      position:relative !important; display:block !important; align-self:start !important;
+      box-sizing:border-box !important; width:100% !important; height:auto !important;
       min-width:0 !important; min-height:0 !important; max-height:none !important;
-      aspect-ratio:auto !important; margin:0 !important;
-      padding:0 !important; overflow:hidden !important;
-      border:1px solid rgba(90,77,57,.2) !important; border-radius:4px !important;
-      background:#e8e3da !important; line-height:0 !important; font-size:0 !important;
-      appearance:none !important; -webkit-appearance:none !important;
-      cursor:zoom-in !important; box-shadow:0 5px 18px rgba(42,38,30,.07) !important;
-      transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease !important;
+      aspect-ratio:auto !important; margin:0 !important; padding:0 !important;
+      overflow:visible !important; border:0 !important; border-radius:3px !important;
+      background:transparent !important; line-height:0 !important; font-size:0 !important;
+      appearance:none !important; -webkit-appearance:none !important; cursor:zoom-in !important;
+      box-shadow:0 5px 18px rgba(42,38,30,.07) !important;
+      transition:transform .24s ease,box-shadow .24s ease !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
-      position:absolute !important; inset:0 !important; display:block !important;
-      box-sizing:border-box !important; width:100% !important; height:100% !important;
-      min-width:0 !important; min-height:0 !important; max-width:none !important;
-      max-height:none !important; object-fit:contain !important;
-      object-position:center !important; margin:0 !important; padding:8px !important;
-      background:#e8e3da !important; pointer-events:none !important; transform:none !important;
+      position:static !important; inset:auto !important; display:block !important;
+      box-sizing:border-box !important; width:100% !important; height:auto !important;
+      min-width:0 !important; min-height:0 !important; max-width:100% !important;
+      max-height:none !important; aspect-ratio:auto !important; object-fit:unset !important;
+      object-position:unset !important; margin:0 !important; padding:0 !important;
+      border-radius:3px !important; background:transparent !important;
+      pointer-events:none !important; transform:none !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover,
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible {
-      z-index:1 !important; border-color:rgba(90,77,57,.42) !important;
-      box-shadow:0 12px 28px rgba(42,38,30,.14) !important;
+      z-index:1 !important; box-shadow:0 12px 28px rgba(42,38,30,.16) !important;
       transform:translateY(-2px) !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
