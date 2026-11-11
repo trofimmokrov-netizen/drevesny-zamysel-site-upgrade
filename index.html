@@ -2921,9 +2921,9 @@
           if(imageRevealQueued)return;
           imageRevealQueued=true;
           const ready=()=>window.requestAnimationFrame(()=>{
-            if(window.matchMedia('(min-width:721px)').matches&&img.naturalWidth&&img.naturalHeight){
-              item.style.setProperty('aspect-ratio',`${img.naturalWidth} / ${img.naturalHeight}`,'important');
-            }
+            // Keep desktop gallery cards on a fixed ratio. The full source image
+            // is contained inside the frame, so portrait photos cannot collapse
+            // grid rows or make neighboring thumbnails look cropped.
             img.classList.remove('gallery-image-loading');
             img.classList.add('gallery-image-ready');
             revealCard();
@@ -5079,8 +5079,8 @@
     }
   }
 </style>
-<style id="desktop-gallery-clean-v81">
-  /* Desktop gallery: stable cards; each full photo fits inside its frame. */
+<style id="desktop-gallery-clean-v82">
+  /* Desktop gallery: fixed thumbnail frames; show each full photo without cropping. */
   @media (min-width:721px) {
     #categoryLightbox[open] {
       position:fixed !important; inset:0 !important; display:flex !important;
