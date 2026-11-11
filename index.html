@@ -5249,5 +5249,54 @@
     }
   }
 </style>
+<script id="desktop-gallery-tile-sizing-v83">
+(() => {
+  const dialog = document.getElementById('categoryLightbox');
+  const grid = document.getElementById('categoryLightboxGrid');
+  if (!dialog || !grid) return;
+
+  const desktopPointer = () => window.matchMedia('(min-width:721px) and (pointer:fine)').matches;
+  let frame = 0;
+
+  function sizeTiles() {
+    if (!desktopPointer()) {
+      grid.querySelectorAll('.category-lightbox__item').forEach((item) => {
+        item.style.removeProperty('height');
+        item.style.removeProperty('min-height');
+      });
+      return;
+    }
+    if (!dialog.open || !grid.clientWidth) return;
+
+    const firstTile = grid.querySelector('.category-lightbox__item');
+    if (!firstTile) return;
+    const width = firstTile.getBoundingClientRect().width;
+    if (!width) return;
+
+    // The image is absolutely positioned, so aspect-ratio alone can collapse
+    // the button in some desktop browsers. Give each tile a definite 4:3 frame.
+    const height = Math.round(width * 0.75);
+    grid.querySelectorAll('.category-lightbox__item').forEach((item) => {
+      item.style.setProperty('height', height + 'px', 'important');
+      item.style.setProperty('min-height', height + 'px', 'important');
+    });
+  }
+
+  function scheduleSizing() {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(sizeTiles);
+    });
+  }
+
+  new MutationObserver(scheduleSizing).observe(dialog, {
+    attributes: true,
+    attributeFilter: ['open']
+  });
+  new MutationObserver(scheduleSizing).observe(grid, { childList: true });
+  window.addEventListener('resize', scheduleSizing, { passive: true });
+  window.addEventListener('orientationchange', scheduleSizing, { passive: true });
+})();
+</script>
 </body>
 </html>
