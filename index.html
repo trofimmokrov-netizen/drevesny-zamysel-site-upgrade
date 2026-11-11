@@ -1575,6 +1575,38 @@
 
 
   <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" />
+
+<style id="desktop-gallery-natural-photo-sizing">
+  /* Desktop gallery: size each card from the full photo's own aspect ratio.
+     Avoid fixed-height tiles so portrait and landscape photos remain complete. */
+  @media (min-width: 721px) {
+    .category-lightbox__grid {
+      grid-auto-rows: auto !important;
+      grid-auto-flow: row !important;
+      align-content: start !important;
+      align-items: start !important;
+    }
+    .category-lightbox__item {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      align-self: start !important;
+      overflow: hidden;
+    }
+    .category-lightbox__item img {
+      position: static !important;
+      inset: auto !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: center;
+    }
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -2828,43 +2860,6 @@
   }
   const categoryDialog = document.getElementById('categoryLightbox');
   const categoryGrid = document.getElementById('categoryLightboxGrid');
-  function enforceDesktopCategoryGalleryLayout(){
-    if(!window.matchMedia('(min-width:721px)').matches)return;
-    const important=(element,property,value)=>element.style.setProperty(property,value,'important');
-    const columns=window.innerWidth>=1400?4:window.innerWidth>=961?3:2;
-    const tileHeight=Math.round(Math.max(230,Math.min(360,Math.min(window.innerWidth*0.3,window.innerHeight*0.34))));
-    important(categoryDialog,'position','fixed');
-    important(categoryDialog,'inset','0');
-    important(categoryDialog,'width','100vw');
-    important(categoryDialog,'height','100vh');
-    important(categoryDialog,'height','100dvh');
-    important(categoryDialog,'max-width','none');
-    important(categoryDialog,'max-height','none');
-    important(categoryDialog,'margin','0');
-    important(categoryDialog,'padding','0');
-    important(categoryDialog,'display','flex');
-    important(categoryDialog,'flex-direction','column');
-    important(categoryDialog,'overflow','hidden');
-    important(categoryGrid,'display','grid');
-    important(categoryGrid,'flex','1 1 auto');
-    important(categoryGrid,'min-height','0');
-    important(categoryGrid,'grid-template-columns',`repeat(${columns},minmax(0,1fr))`);
-    important(categoryGrid,'grid-auto-rows',`${tileHeight}px`);
-    important(categoryGrid,'grid-auto-flow','row');
-    important(categoryGrid,'align-content','start');
-    important(categoryGrid,'align-items','stretch');
-    categoryGrid.querySelectorAll('.category-lightbox__item').forEach(item=>{
-      important(item,'height',`${tileHeight}px`);
-      important(item,'min-height',`${tileHeight}px`);
-      important(item,'align-self','stretch');
-      important(item,'aspect-ratio','auto');
-    });
-    important(categoryGrid,'overflow-x','hidden');
-    important(categoryGrid,'overflow-y','auto');
-    important(categoryGrid,'gap','18px');
-    important(categoryGrid,'padding','24px clamp(24px,4vw,64px) 48px');
-  }
-  window.addEventListener('resize',()=>{if(categoryDialog.open)enforceDesktopCategoryGalleryLayout();},{passive:true});
   let categoryGalleryRevealObserver=null;
   let categoryPreviewImages = []; let categoryPreviewIndex = 0;
   const categoryPreview = document.getElementById('categoryPhotoPreview');
@@ -3000,7 +2995,6 @@
         categoryGrid.appendChild(item);
         if(categoryGalleryRevealObserver) categoryGalleryRevealObserver.observe(item); else enterGalleryCard();
       });
-      enforceDesktopCategoryGalleryLayout();
       categoryDialog.showModal();
       document.documentElement.classList.add('gallery-open');
       document.body.classList.add('gallery-open');
