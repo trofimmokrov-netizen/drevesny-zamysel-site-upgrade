@@ -5124,6 +5124,30 @@
       grid-template-columns: minmax(0, 1fr) !important;
     }
   }
+
+  /* Desktop gallery: keep a stable frame for every photo. Portrait and landscape
+     sources stay fully visible inside the tile and cannot overlap adjacent rows. */
+  @media (min-width: 721px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      grid-auto-rows: clamp(220px, 22vw, 320px) !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item {
+      height: clamp(220px, 22vw, 320px) !important;
+      min-height: 220px !important;
+      aspect-ratio: 4 / 3 !important;
+      overflow: hidden !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > .category-lightbox__item > img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+  }
 </style>
 </body>
 </html>
