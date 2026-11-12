@@ -55,9 +55,10 @@
     }
   });
 
-  document.addEventListener('submit', (event) => {
-    if (!event.target.matches('#trainingChatForm')) return;
-    const interest = event.target.querySelector('#trainingChatTopic')?.textContent || '';
+  // This is a prepared handoff, not a confirmed Bitrix lead: the visitor
+  // still has to send the copied message in the chat.
+  window.addEventListener('site:request-handoff-prepared', (event) => {
+    const interest = event.detail?.interest || '';
     if (/франшиз/i.test(interest)) reachGoal('franchise_request_prepared');
     else if (/партнёр|партнер|регион/i.test(interest)) reachGoal('partnership_request_prepared');
     else if (/обучен/i.test(interest)) reachGoal('training_request_prepared');

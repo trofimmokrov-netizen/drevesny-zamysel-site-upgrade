@@ -1,0 +1,11 @@
+Обновление галереи для компьютеров — v30
+
+Причина: GitHub Pages сейчас отдаёт старый index.html (в нём нет последней десктопной раскладки; опубликован query gallery-v19). В локальном index.html уже есть исправленная сетка с целыми фотографиями. Мобильные правила сохранены.
+
+Установить:
+1. Распакуйте gallery-desktop-fix-v30.zip в корень локального репозитория drevesny-zamysel-site-upgrade, с заменой index.html и добавлением папки assets/images/portfolio/thumbnails.
+2. В GitHub Desktop убедитесь, что меняются корневой index.html и папка assets/images/portfolio/thumbnails.
+3. Commit to main, затем Push origin. GitHub Pages публикует автоматически.
+4. После публикации откройте сайт на компьютере с Ctrl+F5. В актуальном HTML должны присутствовать desktop-gallery-contained-photo-tiles-v42 и путь /portfolio/thumbnails/.
+
+На опубликованном сайте сейчас всё ещё старая версия, поэтому локальные изменения пока не видны посетителям.

@@ -327,3 +327,313 @@
     word-break: normal !important;
   }
 }
+
+/* Desktop category gallery: fixed-ratio cards contain the complete photo. */
+@media (min-width: 721px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    align-content: start !important;
+    align-items: start !important;
+    gap: 16px !important;
+    padding: 24px clamp(24px, 4vw, 64px) 48px !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(90, 77, 57, .16) !important;
+    border-radius: 4px !important;
+    background: #e8e3da !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    padding: 8px !important;
+    background: #e8e3da !important;
+    pointer-events: none !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1200px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 900px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+/* v49: predictable desktop gallery thumbnails. Every photo fits inside a
+   regular card; clicking it opens the large photo viewer with navigation. */
+@media (min-width: 721px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    align-content: start !important;
+    align-items: start !important;
+    gap: 16px !important;
+    padding: 24px clamp(24px, 4vw, 64px) 48px !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+    position: relative !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: 4 / 3 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(90, 77, 57, .14) !important;
+    border-radius: 4px !important;
+    background: #e8e3da !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    padding: 8px !important;
+    background: #e8e3da !important;
+    pointer-events: none !important;
+  }
+}
+@media (min-width: 721px) and (max-width: 1200px) {
+  #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 12px !important; }
+}
+@media (min-width: 721px) and (max-width: 900px) {
+  #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px !important; }
+}
+@media (min-width: 721px) {
+  #categoryLightbox .category-lightbox__hint {
+    display: block;
+    max-width: 620px;
+    margin-top: 8px;
+    color: #657067;
+    font: 400 13px/1.5 Arial, sans-serif;
+  }
+  #categoryLightbox .category-lightbox__item { cursor: zoom-in !important; }
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
+    content: "Открыть фото";
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+    padding: 7px 10px;
+    border: 1px solid rgba(255,255,255,.55);
+    border-radius: 2px;
+    background: rgba(28,35,29,.78);
+    color: #fff;
+    font: 500 12px/1.2 Arial, sans-serif;
+    letter-spacing: .02em;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events: none;
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover::after,
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover {
+    border-color: rgba(90,77,57,.38) !important;
+    box-shadow: 0 12px 28px rgba(42,38,30,.14) !important;
+    transform: translateY(-2px) !important;
+  }
+}
+
+/* v64: explicit desktop photo frames prevent percentage-height collapse in
+   auto-height grid rows, which can leave only a horizontal slice visible.
+   Each full image is contained in its frame.
+   Mobile gallery rules stay unchanged. */
+@media (min-width: 721px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    grid-auto-rows: auto !important;
+    align-content: start !important;
+    align-items: start !important;
+    column-count: initial !important;
+    column-gap: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    gap: 16px !important;
+    padding: 24px clamp(24px, 4vw, 64px) 48px !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+    position: relative !important;
+    display: grid !important;
+    place-items: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: clamp(220px, 24vw, 360px) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: hidden !important;
+    break-inside: auto !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    border: 1px solid rgba(90, 77, 57, .16) !important;
+    border-radius: 4px !important;
+    background: #e8e3da !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1200px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 900px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* v65: explicit desktop grid rows prevent thumbnail frames from collapsing
+   into narrow strips when the gallery is open. Phone rules stay unchanged. */
+@media (min-width: 721px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    display: grid !important;
+    grid-auto-flow: row !important;
+    grid-auto-rows: clamp(220px, 24vw, 360px) !important;
+    align-content: start !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+    position: relative !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid rgba(90, 77, 57, .16) !important;
+    border-radius: 4px !important;
+    background: #e8e3da !important;
+  }
+
+  #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    padding: 8px !important;
+    background: transparent !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-auto-rows: clamp(220px, 25vw, 320px) !important;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 900px) {
+  #categoryLightbox[open] #categoryLightboxGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: clamp(220px, 34vw, 320px) !important;
+  }
+}
+
+/* Touch devices can report a wider layout viewport than their physical
+   screen. Keep the partnership choices readable instead of squeezing three
+   cards side by side on phones and compact tablets. */
+@media (max-width: 1100px) and (pointer: coarse) {
+  #partnership .training-note--partner > .cooperation-overview,
+  #partnership .cooperation-overview {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  #partnership .cooperation-overview__card {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+}
+
+/* 2026-11-11 v74: desktop gallery layout is consolidated in index.html after
+   the shared stylesheet so historical browser-specific rules cannot override it. */
