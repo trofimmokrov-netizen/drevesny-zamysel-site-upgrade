@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5253,7 +5251,163 @@
     }
   }
 </style>
+<style id="mobile-gallery-and-review-centering-v1">
+  /* Show complete project photos in the mobile gallery: use their natural
+     proportions instead of the legacy fixed 4:3 frame. */
+  @media (max-width:720px) {
+    #categoryLightbox[open] {
+      position:fixed !important;
+      inset:0 !important;
+      display:flex !important;
+      flex-direction:column !important;
+      box-sizing:border-box !important;
+      width:100vw !important;
+      height:100vh !important;
+      height:100dvh !important;
+      max-width:none !important;
+      max-height:none !important;
+      margin:0 !important;
+      padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom) !important;
+      overflow:hidden !important;
+      border:0 !important;
+      background:#f4f1eb !important;
+    }
+    #categoryLightbox[open] .category-lightbox__head {
+      flex:0 0 auto !important;
+      justify-content:center !important;
+      min-height:84px !important;
+      padding:14px 64px !important;
+      text-align:center !important;
+    }
+    #categoryLightbox[open] .category-lightbox__head > div { min-width:0; }
+    #categoryLightbox[open] .category-lightbox__head h2 {
+      font-size:clamp(21px,6vw,28px) !important;
+      line-height:1.12 !important;
+      text-align:center !important;
+    }
+    #categoryLightbox[open] .category-lightbox__count {
+      display:block !important;
+      margin-top:5px !important;
+      text-align:center !important;
+    }
+    #categoryLightbox[open] .category-lightbox__close {
+      position:absolute !important;
+      top:50% !important;
+      right:14px !important;
+      transform:translateY(-50%) !important;
+      width:42px !important;
+      height:42px !important;
+      flex-basis:42px !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid {
+      display:grid !important;
+      flex:1 1 auto !important;
+      min-width:0 !important;
+      min-height:0 !important;
+      grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+      grid-auto-rows:max-content !important;
+      grid-auto-flow:row !important;
+      align-content:start !important;
+      align-items:start !important;
+      gap:12px !important;
+      padding:14px 14px calc(26px + env(safe-area-inset-bottom)) !important;
+      overflow-x:hidden !important;
+      overflow-y:auto !important;
+      overscroll-behavior:contain !important;
+      scrollbar-width:thin;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+      position:relative !important;
+      display:block !important;
+      align-self:start !important;
+      box-sizing:border-box !important;
+      width:100% !important;
+      height:auto !important;
+      min-height:0 !important;
+      aspect-ratio:auto !important;
+      margin:0 !important;
+      padding:5px !important;
+      overflow:hidden !important;
+      border:1px solid rgba(90,77,57,.14) !important;
+      border-radius:5px !important;
+      background:#fffdfa !important;
+      box-shadow:0 4px 14px rgba(42,38,30,.08) !important;
+      line-height:0 !important;
+      font-size:0 !important;
+      transform:none !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+      position:static !important;
+      inset:auto !important;
+      display:block !important;
+      width:100% !important;
+      height:auto !important;
+      min-width:0 !important;
+      min-height:0 !important;
+      max-width:100% !important;
+      max-height:none !important;
+      aspect-ratio:auto !important;
+      object-fit:contain !important;
+      object-position:center !important;
+      padding:0 !important;
+      background:#fffdfa !important;
+      transform:none !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after { content:none !important; }
+    .leonid-gallery { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:10px !important; }
+    .leonid-photo {
+      height:auto !important;
+      min-height:0 !important;
+      aspect-ratio:auto !important;
+      padding:4px !important;
+      border:1px solid rgba(90,77,57,.14) !important;
+      border-radius:5px !important;
+      background:#fffdfa !important;
+    }
+    .leonid-photo img {
+      display:block !important;
+      width:100% !important;
+      height:auto !important;
+      max-height:none !important;
+      aspect-ratio:auto !important;
+      object-fit:contain !important;
+      object-position:center !important;
+      padding:0 !important;
+      background:#fffdfa !important;
+    }
+  }
+  @media (max-width:360px) {
+    #categoryLightbox[open] #categoryLightboxGrid { gap:8px !important; padding-inline:10px !important; }
+    .leonid-gallery { gap:8px !important; }
+  }
+
+  /* Center the Yandex summary, review heading, author and review copy on every screen. */
+  #reviews .reviews-inner > .section-label,
+  #reviews .reviews-inner > .section-title,
+  #reviews .reviews-inner > .section-sub { text-align:center !important; margin-inline:auto !important; }
+  #reviews .reviews-card {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:18px !important;
+    text-align:center !important;
+  }
+  #reviews .reviews-card > div { display:flex; flex-direction:column; align-items:center; width:100%; }
+  #reviews .reviews-yandex { flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:10px !important; text-align:center !important; }
+  #reviews .reviews-yandex > div:last-child { text-align:center !important; }
+  #reviews .reviews-yandex strong,
+  #reviews .reviews-yandex span,
+  #reviews .reviews-rating { text-align:center !important; }
+  #reviews .reviews-text { width:min(100%,650px) !important; margin:12px auto 0 !important; text-align:center !important; }
+  #reviews .reviews-button { align-self:center !important; margin-inline:auto !important; }
+  #reviews .review-card { align-items:center !important; text-align:center !important; }
+  #reviews .review-card__meta { width:100% !important; align-items:center !important; justify-content:center !important; text-align:center !important; }
+  #reviews .review-card__meta strong,
+  #reviews .review-card__meta time,
+  #reviews .review-card blockquote { width:100% !important; text-align:center !important; }
+  #reviews .review-card__source { align-self:center !important; justify-content:center !important; margin-inline:auto !important; text-align:center !important; }
+  #reviews .reviews-more summary { margin-inline:auto !important; text-align:center !important; }
+</style>
 
 </body>
 </html>
->>>>>>> 9bf825661981dcf1703b36bedbe8ed3bce49f481
