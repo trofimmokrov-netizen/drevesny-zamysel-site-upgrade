@@ -72,7 +72,7 @@
     window.addEventListener("scroll", pauseHeroWhileScrolling, { passive: true });
   }
   const homeHeroItems = document.querySelectorAll(
-    ".hero-content .hero-label, .hero-content .hero-title, .hero-content .hero-sub, .hero-content .hero-note, .hero-content .hero-stats"
+    ".hero-content .hero-label, .hero-content .hero-title, .hero-content .hero-achievement, .hero-content .hero-sub, .hero-content .hero-note, .hero-content .hero-stats"
   );
   const projectHeroItems = hero && !hero.querySelector(".hero-content")
     ? hero.querySelectorAll(".hero-copy .eyebrow, .hero-copy h1, .hero-copy > p:not(.eyebrow), .hero-copy .price-note, .hero-copy .jump")
