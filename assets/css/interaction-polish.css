@@ -553,64 +553,31 @@
   }
 }
 
-/* v65: explicit desktop grid rows prevent thumbnail frames from collapsing
-   into narrow strips when the gallery is open. Phone rules stay unchanged. */
+/* Desktop gallery tiles follow the source photo ratio. Do not assign a fixed
+   row height: that squeezes portrait/landscape thumbnails into strips. */
 @media (min-width: 721px) {
   #categoryLightbox[open] #categoryLightboxGrid {
-    display: grid !important;
     grid-auto-flow: row !important;
-    grid-auto-rows: clamp(220px, 24vw, 360px) !important;
-    align-content: start !important;
-    align-items: stretch !important;
-    gap: 16px !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+    grid-auto-rows: auto !important;
+    align-items: start !important;
   }
 
   #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
-    position: relative !important;
-    display: grid !important;
-    place-items: center !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-width: 0 !important;
+    display: block !important;
+    height: auto !important;
     min-height: 0 !important;
     aspect-ratio: auto !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1px solid rgba(90, 77, 57, .16) !important;
-    border-radius: 4px !important;
-    background: #e8e3da !important;
   }
 
   #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
-    position: absolute !important;
-    inset: 0 !important;
-    display: block !important;
+    position: static !important;
+    inset: auto !important;
     width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
     object-fit: contain !important;
-    object-position: center !important;
-    padding: 8px !important;
-    background: transparent !important;
-  }
-}
-
-@media (min-width: 901px) and (max-width: 1200px) {
-  #categoryLightbox[open] #categoryLightboxGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    grid-auto-rows: clamp(220px, 25vw, 320px) !important;
-  }
-}
-
-@media (min-width: 721px) and (max-width: 900px) {
-  #categoryLightbox[open] #categoryLightboxGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    grid-auto-rows: clamp(220px, 34vw, 320px) !important;
   }
 }
 

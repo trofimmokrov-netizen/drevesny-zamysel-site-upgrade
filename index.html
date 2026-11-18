@@ -129,7 +129,7 @@
   <link rel="stylesheet" href="./assets/css/reviews.css" />
   <!-- Fetch the small interaction layer early, then apply it after page styles
        so hover, focus and active feedback wins the cascade without a late fetch. -->
-  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" as="style" />
+  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261113-gallery-v23" as="style" />
   <script src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
   <script src="./assets/js/yandex-metrika-goals.js?v=20261110-goals-v1" defer></script>
   <style id="early-mobile-compositing">
@@ -1360,6 +1360,13 @@
     .why-times li { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding-top:9px; border-top:1px solid var(--border); color:var(--text-secondary); font-size:12px; line-height:1.45; }
     .why-times strong { color:var(--text-primary); font-weight:600; white-space:nowrap; }
     .products-slider { margin-top:46px; }
+    .portfolio-catalog-link { display:flex; align-items:center; justify-content:space-between; gap:24px; margin:18px 0 0; padding:20px 24px; border:1px solid var(--border); background:#fffefa; color:inherit; text-decoration:none; transition:border-color .25s ease,transform .3s ease,box-shadow .3s ease; }
+    .portfolio-catalog-link:hover { transform:translateY(-2px); border-color:#c7b99f; box-shadow:0 12px 26px rgba(48,45,37,.06); }
+    .portfolio-catalog-copy { display:grid; gap:5px; }
+    .portfolio-catalog-copy strong { color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:22px; font-weight:400; }
+    .portfolio-catalog-copy span { color:var(--text-secondary); font-size:13px; line-height:1.6; }
+    .portfolio-catalog-action { flex:none; color:var(--btn-bg); font-size:13px; font-weight:650; }
+    .portfolio-catalog-link:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
     .product-card { border:1px solid var(--border); border-radius:2px; background:#fffefa; transition:border-color .25s ease,transform .3s ease; }
     .product-card:hover { border-color:#c7b99f; transform:translateY(-3px); }
     .product-visual { height:250px; background:#eee9e0; }
@@ -1369,6 +1376,7 @@
     .product-body h3 { margin-bottom:10px; font-family:'Cormorant Garamond',Georgia,serif; font-size:22px; font-weight:400; line-height:1.25; }
     .product-body p { font-size:13px; line-height:1.75; }
     .product-body .btn-card { min-height:46px; padding:12px 14px; border:1px solid var(--btn-bg); border-radius:2px; font-size:12px; letter-spacing:.02em; transition:background-color .2s ease,color .2s ease,border-color .2s ease; }
+    .product-body a.btn-card { display:flex; align-items:center; justify-content:center; font-family:inherit; line-height:1.35; text-decoration:none; }
     .product-body .btn-card:first-of-type { background:var(--btn-bg); color:var(--white); }
     .product-body .btn-card:first-of-type:hover { background:#26392c; border-color:#26392c; }
     .product-body .btn-card:last-of-type { background:transparent; color:var(--btn-bg); }
@@ -1384,6 +1392,8 @@
       #why .why-item:nth-child(even) { background:#f2efe9; }
       .product-visual { height:230px; }
       .product-body { padding:22px; }
+      .portfolio-catalog-link { align-items:flex-start; flex-direction:column; gap:12px; padding:18px; }
+      .portfolio-catalog-copy strong { font-size:21px; }
     }
     
     @media (max-width:767px) {
@@ -1574,7 +1584,7 @@
 </style>
 
 
-  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261110-gallery-v19" />
+  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261113-gallery-v23" />
 
 <style id="desktop-gallery-natural-photo-sizing">
   /* Desktop gallery: size each card from the full photo's own aspect ratio.
@@ -1767,6 +1777,10 @@
         <span class="builder-entry__copy"><strong>Примерьте лестницу в 3D</strong><span>Настройте форму, размеры, каркас и древесину в интерактивном конструкторе</span></span>
         <span class="builder-entry__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
       </a>
+      <a class="portfolio-catalog-link" href="./assets/docs/katalog-rabot-drevesny-zamysel.pdf" download="Каталог-работ-Древесный-Замысел.pdf" aria-label="Скачать PDF-каталог работ Древесного Замысла">
+        <span class="portfolio-catalog-copy"><strong>Каталог выполненных работ</strong><span>Закрытые и открытые лестницы, обшивка бетона и ограждения. PDF для просмотра и отправки.</span></span>
+        <span class="portfolio-catalog-action">Скачать PDF <span aria-hidden="true">↓</span></span>
+      </a>
       <div class="swiper products-slider" id="work-examples">
         <div class="swiper-wrapper">
           <!-- Слайд 1 -->
@@ -1779,8 +1793,8 @@
                 <h3>Лестницы закрытого типа</h3>
                 <p>Ступени и подступёнки образуют цельный, аккуратный марш. Подходит для классических и современных интерьеров. Каркас изготавливаем из швеллера или листового металла.</p>
                 <ul class="product-fit" aria-label="Особенности закрытой лестницы"><li>Подступёнки</li><li>Цельный силуэт</li><li>Каркас под отделку</li></ul>
-                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
-                <button class="btn-card" type="button" id="btn-gallery-closedType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы закрытого типа">Примеры работ</button>
+                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#work-examples" id="btn-gallery-closedType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы закрытого типа">Примеры работ</a>
               </div>
             </article>
           </div>
@@ -1795,8 +1809,8 @@
                 <h3>Лестницы открытого типа</h3>
                 <p>Ступени без подступёнков пропускают свет и визуально облегчают интерьер. Каркас остаётся частью дизайна: можно выбрать форму косоура и цвет окраски.</p>
                 <ul class="product-fit" aria-label="Особенности открытой лестницы"><li>Больше света</li><li>Открытые ступени</li><li>Выбор каркаса</li></ul>
-                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
-                <button class="btn-card" type="button" id="btn-gallery-openType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы открытого типа">Примеры работ</button>
+                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#work-examples" id="btn-gallery-openType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы открытого типа">Примеры работ</a>
               </div>
             </article>
           </div>
@@ -1811,8 +1825,8 @@
                 <h3>Обшивка бетонных лестниц</h3>
                 <p>Превратим бетонное основание в завершённую лестницу: подберём отделку ступеней, подступёнков, боковин и ограждения под интерьер.</p>
                 <ul class="product-fit" aria-label="Особенности обшивки бетонной лестницы"><li>Для готового бетона</li><li>Дерево и отделка</li><li>Единый стиль</li></ul>
-                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
-                <button class="btn-card" type="button" id="btn-gallery-covering" aria-haspopup="dialog" aria-label="Открыть примеры работ: обшивка бетонных лестниц">Примеры работ</button>
+                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#work-examples" id="btn-gallery-covering" aria-haspopup="dialog" aria-label="Открыть примеры работ: обшивка бетонных лестниц">Примеры работ</a>
               </div>
             </article>
           </div>
@@ -1827,8 +1841,8 @@
                 <h3>Ограждения</h3>
                 <p>Изготавливаем ограждения, которые поддерживают стиль лестницы и помогают безопасно пользоваться маршем: деревянные, металлические, комбинированные и стеклянные.</p>
                 <ul class="product-fit" aria-label="Варианты ограждений"><li>Металл</li><li>Стекло</li><li>Дерево и ковка</li></ul>
-                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
-                <button class="btn-card" type="button" id="btn-gallery-fences" aria-haspopup="dialog" aria-label="Открыть примеры работ: ограждения">Примеры работ</button>
+                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#work-examples" id="btn-gallery-fences" aria-haspopup="dialog" aria-label="Открыть примеры работ: ограждения">Примеры работ</a>
               </div>
             </article>
           </div>
@@ -1843,8 +1857,8 @@
                 <h3>Деревянные изделия</h3>
                 <p>Изготавливаем мебель и детали интерьера из дерева: шкафы, столы, стеновые панели и перегородки для зонирования.</p>
                 <ul class="product-fit" aria-label="Примеры изделий"><li>Мебель</li><li>Стеновые панели</li><li>Под размеры проекта</li></ul>
-                <button class="btn-card" type="button" onclick="openForm(this)">Рассчитать стоимость</button>
-                <button class="btn-card" type="button" id="btn-gallery-wood" aria-haspopup="dialog" aria-label="Открыть примеры работ: деревянные изделия">Примеры работ</button>
+                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#work-examples" id="btn-gallery-wood" aria-haspopup="dialog" aria-label="Открыть примеры работ: деревянные изделия">Примеры работ</a>
               </div>
             </article>
           </div>
@@ -2246,6 +2260,8 @@
               h.parentNode.insertBefore(s,h);
               fallbackTimer=w.setTimeout(function(){if(!formReady)showFallback();},12000);
             }
+            // Product CTAs can request the lazy form immediately after scrolling to it.
+            w.loadBitrixLeadForm=loadForm;
             var formHost=d.querySelector('#contact .form-right');
             if('IntersectionObserver' in w && formHost){
               var observer=new IntersectionObserver(function(entries){
@@ -2503,20 +2519,17 @@
         </div>
         <button class="training-chat-trigger" type="button" data-chat-interest="Партнёрство по проектам">Оставить запрос на партнёрство <span aria-hidden="true">↗</span></button>
         <a class="training-form-link" href="#contact" data-partnership-cta="projects" data-interest="Партнёрство по проектам" data-contact-note="Запрос по сотрудничеству в совместных проектах. Оставьте телефон и укажите город или направление работы — менеджер свяжется, чтобы обсудить возможный формат.">Оставить телефон через форму</a>
-        <button class="training-chat-trigger training-chat-trigger--secondary" type="button" data-chat-interest="Предварительный интерес к будущей франшизе">Оставить предварительный запрос по франшизе <span aria-hidden="true">↗</span></button>
-        <a class="training-form-link" href="#contact" data-partnership-cta="franchise" data-interest="Предварительный интерес к будущей франшизе" data-contact-note="Предварительный запрос по будущему региональному партнёрству или франшизе. Направление изучается; оставьте телефон и укажите регион и свой опыт.">Оставить телефон по франшизе</a>
       </article>
       <article class="training-note training-note--chat">
         <p class="section-label">Связь с менеджером</p>
         <h3>Выберите тему разговора</h3>
-        <p>Уточните в заявке, что вас интересует: практический курс, сотрудничество по проектам или будущая франшиза. Оставьте телефон — менеджер свяжется и расскажет о доступных вариантах.</p>
+        <p>Выберите направление — откроется короткая форма для телефона. Менеджер свяжется с вами и ответит на вопросы.</p>
         <ul class="cooperation-topics">
-          <li><strong>Обучение</strong><span>Программа, даты, оплата и участие в курсе.</span></li>
-          <li><strong>Партнёрство</strong><span>Совместные проекты и рабочее взаимодействие.</span></li>
-          <li><strong>Франшиза</strong><span>Предварительный интерес к будущему формату.</span></li>
+          <li><button type="button" data-chat-interest="Обучение столярному делу"><span class="cooperation-topic__number">01 /</span><strong>Обучение</strong><span>Программа, даты, оплата и участие в курсе.</span><span class="cooperation-topic__action">Задать вопрос <b aria-hidden="true">↗</b></span></button></li>
+          <li><button type="button" data-chat-interest="Партнёрство по проектам"><span class="cooperation-topic__number">02 /</span><strong>Партнёрство</strong><span>Совместные проекты и рабочее взаимодействие.</span><span class="cooperation-topic__action">Обсудить сотрудничество <b aria-hidden="true">↗</b></span></button></li>
+          <li><button type="button" data-chat-interest="Предварительный интерес к будущей франшизе"><span class="cooperation-topic__number">03 /</span><strong>Франшиза</strong><span>Предварительный интерес к будущему формату.</span><span class="cooperation-topic__action">Оставить интерес <b aria-hidden="true">↗</b></span></button></li>
         </ul>
-        <button class="training-chat-trigger" type="button" data-chat-interest="Обучение столярному делу">Задать вопрос менеджеру <span aria-hidden="true">↗</span></button>
-        <a class="training-form-link" href="#contact" data-training-cta>Оставить телефон в форме</a>
+        <p class="cooperation-topics__hint">Телефон понадобится только для ответа менеджера. Запрос ни к чему не обязывает.</p>
       </article>
     </div>
     <div class="dealer-note" aria-label="Официальный дилерский сертификат">
@@ -2733,7 +2746,7 @@
     document.getElementById('contact').scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
   }
 
-  document.querySelectorAll('a[href="#contact"]:not([data-training-cta]):not([data-partnership-cta])').forEach((link) => {
+  document.querySelectorAll('a[href="#contact"]:not([data-training-cta]):not([data-partnership-cta]):not([data-product-contact])').forEach((link) => {
     link.addEventListener('click', () => {
       window.setSiteLeadInterest?.(incomingStairConfig ? 'Расчёт лестницы' : 'Обсуждение проекта');
       // A previous service-specific click must not leave stale instructions in
@@ -2742,6 +2755,14 @@
         const contactNote = document.querySelector('#contact .contact-start-note');
         if (contactNote) contactNote.textContent = 'Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.';
       }
+    });
+  });
+
+  document.querySelectorAll('[data-product-contact]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      openForm(link);
+      window.loadBitrixLeadForm?.();
     });
   });
 
@@ -2923,9 +2944,8 @@
           if(imageRevealQueued)return;
           imageRevealQueued=true;
           const ready=()=>window.requestAnimationFrame(()=>{
-            // Keep desktop gallery cards on a fixed ratio. The full source image
-            // is contained inside the frame, so portrait photos cannot collapse
-            // grid rows or make neighboring thumbnails look cropped.
+            // Reveal the image after decode. Desktop sizing now follows the
+            // image's intrinsic dimensions in normal document flow.
             img.classList.remove('gallery-image-loading');
             img.classList.add('gallery-image-ready');
             revealCard();
@@ -2976,9 +2996,21 @@
         img.loading='lazy'; img.decoding='async';
         const enterGalleryCard=revealCardWhenReady(item,img);
         item._enterGalleryCard=enterGalleryCard;
+        img.dataset.fallbacks=JSON.stringify([
+          src.replace('/images/portfolio/','/images/portfolio/thumbs/').replace(/\.webp(?=([?#]|$))/i,'.jpg'),
+          src
+        ]);
+        img.dataset.fallbackIndex='0';
         img.onerror=()=>{
-          // Never replace a full photo with a cropped thumbnail. If an
-          // original is unavailable, keep a clear placeholder instead.
+          // Try the JPEG thumbnail, then the full original, before showing an
+          // unavailable state. The large preview always opens the original.
+          const fallbacks=JSON.parse(img.dataset.fallbacks||'[]');
+          const fallbackIndex=Number(img.dataset.fallbackIndex||0);
+          if(fallbackIndex<fallbacks.length){
+            img.dataset.fallbackIndex=String(fallbackIndex+1);
+            img.src=fallbacks[fallbackIndex];
+            return;
+          }
           img.classList.remove('gallery-image-loading');
           img.classList.add('gallery-image-ready');
           img.alt=`${categoryImageDescriptions[key]}, изображение временно недоступно`;
@@ -2987,10 +3019,9 @@
           item.classList.add('gallery-image-unavailable');
           enterGalleryCard();
         };
-        // Use the complete source photo in the gallery. Some legacy thumb
-        // files are tightly cropped, so CSS cannot recover the missing edges.
-        // The intersection observer still loads full images only as needed.
-        img.dataset.src=src;
+        // Load a proportionally scaled WebP for the grid; the lightbox uses
+        // `src` from categoryGalleryImages and therefore retains full detail.
+        img.dataset.src=src.replace('/images/portfolio/','/images/portfolio/thumbs/');
         item.appendChild(img); item.addEventListener('click',()=>showCategoryPreview(index));
         categoryGrid.appendChild(item);
         if(categoryGalleryRevealObserver) categoryGalleryRevealObserver.observe(item); else enterGalleryCard();
@@ -4762,7 +4793,7 @@
     box-sizing:border-box;
     align-items:stretch;
   }
-  #partnership > .training-note--chat {
+  #partnership .training-note--chat {
     width:100%;
     max-width:none;
     box-sizing:border-box;
@@ -5407,6 +5438,369 @@
   #reviews .review-card blockquote { width:100% !important; text-align:center !important; }
   #reviews .review-card__source { align-self:center !important; justify-content:center !important; margin-inline:auto !important; text-align:center !important; }
   #reviews .reviews-more summary { margin-inline:auto !important; text-align:center !important; }
+</style>
+<style id="manager-contact-card-premium">
+  /* One compact, centered panel with clear hierarchy and evenly sized topics. */
+  #partnership .training-note--chat {
+    position:relative;
+    display:flex !important;
+    flex-direction:column;
+    align-items:center !important;
+    box-sizing:border-box;
+    width:min(100%,1200px) !important;
+    max-width:1200px !important;
+    margin:28px auto 0;
+    padding:clamp(38px,4.8vw,62px) clamp(24px,5vw,68px);
+    overflow:hidden;
+    border:1px solid rgba(181,148,96,.46);
+    border-radius:12px;
+    background:radial-gradient(ellipse at 50% 0%,rgba(193,160,105,.12),transparent 58%),linear-gradient(145deg,#293d32,#203329 74%);
+    color:#fffefa;
+    text-align:center !important;
+    box-shadow:0 24px 60px rgba(31,43,35,.18);
+  }
+  #partnership .training-note--chat::before {
+    position:absolute;
+    top:18px;
+    left:50%;
+    width:58px;
+    height:1px;
+    background:#c9a66d;
+    content:"";
+    transform:translateX(-50%);
+  }
+  #partnership .training-note--chat > * { position:relative; z-index:1; }
+  #partnership .training-note--chat > .section-label {
+    margin:0 0 12px;
+    color:#dfc28f;
+  }
+  #partnership .training-note--chat > h3 {
+    max-width:none;
+    margin:0 auto 10px;
+    color:#fffefa;
+    font-size:clamp(30px,3.4vw,46px);
+    line-height:1.08;
+    text-align:center;
+  }
+  #partnership .training-note--chat > p:not(.section-label) {
+    max-width:72ch;
+    margin:0 auto;
+    color:rgba(255,254,250,.82);
+    font-size:15px;
+    line-height:1.8;
+    text-align:center;
+  }
+  #partnership .training-note--chat > .cooperation-topics {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    width:min(100%,1040px);
+    margin:30px 0 22px;
+    gap:16px;
+  }
+  #partnership .training-note--chat > .cooperation-topics li {
+    display:block;
+    min-width:0;
+    box-sizing:border-box;
+    padding:0;
+    border:0;
+    background:transparent;
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button {
+    display:flex;
+    width:100%;
+    height:100%;
+    min-height:184px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+    box-sizing:border-box;
+    padding:22px 22px 18px;
+    border:1px solid rgba(255,254,250,.2);
+    border-top:3px solid #c6a36c;
+    border-radius:8px;
+    background:linear-gradient(145deg,rgba(255,254,250,.105),rgba(255,254,250,.045));
+    color:#fffefa;
+    cursor:pointer;
+    text-align:left;
+    transition:transform .28s cubic-bezier(.22,.61,.36,1),background-color .28s ease,border-color .28s ease;
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button:focus-visible {
+    outline:2px solid #e1c896;
+    outline-offset:3px;
+  }
+  #partnership .training-note--chat > .cooperation-topics .cooperation-topic__number {
+    color:#dfc28f;
+    font:500 13px/1 'Cormorant Garamond',Georgia,serif;
+    letter-spacing:.1em;
+  }
+  #partnership .training-note--chat > .cooperation-topics strong { color:#fffefa; font:400 27px/1.12 'Cormorant Garamond',Georgia,serif; }
+  #partnership .training-note--chat > .cooperation-topics span { max-width:34ch; color:rgba(255,254,250,.84); font-size:14px; line-height:1.6; }
+  #partnership .training-note--chat > .cooperation-topics .cooperation-topic__action {
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:auto;
+    padding-top:8px;
+    border-top:1px solid rgba(255,254,250,.15);
+    color:#f0d6a5;
+    font-size:14px;
+    font-weight:600;
+  }
+  #partnership .training-note--chat > .cooperation-topics .cooperation-topic__action b { font-size:16px; font-weight:400; }
+  #partnership .training-note--chat > .cooperation-topics__hint { margin-top:6px !important; color:rgba(255,254,250,.76) !important; font-size:13px !important; }
+  #partnership .training-note--chat > .training-chat-trigger {
+    width:min(100%,340px);
+    min-height:50px;
+    margin:0;
+    border:1px solid #e1c896;
+    background:#f8f5ee;
+    color:#26392f;
+  }
+  #partnership .training-note--chat > .training-chat-trigger:hover { background:#eee4d2; }
+  #partnership .training-note--chat > .training-form-link { margin-top:13px; color:#f0d6a5; text-align:center; text-underline-offset:4px; }
+  #partnership > .training-note--partner > .training-form-link[data-partnership-cta="franchise"] {
+    align-self:flex-start;
+    min-height:40px;
+    margin:8px 0 0;
+    padding:9px 14px;
+    border:1px solid rgba(152,117,69,.32);
+    background:rgba(255,254,250,.72);
+    color:#34483a;
+    text-decoration:none;
+    text-underline-offset:4px;
+    transition:background-color .22s ease,border-color .22s ease,color .22s ease;
+  }
+  #partnership > .training-note--partner > .training-form-link[data-partnership-cta="franchise"]:hover {
+    border-color:#987545;
+    background:#fffefa;
+    color:#80643c;
+  }
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+    #partnership .training-note--chat > .cooperation-topics li > button:hover { transform:translateY(-3px); border-color:rgba(224,194,141,.6); background:rgba(255,254,250,.11); }
+  }
+  @media (max-width:820px) {
+    #partnership > .training-note--partner > .training-form-link[data-partnership-cta="franchise"] { align-self:center; }
+    #partnership .training-note--chat {
+      width:100% !important;
+      margin-top:18px;
+      padding:34px 20px 28px;
+    }
+    #partnership .training-note--chat > h3 { max-width:20ch; font-size:clamp(29px,8vw,38px); }
+    #partnership .training-note--chat > p:not(.section-label) { max-width:48ch; }
+    #partnership .training-note--chat > .cooperation-topics { grid-template-columns:minmax(0,1fr) !important; width:min(100%,520px); margin:22px 0; gap:9px; }
+    #partnership .training-note--chat > .cooperation-topics li > button { min-height:150px; padding:18px 18px 16px; gap:8px; align-items:center; text-align:center; }
+    #partnership .training-note--chat > .cooperation-topics strong { font-size:25px; }
+    #partnership .training-note--chat > .cooperation-topics span { max-width:34ch; }
+    #partnership .training-note--chat > .cooperation-topics .cooperation-topic__action { text-align:left; }
+    #partnership .training-note--chat > .cooperation-topics__hint { max-width:38ch; margin-inline:auto !important; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    #partnership .training-note--chat > .cooperation-topics li > button { transition:none; }
+    #partnership .training-note--chat > .cooperation-topics li > button:hover { transform:none; }
+  }
+</style>
+
+<style id="partnership-and-dealer-visual-finish">
+  /* Make the manager choices and supplier proof read as one polished section. */
+  #partnership .training-note--chat {
+    isolation:isolate;
+    border-radius:16px;
+    background:radial-gradient(ellipse at 92% 8%,rgba(220,190,137,.14),transparent 34%),linear-gradient(135deg,#24382e,#1c2e25);
+    box-shadow:0 24px 64px rgba(31,43,35,.16),inset 0 1px rgba(255,255,255,.12);
+  }
+  #partnership .training-note--chat > .section-label { letter-spacing:.2em; }
+  #partnership .training-note--chat > h3 { max-width:18ch; }
+  #partnership .training-note--chat > .cooperation-topics li > button {
+    min-height:198px;
+    border-radius:10px;
+    background:linear-gradient(155deg,rgba(255,254,250,.13),rgba(255,254,250,.055));
+    box-shadow:inset 0 1px rgba(255,255,255,.08);
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button > strong { margin-top:2px; }
+  #partnership .training-note--chat > .cooperation-topics li > button > span:not(.cooperation-topic__number):not(.cooperation-topic__action) { min-height:3.2em; }
+  #partnership .training-note--chat > .cooperation-topics .cooperation-topic__action { margin-top:auto; }
+  #partnership .dealer-note {
+    position:relative;
+    grid-template-columns:minmax(0,1fr) minmax(180px,230px);
+    gap:18px 38px;
+    margin-top:22px;
+    padding:clamp(24px,3vw,38px);
+    overflow:hidden;
+    border:1px solid rgba(181,148,96,.34);
+    border-radius:14px;
+    background:linear-gradient(115deg,#fbfaf6 0%,#f2eee5 100%);
+    box-shadow:0 16px 42px rgba(38,47,39,.07);
+  }
+  #partnership .dealer-note::before {
+    position:absolute;
+    inset:0 auto 0 0;
+    width:3px;
+    background:linear-gradient(#d5b77e,#947344);
+    content:"";
+  }
+  #partnership .dealer-note__copy .section-label { color:#96764b; letter-spacing:.19em; }
+  #partnership .dealer-note__copy h3 { max-width:22ch; margin:0 0 10px; font-size:clamp(25px,3vw,38px); line-height:1.06; }
+  #partnership .dealer-note__copy p:last-child { max-width:62ch; font-size:14px; line-height:1.75; }
+  #partnership .dealer-certificate-trigger {
+    align-self:center;
+    padding:12px;
+    border-color:rgba(181,148,96,.36);
+    border-radius:10px;
+    background:#fffefa;
+    box-shadow:0 8px 24px rgba(32,44,36,.08);
+  }
+  #partnership .dealer-certificate-trigger img { height:150px; }
+  #partnership .dealer-certificate-trigger > span { color:#59645b; font-size:12px; }
+  #partnership .dealer-certificate-download { min-height:38px; padding:0 8px; border-bottom:1px solid rgba(152,117,69,.45); text-decoration:none; }
+  @media (max-width:820px) {
+    #partnership .training-note--chat { padding:34px 20px 28px; }
+    #partnership .training-note--chat > .cooperation-topics li > button { min-height:0; }
+    #partnership .training-note--chat > .cooperation-topics li > button > span:not(.cooperation-topic__number):not(.cooperation-topic__action) { min-height:0; }
+    #partnership .dealer-note { grid-template-columns:minmax(0,1fr); justify-items:center; gap:18px; padding:26px 20px; text-align:center; }
+    #partnership .dealer-note__copy h3,.dealer-note__copy p:last-child { margin-inline:auto; }
+    #partnership .dealer-certificate-trigger { width:min(100%,360px); }
+    #partnership .dealer-certificate-trigger img { height:160px; }
+    #partnership .dealer-certificate-download { grid-column:auto; }
+  }
+</style>
+
+<style id="partnership-contact-final-touch">
+  /* Refine the manager chooser and the supplier proof as two related cards. */
+  #partnership .training-note--chat {
+    width:min(100%,1200px) !important;
+    max-width:1200px !important;
+    margin:28px auto 0 !important;
+    padding:clamp(32px,4vw,54px) clamp(22px,4.5vw,60px) !important;
+    border-radius:16px !important;
+    box-shadow:0 22px 52px rgba(31,43,35,.16),inset 0 1px rgba(255,255,255,.12) !important;
+  }
+  #partnership .training-note--chat > .cooperation-topics {
+    width:min(100%,1060px) !important;
+    margin:28px auto 20px !important;
+    gap:18px !important;
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button {
+    min-height:196px;
+    padding:23px 22px 19px;
+    border:1px solid rgba(232,215,180,.3);
+    border-top:2px solid #c6a36c;
+    border-radius:12px;
+    background:linear-gradient(145deg,rgba(255,254,250,.14),rgba(255,254,250,.055));
+    box-shadow:0 12px 28px rgba(8,18,13,.12),inset 0 1px rgba(255,255,255,.1);
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button > strong { font-size:29px; }
+  #partnership .training-note--chat > .cooperation-topics li > button:hover {
+    transform:translateY(-4px);
+    border-color:rgba(232,215,180,.58);
+    background:linear-gradient(145deg,rgba(255,254,250,.2),rgba(255,254,250,.085));
+    box-shadow:0 18px 34px rgba(8,18,13,.2),inset 0 1px rgba(255,255,255,.16);
+  }
+  #partnership .training-note--chat > .cooperation-topics li > button:active { transform:translateY(-1px); }
+  #partnership .training-note--chat > .cooperation-topics__hint { max-width:72ch; margin:4px auto 0 !important; }
+  #partnership + .dealer-note {
+    display:grid !important;
+    width:min(1200px,calc(100% - 40px)) !important;
+    max-width:1200px !important;
+    grid-template-columns:minmax(0,1fr) minmax(180px,220px);
+    align-items:center;
+    gap:16px 42px;
+    margin:24px auto 0 !important;
+    padding:clamp(26px,3.4vw,42px) !important;
+    border:1px solid rgba(152,117,69,.2) !important;
+    border-radius:16px !important;
+    background:radial-gradient(ellipse at 100% 0%,rgba(206,181,133,.16),transparent 36%),linear-gradient(120deg,#fffefa,#f3efe7);
+    box-shadow:0 16px 38px rgba(32,44,36,.08);
+  }
+  #partnership + .dealer-note .dealer-note__copy { min-width:0; }
+  #partnership + .dealer-note .dealer-note__copy h3 { max-width:26ch; margin-bottom:12px; }
+  #partnership + .dealer-note .dealer-note__copy p:last-child { max-width:68ch; line-height:1.75; }
+  #partnership + .dealer-note .dealer-certificate-trigger {
+    display:grid;
+    width:100%;
+    gap:10px;
+    padding:12px;
+    border:1px solid rgba(152,117,69,.2);
+    border-radius:14px;
+    background:#fffefa;
+    box-shadow:0 12px 28px rgba(32,44,36,.1);
+    cursor:zoom-in;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  #partnership + .dealer-note .dealer-certificate-trigger:hover { transform:translateY(-3px); box-shadow:0 18px 34px rgba(32,44,36,.14); }
+  #partnership + .dealer-note .dealer-certificate-trigger span { color:#59615b; font-size:12px; text-align:center; }
+  #partnership + .dealer-note .dealer-certificate-trigger img {
+    width:100%;
+    height:178px !important;
+    object-fit:contain;
+    border-radius:8px;
+    background:#f5f2ec;
+  }
+  #partnership + .dealer-note .dealer-certificate-download {
+    grid-column:1;
+    justify-self:start;
+    min-height:38px;
+    padding:9px 14px;
+    border:1px solid rgba(152,117,69,.3);
+    border-radius:999px;
+    background:rgba(255,255,255,.7);
+    text-decoration:none;
+  }
+  @media(max-width:820px) {
+    #partnership .training-note--chat { width:100% !important; margin-top:18px !important; padding:30px 20px 26px !important; }
+    #partnership .training-note--chat > .cooperation-topics { grid-template-columns:minmax(0,1fr) !important; width:min(100%,520px) !important; margin:22px auto 16px !important; gap:12px !important; }
+    #partnership .training-note--chat > .cooperation-topics li > button { min-height:0; padding:19px 18px; }
+    #partnership + .dealer-note { width:100% !important; grid-template-columns:minmax(0,1fr); justify-items:center; gap:16px; padding:26px 20px !important; text-align:center; }
+    #partnership + .dealer-note .dealer-note__copy h3,
+    #partnership + .dealer-note .dealer-note__copy p:last-child { margin-inline:auto; }
+    #partnership + .dealer-note .dealer-certificate-trigger { width:min(100%,360px); }
+    #partnership + .dealer-note .dealer-certificate-trigger img { height:200px !important; }
+    #partnership + .dealer-note .dealer-certificate-download { justify-self:center; }
+  }
+</style>
+
+<style id="desktop-gallery-intrinsic-ratio-final">
+  /* Keep desktop thumbnails in normal document flow. Earlier gallery rules
+     used fixed-height frames and absolutely positioned images, which could
+     collapse portrait photos into narrow horizontal strips. */
+  @media (min-width:721px) {
+    #categoryLightbox[open] #categoryLightboxGrid {
+      display:grid !important;
+      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+      grid-auto-rows:auto !important;
+      grid-auto-flow:row !important;
+      align-items:start !important;
+      align-content:start !important;
+      gap:16px !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
+      display:block !important;
+      box-sizing:border-box !important;
+      width:100% !important;
+      height:auto !important;
+      min-height:0 !important;
+      aspect-ratio:auto !important;
+      overflow:hidden !important;
+    }
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
+      position:static !important;
+      display:block !important;
+      width:100% !important;
+      height:auto !important;
+      max-width:100% !important;
+      max-height:none !important;
+      aspect-ratio:auto !important;
+      object-fit:contain !important;
+      object-position:center !important;
+      padding:0 !important;
+    }
+  }
+  @media (min-width:721px) and (max-width:1200px) {
+    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+  }
+  @media (min-width:721px) and (max-width:900px) {
+    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  }
 </style>
 
 </body>
