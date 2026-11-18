@@ -59,5 +59,6 @@
   document.getElementById('cookieSettingsButton')?.addEventListener('click', () => {
     showBanner();
     banner.querySelector('#cookieRejectButton')?.focus({ preventScroll: true });
+    if (getComputedStyle(banner).position !== 'fixed') banner.scrollIntoView({ block: 'nearest' });
   });
 })();
