@@ -657,7 +657,10 @@
       }
       .stair-price-note > span { color:#75552f; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
       .stair-price-note > strong { color:var(--heading-color); font:600 clamp(34px, 6vw, 54px)/1.08 'Cormorant Garamond',Georgia,serif; font-variant-numeric:lining-nums; }
-      .stair-price-note > small { max-width:47ch; color:var(--text-secondary); font-size:13px; line-height:1.6; text-wrap:balance; }
+      .stair-price-note__currency { font-size:.58em; font-weight:500; }
+      .stair-price-note__copy { display:grid; gap:6px; max-width:48ch; margin-top:6px; color:var(--text-secondary); font-size:13px; line-height:1.6; text-wrap:balance; }
+      .stair-price-note__copy p { margin:0; }
+      .stair-price-note__copy p:first-child { color:var(--heading-color); font-weight:600; }
 
       /* Базовые стили для Swiper взамен CDN */
       .swiper { margin-left: auto; margin-right: auto; position: relative; overflow: hidden; list-style: none; padding: 0; z-index: 1; }
@@ -1570,14 +1573,34 @@
     .category-lightbox__item { height:auto; min-height:0; }
   }
 
-  .epoxy-project-link { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px 28px; margin-top:24px; padding:18px 22px; border:1px solid var(--border); background:#f7f5f0; color:var(--text-primary); text-decoration:none; transition:border-color .2s,background-color .2s; }
-  .epoxy-project-link:hover { border-color:var(--accent-light); background:#faf9f6; }
-  .epoxy-project-link__mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--border); color:var(--accent); font-family:'Cormorant Garamond',Georgia,serif; font-size:21px; }
-  .epoxy-project-link__copy { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; min-width:0; }
-  .epoxy-project-link__copy strong { font-family:'Cormorant Garamond',Georgia,serif; font-size:19px; font-weight:400; }
-  .epoxy-project-link__copy span { color:var(--text-secondary); font-size:12px; }
-  .epoxy-project-link__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
-  @media(max-width:600px) { .epoxy-project-link { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:18px; padding:14px; } .epoxy-project-link__mark { width:36px; height:36px; } .epoxy-project-link__copy { display:block; } .epoxy-project-link__copy strong { display:block; font-size:17px; line-height:1.25; } .epoxy-project-link__copy span { display:block; margin-top:4px; font-size:11px; line-height:1.45; } .epoxy-project-link__action { grid-column:2; } }
+  .epoxy-project-link {
+    display:grid;
+    grid-template-columns:clamp(104px,12vw,140px) minmax(0,1fr) auto;
+    align-items:center;
+    gap:16px clamp(16px,3vw,28px);
+    width:min(100%, 800px);
+    margin:24px auto 0;
+    padding:14px clamp(14px,2vw,22px);
+    border:1px solid var(--border);
+    border-radius:3px;
+    background:var(--white);
+    color:var(--heading-color);
+    text-decoration:none;
+    transition:border-color .2s ease,background-color .2s ease;
+  }
+  .epoxy-project-link:hover { border-color:var(--accent-light); background:#fffefa; }
+  .epoxy-project-link__image { display:block; width:100%; height:auto; aspect-ratio:5/4; object-fit:cover; object-position:center 48%; border-radius:2px; background:var(--light); }
+  .epoxy-project-link__copy { display:grid; gap:6px; min-width:0; }
+  .epoxy-project-link__copy span { color:#75552f; font-size:10px; font-weight:650; letter-spacing:.12em; text-transform:uppercase; }
+  .epoxy-project-link__copy strong { font:400 clamp(20px,2.5vw,30px)/1.12 'Cormorant Garamond',Georgia,serif; }
+  .epoxy-project-link__action { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 14px; border:1px solid var(--border); border-radius:3px; color:var(--btn-bg); font-size:12px; font-weight:650; text-align:center; }
+  .epoxy-project-link:hover .epoxy-project-link__action { border-color:var(--accent-light); }
+  @media(max-width:640px) {
+    .epoxy-project-link { grid-template-columns:clamp(68px,22vw,106px) minmax(0,1fr); gap:12px; margin-top:18px; }
+    .epoxy-project-link__image { aspect-ratio:1; }
+    .epoxy-project-link__action { grid-column:1 / -1; justify-self:center; }
+  }
+  @media(prefers-reduced-motion:reduce) { .epoxy-project-link { transition:none; } }
 
   @media(max-width:900px) {
     .products-slider .swiper-wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
@@ -1934,14 +1957,18 @@
 
       <div class="stair-price-note">
         <span>Примерная стоимость лестницы под ключ</span>
-        <strong>от 250&nbsp;000&nbsp;₽</strong>
-        <small>В стоимость входят проектирование, изготовление и монтаж. Конструкцию, материалы и комплектацию подбираем индивидуально. Точную стоимость рассчитываем после замера.</small>
+        <strong>от 250&nbsp;000&nbsp;<span class="stair-price-note__currency">₽</span></strong>
+        <div class="stair-price-note__copy">
+          <p>В стоимость входят проектирование, изготовление и монтаж.</p>
+          <p>Конструкцию, материалы и комплектацию подбираем под ваш проект.</p>
+          <p>Точную стоимость рассчитаем после замера.</p>
+        </div>
       </div>
 
-      <a class="epoxy-project-link" href="https://trofimmokrov-netizen.github.io/ksusha_epoxy_premium/index.html" target="_blank" rel="noopener noreferrer" aria-label="Открыть отдельное портфолио Ксюши с изделиями из эпоксидной смолы">
-        <span class="epoxy-project-link__mark" aria-hidden="true">Э</span>
-        <span class="epoxy-project-link__copy"><strong>Проекты Ксюши</strong><span>Изделия из эпоксидной смолы — отдельное портфолио мастерской</span></span>
-        <span class="epoxy-project-link__action">Смотреть проекты <span aria-hidden="true">↗</span></span>
+      <a class="epoxy-project-link" href="https://trofimmokrov-netizen.github.io/ksusha_epoxy_premium/index.html" target="_blank" rel="noopener noreferrer">
+        <img class="epoxy-project-link__image" src="./assets/images/projects/ksusha-epoxy-table.webp" width="480" height="640" alt="" loading="lazy" decoding="async">
+        <span class="epoxy-project-link__copy"><span>Портфолио Ксении</span><strong>Авторские столы из эпоксидной смолы</strong></span>
+        <span class="epoxy-project-link__action">Перейти на сайт <span aria-hidden="true">↗</span></span>
       </a>
       <div class="leonid-jump"><a href="#products">Смотреть актуальные проекты мастерской <span aria-hidden="true">↗</span></a></div>
     </div>
