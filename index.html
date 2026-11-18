@@ -1371,13 +1371,38 @@
     .why-times li { display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding-top:9px; border-top:1px solid var(--border); color:var(--text-secondary); font-size:12px; line-height:1.45; }
     .why-times strong { color:var(--text-primary); font-weight:600; white-space:nowrap; }
     .products-slider { margin-top:46px; }
-    .portfolio-catalog-link { display:flex; align-items:center; justify-content:space-between; gap:24px; margin:18px 0 0; padding:20px 24px; border:1px solid var(--border); background:#fffefa; color:inherit; text-decoration:none; transition:border-color .25s ease,transform .3s ease,box-shadow .3s ease; }
-    .portfolio-catalog-link:hover { transform:translateY(-2px); border-color:#c7b99f; box-shadow:0 12px 26px rgba(48,45,37,.06); }
-    .portfolio-catalog-copy { display:grid; gap:5px; }
-    .portfolio-catalog-copy strong { color:var(--heading-color); font-family:'Cormorant Garamond',Georgia,serif; font-size:22px; font-weight:400; }
-    .portfolio-catalog-copy span { color:var(--text-secondary); font-size:13px; line-height:1.6; }
-    .portfolio-catalog-action { flex:none; color:var(--btn-bg); font-size:13px; font-weight:650; }
-    .portfolio-catalog-link:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
+    .portfolio-resources { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(12px,2vw,20px); margin-top:28px; }
+    .portfolio-resource {
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      gap:clamp(16px,2vw,24px);
+      min-width:0;
+      padding:clamp(20px,3vw,36px);
+      border:1px solid var(--border);
+      border-radius:3px;
+      background:var(--white);
+      color:var(--heading-color);
+      text-decoration:none;
+      transition:border-color .25s ease,box-shadow .25s ease;
+    }
+    .portfolio-resource.builder-entry { background:var(--heading-color); border-color:var(--heading-color); color:var(--white); }
+    .portfolio-resource__copy { display:grid; gap:8px; }
+    .portfolio-resource__copy strong { font:400 clamp(24px,3vw,34px)/1.12 'Cormorant Garamond',Georgia,serif; }
+    .portfolio-resource__copy span { max-width:46ch; color:var(--text-secondary); font-size:13px; line-height:1.65; }
+    .builder-entry .portfolio-resource__copy span { color:#e2e3dc; }
+    .portfolio-resource__action { display:inline-flex; align-items:center; gap:10px; align-self:flex-start; margin-top:auto; font-size:13px; font-weight:650; transition:transform .3s ease; }
+    .portfolio-resource__action > span { display:grid; place-items:center; flex:none; width:34px; height:34px; border:1px solid var(--accent-light); border-radius:50%; font-size:16px; font-weight:400; }
+    .portfolio-resource:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
+    @media(hover:hover) and (pointer:fine) {
+      .portfolio-resource:hover { border-color:var(--accent-light); box-shadow:0 8px 24px rgba(38,42,35,.08); }
+      .portfolio-resource:hover > .portfolio-resource__action { transform:translateX(4px); }
+    }
+    @media(max-width:640px) { .portfolio-resources { grid-template-columns:minmax(0,1fr); margin-top:22px; } }
+    @media(prefers-reduced-motion:reduce) {
+      .portfolio-resource,.portfolio-resource__action { transition:none; }
+      .portfolio-resource:hover > .portfolio-resource__action { transform:none; }
+    }
     .product-card { border:1px solid var(--border); border-radius:2px; background:#fffefa; transition:border-color .25s ease,transform .3s ease; }
     .product-card:hover { border-color:#c7b99f; transform:translateY(-3px); }
     .product-visual { height:250px; background:#eee9e0; }
@@ -1403,8 +1428,6 @@
       #why .why-item:nth-child(even) { background:#f2efe9; }
       .product-visual { height:230px; }
       .product-body { padding:22px; }
-      .portfolio-catalog-link { align-items:flex-start; flex-direction:column; gap:12px; padding:18px; }
-      .portfolio-catalog-copy strong { font-size:21px; }
     }
     
     @media (max-width:767px) {
@@ -1561,11 +1584,9 @@
   .product-body .btn-card:first-of-type { border-color:var(--btn-bg); background:var(--btn-bg); color:#fff; }
   .product-body .btn-card:first-of-type:hover { background:#24362b; }
   .product-body .btn-card:last-of-type { margin-bottom:4px; }
-  .product-body .btn-card:focus-visible,.builder-entry:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
-  .builder-entry { transition:transform .3s ease,border-color .25s,box-shadow .3s; }
-  .builder-entry:hover { transform:translateY(-2px); border-color:#c7b99f; box-shadow:0 12px 26px rgba(48,45,37,.06); }
+  .product-body .btn-card:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
   @media(max-width:600px) { .product-visual { aspect-ratio:16/9; } .product-body { padding:20px; } .product-body h3 { font-size:20px; } .product-fit { margin-bottom:16px; } }
-  @media(prefers-reduced-motion:reduce) { .product-card,.product-visual img,.builder-entry { transition:none; } }
+  @media(prefers-reduced-motion:reduce) { .product-card,.product-visual img { transition:none; } }
 </style>
 <style id="materials-and-contact-ux">
   .materials-advice { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:24px; padding:16px 0 0; border-top:1px solid var(--border); }
@@ -1778,15 +1799,16 @@
       <h2 class="section-title">Примеры наших работ</h2>
       <p class="section-sub">Форма лестницы зависит от проёма и высоты помещения: это может быть прямой, Г- или П-образный марш, площадка или забежные ступени. Инженер предложит подходящую конфигурацию на замере и подготовит проект.</p>
 
-      <a class="builder-entry" href="./constructor.html">
-        <span class="builder-entry__mark" aria-hidden="true">3D</span>
-        <span class="builder-entry__copy"><strong>Примерьте лестницу в 3D</strong><span>Настройте форму, размеры, каркас и древесину в интерактивном конструкторе</span></span>
-        <span class="builder-entry__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
-      </a>
-      <a class="portfolio-catalog-link" href="./assets/docs/katalog-rabot-drevesny-zamysel.pdf" download="Каталог-работ-Древесный-Замысел.pdf" aria-label="Скачать PDF-каталог работ Древесного Замысла">
-        <span class="portfolio-catalog-copy"><strong>Каталог выполненных работ</strong><span>Закрытые и открытые лестницы, обшивка бетона и ограждения. PDF для просмотра и отправки.</span></span>
-        <span class="portfolio-catalog-action">Скачать PDF <span aria-hidden="true">↓</span></span>
-      </a>
+      <div class="portfolio-resources">
+        <a class="portfolio-resource builder-entry" href="./constructor.html">
+          <span class="portfolio-resource__copy"><strong>Примерьте лестницу в 3D</strong><span>Настройте форму, размеры, каркас и древесину в интерактивном конструкторе.</span></span>
+          <span class="portfolio-resource__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="portfolio-resource" href="./assets/docs/katalog-rabot-drevesny-zamysel.pdf" download="Каталог-работ-Древесный-Замысел.pdf">
+          <span class="portfolio-resource__copy"><strong>Каталог выполненных работ</strong><span>Закрытые и открытые лестницы, обшивка бетона и ограждения. PDF для просмотра и отправки.</span></span>
+          <span class="portfolio-resource__action">Скачать PDF <span aria-hidden="true">↓</span></span>
+        </a>
+      </div>
       <div class="swiper products-slider" id="work-examples">
         <div class="swiper-wrapper">
           <!-- Слайд 1 -->
@@ -3351,16 +3373,6 @@
     catch (_) {}
   })(window,document,'https://cdn-ru.bitrix24.ru/b38606320/crm/site_button/loader_1_mxd7ow.js');
 </script>
-<style id="builder-entry-style">
-  .builder-entry { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:18px; margin:28px 0 4px; padding:18px 22px; border:1px solid var(--border); background:#f7f5f0; color:var(--text-primary); text-decoration:none; transition:border-color .2s,background-color .2s; }
-  .builder-entry:hover { border-color:var(--accent-light); background:#faf9f6; }
-  .builder-entry__mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--border); color:var(--accent); font-family:'Cormorant Garamond',Georgia,serif; font-size:21px; }
-  .builder-entry__copy strong,.builder-entry__copy span { display:block; }
-  .builder-entry__copy strong { font-family:'Cormorant Garamond',Georgia,serif; font-size:19px; font-weight:400; }
-  .builder-entry__copy span { margin-top:3px; color:var(--text-secondary); font-size:12px; }
-  .builder-entry__action { color:var(--btn-bg); font-size:12px; font-weight:600; white-space:nowrap; }
-  @media(max-width:600px) { .builder-entry { grid-template-columns:36px minmax(0,1fr); gap:10px 12px; margin-top:20px; padding:14px; } .builder-entry__mark { width:36px;height:36px; } .builder-entry__copy strong { font-size:17px;line-height:1.25; } .builder-entry__copy span { font-size:11px;line-height:1.45; } .builder-entry__action { grid-column:2; } }
-</style>
 <style id="gallery-footer-refinements">
   .skip-link { position:fixed; top:12px; left:12px; z-index:2000; transform:translateY(calc(-100% - 20px)); padding:12px 16px; background:#334538; color:#fff; font-size:13px; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,.18); transition:transform .2s ease; }
   .skip-link:focus { transform:translateY(0); }
@@ -3643,8 +3655,6 @@
   @media(max-width:600px) {
     .article-card:last-child:nth-child(3n + 1) { grid-column:auto; }
     .hero-cta-row .hero-builder-link { align-self:center; justify-content:center; min-height:44px; margin-inline:auto; text-align:center; }
-    .builder-entry { grid-template-columns:36px minmax(0,1fr); }
-    .builder-entry__action { grid-column:1/-1; justify-self:center; padding-top:11px; text-align:center; }
     .portfolio-card img { aspect-ratio:4/3; object-fit:contain; padding:5px; background:#e8e3da; }
     .product-visual { aspect-ratio:4/3 !important; background:#e8e3da !important; }
     .product-visual img { object-fit:contain; padding:4px; }
@@ -3821,17 +3831,14 @@
     .section-sub,
     .section-heading,
     .form-left,
-    .builder-entry,
     .end-cta { text-align:center; }
     .section-title,
     .section-sub,
     .form-left,
-    .builder-entry,
     .end-cta { margin-inline:auto; }
     .section-sub { max-width:38rem; }
     .form-left { display:flex; flex-direction:column; align-items:center; }
     .form-left > * { max-width:100%; }
-    .builder-entry { justify-items:center; }
     .end-cta .btn,
     .end-cta a { margin-inline:auto; }
     .hero::before {
@@ -4093,7 +4100,6 @@
   #products .product-fit { color:#424941 !important; }
   #products .product-card { background:#fffefa !important; border-color:#c9c1b4 !important; box-shadow:0 9px 26px rgba(38,42,35,.07) !important; }
   #products .product-visual img { opacity:1 !important; filter:contrast(1.08) saturate(1.06) !important; }
-  #products .builder-entry { border-color:#c9c1b4 !important; background:#fffefa !important; }
 </style>
 <style id="training-section-style">
   .training-next-steps { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; width:min(1200px,100%); margin:18px auto 0; }
@@ -5099,7 +5105,6 @@
     .material-card:hover:not(:active),
     .review-card:hover:not(:active),
     .cooperation-overview__card:hover:not(:active),
-    .builder-entry:hover:not(:active),
     .dealer-certificate-trigger:hover:not(:active) {
       transform:none;
       box-shadow:none;
@@ -5108,7 +5113,6 @@
     .material-card:hover:not(:active) { border-color:var(--border); }
     .review-card:hover:not(:active) { border-color:var(--border); }
     .cooperation-overview__card:hover:not(:active),
-    .builder-entry:hover:not(:active),
     .dealer-certificate-trigger:hover:not(:active) { border-color:var(--border); }
     .product-card:hover:not(:active) .product-visual img,
     .material-card:hover:not(:active) .material-img img,
