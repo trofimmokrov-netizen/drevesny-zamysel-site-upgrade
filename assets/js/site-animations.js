@@ -95,21 +95,9 @@
   const cssMotionFallback = !gsap && typeof Element.prototype.animate !== "function";
   if (cssMotionFallback) document.documentElement.classList.add("motion-css-fallback");
 
-  // Add a restrained camera response to the hero photo on desktop. Like the
-  // floating phone animation in the reference site, the visual reacts to the
-  // visitor, but only the image layer moves; text and controls stay steady.
-  // It is deliberately disabled on touch devices and reduced-power phones.
-  if (hero && !mobile && gsap && matchesMedia("(hover: hover) and (pointer: fine)")) {
-    // Reuse one setter per axis instead of allocating a fresh tween for every
-    // pointer event. Browsers can dispatch pointermove more often than they
-    // paint; batching to one animation frame keeps the camera response smooth
-    // without building up redundant tweens during quick mouse movement.
-    const pointerX = typeof gsap.quickTo === "function"
-      ? gsap.quickTo(hero, "--hero-pointer-x", { duration: 1.15, ease: "power2.out" })
-      : (value) => gsap.to(hero, { "--hero-pointer-x": value, duration: 1.15, ease: "power2.out", overwrite: "auto" });
-    const pointerY = typeof gsap.quickTo === "function"
-      ? gsap.quickTo(hero, "--hero-pointer-y", { duration: 1.15, ease: "power2.out" })
-      : (value) => gsap.to(hero, { "--hero-pointer-y": value, duration: 1.15, ease: "power2.out", overwrite: "auto" });
+  // Update the CSS transition target at most once per frame. The photo's
+  // ambient movement runs on a separate transform animation.
+  if (hero && homeHeroItems.length && !mobile && matchesMedia("(hover: hover) and (pointer: fine)")) {
     let pointerFrame = 0;
     let latestPointerEvent = null;
     const moveCamera = (event) => {
@@ -125,16 +113,16 @@
         if (!bounds.width || !bounds.height) return;
         const x = ((pointer.clientX - bounds.left) / bounds.width - 0.5) * -12;
         const y = ((pointer.clientY - bounds.top) / bounds.height - 0.5) * -8;
-        pointerX(`${x.toFixed(1)}px`);
-        pointerY(`${y.toFixed(1)}px`);
+        hero.style.setProperty("--hero-pointer-x", `${x.toFixed(1)}px`);
+        hero.style.setProperty("--hero-pointer-y", `${y.toFixed(1)}px`);
       });
     };
     const resetCamera = () => {
       if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
       pointerFrame = 0;
       latestPointerEvent = null;
-      pointerX("0px");
-      pointerY("0px");
+      hero.style.removeProperty("--hero-pointer-x");
+      hero.style.removeProperty("--hero-pointer-y");
     };
     hero.addEventListener("pointermove", moveCamera, { passive: true });
     hero.addEventListener("pointerleave", resetCamera, { passive: true });

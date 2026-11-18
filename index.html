@@ -3948,11 +3948,11 @@
     z-index:0;
     pointer-events:none;
     background:url("./assets/images/hero.webp") center / cover no-repeat;
-    transform:translate3d(var(--hero-pointer-x, 0px), var(--hero-pointer-y, 0px), 0) scale(1.04);
+    transform:scale(1.04);
     transform-origin:center;
     backface-visibility:hidden;
     will-change:auto;
-    animation:hero-camera-drift 22s cubic-bezier(.42,0,.58,1) infinite alternate;
+    animation:hero-camera-drift 22s cubic-bezier(.42,0,.58,1) infinite alternate backwards;
     animation-delay:.18s;
     animation-play-state:paused;
   }
@@ -3962,13 +3962,20 @@
      as soon as the finger stops, alongside the hero camera. */
   .hero-scroll-paused .hero-cta-row .hero-builder-link::after { animation-play-state:paused !important; }
   .hero-content { z-index:2 !important; }
+  @media (min-width:721px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+    /* Keep cursor movement independent from the camera keyframes. */
+    .hero::after {
+      translate:var(--hero-pointer-x, 0px) var(--hero-pointer-y, 0px);
+      transition:translate .9s cubic-bezier(.2,.7,.25,1);
+    }
+  }
   @keyframes hero-camera-drift {
     /* A slow, clearly visible camera glide gives the staircase the cinematic
        depth of a moving product shot. Transform-only keeps it on the GPU. */
-    0% { transform:translate3d(calc(2.4% + var(--hero-pointer-x, 0px)), calc(3.2% + var(--hero-pointer-y, 0px)), 0) rotate(.42deg) scale(1.16); }
-    24% { transform:translate3d(calc(.35% + var(--hero-pointer-x, 0px)), calc(.5% + var(--hero-pointer-y, 0px)), 0) rotate(.04deg) scale(1.055); }
-    62% { transform:translate3d(calc(-1% + var(--hero-pointer-x, 0px)), calc(-1.5% + var(--hero-pointer-y, 0px)), 0) rotate(-.16deg) scale(1.085); }
-    100% { transform:translate3d(calc(-2.4% + var(--hero-pointer-x, 0px)), calc(-3.2% + var(--hero-pointer-y, 0px)), 0) rotate(-.42deg) scale(1.14); }
+    0% { transform:translate3d(2.4%, 3.2%, 0) rotate(.42deg) scale(1.16); }
+    24% { transform:translate3d(.35%, .5%, 0) rotate(.04deg) scale(1.055); }
+    62% { transform:translate3d(-1%, -1.5%, 0) rotate(-.16deg) scale(1.085); }
+    100% { transform:translate3d(-2.4%, -3.2%, 0) rotate(-.42deg) scale(1.14); }
   }
   /* Phones get one cinematic camera move on entry, then a still image while
      the visitor scrolls. Desktop keeps the slow ambient drift and pointer parallax. */
@@ -4326,7 +4333,7 @@
   }
 </style>
 <script defer src="./assets/js/wood-preview.js?v=20261109-walnut-webp"></script>
-<script defer src="./assets/js/motion-loader.js?v=20261118-loader-v27"></script>
+<script defer src="./assets/js/motion-loader.js?v=20261118-loader-v28"></script>
 <style id="iphone-safe-area-layout">
   @media (max-width: 900px) {
     html { scroll-padding-top: calc(76px + env(safe-area-inset-top)); }

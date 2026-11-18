@@ -5,7 +5,7 @@
   if (!loaderScript || !loaderScript.src) return;
 
   var assetRoot = new URL("../", loaderScript.src);
-  var animationUrl = new URL("js/site-animations.js?v=20261118-motion-v27", assetRoot);
+  var animationUrl = new URL("js/site-animations.js?v=20261118-motion-v28", assetRoot);
   var gsapUrl = new URL("vendor/gsap.min.js", assetRoot);
   var matchesMedia = function (query) {
     return typeof window.matchMedia === "function" && window.matchMedia(query).matches;
@@ -52,7 +52,7 @@
 
   (async function () {
     // Use native Web Animations/CSS reveals on touch devices and pages without
-    // hero motion. GSAP stays on desktop home/project pages for parallax and
+    // hero motion. GSAP stays on desktop home/project pages for reveals and
     // richer sequences; reduced-motion users do not need the bundle either.
     if (!mobile && !lowPowerPhone && !constrainedConnection && hasHeroMotion) {
       var gsapLoad = loadScript(gsapUrl, true);
