@@ -3755,7 +3755,7 @@
     gap:12px 26px;
     margin-inline:auto;
   }
-  .hero-cta-row .btn-primary { position:relative; justify-self:end; }
+  .hero-cta-row .btn-primary { justify-self:end; }
   .hero-cta-row .btn-outline { justify-self:start; }
   .hero-cta-row .hero-builder-link {
     position:relative;
@@ -3775,8 +3775,7 @@
     animation:none;
     transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
   }
-  .hero-cta-row .hero-builder-link::after,
-  .hero-cta-row .btn-primary::after {
+  .hero-cta-row .hero-builder-link::after {
     content:"";
     position:absolute;
     inset:-6px;
@@ -3961,7 +3960,6 @@
   .hero-scroll-paused .hero::after { animation-play-state:paused !important; }
   /* Let touch scrolling use the frame budget; resume the button's subtle ring
      as soon as the finger stops, alongside the hero camera. */
-  .hero-scroll-paused .hero-cta-row .btn-primary::after,
   .hero-scroll-paused .hero-cta-row .hero-builder-link::after { animation-play-state:paused !important; }
   .hero-content { z-index:2 !important; }
   @keyframes hero-camera-drift {
@@ -4008,13 +4006,11 @@
     from { transform:translate3d(-1.35%, -1.7%, 0) rotate(-.2deg) scale(1.045); }
     to { transform:translate3d(-1.1%, calc(-1.7% - 12px), 0) rotate(.1deg) scale(1.055); }
   }
-  .motion-lite .hero-cta-row .hero-builder-link::after,
-  .motion-lite .hero-cta-row .btn-primary::after { animation:none; }
+  .motion-lite .hero-cta-row .hero-builder-link::after { animation:none; }
   .motion-lite .ticker { animation-play-state:paused; }
   html.page-hidden .hero::after,
   html.page-hidden .ticker,
   html.page-hidden .hero-cta-row .btn-primary,
-  html.page-hidden .hero-cta-row .btn-primary::after,
   html.page-hidden .hero-cta-row .hero-builder-link::after,
   html.page-hidden .cooperation-quick__overview,
   html.page-hidden .training-offer__details > div {
@@ -4623,7 +4619,7 @@
     animation:none;
     transition: transform .28s ease, box-shadow .28s ease, background-color .28s ease;
   }
-  .hero-cta-row .hero-builder-link::after,.hero-cta-row .btn-primary::after { animation-duration:5s; }
+  .hero-cta-row .hero-builder-link::after { animation-duration:5s; }
   .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible {
     transform:translateY(-2px);
     box-shadow:0 12px 28px rgba(38,57,47,.22);
@@ -4631,11 +4627,11 @@
   .hero-cta-row .hero-builder-link { transition:transform .28s ease,background-color .28s ease,box-shadow .28s ease; }
   .hero-cta-row .hero-builder-link:hover,.hero-cta-row .hero-builder-link:focus-visible { transform:translateY(-2px); }
   @media (max-width:600px) {
-    .hero-cta-row .hero-builder-link::after,.hero-cta-row .btn-primary::after { animation-duration:6s; }
+    .hero-cta-row .hero-builder-link::after { animation-duration:6s; }
   }
   @media (prefers-reduced-motion:reduce) {
     .hero-cta-row .btn-primary,.hero-cta-row .hero-builder-link,
-    .hero-cta-row .btn-primary::after,.hero-cta-row .hero-builder-link::after { animation:none; transition:none; }
+    .hero-cta-row .hero-builder-link::after { animation:none; transition:none; }
     .hero-cta-row .btn-primary:hover,.hero-cta-row .btn-primary:focus-visible,.hero-cta-row .hero-builder-link:hover,.hero-cta-row .hero-builder-link:focus-visible { transform:none; }
   }
 </style>
