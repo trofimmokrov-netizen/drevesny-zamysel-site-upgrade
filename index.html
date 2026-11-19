@@ -129,9 +129,9 @@
   <link rel="stylesheet" href="./assets/css/reviews.css?v=20261118-clean-cards" />
   <!-- Fetch the small interaction layer early, then apply it after page styles
        so hover, focus and active feedback wins the cascade without a late fetch. -->
-  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261113-gallery-v23" as="style" />
+  <link rel="preload" href="./assets/css/interaction-polish.css?v=20261119-gallery-v24" as="style" />
   <script src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
-  <script src="./assets/js/yandex-metrika-goals.js?v=20261110-goals-v1" defer></script>
+  <script src="./assets/js/yandex-metrika-goals.js?v=20261118-goals-v2" defer></script>
   <style id="early-mobile-compositing">
     /* Apply before the first mobile paint; the interaction stylesheet is
        fetched above and applied at the end to preserve its intended cascade. */
@@ -146,7 +146,7 @@
     /* Defer offscreen sections on touch-sized screens. */
     @media (max-width: 900px), (pointer: coarse) {
       @supports (content-visibility: auto) {
-        #products, #why, #materials, #process, #articles, #reviews, #contact,
+        #products, #why, #materials, #process, #articles, #reviews,
         .location-map-section, #training, #partnership {
           content-visibility: auto;
         }
@@ -156,7 +156,6 @@
         #process { contain-intrinsic-size: auto 1700px; }
         #articles { contain-intrinsic-size: auto 3500px; }
         #reviews { contain-intrinsic-size: auto 1800px; }
-        #contact { contain-intrinsic-size: auto 2600px; }
         .location-map-section { contain-intrinsic-size: auto 1050px; }
         #training { contain-intrinsic-size: auto 2500px; }
         #partnership { contain-intrinsic-size: auto 1500px; }
@@ -1305,6 +1304,7 @@
     #contact { background: var(--off-white); }
     .form-left h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.2vw, 54px); line-height: 1.12; }
     .form-right { min-width: 0; }
+    #request-form { align-self:start; scroll-margin-top:12px; }
     .cookie-banner { border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(36,34,29,.12); border-radius: 3px; }
     footer { padding: 32px clamp(20px, 5vw, 72px); background: #292a26; color: #f8f7f4; }
     footer a { color: #e6e1d7; }
@@ -1665,39 +1665,8 @@
 </style>
 
 
-  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261113-gallery-v23" />
+  <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261119-gallery-v24" />
 
-<style id="desktop-gallery-natural-photo-sizing">
-  /* Desktop gallery: size each card from the full photo's own aspect ratio.
-     Avoid fixed-height tiles so portrait and landscape photos remain complete. */
-  @media (min-width: 721px) {
-    .category-lightbox__grid {
-      grid-auto-rows: auto !important;
-      grid-auto-flow: row !important;
-      align-content: start !important;
-      align-items: start !important;
-    }
-    .category-lightbox__item {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-      min-height: 0 !important;
-      aspect-ratio: auto !important;
-      align-self: start !important;
-      overflow: hidden;
-    }
-    .category-lightbox__item img {
-      position: static !important;
-      inset: auto !important;
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-      max-height: none !important;
-      object-fit: contain !important;
-      object-position: center;
-    }
-  }
-</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -1801,7 +1770,7 @@
         <a href="#products" class="hero-tag">Деревянные изделия</a>
       </div>
       <div class="hero-cta-row">
-        <a href="#contact" class="btn-primary">
+        <a href="#request-form" class="btn-primary">
           Получить расчёт лестницы
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
@@ -1848,16 +1817,6 @@
       <h2 class="section-title">Примеры наших работ</h2>
       <p class="section-sub">Форма лестницы зависит от проёма и высоты помещения: это может быть прямой, Г- или П-образный марш, площадка или забежные ступени. Инженер предложит подходящую конфигурацию на замере и подготовит проект.</p>
 
-      <div class="portfolio-resources">
-        <a class="portfolio-resource builder-entry" href="./constructor.html">
-          <span class="portfolio-resource__copy"><strong>3D-конструктор лестницы</strong><span>Задайте форму и размеры лестницы, выберите каркас и породу древесины.</span></span>
-          <span class="portfolio-resource__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
-        </a>
-        <a class="portfolio-resource" href="./assets/docs/katalog-rabot-drevesny-zamysel.pdf" download="Каталог-работ-Древесный-Замысел.pdf">
-          <span class="portfolio-resource__copy"><strong>Каталог выполненных работ</strong><span>Закрытые и открытые лестницы, обшивка бетона и ограждения. PDF для просмотра и отправки.</span></span>
-          <span class="portfolio-resource__action">Скачать PDF <span aria-hidden="true">↓</span></span>
-        </a>
-      </div>
       <div class="swiper products-slider" id="work-examples">
         <div class="swiper-wrapper">
           <!-- Слайд 1 -->
@@ -1870,7 +1829,7 @@
                 <h3>Лестницы закрытого типа</h3>
                 <p>Ступени и подступёнки образуют цельный, аккуратный марш. Подходит для классических и современных интерьеров. Каркас изготавливаем из швеллера или листового металла.</p>
                 <ul class="product-fit" aria-label="Особенности закрытой лестницы"><li>Подступёнки</li><li>Цельный силуэт</li><li>Каркас под отделку</li></ul>
-                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#request-form" data-product-contact>Рассчитать стоимость</a>
                 <a class="btn-card" href="#work-examples" id="btn-gallery-closedType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы закрытого типа">Примеры работ</a>
               </div>
             </article>
@@ -1886,7 +1845,7 @@
                 <h3>Лестницы открытого типа</h3>
                 <p>Ступени без подступёнков пропускают свет и визуально облегчают интерьер. Каркас остаётся частью дизайна: можно выбрать форму косоура и цвет окраски.</p>
                 <ul class="product-fit" aria-label="Особенности открытой лестницы"><li>Больше света</li><li>Открытые ступени</li><li>Выбор каркаса</li></ul>
-                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#request-form" data-product-contact>Рассчитать стоимость</a>
                 <a class="btn-card" href="#work-examples" id="btn-gallery-openType" aria-haspopup="dialog" aria-label="Открыть примеры работ: лестницы открытого типа">Примеры работ</a>
               </div>
             </article>
@@ -1902,7 +1861,7 @@
                 <h3>Обшивка бетонных лестниц</h3>
                 <p>Превратим бетонное основание в завершённую лестницу: подберём отделку ступеней, подступёнков, боковин и ограждения под интерьер.</p>
                 <ul class="product-fit" aria-label="Особенности обшивки бетонной лестницы"><li>Для готового бетона</li><li>Дерево и отделка</li><li>Единый стиль</li></ul>
-                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#request-form" data-product-contact>Рассчитать стоимость</a>
                 <a class="btn-card" href="#work-examples" id="btn-gallery-covering" aria-haspopup="dialog" aria-label="Открыть примеры работ: обшивка бетонных лестниц">Примеры работ</a>
               </div>
             </article>
@@ -1918,7 +1877,7 @@
                 <h3>Ограждения</h3>
                 <p>Изготавливаем ограждения, которые поддерживают стиль лестницы и помогают безопасно пользоваться маршем: деревянные, металлические, комбинированные и стеклянные.</p>
                 <ul class="product-fit" aria-label="Варианты ограждений"><li>Металл</li><li>Стекло</li><li>Дерево и ковка</li></ul>
-                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#request-form" data-product-contact>Рассчитать стоимость</a>
                 <a class="btn-card" href="#work-examples" id="btn-gallery-fences" aria-haspopup="dialog" aria-label="Открыть примеры работ: ограждения">Примеры работ</a>
               </div>
             </article>
@@ -1934,7 +1893,7 @@
                 <h3>Деревянные изделия</h3>
                 <p>Изготавливаем мебель и детали интерьера из дерева: шкафы, столы, стеновые панели и перегородки для зонирования.</p>
                 <ul class="product-fit" aria-label="Примеры изделий"><li>Мебель</li><li>Стеновые панели</li><li>Под размеры проекта</li></ul>
-                <a class="btn-card" href="#contact" data-product-contact>Рассчитать стоимость</a>
+                <a class="btn-card" href="#request-form" data-product-contact>Рассчитать стоимость</a>
                 <a class="btn-card" href="#work-examples" id="btn-gallery-wood" aria-haspopup="dialog" aria-label="Открыть примеры работ: деревянные изделия">Примеры работ</a>
               </div>
             </article>
@@ -1979,6 +1938,17 @@
         <span class="epoxy-project-link__copy"><span>Портфолио Ксении</span><strong>Авторские столы из эпоксидной смолы</strong></span>
         <span class="epoxy-project-link__action">Перейти на сайт <span aria-hidden="true">↗</span></span>
       </a>
+
+      <div class="portfolio-resources">
+        <a class="portfolio-resource builder-entry" href="./constructor.html">
+          <span class="portfolio-resource__copy"><strong>3D-конструктор лестницы</strong><span>Задайте форму и размеры лестницы, выберите каркас и породу древесины.</span></span>
+          <span class="portfolio-resource__action">Открыть конструктор <span aria-hidden="true">↗</span></span>
+        </a>
+        <a class="portfolio-resource" href="./assets/docs/katalog-rabot-drevesny-zamysel.pdf" download="Каталог-работ-Древесный-Замысел.pdf">
+          <span class="portfolio-resource__copy"><strong>Каталог выполненных работ</strong><span>Закрытые и открытые лестницы, обшивка бетона и ограждения. PDF для просмотра и отправки.</span></span>
+          <span class="portfolio-resource__action">Скачать PDF <span aria-hidden="true">↓</span></span>
+        </a>
+      </div>
       <div class="leonid-jump"><a href="#products">Смотреть актуальные проекты мастерской <span aria-hidden="true">↗</span></a></div>
     </div>
   </div>
@@ -2373,7 +2343,7 @@
         </div>
       </div>
 
-      <div class="form-right">
+      <div class="form-right" id="request-form" tabindex="-1" role="region" aria-label="Форма заявки">
         <script>
           (function (w) {
             var selectedTopic = '';
@@ -2437,9 +2407,9 @@
               h.parentNode.insertBefore(s,h);
               fallbackTimer=w.setTimeout(function(){if(!formReady)showFallback();},12000);
             }
-            // Product CTAs can request the lazy form immediately after scrolling to it.
+            // Cost CTAs can request the lazy form before navigating to it.
             w.loadBitrixLeadForm=loadForm;
-            var formHost=d.querySelector('#contact .form-right');
+            var formHost=d.getElementById('request-form');
             if('IntersectionObserver' in w && formHost){
               var observer=new IntersectionObserver(function(entries){
                 if(entries.some(function(entry){return entry.isIntersecting;})){
@@ -2839,15 +2809,17 @@
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const hash = a.getAttribute('href');
-      const articlesJump = hash === '#articles' && window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+      const compactLayout = window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+      const articlesJump = hash === '#articles' && compactLayout;
+      const formJump = hash === '#request-form';
+      const jumpWithoutAnimation = articlesJump || (formJump && compactLayout);
       const target = articlesJump ? document.getElementById('articles-heading')
         : hash && hash.length > 1 ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
       const menuWasOpen = mobileMenu.classList.contains('active');
       if (menuWasOpen) toggleBurgerMenu(false);
       if (target) {
         e.preventDefault();
-        // On compact layouts, sections can resize as a long scroll passes them.
-        target.scrollIntoView({ behavior: articlesJump ? 'instant' : getScrollBehavior(), block: 'start' });
+        if (formJump) prepareLeadForm(a);
         // Keep keyboard and assistive-technology users with the section they
         // navigated to, including desktop header links and the primary CTA.
         const addTemporaryTabIndex = !target.hasAttribute('tabindex');
@@ -2856,7 +2828,9 @@
           target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
         }
         target.focus({ preventScroll: true });
-        if (articlesJump) {
+        // On compact layouts, sections can resize as a long scroll passes them.
+        target.scrollIntoView({ behavior: jumpWithoutAnimation ? 'instant' : getScrollBehavior(), block: 'start' });
+        if (jumpWithoutAnimation) {
           // Re-align once the nearby offscreen sections have been laid out.
           setTimeout(() => {
             if (document.activeElement === target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
@@ -2917,22 +2891,21 @@
     }
   }
 
-  // Keep the selected service visible when a visitor moves from a product card to the form.
-  function openForm(el) {
-    const productCard = el && el.closest('.product-card');
-    const productTitle = productCard && productCard.querySelector('h3');
+  // Keep the selected service visible when a visitor asks for a quote.
+  function prepareLeadForm(link) {
+    const productTitle = link.closest('.product-card')?.querySelector('h3');
     const contactNote = document.querySelector('#contact .contact-start-note');
-
-    if (productTitle && contactNote) {
-      const title = productTitle.textContent.trim();
+    const title = productTitle?.textContent.trim();
+    window.setSiteLeadInterest?.(title || 'Расчёт лестницы');
+    if (title && contactNote) {
       contactNote.textContent = `Вы выбрали направление «${title}». Оставьте контакты — менеджер уточнит детали и поможет с расчётом.`;
-      window.setSiteLeadInterest?.(title);
+    } else if (contactNote && !incomingStairConfig) {
+      contactNote.textContent = 'Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.';
     }
-
-    document.getElementById('contact').scrollIntoView({ behavior: getScrollBehavior(), block: 'start' });
+    window.loadBitrixLeadForm?.();
   }
 
-  document.querySelectorAll('a[href="#contact"]:not([data-training-cta]):not([data-partnership-cta]):not([data-product-contact])').forEach((link) => {
+  document.querySelectorAll('a[href="#contact"]:not([data-training-cta]):not([data-partnership-cta])').forEach((link) => {
     link.addEventListener('click', () => {
       window.setSiteLeadInterest?.(incomingStairConfig ? 'Расчёт лестницы' : 'Обсуждение проекта');
       // A previous service-specific click must not leave stale instructions in
@@ -2941,14 +2914,6 @@
         const contactNote = document.querySelector('#contact .contact-start-note');
         if (contactNote) contactNote.textContent = 'Для первого разговора достаточно описать задачу. Подскажем, с чего начать и какие варианты подойдут.';
       }
-    });
-  });
-
-  document.querySelectorAll('[data-product-contact]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      openForm(link);
-      window.loadBitrixLeadForm?.();
     });
   });
 
@@ -5326,8 +5291,8 @@
     }
   }
 </style>
-<style id="desktop-gallery-natural-v83">
-  /* Desktop gallery: stable rows with whole source photos visible. */
+<style id="desktop-gallery-layout">
+  /* Reserve thumbnail space before the lazy images have natural dimensions. */
   @media (min-width:721px) {
     #categoryLightbox[open] {
       position:fixed !important; inset:0 !important; display:flex !important;
@@ -5347,8 +5312,8 @@
     #categoryLightbox[open] #categoryLightboxGrid {
       display:grid !important; flex:1 1 auto !important; min-width:0 !important;
       min-height:0 !important; box-sizing:border-box !important;
-      grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-      grid-auto-flow:row !important; grid-auto-rows:min-content !important;
+      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+      grid-auto-flow:row !important; grid-auto-rows:max-content !important;
       align-content:start !important; align-items:start !important;
       gap:18px !important; overflow-x:hidden !important; overflow-y:auto !important;
       overscroll-behavior:contain !important;
@@ -5358,7 +5323,7 @@
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
       position:relative !important; display:block !important; align-self:start !important;
       box-sizing:border-box !important; width:100% !important; height:auto !important;
-      min-width:0 !important; min-height:0 !important; aspect-ratio:auto !important;
+      min-width:0 !important; min-height:0 !important; aspect-ratio:5 / 4 !important;
       margin:0 !important; padding:0 !important; overflow:hidden !important;
       border:1px solid rgba(90,77,57,.16) !important; border-radius:4px !important;
       background:#e8e3da !important; line-height:0 !important; font-size:0 !important;
@@ -5367,27 +5332,27 @@
       transition:transform .24s ease,box-shadow .24s ease !important;
     }
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
-      position:static !important; inset:auto !important; display:block !important;
-      box-sizing:border-box !important; width:100% !important; height:auto !important;
+      position:absolute !important; inset:0 !important; display:block !important;
+      box-sizing:border-box !important; width:100% !important; height:100% !important;
       min-width:0 !important; min-height:0 !important; max-width:100% !important;
       max-height:none !important; object-fit:contain !important; object-position:center !important;
       margin:0 !important; padding:8px !important; background:transparent !important;
       pointer-events:none !important; transform:none !important;
     }
-    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover,
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:not(:disabled):hover,
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible {
       z-index:1 !important; box-shadow:0 12px 28px rgba(42,38,30,.16) !important;
       transform:translateY(-2px) !important;
     }
-    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item::after {
-      content:"Нажмите, чтобы открыть фото" !important; position:absolute !important;
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:not(:disabled)::after {
+      content:"Открыть фото"; position:absolute;
       right:12px !important; bottom:12px !important; z-index:2 !important;
       padding:8px 11px !important; border:1px solid rgba(255,255,255,.45) !important;
       border-radius:3px !important; background:rgba(32,43,36,.9) !important;
       color:#fffefa !important; font:500 12px/1.2 Arial,sans-serif !important;
       opacity:0 !important; transition:opacity .18s ease !important; pointer-events:none !important;
     }
-    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:hover::after,
+    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:not(:disabled):hover::after,
     #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item:focus-visible::after {
       opacity:1 !important;
     }
@@ -5396,10 +5361,10 @@
       color:#59645c !important; font:400 14px/1.55 Arial,sans-serif !important;
     }
   }
-  @media (min-width:1500px) {
-    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  @media (min-width:721px) and (max-width:1200px) {
+    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
   }
-  @media (min-width:721px) and (max-width:960px) {
+  @media (min-width:721px) and (max-width:900px) {
     #categoryLightbox[open] #categoryLightboxGrid {
       grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:14px !important;
       padding:18px 22px 32px !important;
@@ -5971,50 +5936,6 @@
     #partnership + .dealer-note .dealer-certificate-trigger { width:min(100%,360px); }
     #partnership + .dealer-note .dealer-certificate-trigger img { height:200px !important; }
     #partnership + .dealer-note .dealer-certificate-download { justify-self:center; }
-  }
-</style>
-
-<style id="desktop-gallery-intrinsic-ratio-final">
-  /* Keep desktop thumbnails in normal document flow. Earlier gallery rules
-     used fixed-height frames and absolutely positioned images, which could
-     collapse portrait photos into narrow horizontal strips. */
-  @media (min-width:721px) {
-    #categoryLightbox[open] #categoryLightboxGrid {
-      display:grid !important;
-      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      grid-auto-rows:auto !important;
-      grid-auto-flow:row !important;
-      align-items:start !important;
-      align-content:start !important;
-      gap:16px !important;
-    }
-    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item {
-      display:block !important;
-      box-sizing:border-box !important;
-      width:100% !important;
-      height:auto !important;
-      min-height:0 !important;
-      aspect-ratio:auto !important;
-      overflow:hidden !important;
-    }
-    #categoryLightbox[open] #categoryLightboxGrid > button.category-lightbox__item > img {
-      position:static !important;
-      display:block !important;
-      width:100% !important;
-      height:auto !important;
-      max-width:100% !important;
-      max-height:none !important;
-      aspect-ratio:auto !important;
-      object-fit:contain !important;
-      object-position:center !important;
-      padding:0 !important;
-    }
-  }
-  @media (min-width:721px) and (max-width:1200px) {
-    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
-  }
-  @media (min-width:721px) and (max-width:900px) {
-    #categoryLightbox[open] #categoryLightboxGrid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
   }
 </style>
 

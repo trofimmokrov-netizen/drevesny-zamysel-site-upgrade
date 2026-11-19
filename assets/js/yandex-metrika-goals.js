@@ -50,7 +50,7 @@
       return;
     }
 
-    if (control.matches('a[href="#contact"]') && !control.closest('.site-header, .mobile-menu nav')) {
+    if (control.matches('a[href="#contact"], a[href="#request-form"]') && !control.closest('.site-header, .mobile-menu nav')) {
       reachGoal('project_request_open');
     }
   });
