@@ -30,7 +30,7 @@
     }
   </script>
   <script defer src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922"></script>
-  <script defer src="./assets/js/yandex-metrika-goals.js?v=20261118-goals-v2"></script>
+  <script defer src="./assets/js/yandex-metrika-goals.js?v=20261125-goals-v3"></script>
   <script defer src="./assets/js/cookie-consent-ui.js?v=20261118-ui3" data-services="analytics"></script>
   <style>
     :root { --surface:#fbfaf7; --paper:#f3f0e9; --frame:#e9e3d8; --green:#26392f; --muted:#565d54; --gold:#75552f; --line:#ddd6ca; }
@@ -51,17 +51,22 @@
     .categories { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
     .categories a { display:inline-flex; align-items:center; min-height:44px; padding:8px 14px; border:1px solid var(--line); border-radius:3px; background:var(--surface); font-size:13px; text-decoration:none; }
     .categories a:hover { border-color:var(--gold); }
-    .featured-project { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1fr); align-items:center; gap:clamp(18px,4vw,44px); margin:34px 0 0; padding:clamp(14px,2.5vw,28px); border:1px solid var(--line); border-radius:3px; background:var(--surface); text-decoration:none; }
-    .featured-project > img { display:block; width:100%; height:auto; max-height:320px; aspect-ratio:16/10; object-fit:contain; background:var(--frame); }
+    .project-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
+    .featured-project { display:flex; flex-direction:column; gap:16px; padding:clamp(12px,2vw,20px); border:1px solid var(--line); border-radius:5px; background:var(--surface); text-decoration:none; }
+    .featured-project > div { display:flex; flex:1; flex-direction:column; align-items:flex-start; padding-inline:4px; }
+    .featured-project h3 { margin:0; font-size:clamp(27px,3.2vw,42px); font-weight:500; line-height:1.12; }
+    .featured-project > img { display:block; width:100%; height:auto; max-height:320px; aspect-ratio:5/4; object-fit:contain; border:1px solid #ded3c1; border-radius:3px; background:var(--frame); }
+    .featured-project:hover { border-color:#b09777; }
     .feature-note { max-width:48ch; margin:12px 0; color:var(--muted); font-size:14px; }
-    .feature-action { display:inline-block; font-size:13px; font-weight:650; text-decoration:underline; }
+    .feature-action { display:inline-flex; align-items:center; gap:6px; min-height:44px; margin-top:auto; font-size:13px; font-weight:650; text-decoration:underline; }
     .portfolio-section { margin-block:clamp(44px,6vw,74px); scroll-margin-top:20px; }
     .section-intro { max-width:72ch; margin:10px 0 22px; color:var(--muted); font-size:14px; }
     .photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
-    .photo-grid figure { margin:0; min-width:0; border:1px solid var(--line); border-radius:3px; background:var(--surface); }
-    .photo-grid a { display:block; cursor:zoom-in; }
-    .photo-grid img { display:block; width:100%; height:auto; aspect-ratio:5/4; object-fit:contain; padding:6px; background:var(--frame); }
-    .photo-grid figcaption { padding:10px 12px 12px; color:var(--muted); font-size:13px; overflow-wrap:anywhere; }
+    .photo-grid figure { margin:0; padding:7px; min-width:0; border:1px solid var(--line); border-radius:5px; background:var(--surface); }
+    .photo-grid a { display:block; overflow:hidden; border:1px solid #ded3c1; border-radius:3px; background:var(--frame); cursor:zoom-in; }
+    .photo-grid a:hover { border-color:#b09777; }
+    .photo-grid img { display:block; width:100%; height:auto; aspect-ratio:5/4; object-fit:contain; }
+    .photo-grid figcaption { padding:9px 5px 5px; color:var(--muted); font-size:13px; line-height:1.5; overflow-wrap:anywhere; }
     .section-link { margin:14px 0 0; font-size:13px; font-weight:650; }
     .end { display:flex; justify-content:center; flex-wrap:wrap; gap:14px 24px; padding:24px 0 40px; border-top:1px solid var(--line); text-align:center; font-size:13px; }
     .wrap > .cookie-consent-preferences { margin:0 0 24px; text-align:center; }
@@ -99,7 +104,7 @@
     @media (max-width:900px) { .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:640px) {
       .wrap { width:calc(100% - 32px); }
-      .featured-project { grid-template-columns:minmax(0,1fr); }
+      .project-list { grid-template-columns:minmax(0,1fr); }
     }
     @media (max-width:480px) { .photo-grid { grid-template-columns:minmax(0,1fr); } }
   </style>
@@ -118,26 +123,46 @@
       <p>Фотографии лестниц и изделий из дерева от мастерской из Москвы. Выберите раздел, чтобы рассмотреть конструкции, ограждения и детали отделки.</p>
     </header>
     <nav class="categories" aria-label="Разделы фотопортфолио">
+      <a href="#proekty">Проекты</a>
       <a href="#zakrytye">Закрытые лестницы</a>
       <a href="#otkrytye">Открытые лестницы</a>
       <a href="#otdelka-betona">Обшивка бетона</a>
       <a href="#ograzhdeniya">Ограждения</a>
       <a href="#izdeliya-iz-dereva">Изделия из дерева</a>
     </nav>
-    <a class="featured-project" href="./lestnitsa-barvikha-dub-steklo.html">
-      <img src="./assets/images/portfolio/branded/barvikha-dub-steklo.webp" srcset="./assets/images/portfolio/branded/thumbs/barvikha-dub-steklo.webp 720w, ./assets/images/portfolio/branded/barvikha-dub-steklo.webp 1280w" sizes="(max-width: 640px) calc(100vw - 70px), 44vw" width="1280" height="960" alt="Дубовая лестница со стеклянным ограждением в Барвихе" fetchpriority="high" decoding="async">
-      <div>
-        <p class="eyebrow">Проект в Барвихе</p>
-        <h2>Лестница из дуба и стекла</h2>
-        <p class="feature-note">Металлокаркас, дубовая отделка, стеклянное ограждение и подсветка. На странице проекта — подробности, фотографии и видео.</p>
-        <span class="feature-action">Смотреть проект <span aria-hidden="true">→</span></span>
+    <section class="portfolio-section" id="proekty" aria-labelledby="proekty-title">
+      <h2 id="proekty-title">Отдельные проекты</h2>
+      <div class="project-list">
+        <a class="featured-project" href="./lestnitsa-barvikha-dub-steklo.html">
+          <img src="./assets/images/portfolio/branded/barvikha-dub-steklo.webp" srcset="./assets/images/portfolio/branded/thumbs/barvikha-dub-steklo.webp 720w, ./assets/images/portfolio/branded/barvikha-dub-steklo.webp 1280w" sizes="(max-width: 640px) calc(100vw - 66px), 44vw" width="1280" height="960" alt="Дубовая лестница со стеклянным ограждением в Барвихе" fetchpriority="high" decoding="async">
+          <div>
+            <p class="eyebrow">Барвиха</p>
+            <h3>Лестница из дуба и стекла</h3>
+            <p class="feature-note">Металлокаркас, дубовая отделка, стеклянное ограждение и подсветка. На странице проекта — подробности, фотографии и видео.</p>
+            <span class="feature-action">Смотреть проект <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+        <a class="featured-project" href="./proekty/otkrytaya-lestnitsa/">
+          <img src="./assets/images/portfolio/branded/open-staircase-two-flights.webp" srcset="./assets/images/portfolio/branded/thumbs/open-staircase-two-flights.webp 540w, ./assets/images/portfolio/branded/open-staircase-two-flights.webp 1440w" sizes="(max-width: 640px) calc(100vw - 66px), 44vw" width="1440" height="1920" alt="Открытая лестница с двумя маршами и тёмным ограждением" loading="lazy" decoding="async">
+          <div>
+            <h3>Открытая лестница в доме с деревянной отделкой</h3>
+            <p class="feature-note">Два открытых марша, тёмные стойки ограждения и поворот у высокого окна. В подборке три ракурса одного объекта.</p>
+            <span class="feature-action">Смотреть проект <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
       </div>
-    </a>
+    </section>
 
     <section class="portfolio-section" id="zakrytye" aria-labelledby="zakrytye-title">
       <h2 id="zakrytye-title">Лестницы закрытого типа</h2>
       <p class="section-intro">Подступёнки закрывают просветы между ступенями. В подборке есть прямые и поворотные марши с металлическими и стеклянными ограждениями.</p>
       <div class="photo-grid">
+        <figure>
+          <a href="./assets/images/portfolio/branded/closed-staircase-step-lighting.webp">
+            <img src="./assets/images/portfolio/branded/closed-staircase-step-lighting.webp" srcset="./assets/images/portfolio/branded/thumbs/closed-staircase-step-lighting.webp 540w, ./assets/images/portfolio/branded/closed-staircase-step-lighting.webp 1440w" sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 640px) calc((100vw - 78px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 269px" width="1440" height="1920" alt="Лестничный марш с подсветкой ступеней у фактурной стены" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Лестничный марш с подсветкой ступеней у фактурной стены.</figcaption>
+        </figure>
         <figure>
           <a href="./assets/images/portfolio/branded/closed-staircase-white-risers-metal-balusters.webp">
             <img src="./assets/images/portfolio/branded/closed-staircase-white-risers-metal-balusters.webp" srcset="./assets/images/portfolio/branded/thumbs/closed-staircase-white-risers-metal-balusters.webp 540w, ./assets/images/portfolio/branded/closed-staircase-white-risers-metal-balusters.webp 960w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="960" height="1280" alt="Лестница с белыми подступёнками, деревянными ступенями и металлическими стойками" loading="lazy" decoding="async">

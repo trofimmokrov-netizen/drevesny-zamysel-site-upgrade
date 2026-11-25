@@ -52,7 +52,7 @@
 
     const isProjectLink = control.matches('a[href="#contact"], a[href="#request-form"]')
       && !control.closest('.site-header, .mobile-menu nav');
-    if (control.hasAttribute('data-electrical-contact') || isProjectLink) {
+    if (control.matches('[data-electrical-contact], [data-project-contact]') || isProjectLink) {
       reachGoal('project_request_open');
     }
   });

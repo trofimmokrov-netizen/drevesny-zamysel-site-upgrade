@@ -142,7 +142,7 @@
        so hover, focus and active feedback wins the cascade without a late fetch. -->
   <link rel="preload" href="./assets/css/interaction-polish.css?v=20261119-gallery-v24" as="style" />
   <script src="./assets/js/yandex-metrika-consent.js?v=20261106-counter-110344922" defer></script>
-  <script src="./assets/js/yandex-metrika-goals.js?v=20261118-goals-v2" defer></script>
+  <script src="./assets/js/yandex-metrika-goals.js?v=20261125-goals-v3" defer></script>
   <style id="early-mobile-compositing">
     /* Apply before the first mobile paint; the interaction stylesheet is
        fetched above and applied at the end to preserve its intended cascade. */
@@ -2460,8 +2460,9 @@
         <p class="section-label">Как нас найти</p>
         <h2 id="location-map-heading">Мастерская в Губкино</h2>
         <p class="location-map-address">г. Москва, НАО, район Коммунарка,<br>деревня Губкино, 78, сооружение 5</p>
-        <p class="location-map-note">Нажмите на кнопку — Яндекс Карты проложат маршрут до мастерской.</p>
+        <p class="location-map-note">Постройте маршрут до мастерской. Фотографии помогут найти вход на территории.</p>
         <a class="btn-primary location-route-link" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer">Построить маршрут <span aria-hidden="true">↗</span></a>
+        <a class="location-org-link" href="./kak-proyti/">Как пройти по фотографиям <span aria-hidden="true">→</span></a>
         <a class="location-org-link" href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer">Открыть карточку мастерской на карте</a>
       </div>
       <a class="location-map-preview" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer" aria-label="Построить маршрут до мастерской в Яндекс Картах">
@@ -3068,6 +3069,7 @@
   // Category galleries are rendered from local image paths so buttons work in file:// previews too.
   const categoryGalleryImages = {
     "closedType": [
+      "./assets/images/portfolio/branded/closed-staircase-step-lighting.webp",
       "./assets/images/portfolio/branded/closed-staircase-wood-vertical-rails.webp",
       "./assets/images/portfolio/branded/closed-staircase-gray-steps.webp",
       "./assets/images/portfolio/branded/closed-staircase-dark-steps-glass.webp",
