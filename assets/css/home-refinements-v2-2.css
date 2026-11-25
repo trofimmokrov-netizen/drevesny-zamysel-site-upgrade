@@ -302,7 +302,7 @@
     #process .step { gap:14px; padding:21px 0; align-items:flex-start; }
     #process .step-num { margin-top:2px; }
     #process .step-content { min-width:0; }
-    #process .step-content h4 { line-height:1.4; }
+    #process .step-content h3 { line-height:1.4; }
     #process .process-right { position:static; top:auto; }
     #process .process-card { padding:22px 18px; }
     #process .meta-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(112px,auto); gap:8px; align-items:start; }
