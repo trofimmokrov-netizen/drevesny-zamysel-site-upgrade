@@ -72,7 +72,8 @@
       "@id": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/#website",
       "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "name": "Древесный Замысел",
-      "inLanguage": "ru-RU"
+      "inLanguage": "ru-RU",
+      "publisher": { "@id": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/#workshop" }
     }
   </script>
 
@@ -81,9 +82,11 @@
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/#workshop",
       "name": "Древесный Замысел",
       "description": "Лестницы любой сложности под ключ в Москве и Московской области: проектирование, изготовление и монтаж. Также изготавливаем мебель на заказ и столы из слэбов.",
-      "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/hero.webp",
+      "image": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/factory2.webp",
+      "logo": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/logo-transparent.png",
       "url": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/",
       "telephone": "+7 (495) 275-14-23",
       "email": "drevesnyzamysel@mail.ru",
@@ -100,6 +103,7 @@
         "longitude": 37.463958
       },
       "hasMap": "https://yandex.ru/maps/org/drevesny_zamysel/137748761398/",
+      "subjectOf": { "@id": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/kak-proyti/#webpage" },
       "sameAs": [
         "https://vk.ru/thewoodplan",
         "https://t.me/TheWoodPlan",
@@ -116,6 +120,7 @@
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление лестниц любой сложности" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление мебели на заказ" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Изготовление деревянных элементов интерьера на заказ" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/elektrosnabzhenie/#service" } },
           {
             "@type": "Offer",
             "price": "55000",
@@ -2462,7 +2467,7 @@
         <p class="location-map-address">г. Москва, НАО, район Коммунарка,<br>деревня Губкино, 78, сооружение 5</p>
         <p class="location-map-note">Постройте маршрут до мастерской. Фотографии помогут найти вход на территории.</p>
         <a class="btn-primary location-route-link" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer">Построить маршрут <span aria-hidden="true">↗</span></a>
-        <a class="location-org-link" href="./kak-proyti/">Как пройти по фотографиям <span aria-hidden="true">→</span></a>
+        <a class="location-photo-link" href="./kak-proyti/">Как пройти по фотографиям <span aria-hidden="true">→</span></a>
         <a class="location-org-link" href="https://yandex.ru/maps/213/moscow/?ll=37.463871%2C55.532402&amp;mode=poi&amp;poi%5Bpoint%5D=37.463958%2C55.532426&amp;poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D137748761398&amp;z=18.81" target="_blank" rel="noopener noreferrer">Открыть карточку мастерской на карте</a>
       </div>
       <a class="location-map-preview" href="https://yandex.ru/maps/?rtext=~55.532426%2C37.463958&amp;rtt=auto" target="_blank" rel="noopener noreferrer" aria-label="Построить маршрут до мастерской в Яндекс Картах">
@@ -3729,6 +3734,8 @@
   .location-map-address { margin:0; color:var(--text-primary); font-size:15px; line-height:1.7; }
   .location-map-note { max-width:380px; margin:12px 0 22px; color:var(--text-secondary); font-size:12px; line-height:1.65; }
   .location-route-link { display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:13px 18px; text-decoration:none; }
+  .location-photo-link { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; margin-top:10px; padding:8px 15px; border:1px solid var(--border); border-radius:3px; color:var(--btn-bg); font-size:13px; font-weight:650; text-decoration:none; }
+  .location-photo-link:hover { border-color:var(--btn-bg); }
   .location-org-link { margin-top:14px; color:var(--text-secondary); font-size:11px; text-underline-offset:3px; }
   .location-map-preview { position:relative; display:block; min-width:0; min-height:380px; overflow:hidden; background:#e8e6df; }
   .location-map-preview iframe { position:absolute; inset:0; width:100%; height:100%; border:0; pointer-events:none; }
