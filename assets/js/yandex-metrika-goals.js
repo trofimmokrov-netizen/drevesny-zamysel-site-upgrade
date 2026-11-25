@@ -32,16 +32,16 @@
 
     // Only the quote CTA opens the estimate form; the sibling portfolio CTA
     // shares `.btn-card` but is not a request for a quote.
-    if (control.matches('button.btn-card[onclick*="openForm"]')) {
+    if (control.matches('[data-product-contact], button.btn-card[onclick*="openForm"]')) {
       reachGoal('estimate_form_open');
       return;
     }
 
-    if (control.matches('[data-chat-interest]')) {
+    if (control.matches('[data-chat-interest], [data-training-cta], [data-partnership-cta]')) {
       const interest = control.dataset.chatInterest || '';
-      if (/франшиз/i.test(interest)) reachGoal('franchise_request_open');
-      else if (/партнёр|партнер|регион/i.test(interest)) reachGoal('partnership_request_open');
-      else if (/обучен/i.test(interest)) reachGoal('training_request_open');
+      if (control.dataset.partnershipCta === 'franchise' || /франшиз/i.test(interest)) reachGoal('franchise_request_open');
+      else if (control.hasAttribute('data-partnership-cta') || /партнёр|партнер|регион/i.test(interest)) reachGoal('partnership_request_open');
+      else if (control.hasAttribute('data-training-cta') || /обучен/i.test(interest)) reachGoal('training_request_open');
       return;
     }
 
@@ -50,7 +50,9 @@
       return;
     }
 
-    if (control.matches('a[href="#contact"], a[href="#request-form"]') && !control.closest('.site-header, .mobile-menu nav')) {
+    const isProjectLink = control.matches('a[href="#contact"], a[href="#request-form"]')
+      && !control.closest('.site-header, .mobile-menu nav');
+    if (control.hasAttribute('data-electrical-contact') || isProjectLink) {
       reachGoal('project_request_open');
     }
   });
