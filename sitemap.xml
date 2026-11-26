@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/</loc><lastmod>2026-11-26</lastmod>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/closed-staircases-02.webp</image:loc></image:image>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/closed-staircases-04.webp</image:loc></image:image>
@@ -67,7 +67,7 @@
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/preview-stair-railings.webp</image:loc></image:image>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/preview-custom-woodwork.webp</image:loc></image:image>
   </url>
-  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio.html</loc><lastmod>2026-11-25</lastmod>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio.html</loc><lastmod>2026-11-26</lastmod>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/barvikha-dub-steklo.webp</image:loc></image:image>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/closed-staircases-01.webp</image:loc></image:image>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/branded/closed-staircases-03.webp</image:loc></image:image>
@@ -115,7 +115,7 @@
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/projects/barvikha/lestnitsa-barvikha-dub-steps-detail-06.webp</image:loc></image:image>
   </url>
 
-  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/elektrosnabzhenie/</loc><lastmod>2026-11-26</lastmod></url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/elektrosnabzhenie/</loc><lastmod>2026-11-26</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/teplaya-podsvetka-derevyannyh-stupeney.webp</image:loc></image:image><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/konturnaya-podsvetka-temnoy-lestnitsy.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/kak-proyti/</loc><lastmod>2026-11-25</lastmod>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/route/01-street.webp</image:loc></image:image>
     <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/route/02-turn.webp</image:loc></image:image>
@@ -137,7 +137,7 @@
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/ograzhdenie-poruchen/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stair-railings-03.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/otkrytaya-ili-zakrytaya/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/closed-staircases-01.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/modernizatsiya-elektrosnabzheniya/</loc><lastmod>2026-11-26</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/elektrosnabzhenie-hero.webp</image:loc></image:image></url>
-  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/podsvetka-stupeney/</loc><lastmod>2026-11-26</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/projects/barvikha/lestnitsa-barvikha-understair-lighting-04.webp</image:loc></image:image></url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/podsvetka-stupeney/</loc><lastmod>2026-11-26</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/projects/barvikha/lestnitsa-barvikha-understair-lighting-04.webp</image:loc></image:image><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/teplaya-podsvetka-derevyannyh-stupeney.webp</image:loc></image:image><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/konturnaya-podsvetka-temnoy-lestnitsy.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/porody-drevesiny/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/open-staircases-03.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/skolko-mesta-zanimaet/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/open-staircases-02.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/uhod-za-derevyannymi-stupenyami/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/open-staircases-05.webp</image:loc></image:image></url>
@@ -145,4 +145,87 @@
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/stoimost-lestnicy/</loc><lastmod>2026-11-04</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/projects/barvikha/lestnitsa-barvikha-dub-glass-01.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/articles/forma-lestnicy/</loc><lastmod>2026-11-05</lastmod><image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/open-staircases-02.webp</image:loc></image:image></url>
   <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/privacy.html</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio-media/</loc><lastmod>2026-11-26</lastmod>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/teplaya-podsvetka-derevyannyh-stupeney.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/konturnaya-podsvetka-temnoy-lestnitsy.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/liniynoe-osveshchenie-koridora.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/tochechnoe-osveshchenie-interera.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/otkrytye-stupeni-belyy-proem.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannyy-marsh-u-bolshogo-okna.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/svetlye-stupeni-u-derevyannoy-steny.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/pryamoy-marsh-u-beloy-steny.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/svetlyy-marsh-s-belymi-podstupenkami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannoe-ograzhdenie-s-balyasinami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/temnye-otkrytye-stupeni.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/ograzhdenie-s-chernymi-stoykami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/beloe-derevyannoe-ograzhdenie.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/povorotnaya-lestnitsa-s-tonkimi-stoykami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/otkrytyy-marsh-na-temnom-karkase.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannye-stupeni-i-metallicheskie-perila.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/parallelnoe-ograzhdenie-u-okna.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/svetlye-stupeni-steklyannoe-ograzhdenie.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/otkrytyy-marsh-s-nizkoy-tochki.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/svetlyy-povorotnyy-derevyannyy-marsh.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/svetlye-stupeni-mezhdu-stenami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/detal-poruchnya-i-opornogo-stolba.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/povorot-s-prozrachnym-ograzhdeniem.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannyy-povorot-so-steklom.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/pryamaya-lestnitsa-k-oknu.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/shkafy-pod-lestnitsey.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/metallicheskie-stoyki-u-lestnitsy.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannyy-marsh-s-tonkimi-perilami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannaya-ploshchadka-u-ograzhdeniya.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/podgotovka-lestnichnogo-proema.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/zagotovka-s-radiusnym-krayem.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannye-zagotovki-dlya-marsha.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/metallicheskie-podstolya-v-cehe.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/ceh-s-derevoobrabatyvayushchimi-stankami.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/podgonka-stupeney-na-obekte.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/zagotovki-dlya-povorotnyh-stupeney.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/komplekt-stupeney-v-masterskoy.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/montazh-pryamogo-marsha.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannye-paneli-na-verstake.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/reznaya-derevyannaya-opora.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/razlozhennye-derevyannye-stupeni.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/stoleshnitsa-s-goluboy-smoloy.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/stol-s-siney-vstavkoy-na-podstole.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/kruglyy-stol-s-derevyannym-krayem.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/prirodnye-detali-v-prozrachnoy-smole.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/kruglyy-stol-derevo-temnaya-zalivka.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannaya-stoyka-v-interere.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/reznye-paneli-v-interere.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannaya-konsol-u-steny.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/vertikalnaya-derevyannaya-otdelka-steny.webp</image:loc></image:image>
+    <image:image><image:loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/images/portfolio/stories/derevyannye-paneli-u-proema.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio-media/obzor-ceha-s-oborudovaniem/</loc><lastmod>2026-11-26</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/obzor-ceha-s-oborudovaniem.webp</video:thumbnail_loc>
+      <video:title>Оборудование и заготовки в мастерской</video:title>
+      <video:description>На видео видны рабочие столы, деревообрабатывающее оборудование и детали, ожидающие обработки. По такому ракурсу можно увидеть, как устроен рабочий участок мастерской.</video:description>
+      <video:content_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/obzor-ceha-s-oborudovaniem.mp4</video:content_loc>
+      <video:duration>14</video:duration>
+      <video:publication_date>2026-08-26T13:41:38.000Z</video:publication_date>
+    </video:video>
+  </url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio-media/prohod-vdol-otkrytoy-lestnitsy/</loc><lastmod>2026-11-26</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.webp</video:thumbnail_loc>
+      <video:title>Открытая лестница у большого окна</video:title>
+      <video:description>С разных точек видно, как деревянные ступени, тёмное ограждение и вертикальные рейки делят светлый интерьер. Просветы между ступенями пропускают дневной свет.</video:description>
+      <video:content_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2026-10-21T16:26:44.000Z</video:publication_date>
+    </video:video>
+  </url>
+  <url><loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/portfolio-media/zalivka-epoksidnoy-smoly/</loc><lastmod>2026-11-26</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/zalivka-epoksidnoy-smoly.webp</video:thumbnail_loc>
+      <video:title>Процесс заливки эпоксидной смолы</video:title>
+      <video:description>На крупном плане видно, как мастер льёт смолу на участке между фрагментами древесины. Рисунок природного края остаётся видимым под заливкой.</video:description>
+      <video:content_loc>https://xn----8sbehfbcoqyjh9arg8mf.xn--p1ai/assets/media/portfolio/zalivka-epoksidnoy-smoly.mp4</video:content_loc>
+      <video:duration>23</video:duration>
+      <video:publication_date>2026-08-17T07:45:03.000Z</video:publication_date>
+    </video:video>
+  </url>
 </urlset>

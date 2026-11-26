@@ -1,0 +1,54 @@
+.lighting-examples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 16px);
+  max-width: 680px;
+  margin: 14px auto 0;
+}
+
+.lighting-examples figure {
+  min-width: 0;
+  margin: 0;
+  padding: 7px;
+  border: 1px solid #ddd6ca;
+  border-radius: 4px;
+  background: #fbfaf7;
+}
+
+.lighting-examples a {
+  display: block;
+  border-radius: 2px;
+  cursor: zoom-in;
+}
+
+.lighting-examples a:focus-visible {
+  outline: 2px solid #856139;
+  outline-offset: 3px;
+}
+
+.lighting-examples img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+  border-radius: 2px;
+  background: #e9e3d8;
+}
+
+.lighting-examples figcaption {
+  padding: 8px 4px 3px;
+  color: #545b51;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.lighting-examples-heading {
+  margin: 26px 0 0;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.lighting-examples-heading + .lighting-examples { margin-inline: 0; }

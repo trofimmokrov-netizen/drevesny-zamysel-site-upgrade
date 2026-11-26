@@ -60,6 +60,12 @@
     .feature-note { max-width:48ch; margin:12px 0; color:var(--muted); font-size:14px; }
     .feature-action { display:inline-flex; align-items:center; gap:6px; min-height:44px; margin-top:auto; font-size:13px; font-weight:650; text-decoration:underline; }
     .portfolio-section { margin-block:clamp(44px,6vw,74px); scroll-margin-top:20px; }
+    .media-teaser { display:grid; grid-template-columns:clamp(82px,11vw,138px) minmax(0,1fr) auto; align-items:center; gap:18px 28px; padding:clamp(18px,3vw,32px); border:1px solid var(--line); border-radius:5px; background:var(--surface); }
+    .media-teaser > img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; object-position:center 55%; border:1px solid #ded3c1; border-radius:3px; }
+    .media-teaser h2 { font-size:clamp(28px,3.6vw,40px); }
+    .media-teaser p { margin:8px 0 0; color:var(--muted); font-size:14px; }
+    .media-teaser a { display:inline-flex; flex:none; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 16px; border:1px solid var(--green); border-radius:3px; background:var(--green); color:var(--surface); font-size:13px; font-weight:700; text-decoration:none; }
+    .media-teaser a:hover { background:var(--surface); color:var(--green); }
     .section-intro { max-width:72ch; margin:10px 0 22px; color:var(--muted); font-size:14px; }
     .photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
     .photo-grid figure { margin:0; padding:7px; min-width:0; border:1px solid var(--line); border-radius:5px; background:var(--surface); }
@@ -105,6 +111,8 @@
     @media (max-width:640px) {
       .wrap { width:calc(100% - 32px); }
       .project-list { grid-template-columns:minmax(0,1fr); }
+      .media-teaser { grid-template-columns:minmax(0,1fr); justify-items:center; text-align:center; }
+      .media-teaser > img { width:min(100%,300px); aspect-ratio:16/10; }
     }
     @media (max-width:480px) { .photo-grid { grid-template-columns:minmax(0,1fr); } }
   </style>
@@ -124,6 +132,7 @@
     </header>
     <nav class="categories" aria-label="Разделы фотопортфолио">
       <a href="#proekty">Проекты</a>
+      <a href="#foto-video">Фото и видео</a>
       <a href="#zakrytye">Закрытые лестницы</a>
       <a href="#otkrytye">Открытые лестницы</a>
       <a href="#otdelka-betona">Обшивка бетона</a>
@@ -151,6 +160,15 @@
           </div>
         </a>
       </div>
+    </section>
+
+    <section class="portfolio-section media-teaser" id="foto-video" aria-labelledby="foto-video-title">
+      <img src="./assets/images/portfolio/stories/thumbs/teplaya-podsvetka-derevyannyh-stupeney.webp" width="382" height="680" alt="" loading="lazy" decoding="async">
+      <div>
+        <h2 id="foto-video-title">Работы в деталях</h2>
+        <p>Лестницы с подсветкой, работа мастеров и столы из дерева и смолы.</p>
+      </div>
+      <a href="./portfolio-media/index.html">Смотреть фото и видео <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="portfolio-section" id="zakrytye" aria-labelledby="zakrytye-title">
