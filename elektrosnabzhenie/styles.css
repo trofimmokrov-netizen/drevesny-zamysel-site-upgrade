@@ -126,7 +126,7 @@
   border-top: 1px solid var(--line);
 }
 .section-title { max-width: 22ch; font-size: clamp(36px, 4.5vw, 58px); text-wrap: balance; }
-.service-grid {
+.service-grid, .price-details {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
@@ -140,9 +140,18 @@
 }
 .service-card h3, .process-list h3 { font-size: clamp(26px, 3vw, 34px); }
 .service-card p, .process-list p { margin: 12px 0 0; color: var(--muted); font-size: 15px; }
+.lighting-contact { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; }
+.price-details { margin-bottom: 0; }
+.price-details .service-card { border-top: 2px solid var(--bronze); }
+.price-details dt { font-size: 14px; font-weight: 700; }
+.price-details dd { margin: 8px 0 0; }
+.price-details strong {
+  font: 600 clamp(26px, 3vw, 34px)/1.12 var(--font-display);
+  font-variant-numeric: lining-nums;
+}
 .process-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(18px, 3vw, 36px);
   padding: 0;
   margin: 26px 0 32px;
@@ -175,6 +184,8 @@
 .end-cta .action:hover, .end-cta .action:active { background: #eae1d2; }
 .end-cta .action:focus-visible, .end-cta .phone-link:focus-visible { outline-color: #e0cba5; }
 .end-cta .phone-link { text-decoration-color: #e0cba5; }
+.electrical-reading { margin: 16px 0 0; padding-inline-start: 22px; }
+.electrical-reading a { display: inline-flex; align-items: center; min-height: 44px; }
 .site-footer { border-top: 1px solid var(--line); background: var(--surface); }
 .footer-inner {
   display: flex;
@@ -193,6 +204,7 @@
   .hero { grid-template-columns: minmax(0, 1fr); }
   .hero-media img { aspect-ratio: 16 / 10; }
   .hero h1 { max-width: 17ch; font-size: clamp(38px, 8.6vw, 64px); }
+  .process-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
   .topbar-inner { min-height: 65px; gap: 10px; }
@@ -204,7 +216,8 @@
   .hero { gap: 24px; }
   .hero-copy > p { margin-top: 16px; font-size: 15px; }
   .visit { display: grid; justify-content: stretch; }
-  .service-grid, .process-list { grid-template-columns: minmax(0, 1fr); }
+  .service-grid, .price-details, .process-list { grid-template-columns: minmax(0, 1fr); }
+  .lighting-contact > a { flex: 1 1 100%; }
   .end-actions { width: 100%; }
   .end-actions > a { flex: 1 1 100%; }
 }

@@ -121,6 +121,10 @@
   // request context, and the same topic should be attached to the Bitrix lead.
   const entryParams = new URLSearchParams(window.location.search);
   const incomingStairConfig = entryParams.get('stair_config');
+  const entryServiceTitles = new Map([
+    ['electrical', 'Электроснабжение'],
+    ['lighting', 'Подсветка лестницы']
+  ]);
   if (incomingStairConfig) {
     window.setSiteLeadInterest?.('Расчёт лестницы');
     const contactNote = document.querySelector('#contact .contact-start-note');
@@ -132,9 +136,9 @@
   // Keep the selected service visible when a visitor asks for a quote.
   function prepareLeadForm(link) {
     const productTitle = link?.closest('.product-card')?.querySelector('h3');
-    const electricalEntry = !link && !incomingStairConfig && entryParams.get('service') === 'electrical';
+    const entryTitle = !link && !incomingStairConfig ? entryServiceTitles.get(entryParams.get('service')) : undefined;
     const contactNote = document.querySelector('#contact .contact-start-note');
-    const title = electricalEntry ? 'Электроснабжение' : productTitle?.textContent.trim();
+    const title = link?.dataset.leadService || entryTitle || productTitle?.textContent.trim();
     window.setSiteLeadInterest?.(title || 'Расчёт лестницы');
     if (title && contactNote) {
       contactNote.textContent = `Вы выбрали направление «${title}». Оставьте контакты — менеджер уточнит детали и поможет с расчётом.`;
