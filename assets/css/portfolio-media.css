@@ -99,9 +99,9 @@ a { color: inherit; text-underline-offset: 4px; }
   scroll-margin-top: 18px;
 }
 
-.media-catalog h2 { font-size: clamp(30px, 4.2vw, 44px); }
-.media-catalog > section > p { margin: 8px 0 16px; color: var(--media-muted); font-size: 14px; }
-.media-catalog h3 { margin: 24px 0 8px; font-size: clamp(23px, 3.5vw, 32px); font-weight: 500; }
+.media-catalog h2 { font-size: clamp(30px, 4.2vw, 44px); text-align: center; }
+.media-catalog > section > p { max-width: 68ch; margin: 8px auto 16px; color: var(--media-muted); font-size: 14px; text-align: center; }
+.media-catalog h3 { margin: 24px 0 8px; font-size: clamp(23px, 3.5vw, 32px); font-weight: 500; text-align: center; }
 
 .media-grid {
   display: grid;

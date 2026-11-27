@@ -46,6 +46,28 @@
   portfolioFilm?.addEventListener('toggle', () => {
     if (!portfolioFilm.open) portfolioFilm.querySelector('video')?.pause();
   });
+  const filmSummary = portfolioFilm?.querySelector('summary');
+  const filmVideo = portfolioFilm?.querySelector('video');
+  const filmDialog = document.querySelector('.home-project-film__dialog');
+  if (filmSummary && filmVideo && typeof filmDialog?.showModal === 'function') {
+    const filmStage = filmDialog.querySelector('.home-project-film__stage');
+    filmSummary.setAttribute('aria-haspopup', 'dialog');
+    filmSummary.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      filmDialog.showModal();
+      event.preventDefault();
+      document.documentElement.classList.add('home-project-film-dialog-open');
+      filmVideo.poster ||= filmSummary.querySelector('img').src;
+      filmStage.append(filmVideo);
+      filmVideo.play().catch(() => {});
+    });
+    filmDialog.addEventListener('close', () => {
+      filmVideo.pause();
+      filmSummary.after(filmVideo);
+      document.documentElement.classList.remove('home-project-film-dialog-open');
+      filmSummary.focus({ preventScroll: true });
+    });
+  }
 
   function focusSection(target, instant) {
     // Keep keyboard and assistive-technology users with the destination.
@@ -294,6 +316,22 @@
 
 
   // Category galleries are rendered from local image paths so buttons work in file:// previews too.
+  const woodGalleryDetails = {
+    "./assets/images/portfolio/branded/custom-woodwork-03.webp": { label: "Синяя тумба с филёнчатыми дверцами и ящиками", size: [720, 512] },
+    "./assets/images/portfolio/branded/custom-woodwork-05.webp": { label: "Белые шкафы под лестницей с золотистыми ручками", size: [540, 720] },
+    "./assets/images/portfolio/branded/custom-woodwork-06.webp": { label: "Зелёный шкаф с открытой деревянной нишей", size: [540, 720] },
+    "./assets/images/portfolio/branded/custom-woodwork-07.webp": { label: "Светлый встроенный шкаф с нишей и ящиками", size: [540, 720] },
+    "./assets/images/portfolio/stories/shkafy-pod-lestnitsey.webp": { label: "Шкафы и выдвижные ящики под лестницей", size: [382, 680] },
+    "./assets/images/portfolio/stories/derevyannyy-stol-i-taburety.webp": { label: "Деревянный стол и три табурета с фигурными опорами", size: [382, 680] },
+    "./assets/images/portfolio/stories/servirovochnyy-stolik-na-kolesah.webp": { label: "Тёмный деревянный сервировочный столик на колёсах", size: [382, 680] },
+    "./assets/images/portfolio/stories/kvadratnyy-stolik-na-karkase.webp": { label: "Квадратный столик на чёрном металлическом каркасе", size: [382, 680] },
+    "./assets/images/portfolio/stories/stol-s-siney-vstavkoy-na-podstole.webp": { label: "Круглый стол из слэба с тёмно-синей заливкой", size: [382, 680] },
+    "./assets/images/portfolio/stories/kruglyy-stol-s-derevyannym-krayem.webp": { label: "Круглый стол с широкой деревянной кромкой на треугольных опорах", size: [382, 680] },
+    "./assets/images/portfolio/stories/stoleshnitsa-s-goluboy-smoloy.webp": { label: "Круглая деревянная столешница с голубой смолой", size: [382, 680] },
+    "./assets/images/portfolio/stories/sleb-s-temnoy-vstavkoy.webp": { label: "Столешница из слэба с тёмной прозрачной вставкой", size: [382, 680] },
+    "./assets/images/portfolio/stories/dlinnaya-stoleshnitsa-s-prirodnym-krayem.webp": { label: "Длинная столешница с естественной кромкой", size: [382, 680] },
+    "./assets/images/portfolio/stories/derevyannaya-stoyka-v-interere.webp": { label: "Деревянный письменный стол с двумя тумбами", size: [382, 680] }
+  };
   const categoryGalleryImages = {
     "closedType": [
       "./assets/images/portfolio/branded/closed-staircase-step-lighting.webp",
@@ -396,7 +434,8 @@
       "./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp",
       "./assets/images/portfolio/branded/custom-woodwork-01.webp",
       "./assets/images/portfolio/branded/custom-woodwork-08.webp",
-      "./assets/images/portfolio/branded/custom-woodwork-09.webp"
+      "./assets/images/portfolio/branded/custom-woodwork-09.webp",
+      ...Object.keys(woodGalleryDetails)
     ]
   };
   // Standard thumbnails are 540 × 720. Keep the original framing for other proportions.
@@ -473,9 +512,10 @@
     categoryPreviewIndex=((index % categoryPreviewImages.length)+categoryPreviewImages.length)%categoryPreviewImages.length;
     categoryPreviewImage.src=categoryPreviewImages[categoryPreviewIndex];
     const categoryKey=document.getElementById('categoryLightboxTitle').dataset.key;
-    categoryPreviewImage.alt=`${categoryImageDescriptions[categoryKey]}, пример работы ${categoryPreviewIndex+1}`;
-    categoryPreviewImage.title=`${categoryImageDescriptions[categoryKey]} — пример ${categoryPreviewIndex+1}`;
-    categoryPreviewCaption.textContent=`${categoryImageDescriptions[categoryKey]} · Фото ${categoryPreviewIndex+1} из ${categoryPreviewImages.length}`;
+    const description=woodGalleryDetails[categoryPreviewImages[categoryPreviewIndex]]?.label || categoryImageDescriptions[categoryKey];
+    categoryPreviewImage.alt=`${description}, пример работы ${categoryPreviewIndex+1}`;
+    categoryPreviewImage.title=`${description} — пример ${categoryPreviewIndex+1}`;
+    categoryPreviewCaption.textContent=`${description} · Фото ${categoryPreviewIndex+1} из ${categoryPreviewImages.length}`;
     if(!categoryPreview.open) categoryPreview.showModal();
     if(categoryPreviewImage.decode){
       categoryPreviewImage.decode().then(preloadCategoryPreviewNeighbors).catch(()=>{});
@@ -554,17 +594,19 @@
           }),{root:categoryGrid,rootMargin:'180px 0px',threshold:0.01})
         : null;
       images.forEach((src,index) => {
+        const details=woodGalleryDetails[src];
+        const description=details?.label || categoryImageDescriptions[key];
         const item=document.createElement('button'); item.type='button'; item.className='category-lightbox__item gallery-card-entering';
-        item.setAttribute('aria-label',`Открыть фото ${index+1}: ${categoryImageDescriptions[key]}`);
+        item.setAttribute('aria-label',`Открыть фото ${index+1}: ${description}`);
         const img=document.createElement('img');
         img.className='gallery-image-loading';
         const fileName = src.slice(src.lastIndexOf('/') + 1);
-        const [width, height] = categoryThumbnailSizes[fileName] || [540, 720];
+        const [width, height] = details?.size || categoryThumbnailSizes[fileName] || [540, 720];
         img.width = width;
         img.height = height;
         img.style.setProperty('--gallery-photo-ratio', width + ' / ' + height);
-        img.alt=`${categoryImageDescriptions[key]}, пример работы ${index+1}`;
-        img.title=`${categoryImageDescriptions[key]} — пример ${index+1}`;
+        img.alt=`${description}, пример работы ${index+1}`;
+        img.title=`${description} — пример ${index+1}`;
         img.loading='lazy'; img.decoding='async';
         const enterGalleryCard=revealCardWhenReady(item,img);
         item._enterGalleryCard=enterGalleryCard;
@@ -581,9 +623,9 @@
           }
           img.classList.remove('gallery-image-loading');
           img.classList.add('gallery-image-ready');
-          img.alt=`${categoryImageDescriptions[key]}, изображение временно недоступно`;
+          img.alt=`${description}, изображение временно недоступно`;
           item.disabled=true;
-          item.setAttribute('aria-label',`Фото временно недоступно: ${categoryImageDescriptions[key]}`);
+          item.setAttribute('aria-label',`Фото временно недоступно: ${description}`);
           item.classList.add('gallery-image-unavailable');
           enterGalleryCard();
         };

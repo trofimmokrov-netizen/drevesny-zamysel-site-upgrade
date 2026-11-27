@@ -412,3 +412,115 @@
   @media(hover:none) { .material-zoom > span { opacity:1; transform:none; } }
   @media(max-width:600px) { .material-preview { width:100vw; height:100dvh; padding:58px 12px 20px; } .material-preview figure img { height:calc(100% - 30px); } }
   @media(prefers-reduced-motion:reduce) { .material-zoom > span { transition:none; } }
+
+/* The lower cooperation panels share the width of the course panel above. */
+  #training #partnership.training-next-steps {
+    width:min(100%,1200px) !important;
+    margin-top:clamp(24px,4vw,44px);
+    scroll-margin-top:12px;
+  }
+  #partnership > .training-note--partner {
+    border-radius:12px;
+  }
+  #partnership > .training-note--partner > .section-label,
+  #partnership > .training-note--partner > h3,
+  #partnership > .training-note--partner > h3 + p {
+    margin-inline:auto;
+    text-align:center;
+  }
+  #partnership > .training-note--partner > h3 {
+    font-size:clamp(30px,4vw,46px);
+    line-height:1.1;
+    text-wrap:balance;
+  }
+  #partnership > .training-note--partner > h3 + p {
+    width:min(100%,64ch);
+    font-size:14px;
+    line-height:1.7;
+  }
+  #partnership .cooperation-path-guide {
+    align-self:center;
+    width:min(100%,880px);
+    margin-top:20px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:var(--white);
+  }
+  #partnership .cooperation-path-guide > .cooperation-quick__overview {
+    padding:4px 16px 16px;
+  }
+  #partnership .cooperation-quick > summary {
+    position:relative;
+    min-height:48px;
+    justify-content:center;
+    padding:10px 32px;
+    text-align:center;
+  }
+  #partnership .cooperation-quick > summary::after {
+    position:absolute;
+    inset-inline-end:12px;
+  }
+  #partnership .cooperation-quick__overview,
+  #partnership .cooperation-quick__overview .cooperation-overview__facts {
+    text-align:start;
+  }
+  #partnership .cooperation-overview > .cooperation-overview__card {
+    align-items:center;
+    border-radius:8px;
+    text-align:center;
+  }
+  #partnership .cooperation-overview__card > .cooperation-overview__eyebrow {
+    display:flex;
+    min-height:3em;
+    align-items:center;
+  }
+  #partnership .cooperation-overview__card h4 {
+    text-wrap:balance;
+  }
+  #partnership .cooperation-overview__card .cooperation-overview__link {
+    min-height:44px;
+    margin-top:6px;
+    justify-content:center;
+    text-align:center;
+  }
+  #partnership .cooperation-overview__card .cooperation-overview__request {
+    width:min(100%,360px);
+    min-height:56px;
+    text-align:center;
+  }
+  #partnership .cooperation-start {
+    border-radius:8px;
+  }
+  #partnership .cooperation-start > h4,
+  #partnership .cooperation-start > p {
+    text-align:center;
+  }
+  #partnership > .training-note--partner > .training-chat-trigger {
+    align-self:center;
+    width:min(100%,420px);
+    margin-top:clamp(22px,3vw,34px);
+  }
+  #partnership > .training-note--partner > .training-form-link[data-partnership-cta="projects"] {
+    align-self:center;
+    min-height:44px;
+    align-items:center;
+    margin-top:6px;
+    text-align:center;
+  }
+  #partnership > .training-note--chat > .cooperation-topics > li > button[data-chat-interest] {
+    align-items:center;
+    text-align:center;
+  }
+  #partnership .cooperation-topics button[data-chat-interest] > .cooperation-topic__action {
+    justify-content:center;
+    gap:8px;
+    text-align:center;
+  }
+  @media(max-width:700px) {
+    #partnership .cooperation-overview__card > .cooperation-overview__eyebrow {
+      min-height:0;
+    }
+    #partnership .cooperation-overview__card .cooperation-overview__request {
+      min-height:48px;
+    }
+  }

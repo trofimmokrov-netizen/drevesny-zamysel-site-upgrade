@@ -188,7 +188,7 @@
     }
     .home-project-film {
       display:grid;
-      grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+      grid-template-columns:repeat(2,minmax(0,1fr));
       align-items:center;
       gap:clamp(18px,4vw,52px);
       margin-top:24px;
@@ -212,8 +212,8 @@
       display:block;
       width:100%;
       height:auto;
-      aspect-ratio:4 / 3;
-      max-height:300px;
+      aspect-ratio:16 / 11;
+      max-height:320px;
       object-fit:cover;
       object-position:center 49%;
       border-radius:inherit;
@@ -232,20 +232,93 @@
       font-size:13px;
       font-weight:650;
     }
-    .home-project-film__play { position:absolute; inset:auto 10px 10px; }
+    .home-project-film__play {
+      position:absolute;
+      inset:auto auto clamp(12px,2vw,22px) 50%;
+      min-width:max-content;
+      min-height:48px;
+      padding-inline:14px;
+      transform:translateX(-50%);
+      border:1px solid rgb(255 255 255 / .62);
+      border-radius:5px;
+      box-shadow:0 4px 18px rgb(17 27 21 / .25);
+    }
+    .home-project-film__play > [aria-hidden] { font-size:12px; }
+    .home-project-film__duration { padding-inline-start:8px; border-inline-start:1px solid rgb(255 255 255 / .42); font-size:11px; }
+    .home-project-film__player summary:hover .home-project-film__play { background:#354c3e; }
     .home-project-film__collapse { display:none; }
     .home-project-film__player[open] summary img,.home-project-film__player[open] .home-project-film__play { display:none; }
     .home-project-film__player[open] .home-project-film__collapse { display:flex; }
     .home-project-film__player video { display:block; width:100%; height:auto; max-height:min(65vh,540px); margin-top:8px; border-radius:3px; background:#17221b; }
+    .home-project-film__copy { text-align:center; }
     .home-project-film__copy h3 { margin:0; color:var(--heading-color); font:500 clamp(29px,4vw,46px)/1.08 'Cormorant Garamond',Georgia,serif; text-wrap:balance; }
-    .home-project-film__copy p { max-width:52ch; margin:12px 0 0; color:var(--text-secondary); font-size:14px; line-height:1.7; }
-    .home-project-film__links { display:flex; align-items:center; flex-wrap:wrap; gap:8px 18px; margin-top:18px; }
+    .home-project-film__copy p { max-width:52ch; margin:12px auto 0; color:var(--text-secondary); font-size:14px; line-height:1.7; }
+    .home-project-film__links { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:6px 16px; margin-top:18px; }
     .home-project-film__links > a:not(.portfolio-resource__action) { display:inline-flex; align-items:center; gap:6px; min-height:44px; color:var(--btn-bg); font-size:13px; font-weight:650; text-underline-offset:4px; }
+    .home-project-film-dialog-open { overflow-y:hidden; }
+    .home-project-film__dialog {
+      position:fixed;
+      inset:0;
+      width:min(660px,calc(100% - 24px));
+      height:min(750px,calc(100vh - 24px));
+      height:min(750px,calc(100dvh - 24px));
+      max-height:none;
+      max-width:none;
+      margin:auto;
+      padding:clamp(10px,2.2vw,18px);
+      border:1px solid var(--border);
+      border-radius:5px;
+      background:var(--off-white);
+      color:var(--heading-color);
+      overscroll-behavior:contain;
+    }
+    .home-project-film__dialog:not([open]) { display:none; }
+    .home-project-film__dialog[open] { display:grid; grid-template-rows:auto auto minmax(120px,1fr); gap:10px; }
+    .home-project-film__dialog::backdrop { background:rgb(21 32 25 / .82); }
+    .home-project-film__dialog h2 {
+      margin:0;
+      font:500 clamp(24px,4.5vw,35px)/1.08 'Cormorant Garamond',Georgia,serif;
+      text-align:center;
+      text-wrap:balance;
+    }
+    .home-project-film__dialog button {
+      min-height:44px;
+      padding:7px 13px;
+      border:1px solid var(--border);
+      border-radius:3px;
+      background:var(--white);
+      color:var(--heading-color);
+      font:650 13px/1.4 var(--font-body);
+      cursor:pointer;
+    }
+    .home-project-film__dialog button:hover { border-color:var(--accent); }
+    .home-project-film__dialog button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .home-project-film__dialog button span { margin-inline-end:5px; }
+    .home-project-film__stage { min-width:0; min-height:0; overflow:hidden; border-radius:3px; background:#17221b; }
+    .home-project-film__stage video { display:block; width:100%; height:100%; object-fit:contain; }
     @media(max-width:700px) {
       .home-project-film { grid-template-columns:minmax(0,1fr); }
-      .home-project-film__copy { text-align:center; }
-      .home-project-film__copy p { margin-inline:auto; }
-      .home-project-film__links { justify-content:center; }
+    }
+    .home-vacancy {
+      width:min(var(--page-width,1280px),calc(100% - 48px));
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:14px 24px;
+      align-items:center;
+      margin:0 auto clamp(30px,5vw,62px);
+      padding:clamp(18px,3vw,30px);
+      border:1px solid var(--border);
+      border-inline-start:3px solid var(--accent);
+      border-radius:3px;
+      background:var(--white);
+    }
+    .home-vacancy__label { margin:0 0 6px; color:#75552f; font-size:12px; font-weight:700; }
+    .home-vacancy h2 { margin:0 0 8px; color:var(--heading-color); font:500 clamp(28px,3.5vw,38px)/1.1 'Cormorant Garamond',Georgia,serif; }
+    .home-vacancy h2 + p { margin:0; color:var(--text-secondary); font-size:14px; }
+    .home-vacancy__link { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 14px; border:1px solid var(--border); border-radius:3px; color:var(--heading-color); font-size:13px; font-weight:700; text-decoration:none; }
+    .home-vacancy__link:hover { border-color:var(--accent); }
+    @media(max-width:600px) {
+      .home-vacancy { grid-template-columns:minmax(0,1fr); justify-items:center; width:calc(100% - 32px); text-align:center; }
     }
     .portfolio-resource:focus-visible { outline:3px solid #b58a45; outline-offset:3px; }
     @media(hover:hover) and (pointer:fine) {

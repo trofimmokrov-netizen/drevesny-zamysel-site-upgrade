@@ -1002,3 +1002,25 @@
     #partnership + .dealer-note .dealer-certificate-trigger img { height:200px !important; }
     #partnership + .dealer-note .dealer-certificate-download { justify-self:center; }
   }
+
+  .hero .hero-content > :is(.hero-label, .hero-title, .hero-achievement, .hero-sub) {
+    margin-inline:auto;
+    text-align:center;
+  }
+  .hero .hero-tags,
+  .hero .hero-cta-row { margin-inline:auto; justify-content:center; }
+
+  :is(.products-inner, #why, #materials, #process, .coverage-inner) > :is(.section-label, .section-title, .section-sub),
+  #contact .form-left > :is(.section-label, h2),
+  .location-map-copy > :is(.section-label, h2) {
+    margin-inline:auto;
+    text-align:center;
+  }
+  :is(.products-inner, #why, #materials, #process, .coverage-inner) > .section-title { text-wrap:balance; }
+  .leonid-heading-row { flex-direction:column; align-items:center; text-align:center; }
+  .leonid-heading-row .section-sub { margin-inline:auto; }
+  .leonid-count { text-align:center; }
+  .location-map-copy { align-items:center; text-align:center; }
+  .electrical-preview__copy, .home-vacancy > div { text-align:center; }
+  .electrical-preview__copy p { margin-inline:auto; }
+  :is(.product-body, .material-card, .article-card) h3 { text-align:center; text-wrap:balance; }

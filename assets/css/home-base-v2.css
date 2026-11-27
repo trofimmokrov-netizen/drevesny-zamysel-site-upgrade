@@ -874,14 +874,13 @@
           .why-extra-content { padding: 50px; }
       }
 
-      @media (max-width: 1408px) {
+      @media (min-width: 1251px) and (max-width: 1699px) {
           .header-nav {
-              flex-basis: 100%;
+              flex: 0 0 100%;
               order: 3;
               justify-content: center;
               padding-left: 0;
               margin-top: 6px;
-              flex: initial;
           }
       }
       @media (max-width: 1024px) {

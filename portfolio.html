@@ -53,27 +53,32 @@
     .categories a:hover { border-color:var(--gold); }
     .project-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
     .featured-project { display:flex; flex-direction:column; gap:16px; padding:clamp(12px,2vw,20px); border:1px solid var(--line); border-radius:5px; background:var(--surface); text-decoration:none; }
-    .featured-project > div { display:flex; flex:1; flex-direction:column; align-items:flex-start; padding-inline:4px; }
+    .featured-project > div { display:flex; flex:1; flex-direction:column; align-items:center; padding-inline:4px; text-align:center; }
     .featured-project h3 { margin:0; font-size:clamp(27px,3.2vw,42px); font-weight:500; line-height:1.12; }
     .featured-project > img { display:block; width:100%; height:auto; max-height:320px; aspect-ratio:5/4; object-fit:contain; border:1px solid #ded3c1; border-radius:3px; background:var(--frame); }
     .featured-project:hover { border-color:#b09777; }
     .feature-note { max-width:48ch; margin:12px 0; color:var(--muted); font-size:14px; }
     .feature-action { display:inline-flex; align-items:center; gap:6px; min-height:44px; margin-top:auto; font-size:13px; font-weight:650; text-decoration:underline; }
     .portfolio-section { margin-block:clamp(44px,6vw,74px); scroll-margin-top:20px; }
+    .portfolio-section > h2, .media-teaser > div { text-align:center; }
     .media-teaser { display:grid; grid-template-columns:clamp(82px,11vw,138px) minmax(0,1fr) auto; align-items:center; gap:18px 28px; padding:clamp(18px,3vw,32px); border:1px solid var(--line); border-radius:5px; background:var(--surface); }
     .media-teaser > img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; object-position:center 55%; border:1px solid #ded3c1; border-radius:3px; }
     .media-teaser h2 { font-size:clamp(28px,3.6vw,40px); }
     .media-teaser p { margin:8px 0 0; color:var(--muted); font-size:14px; }
     .media-teaser a { display:inline-flex; flex:none; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:8px 16px; border:1px solid var(--green); border-radius:3px; background:var(--green); color:var(--surface); font-size:13px; font-weight:700; text-decoration:none; }
     .media-teaser a:hover { background:var(--surface); color:var(--green); }
-    .section-intro { max-width:72ch; margin:10px 0 22px; color:var(--muted); font-size:14px; }
+    .section-intro { max-width:72ch; margin:10px auto 22px; color:var(--muted); font-size:14px; text-align:center; }
     .photo-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
     .photo-grid figure { margin:0; padding:7px; min-width:0; border:1px solid var(--line); border-radius:5px; background:var(--surface); }
     .photo-grid a { display:block; overflow:hidden; border:1px solid #ded3c1; border-radius:3px; background:var(--frame); cursor:zoom-in; }
     .photo-grid a:hover { border-color:#b09777; }
     .photo-grid img { display:block; width:100%; height:auto; aspect-ratio:5/4; object-fit:contain; }
     .photo-grid figcaption { padding:9px 5px 5px; color:var(--muted); font-size:13px; line-height:1.5; overflow-wrap:anywhere; }
-    .section-link { margin:14px 0 0; font-size:13px; font-weight:650; }
+    .woodwork-group { margin-top:clamp(22px,4vw,36px); }
+    .woodwork-group h3 { margin:0 0 14px; font-size:clamp(24px,3vw,36px); font-weight:500; line-height:1.15; text-align:center; text-wrap:balance; }
+    .woodwork-grid img { aspect-ratio:4/5; }
+    .woodwork-grid figcaption { text-align:center; }
+    .section-link { margin:14px 0 0; font-size:13px; font-weight:650; text-align:center; }
     .end { display:flex; justify-content:center; flex-wrap:wrap; gap:14px 24px; padding:24px 0 40px; border-top:1px solid var(--line); text-align:center; font-size:13px; }
     .wrap > .cookie-consent-preferences { margin:0 0 24px; text-align:center; }
     .wrap > .cookie-consent-preferences button { min-height:44px; padding:8px 14px; border:1px solid var(--line); border-radius:3px; background:var(--surface); }
@@ -114,7 +119,10 @@
       .media-teaser { grid-template-columns:minmax(0,1fr); justify-items:center; text-align:center; }
       .media-teaser > img { width:min(100%,300px); aspect-ratio:16/10; }
     }
-    @media (max-width:480px) { .photo-grid { grid-template-columns:minmax(0,1fr); } }
+    @media (max-width:480px) {
+      .photo-grid { grid-template-columns:minmax(0,1fr); }
+      .woodwork-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    }
   </style>
 </head>
 <body>
@@ -367,51 +375,143 @@
 
     <section class="portfolio-section" id="izdeliya-iz-dereva" aria-labelledby="izdeliya-iz-dereva-title">
       <h2 id="izdeliya-iz-dereva-title">Изделия из дерева</h2>
-      <p class="section-intro">Кроме лестниц, мастерская изготавливает столы, шкафы, стеллажи и стеновые панели. В подборке показаны разные изделия и способы их встроить в интерьер.</p>
-      <div class="photo-grid">
-        <figure>
-          <a href="./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp">
-            <img src="./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp" srcset="./assets/images/portfolio/branded/thumbs/cabinet-vertical-wood-grain.webp 540w, ./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp 1440w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1440" height="1920" alt="Встроенный шкаф с вертикальным рисунком древесины" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Встроенный шкаф с вертикальным рисунком древесины.</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/wooden-table-wide-legs.webp">
-            <img src="./assets/images/portfolio/branded/wooden-table-wide-legs.webp" srcset="./assets/images/portfolio/branded/thumbs/wooden-table-wide-legs.webp 540w, ./assets/images/portfolio/branded/wooden-table-wide-legs.webp 1440w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1440" height="1920" alt="Деревянный стол с широкими опорами в светлом интерьере" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Деревянный стол с широкими опорами в светлом интерьере.</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp">
-            <img src="./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp" srcset="./assets/images/portfolio/branded/thumbs/wooden-sideboard-with-drawers.webp 720w, ./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp 1920w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1920" height="1440" alt="Деревянная тумба с дверцами и ящиками в тёмном обрамлении" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Деревянная тумба с дверцами и ящиками в тёмном обрамлении.</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/preview-custom-woodwork.webp" aria-label="Открыть фото: Обеденный стол из массива дерева">
-            <img src="./assets/images/portfolio/branded/preview-custom-woodwork.webp" srcset="./assets/images/portfolio/branded/thumbs/preview-custom-woodwork.webp 720w, ./assets/images/portfolio/branded/preview-custom-woodwork.webp 798w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="798" height="725" alt="Обеденный стол из массива дерева" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Обеденный стол из массива дерева</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/custom-woodwork-01.webp" aria-label="Открыть фото: Встроенный шкаф со светлыми филёнчатыми фасадами">
-            <img src="./assets/images/portfolio/branded/custom-woodwork-01.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-01.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-01.webp 1440w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1440" height="1920" alt="Встроенный шкаф со светлыми филёнчатыми фасадами" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Встроенный шкаф со светлыми филёнчатыми фасадами</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/custom-woodwork-08.webp" aria-label="Открыть фото: Стеллажи с открытыми полками и широкими вертикальными стойками">
-            <img src="./assets/images/portfolio/branded/custom-woodwork-08.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-08.webp 720w, ./assets/images/portfolio/branded/custom-woodwork-08.webp 1920w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1920" height="1440" alt="Стеллажи с открытыми полками и широкими вертикальными стойками" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Стеллажи с открытыми полками и широкими вертикальными стойками</figcaption>
-        </figure>
-        <figure>
-          <a href="./assets/images/portfolio/branded/custom-woodwork-09.webp" aria-label="Открыть фото: Деревянные стеновые панели с вертикальным рисунком">
-            <img src="./assets/images/portfolio/branded/custom-woodwork-09.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-09.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-09.webp 1440w" sizes="(max-width: 480px) calc(100vw - 34px), (max-width: 640px) calc((100vw - 50px) / 2), (max-width: 900px) calc((100vw - 66px) / 2), (max-width: 1228px) calc((100vw - 98px) / 4), 283px" width="1440" height="1920" alt="Деревянные стеновые панели с вертикальным рисунком" loading="lazy" decoding="async">
-          </a>
-          <figcaption>Деревянные стеновые панели с вертикальным рисунком</figcaption>
-        </figure>
-      </div>
+      <p class="section-intro">Столы и столешницы, шкафы, стеллажи и стеновые панели. Откройте фотографию, чтобы рассмотреть детали.</p>
+      <section class="woodwork-group" aria-labelledby="woodwork-storage-heading">
+        <h3 id="woodwork-storage-heading">Шкафы, хранение и отделка</h3>
+        <div class="photo-grid woodwork-grid">
+          <figure>
+            <a href="./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp">
+              <img src="./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp" srcset="./assets/images/portfolio/branded/thumbs/cabinet-vertical-wood-grain.webp 540w, ./assets/images/portfolio/branded/cabinet-vertical-wood-grain.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Встроенный шкаф с вертикальным рисунком древесины" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Встроенный шкаф с вертикальным рисунком древесины.</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp">
+              <img src="./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp" srcset="./assets/images/portfolio/branded/thumbs/wooden-sideboard-with-drawers.webp 720w, ./assets/images/portfolio/branded/wooden-sideboard-with-drawers.webp 1920w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1920" height="1440" alt="Деревянная тумба с дверцами и ящиками в тёмном обрамлении" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Деревянная тумба с дверцами и ящиками в тёмном обрамлении.</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-01.webp" aria-label="Открыть фото: Встроенный шкаф со светлыми филёнчатыми фасадами">
+              <img src="./assets/images/portfolio/branded/custom-woodwork-01.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-01.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-01.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Встроенный шкаф со светлыми филёнчатыми фасадами" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Встроенный шкаф со светлыми филёнчатыми фасадами</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-08.webp" aria-label="Открыть фото: Стеллажи с открытыми полками и широкими вертикальными стойками">
+              <img src="./assets/images/portfolio/branded/custom-woodwork-08.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-08.webp 720w, ./assets/images/portfolio/branded/custom-woodwork-08.webp 1920w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1920" height="1440" alt="Стеллажи с открытыми полками и широкими вертикальными стойками" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Стеллажи с открытыми полками и широкими вертикальными стойками</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-09.webp" aria-label="Открыть фото: Деревянные стеновые панели с вертикальным рисунком">
+              <img src="./assets/images/portfolio/branded/custom-woodwork-09.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-09.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-09.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Деревянные стеновые панели с вертикальным рисунком" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Деревянные стеновые панели с вертикальным рисунком</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-03.webp" aria-label="Открыть фото: Синяя тумба с филёнчатыми дверцами и ящиками">
+              <img src="./assets/images/portfolio/branded/thumbs/custom-woodwork-03.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-03.webp 720w, ./assets/images/portfolio/branded/custom-woodwork-03.webp 1761w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1761" height="1252" alt="Синяя тумба с филёнчатыми дверцами и ящиками" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Синяя тумба с филёнчатыми дверцами и ящиками</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-05.webp" aria-label="Открыть фото: Белые шкафы под лестницей с золотистыми ручками">
+              <img src="./assets/images/portfolio/branded/thumbs/custom-woodwork-05.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-05.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-05.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Белые шкафы под лестницей с золотистыми ручками" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Белые шкафы под лестницей с золотистыми ручками</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-06.webp" aria-label="Открыть фото: Зелёный шкаф с открытой деревянной нишей">
+              <img src="./assets/images/portfolio/branded/thumbs/custom-woodwork-06.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-06.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-06.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Зелёный шкаф с открытой деревянной нишей" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Зелёный шкаф с открытой деревянной нишей</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/custom-woodwork-07.webp" aria-label="Открыть фото: Светлый встроенный шкаф с нишей и ящиками">
+              <img src="./assets/images/portfolio/branded/thumbs/custom-woodwork-07.webp" srcset="./assets/images/portfolio/branded/thumbs/custom-woodwork-07.webp 540w, ./assets/images/portfolio/branded/custom-woodwork-07.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Светлый встроенный шкаф с нишей и ящиками" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Светлый встроенный шкаф с нишей и ящиками</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/shkafy-pod-lestnitsey.webp" aria-label="Открыть фото: Шкафы и выдвижные ящики под лестницей">
+              <img src="./assets/images/portfolio/stories/thumbs/shkafy-pod-lestnitsey.webp" srcset="./assets/images/portfolio/stories/thumbs/shkafy-pod-lestnitsey.webp 382w, ./assets/images/portfolio/stories/shkafy-pod-lestnitsey.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Шкафы и выдвижные ящики под лестницей" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Шкафы и выдвижные ящики под лестницей</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="woodwork-group" aria-labelledby="woodwork-tables-heading">
+        <h3 id="woodwork-tables-heading">Столы и столешницы</h3>
+        <div class="photo-grid woodwork-grid">
+          <figure>
+            <a href="./assets/images/portfolio/branded/wooden-table-wide-legs.webp">
+              <img src="./assets/images/portfolio/branded/wooden-table-wide-legs.webp" srcset="./assets/images/portfolio/branded/thumbs/wooden-table-wide-legs.webp 540w, ./assets/images/portfolio/branded/wooden-table-wide-legs.webp 1440w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="1440" height="1920" alt="Деревянный стол с широкими опорами в светлом интерьере" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Деревянный стол с широкими опорами в светлом интерьере.</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/branded/preview-custom-woodwork.webp" aria-label="Открыть фото: Обеденный стол из массива дерева">
+              <img src="./assets/images/portfolio/branded/preview-custom-woodwork.webp" srcset="./assets/images/portfolio/branded/thumbs/preview-custom-woodwork.webp 720w, ./assets/images/portfolio/branded/preview-custom-woodwork.webp 798w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="798" height="725" alt="Обеденный стол из массива дерева" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Обеденный стол из массива дерева</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/derevyannyy-stol-i-taburety.webp" aria-label="Открыть фото: Деревянный стол и три табурета с фигурными опорами">
+              <img src="./assets/images/portfolio/stories/thumbs/derevyannyy-stol-i-taburety.webp" srcset="./assets/images/portfolio/stories/thumbs/derevyannyy-stol-i-taburety.webp 382w, ./assets/images/portfolio/stories/derevyannyy-stol-i-taburety.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Деревянный стол и три табурета с фигурными опорами" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Деревянный стол и три табурета с фигурными опорами</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/servirovochnyy-stolik-na-kolesah.webp" aria-label="Открыть фото: Тёмный деревянный сервировочный столик на колёсах">
+              <img src="./assets/images/portfolio/stories/thumbs/servirovochnyy-stolik-na-kolesah.webp" srcset="./assets/images/portfolio/stories/thumbs/servirovochnyy-stolik-na-kolesah.webp 382w, ./assets/images/portfolio/stories/servirovochnyy-stolik-na-kolesah.webp 720w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="720" height="1280" alt="Тёмный деревянный сервировочный столик на колёсах" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Тёмный деревянный сервировочный столик на колёсах</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/kvadratnyy-stolik-na-karkase.webp" aria-label="Открыть фото: Квадратный столик на чёрном металлическом каркасе">
+              <img src="./assets/images/portfolio/stories/thumbs/kvadratnyy-stolik-na-karkase.webp" srcset="./assets/images/portfolio/stories/thumbs/kvadratnyy-stolik-na-karkase.webp 382w, ./assets/images/portfolio/stories/kvadratnyy-stolik-na-karkase.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Квадратный столик на чёрном металлическом каркасе" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Квадратный столик на чёрном металлическом каркасе</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/stol-s-siney-vstavkoy-na-podstole.webp" aria-label="Открыть фото: Круглый стол из слэба с тёмно-синей заливкой">
+              <img src="./assets/images/portfolio/stories/thumbs/stol-s-siney-vstavkoy-na-podstole.webp" srcset="./assets/images/portfolio/stories/thumbs/stol-s-siney-vstavkoy-na-podstole.webp 382w, ./assets/images/portfolio/stories/stol-s-siney-vstavkoy-na-podstole.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Круглый стол из слэба с тёмно-синей заливкой" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Круглый стол из слэба с тёмно-синей заливкой</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/kruglyy-stol-s-derevyannym-krayem.webp" aria-label="Открыть фото: Круглый стол с широкой деревянной кромкой на треугольных опорах">
+              <img src="./assets/images/portfolio/stories/thumbs/kruglyy-stol-s-derevyannym-krayem.webp" srcset="./assets/images/portfolio/stories/thumbs/kruglyy-stol-s-derevyannym-krayem.webp 382w, ./assets/images/portfolio/stories/kruglyy-stol-s-derevyannym-krayem.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Круглый стол с широкой деревянной кромкой на треугольных опорах" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Круглый стол с широкой деревянной кромкой на треугольных опорах</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/stoleshnitsa-s-goluboy-smoloy.webp" aria-label="Открыть фото: Круглая деревянная столешница с голубой смолой">
+              <img src="./assets/images/portfolio/stories/thumbs/stoleshnitsa-s-goluboy-smoloy.webp" srcset="./assets/images/portfolio/stories/thumbs/stoleshnitsa-s-goluboy-smoloy.webp 382w, ./assets/images/portfolio/stories/stoleshnitsa-s-goluboy-smoloy.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Круглая деревянная столешница с голубой смолой" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Круглая деревянная столешница с голубой смолой</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/sleb-s-temnoy-vstavkoy.webp" aria-label="Открыть фото: Столешница из слэба с тёмной прозрачной вставкой">
+              <img src="./assets/images/portfolio/stories/thumbs/sleb-s-temnoy-vstavkoy.webp" srcset="./assets/images/portfolio/stories/thumbs/sleb-s-temnoy-vstavkoy.webp 382w, ./assets/images/portfolio/stories/sleb-s-temnoy-vstavkoy.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Столешница из слэба с тёмной прозрачной вставкой" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Столешница из слэба с тёмной прозрачной вставкой</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/dlinnaya-stoleshnitsa-s-prirodnym-krayem.webp" aria-label="Открыть фото: Длинная столешница с естественной кромкой">
+              <img src="./assets/images/portfolio/stories/thumbs/dlinnaya-stoleshnitsa-s-prirodnym-krayem.webp" srcset="./assets/images/portfolio/stories/thumbs/dlinnaya-stoleshnitsa-s-prirodnym-krayem.webp 382w, ./assets/images/portfolio/stories/dlinnaya-stoleshnitsa-s-prirodnym-krayem.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Длинная столешница с естественной кромкой" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Длинная столешница с естественной кромкой</figcaption>
+          </figure>
+          <figure>
+            <a href="./assets/images/portfolio/stories/derevyannaya-stoyka-v-interere.webp" aria-label="Открыть фото: Деревянный письменный стол с двумя тумбами">
+              <img src="./assets/images/portfolio/stories/thumbs/derevyannaya-stoyka-v-interere.webp" srcset="./assets/images/portfolio/stories/thumbs/derevyannaya-stoyka-v-interere.webp 382w, ./assets/images/portfolio/stories/derevyannaya-stoyka-v-interere.webp 810w" sizes="(max-width: 640px) calc((100vw - 72px) / 2), (max-width: 900px) calc((100vw - 94px) / 2), (max-width: 1228px) calc((100vw - 154px) / 4), 270px" width="810" height="1440" alt="Деревянный письменный стол с двумя тумбами" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Деревянный письменный стол с двумя тумбами</figcaption>
+          </figure>
+        </div>
+      </section>
     </section>
   </main>
   <footer class="wrap end">
@@ -436,7 +536,8 @@
       const dialog = document.getElementById('portfolioPhotoViewer');
       if (typeof dialog.showModal !== 'function') return;
 
-      const photos = [...document.querySelectorAll('.photo-grid a')];
+      const photoLinks = document.querySelectorAll('.photo-grid a');
+      let photos = [];
       const image = dialog.querySelector('img');
       const caption = dialog.querySelector('figcaption');
       const counter = dialog.querySelector('.photo-viewer__nav p');
@@ -453,13 +554,14 @@
         counter.textContent = `${current + 1} / ${photos.length}`;
       }
 
-      photos.forEach((link, index) => {
+      photoLinks.forEach(link => {
         link.setAttribute('aria-haspopup', 'dialog');
         link.addEventListener('click', event => {
           if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
           event.preventDefault();
           opener = link;
-          displayPhoto(index);
+          photos = [...link.closest('.portfolio-section').querySelectorAll('.photo-grid a')];
+          displayPhoto(photos.indexOf(link));
           dialog.showModal();
           document.documentElement.classList.add('photo-viewer-open');
         });

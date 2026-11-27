@@ -179,11 +179,11 @@
     }
   </style>
 
-  <link rel="stylesheet" href="./assets/css/home-base-v2.css" />
+  <link rel="stylesheet" href="./assets/css/home-base-v2.css?v=20261127-vacancy" />
   <!-- The portfolio already uses its own lightweight gallery. Avoid loading the
        old Swiper/PhotoSwipe bundle here: it eagerly decoded every gallery photo. -->
 
-  <link rel="stylesheet" href="./assets/css/home-refinements-v2-1.css?v=20261127-portfolio" />
+  <link rel="stylesheet" href="./assets/css/home-refinements-v2-1.css?v=20261127-woodwork" />
 
 
   <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261119-gallery-v24" />
@@ -211,6 +211,7 @@
     <a href="#training">Обучение</a>
     <a href="#articles">Статьи</a>
     <a href="./elektrosnabzhenie/">Электроснабжение</a>
+    <a href="./vakansii/index.html">Вакансии</a>
     <a href="#contact">Контакты</a>
   </nav>
 
@@ -257,6 +258,7 @@
     <a href="#training">Обучение</a>
     <a href="#articles">Статьи</a>
     <a href="./elektrosnabzhenie/">Электроснабжение</a>
+    <a href="./vakansii/index.html">Вакансии</a>
     <a href="#contact">Контакты</a>
   </nav>
   <div class="mobile-nav-bottom">
@@ -502,16 +504,6 @@
       </div>
 
       <section class="home-project-film" aria-labelledby="home-project-film-title">
-        <details class="home-project-film__player">
-          <summary>
-            <img src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.webp" width="540" height="960" alt="" loading="lazy" decoding="async" />
-            <span class="home-project-film__play"><span aria-hidden="true">▶</span> Смотреть видео · 15 сек.</span>
-            <span class="home-project-film__collapse">Свернуть видео</span>
-          </summary>
-          <video src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.mp4" width="540" height="960" controls playsinline preload="none" aria-label="Открытая лестница у большого окна">
-            <a href="./portfolio-media/prohod-vdol-otkrytoy-lestnitsy/index.html">Открыть страницу видео</a>
-          </video>
-        </details>
         <div class="home-project-film__copy">
           <h3 id="home-project-film-title">Как лестница смотрится в интерьере</h3>
           <p>В коротком ролике видны деревянные ступени, ограждение и то, как дневной свет проходит через открытый марш. Расскажите о вашем проёме, и мы подберём конструкцию под планировку дома.</p>
@@ -521,6 +513,21 @@
             <a href="./articles/zayavka-na-raschet-lestnicy/index.html">Что отправить для расчёта</a>
           </div>
         </div>
+        <details class="home-project-film__player">
+          <summary>
+            <img src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.webp" width="540" height="960" alt="" loading="lazy" decoding="async" />
+            <span class="home-project-film__play"><span aria-hidden="true">▶</span> Смотреть видео <span class="home-project-film__duration">15 сек.</span></span>
+            <span class="home-project-film__collapse">Свернуть видео</span>
+          </summary>
+          <video src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.mp4" width="540" height="960" controls playsinline preload="none" aria-label="Открытая лестница у большого окна">
+            <a href="./portfolio-media/prohod-vdol-otkrytoy-lestnitsy/index.html">Открыть страницу видео</a>
+          </video>
+        </details>
+        <dialog class="home-project-film__dialog" aria-labelledby="home-project-film-dialog-title">
+          <form method="dialog"><button type="submit" autofocus><span aria-hidden="true">←</span> Вернуться к работам</button></form>
+          <h2 id="home-project-film-dialog-title">Открытая лестница у большого окна</h2>
+          <div class="home-project-film__stage"></div>
+        </dialog>
       </section>
     </div>
   </div>
@@ -1261,6 +1268,15 @@
       <a class="dealer-certificate-download" href="./assets/docs/sertifikat-21-oficialnyy-diler-2026.pdf" download>Скачать оригинал PDF <span aria-hidden="true">↓</span></a>
     </div>
   </section>
+
+  <section class="home-vacancy" aria-labelledby="home-vacancy-title">
+    <div>
+      <p class="home-vacancy__label">Вакансии мастерской</p>
+      <h2 id="home-vacancy-title">Требуется столяр-монтажник</h2>
+      <p>Изготовление деревянных лестниц в Губкино и монтаж на объектах в Москве и области.</p>
+    </div>
+    <a class="home-vacancy__link" href="./vakansii/index.html">Смотреть вакансию <span aria-hidden="true">→</span></a>
+  </section>
 </main>
 
 <!-- FOOTER -->
@@ -1335,7 +1351,7 @@
   <button class="chat-handoff-toast__close" type="button" aria-label="Закрыть подсказку">×</button>
 </aside>
 
-<script src="./assets/js/home-interactions-v2.js?v=20261127-portfolio"></script>
+<script src="./assets/js/home-interactions-v2.js?v=20261127-woodwork"></script>
 <script>
   (function(w,d,u){
     var loaded=false;
@@ -1412,7 +1428,7 @@
 <link rel="stylesheet" href="./assets/css/home-refinements-v2-3.css" />
 <script defer src="./assets/js/wood-preview.js?v=20261109-walnut-webp"></script>
 <script defer src="./assets/js/motion-loader.js?v=20261118-loader-v28"></script>
-<link rel="stylesheet" href="./assets/css/home-refinements-v2-4.css" />
+<link rel="stylesheet" href="./assets/css/home-refinements-v2-4.css?v=20261127-woodwork" />
 <script>
   (() => {
     const dialog = document.getElementById('materialPreview');
@@ -1442,7 +1458,7 @@
     });
   })();
 </script>
-<link rel="stylesheet" href="./assets/css/home-refinements-v2-5.css" />
+<link rel="stylesheet" href="./assets/css/home-refinements-v2-5.css?v=20261127-woodwork" />
 
 </body>
 </html>
