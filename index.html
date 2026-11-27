@@ -183,7 +183,7 @@
   <!-- The portfolio already uses its own lightweight gallery. Avoid loading the
        old Swiper/PhotoSwipe bundle here: it eagerly decoded every gallery photo. -->
 
-  <link rel="stylesheet" href="./assets/css/home-refinements-v2-1.css?v=20261126-services" />
+  <link rel="stylesheet" href="./assets/css/home-refinements-v2-1.css?v=20261127-portfolio" />
 
 
   <link rel="stylesheet" href="./assets/css/interaction-polish.css?v=20261119-gallery-v24" />
@@ -500,6 +500,28 @@
           <span class="portfolio-resource__action">Варианты подсветки <span aria-hidden="true">→</span></span>
         </a>
       </div>
+
+      <section class="home-project-film" aria-labelledby="home-project-film-title">
+        <details class="home-project-film__player">
+          <summary>
+            <img src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.webp" width="540" height="960" alt="" loading="lazy" decoding="async" />
+            <span class="home-project-film__play"><span aria-hidden="true">▶</span> Смотреть видео · 15 сек.</span>
+            <span class="home-project-film__collapse">Свернуть видео</span>
+          </summary>
+          <video src="./assets/media/portfolio/prohod-vdol-otkrytoy-lestnitsy.mp4" width="540" height="960" controls playsinline preload="none" aria-label="Открытая лестница у большого окна">
+            <a href="./portfolio-media/prohod-vdol-otkrytoy-lestnitsy/index.html">Открыть страницу видео</a>
+          </video>
+        </details>
+        <div class="home-project-film__copy">
+          <h3 id="home-project-film-title">Как лестница смотрится в интерьере</h3>
+          <p>В коротком ролике видны деревянные ступени, ограждение и то, как дневной свет проходит через открытый марш. Расскажите о вашем проёме, и мы подберём конструкцию под планировку дома.</p>
+          <div class="home-project-film__links">
+            <a class="portfolio-resource__action" href="#request-form">Рассчитать лестницу</a>
+            <a href="./portfolio-media/index.html">Все фото и видео <span aria-hidden="true">→</span></a>
+            <a href="./articles/zayavka-na-raschet-lestnicy/index.html">Что отправить для расчёта</a>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -1313,7 +1335,7 @@
   <button class="chat-handoff-toast__close" type="button" aria-label="Закрыть подсказку">×</button>
 </aside>
 
-<script src="./assets/js/home-interactions-v2.js?v=20261126-services"></script>
+<script src="./assets/js/home-interactions-v2.js?v=20261127-portfolio"></script>
 <script>
   (function(w,d,u){
     var loaded=false;

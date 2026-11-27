@@ -42,6 +42,11 @@
 
   burgerBtn.addEventListener('click', toggleBurgerMenu);
 
+  const portfolioFilm = document.querySelector('.home-project-film__player');
+  portfolioFilm?.addEventListener('toggle', () => {
+    if (!portfolioFilm.open) portfolioFilm.querySelector('video')?.pause();
+  });
+
   function focusSection(target, instant) {
     // Keep keyboard and assistive-technology users with the destination.
     if (!target.hasAttribute('tabindex')) {
